@@ -1,232 +1,137 @@
-require([], function (){
+/* eslint-disable node/no-unsupported-features/node-builtins */
+(function($, moment, ClipboardJS, config) {
+    $('.article img:not(".not-gallery-item")').each(function() {
+        // wrap images with link and add caption if possible
+        if ($(this).parent('a').length === 0) {
+            $(this).wrap('<a class="gallery-item" href="' + $(this).attr('src') + '"></a>');
+            if (this.alt) {
+                $(this).after('<p class="has-text-centered is-size-6 caption">' + this.alt + '</p>');
+            }
+        }
+    });
 
-	var isMobileInit = false;
-	var loadMobile = function(){
-		require(['/js/mobile.js'], function(mobile){
-			mobile.init();
-			isMobileInit = true;
-		});
-	}
-	var isPCInit = false;
-	var loadPC = function(){
-		require(['/js/pc.js'], function(pc){
-			pc.init();
-			isPCInit = true;
-		});
-	}
+    if (typeof $.fn.lightGallery === 'function') {
+        $('.article').lightGallery({ selector: '.gallery-item' });
+    }
+    if (typeof $.fn.justifiedGallery === 'function') {
+        if ($('.justified-gallery > p > .gallery-item').length) {
+            $('.justified-gallery > p > .gallery-item').unwrap();
+        }
+        $('.justified-gallery').justifiedGallery();
+    }
 
-	require(['/js/particles.js'], function(particlesJS) {
-		window.particlesJS('particles-js',
+    if (typeof moment === 'function') {
+        $('.article-meta time').each(function() {
+            $(this).text(moment($(this).attr('datetime')).fromNow());
+        });
+    }
 
-		  {
-		    "particles": {
-		      "number": {
-		        "value": 80,
-		        "density": {
-		          "enable": true,
-		          "value_area": 800
-		        }
-		      },
-		      "color": {
-		        "value": ['#0fc', '#0ff', '#ccc', '#ffa500', '#7b5d5f', '#ff945c', '#cfb7c4']
-		      },
-		      "shape": {
-		        "type": "circle",
-		        "stroke": {
-		          "width": 0,
-		          "color": "#000000"
-		        },
-		        "polygon": {
-		          "nb_sides": 5
-		        },
-		        "image": {
-		          "src": "img/github.svg",
-		          "width": 100,
-		          "height": 100
-		        }
-		      },
-		      "opacity": {
-		        "value": 0.5,
-		        "random": false,
-		        "anim": {
-		          "enable": false,
-		          "speed": 1,
-		          "opacity_min": 0.1,
-		          "sync": false
-		        }
-		      },
-		      "size": {
-		        "value": 5,
-		        "random": true,
-		        "anim": {
-		          "enable": false,
-		          "speed": 40,
-		          "size_min": 0.1,
-		          "sync": false
-		        }
-		      },
-		      "line_linked": {
-		        "enable": true,
-		        "distance": 150,
-		        "color": "#ff945c",
-		        "opacity": 0.4,
-		        "width": 1
-		      },
-		      "move": {
-		        "enable": true,
-		        "speed": 6,
-		        "direction": "none",
-		        "random": false,
-		        "straight": false,
-		        "out_mode": "out",
-		        "attract": {
-		          "enable": false,
-		          "rotateX": 600,
-		          "rotateY": 1200
-		        }
-		      }
-		    },
-		    "interactivity": {
-		      "detect_on": "canvas",
-		      "events": {
-		        "onhover": {
-		          "enable": true,
-		          "mode": "repulse"
-		        },
-		        "onclick": {
-		          "enable": true,
-		          "mode": "push"
-		        },
-		        "resize": true
-		      },
-		      "modes": {
-		        "grab": {
-		          "distance": 400,
-		          "line_linked": {
-		            "opacity": 1
-		          }
-		        },
-		        "bubble": {
-		          "distance": 400,
-		          "size": 40,
-		          "duration": 2,
-		          "opacity": 8,
-		          "speed": 3
-		        },
-		        "repulse": {
-		          "distance": 200
-		        },
-		        "push": {
-		          "particles_nb": 4
-		        },
-		        "remove": {
-		          "particles_nb": 2
-		        }
-		      }
-		    },
-		    "retina_detect": true,
-		    "config_demo": {
-		      "hide_card": false,
-		      "background_color": "#b61924",
-		      "background_image": "",
-		      "background_position": "50% 50%",
-		      "background_repeat": "no-repeat",
-		      "background_size": "cover"
-		    }
-		  }
+    $('.article > .content > table').each(function() {
+        if ($(this).width() > $(this).parent().width()) {
+            $(this).wrap('<div class="table-overflow"></div>');
+        }
+    });
 
-		);
-	});
-	var browser={
-	    versions:function(){
-	    var u = window.navigator.userAgent;
-	    return {
-	        trident: u.indexOf('Trident') > -1, //IE内核
-	        presto: u.indexOf('Presto') > -1, //opera内核
-	        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-	        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-	        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-	        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-	        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-	        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-	        iPad: u.indexOf('iPad') > -1, //是否为iPad
-	        webApp: u.indexOf('Safari') == -1 ,//是否为web应用程序，没有头部与底部
-	        weixin: u.indexOf('MicroMessenger') == -1 //是否为微信浏览器
-	        };
-	    }()
-	}
+    function adjustNavbar() {
+        const navbarWidth = $('.navbar-main .navbar-start').outerWidth() + $('.navbar-main .navbar-end').outerWidth();
+        if ($(document).outerWidth() < navbarWidth) {
+            $('.navbar-main .navbar-menu').addClass('justify-content-start');
+        } else {
+            $('.navbar-main .navbar-menu').removeClass('justify-content-start');
+        }
+    }
+    adjustNavbar();
+    $(window).resize(adjustNavbar);
 
-	$(window).bind("resize", function(){
-		if(isMobileInit && isPCInit){
-			$(window).unbind("resize");
-			return;
-		}
-		var w = $(window).width();
-		if(w >= 700){
-			loadPC();
-		}else{
-			loadMobile();
-		}
-	});
+    function toggleFold(codeBlock, isFolded) {
+        const $toggle = $(codeBlock).find('.fold i');
+        !isFolded ? $(codeBlock).removeClass('folded') : $(codeBlock).addClass('folded');
+        !isFolded ? $toggle.removeClass('fa-angle-right') : $toggle.removeClass('fa-angle-down');
+        !isFolded ? $toggle.addClass('fa-angle-down') : $toggle.addClass('fa-angle-right');
+    }
 
-	if(browser.versions.mobile === true || $(window).width() < 700){
-		loadMobile();
-	}else{
-		loadPC();
-	}
+    function createFoldButton(fold) {
+        return '<span class="fold">' + (fold === 'unfolded' ? '<i class="fas fa-angle-down"></i>' : '<i class="fas fa-angle-right"></i>') + '</span>';
+    }
 
-	//是否使用fancybox
-	if(yiliaConfig.fancybox === true){
-		require(['/fancybox/jquery.fancybox.js'], function(pc){
-			var isFancy = $(".isFancy");
-			if(isFancy.length != 0){
-				var imgArr = $(".article-inner img");
-				for(var i=0,len=imgArr.length;i<len;i++){
-					var src = imgArr.eq(i).attr("src");
-					var title = imgArr.eq(i).attr("alt");
-					imgArr.eq(i).replaceWith("<a href='"+src+"' title='"+title+"' rel='fancy-group' class='fancy-ctn fancybox'><img src='"+src+"' title='"+title+"'></a>");
-				}
-				$(".article-inner .fancy-ctn").fancybox();
-			}
-		});
+    $('figure.highlight table').wrap('<div class="highlight-body">');
+    if (typeof config !== 'undefined'
+        && typeof config.article !== 'undefined'
+        && typeof config.article.highlight !== 'undefined') {
 
-	}
-	//是否开启动画
-	if(yiliaConfig.animate === true){
+        $('figure.highlight').addClass('hljs');
+        $('figure.highlight .code .line span').each(function() {
+            const classes = $(this).attr('class').split(/\s+/);
+            if (classes.length === 1) {
+                $(this).addClass('hljs-' + classes[0]);
+                $(this).removeClass(classes[0]);
+            }
+        });
 
-		require(['/js/jquery.lazyload.js'], function(){
-			//avatar
-			$(".js-avatar").attr("src", $(".js-avatar").attr("lazy-src"));
-			$(".js-avatar")[0].onload = function(){
-				$(".profilepic").addClass("show");
-			}
-		});
 
-		if(yiliaConfig.isHome === true){
-			//content
-			function showArticle(){
-				$(".article").each(function(){
-					if( $(this).offset().top <= $(window).scrollTop()+$(window).height() && !($(this).hasClass('show')) ) {
-						$(this).removeClass("hidden").addClass("show");
-						$(this).addClass("is-hiddened");
-					}else{
-						if(!$(this).hasClass("is-hiddened")){
-							$(this).addClass("hidden");
-						}
-					}
-				});
-			}
-			$(window).on('scroll', function(){
-				showArticle();
-			});
-			showArticle();
-		}
+        const clipboard = config.article.highlight.clipboard;
+        const fold = config.article.highlight.fold.trim();
 
-	}
+        $('figure.highlight').each(function() {
+            if ($(this).find('figcaption').length) {
+                $(this).find('figcaption').addClass('level is-mobile');
+                $(this).find('figcaption').append('<div class="level-left">');
+                $(this).find('figcaption').append('<div class="level-right">');
+                $(this).find('figcaption div.level-left').append($(this).find('figcaption').find('span'));
+                $(this).find('figcaption div.level-right').append($(this).find('figcaption').find('a'));
+            } else {
+                if (clipboard || fold) {
+                    $(this).prepend('<figcaption class="level is-mobile"><div class="level-left"></div><div class="level-right"></div></figcaption>');
+                }
+            }
+        });
 
-	//是否新窗口打开链接
-	if(yiliaConfig.open_in_new == true){
-		$(".article a[href]").attr("target", "_blank")
-	}
+        if (typeof ClipboardJS !== 'undefined' && clipboard) {
+            $('figure.highlight').each(function() {
+                const id = 'code-' + Date.now() + (Math.random() * 1000 | 0);
+                const button = '<a href="javascript:;" class="copy" title="Copy" data-clipboard-target="#' + id + ' .code"><i class="fas fa-copy"></i></a>';
+                $(this).attr('id', id);
+                $(this).find('figcaption div.level-right').append(button);
+            });
+            new ClipboardJS('.highlight .copy'); // eslint-disable-line no-new
+        }
 
-});
+        if (fold) {
+            $('figure.highlight').each(function() {
+                if ($(this).find('figcaption').find('span').length > 0) {
+                    const span = $(this).find('figcaption').find('span');
+                    if (span[0].innerText.indexOf('>folded') > -1) {
+                        span[0].innerText = span[0].innerText.replace('>folded', '');
+                        $(this).find('figcaption div.level-left').prepend(createFoldButton('folded'));
+                        toggleFold(this, true);
+                        return;
+                    }
+                }
+                $(this).find('figcaption div.level-left').prepend(createFoldButton(fold));
+                toggleFold(this, fold === 'folded');
+            });
+
+            $('figure.highlight figcaption .fold').click(function() {
+                const $code = $(this).closest('figure.highlight');
+                toggleFold($code.eq(0), !$code.hasClass('folded'));
+            });
+        }
+    }
+
+    const $toc = $('#toc');
+    if ($toc.length > 0) {
+        const $mask = $('<div>');
+        $mask.attr('id', 'toc-mask');
+
+        $('body').append($mask);
+
+        function toggleToc() { // eslint-disable-line no-inner-declarations
+            $toc.toggleClass('is-active');
+            $mask.toggleClass('is-active');
+        }
+
+        $toc.on('click', toggleToc);
+        $mask.on('click', toggleToc);
+        $('.navbar-main .catalogue').on('click', toggleToc);
+    }
+}(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings));
