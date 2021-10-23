@@ -100,7 +100,7 @@
 <p>过程：设$k=0,T=T_0$；设$\alpha=\infty$；自下而上地对各内部结点$t$计算$C(T_t),|T_t|$以及$g(t)=\frac{C(t)-C(T_t)}{|T_t|-1},\alpha=min(\alpha,g(t))$，这里$T_t$表示以$t$为根的结点的子树，$C(T_t)$是对训练数据的预测误差，$|T_t|$是$T_t$的叶结点个数；设$k=k+1,\alpha_k=\alpha,T_k=T$；如果$T_k$不是由根节点及两个叶结点构成的树则回到步骤2否则令$T_k=T_n$；采用交叉验证法在子树序列$T_0,T_1,…,T_n$中选择最优子树。（独立验证集，平方误差或基尼系数最小）</p>
 </li>
 </ul>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-16T11:15:00.000Z" title="2021/10/16 下午7:15:00">2021-10-16</time>发表</span><span class="level-item"><time dateTime="2021-10-17T14:40:08.017Z" title="2021/10/17 下午10:40:08">2021-10-17</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">9 分钟读完 (大约1322个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%AB%A0/">统计学习方法第四章</a></h1><div class="content"><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-16T11:15:00.000Z" title="2021/10/16 下午7:15:00">2021-10-16</time>发表</span><span class="level-item"><time dateTime="2021-10-23T05:32:11.766Z" title="2021/10/23 下午1:32:11">2021-10-23</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">10 分钟读完 (大约1506个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%AB%A0/">统计学习方法第四章</a></h1><div class="content"><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
 <li>基于贝叶斯定理与特征条件独立假设的分类方法。对于给定训练数据集，基于特征条件独立假设学习输入输出的联合概率分布，基于模型对于给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$。</li>
 <li>朴素贝叶斯利用贝叶斯定理与联合概率模型进行分类模型，后验概率最大等价01损失函数的期望风险最小化</li>
 </ul>
@@ -140,7 +140,14 @@
 <li>对于任何$l=1,2,…,S_j,k=1,2,…,K$有$P_\lambda(X^{(j)}=a_{jl}|Y=c_k)&gt;0$，$\sum_{l=1}^{S_j}P(X^{(j)}=a_{jl}|Y=c_k)=1$同样，先验概率的贝叶斯估计是$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</li>
 </ul>
 <h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p><strong>4.1 用极大似然估计法推出朴素贝叶斯法中的概率估计公式及公式</strong></p>
-<p><strong>4.2 用贝叶斯估计法推出朴素贝叶斯法中的概率估计公式及公式</strong></p>
+<script type="math/tex; mode=display">
+两个公式为P(Y-c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)}{N},k=1,2,...,K\\
+P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^NI(y_i=c_k)}\\
+证明公式一，设P(Y=c_k)=p,记\sum_{i=1}^NI(y_i=c_k)=M，那么独立同分布随机抽取N个样本，其中Y=c_k恰好发生M次的概率为：\\
+P(p)=p^M(i-p)^{N-m}\\
+极大似然估计就是找一个寻找一个p的值p′让概率P(p′)最大，该问题等价于求p′使得logP(p′)最大\\
+即\frac{d logP(p)}{dp}=\frac Mp - \frac{N-M}{1-p}=\frac{M-Np}{p(1-p)}\\
+令上式等于0，可得p=\frac M N</script><p><strong>4.2 用贝叶斯估计法推出朴素贝叶斯法中的概率估计公式及公式</strong></p>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-15T12:00:00.000Z" title="2021/10/15 下午8:00:00">2021-10-15</time>发表</span><span class="level-item"><time dateTime="2021-10-23T04:59:56.571Z" title="2021/10/23 下午12:59:56">2021-10-23</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">11 分钟读完 (大约1710个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/15/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B8%89%E7%AB%A0/">统计学习方法第三章</a></h1><div class="content"><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
 <li>最基本的算法之一，特别经典</li>
 <li>多数表决规则等价于01损失函数下的经验风险最小化，支持多分类；没有显式的学习过程</li>
