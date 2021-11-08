@@ -27,7 +27,7 @@
 <li>网络：学习方法采用的可以说是有监督学习，编写了一个七层编码器，编码器具体含义可以看代码。每一层编码器布置一个卷积层提取特征，最后用一个稠密层将特征传递下去。</li>
 <li>其余没什么特别的了，下面纠正一些原书给定代码的一些bug</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># end_v_end.py 读取文件部分需要使用</span></span><br><span class="line">h5py.file(<span class="string">&quot;&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要新增一个全局的graph传递给get_web_app.py</span></span><br><span class="line"><span class="keyword">global</span> graph</span><br><span class="line">graph = tf.get_default_graph()</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-26T03:25:00.000Z" title="2021/10/26 上午11:25:00">2021-10-26</time>发表</span><span class="level-item"><time dateTime="2021-11-08T05:21:48.836Z" title="2021/11/8 下午1:21:48">2021-11-08</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">15 分钟读完 (大约2238个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%85%AD%E7%AB%A0/">统计学习方法第六章</a></h1><div class="content"><h2 id="概论"><a href="#概论" class="headerlink" title="概论"></a>概论</h2><ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># end_v_end.py 读取文件部分需要使用</span></span><br><span class="line">h5py.file(<span class="string">&quot;&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要新增一个全局的graph传递给get_web_app.py</span></span><br><span class="line"><span class="keyword">global</span> graph</span><br><span class="line">graph = tf.get_default_graph()</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-26T03:25:00.000Z" title="2021/10/26 上午11:25:00">2021-10-26</time>发表</span><span class="level-item"><time dateTime="2021-11-08T05:22:55.855Z" title="2021/11/8 下午1:22:55">2021-11-08</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">16 分钟读完 (大约2378个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%85%AD%E7%AB%A0/">统计学习方法第六章</a></h1><div class="content"><h2 id="概论"><a href="#概论" class="headerlink" title="概论"></a>概论</h2><ul>
 <li>逻辑斯谛回归是统计学习中的经典分类方法。</li>
 <li>最大熵是概率模型学习的一个准则，推广到分类问题得到最大熵模型</li>
 <li>迭代尺度算法和拟牛顿法</li>
@@ -92,7 +92,16 @@
 <li>模型学习就是在给定训练数据条件下对模型进行极大似然估计或正则化的极大似然估计。</li>
 <li>证明略，具体可以看书P102页</li>
 </ul>
-<h2 id="6-3-模型学习的最优化算法"><a href="#6-3-模型学习的最优化算法" class="headerlink" title="6.3 模型学习的最优化算法"></a>6.3 模型学习的最优化算法</h2><h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><script type="math/tex; mode=display">
+<h2 id="6-3-模型学习的最优化算法"><a href="#6-3-模型学习的最优化算法" class="headerlink" title="6.3 模型学习的最优化算法"></a>6.3 模型学习的最优化算法</h2><h3 id="6-3-1-改进的迭代尺度法"><a href="#6-3-1-改进的迭代尺度法" class="headerlink" title="6.3.1 改进的迭代尺度法"></a>6.3.1 改进的迭代尺度法</h3><script type="math/tex; mode=display">
+输入：
+    特征函数f_1,f_2,...,f_n:经验分布 P(X,Y), 模型P_w(y|x)\\
+输出：
+    最优参数值w_i^*，最优模型P_w^*\\
+步骤：\\
+    (1)对所有的i，取初值w_i=0\\
+  (2)(a)对每一个i，令\delta_i是方程\sum_{x,y}\widetilde P(x)P(y|x)f_i(x,y)exp(\delta_if^{*}(x,y))=E_{\widetilde P}(f_i),\\ f^{*}(x,y)=\sum_{i=1}^nf_i(x,y)\\
+  (2)(b)更新w_i的值，w_i=w_i+\delta_i\\
+  (3)如果不是所有w_i都收敛，重复(2)\\</script><h3 id="6-3-2-拟牛顿法"><a href="#6-3-2-拟牛顿法" class="headerlink" title="6.3.2 拟牛顿法"></a>6.3.2 拟牛顿法</h3><script type="math/tex; mode=display">
 输入：特征函数f_1,f_2,...,f_n；经验分布\widetilde P(x,y)，目标函数f(w),梯度g(w)=\nabla f(w),精度要求 \epsilon \\
 输出：最优参数值w^*，最优模型P_{w^*}(y|x)\\
 步骤：\\
