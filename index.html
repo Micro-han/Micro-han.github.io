@@ -27,7 +27,72 @@
 <li>网络：学习方法采用的可以说是有监督学习，编写了一个七层编码器，编码器具体含义可以看代码。每一层编码器布置一个卷积层提取特征，最后用一个稠密层将特征传递下去。</li>
 <li>其余没什么特别的了，下面纠正一些原书给定代码的一些bug</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># end_v_end.py 读取文件部分需要使用</span></span><br><span class="line">h5py.file(<span class="string">&quot;&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要新增一个全局的graph传递给get_web_app.py</span></span><br><span class="line"><span class="keyword">global</span> graph</span><br><span class="line">graph = tf.get_default_graph()</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-24T06:39:00.000Z" title="2021/10/24 下午2:39:00">2021-10-24</time>发表</span><span class="level-item"><time dateTime="2021-10-26T14:18:21.842Z" title="2021/10/26 下午10:18:21">2021-10-26</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></span><span class="level-item">15 分钟读完 (大约2306个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/24/A_Star%E7%AE%97%E6%B3%95/">A*算法</a></h1><div class="content"><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>A_Star很常用的路径查找和图形遍历算法。目前很多项目和图论都是基于A_Star算法开发的。本章旨在学习A_Star算法的基本思想与理论，并动手实现一个简单的A_Star算法模板。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># end_v_end.py 读取文件部分需要使用</span></span><br><span class="line">h5py.file(<span class="string">&quot;&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要新增一个全局的graph传递给get_web_app.py</span></span><br><span class="line"><span class="keyword">global</span> graph</span><br><span class="line">graph = tf.get_default_graph()</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-26T03:25:00.000Z" title="2021/10/26 上午11:25:00">2021-10-26</time>发表</span><span class="level-item"><time dateTime="2021-11-08T05:19:14.467Z" title="2021/11/8 下午1:19:14">2021-11-08</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">13 分钟读完 (大约2009个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%85%AD%E7%AB%A0/">统计学习方法第六章</a></h1><div class="content"><h2 id="概论"><a href="#概论" class="headerlink" title="概论"></a>概论</h2><ul>
+<li>逻辑斯谛回归是统计学习中的经典分类方法。</li>
+<li>最大熵是概率模型学习的一个准则，推广到分类问题得到最大熵模型</li>
+<li>迭代尺度算法和拟牛顿法</li>
+</ul>
+<h2 id="6-1-逻辑斯谛回归模型"><a href="#6-1-逻辑斯谛回归模型" class="headerlink" title="6.1 逻辑斯谛回归模型"></a>6.1 逻辑斯谛回归模型</h2><h3 id="6-1-1-逻辑斯谛分布"><a href="#6-1-1-逻辑斯谛分布" class="headerlink" title="6.1.1 逻辑斯谛分布"></a>6.1.1 逻辑斯谛分布</h3><ul>
+<li>设$X$是连续随机变量，$X$服从逻辑斯谛分布是指其具有下列分布函数和密度函数$F(x)=P(X&lt;=x)=\frac{1}{1+e^{-(x-\mu)/\gamma}},f(x)=F’(x)=\frac{e^{-(x-\mu)/\gamma}}{\gamma(1+e^{-(x-\mu)/\gamma})}$。其中$\mu$为未知参数，$\gamma&gt;0$为形状参数</li>
+<li>逻辑斯谛分布的分布函数属于逻辑斯谛函数，其徒刑是一条S型曲线，该曲线以点$(\mu,\frac12)$为中心对称，即满足$F(-x+\mu)-\frac12=-F(x+\mu)+\frac12$，曲线在中心附近增长速度较快，在两端增长速度较慢，形状参数$\gamma$越小，曲线在中心附近增长越快。</li>
+</ul>
+<h3 id="6-1-2-二项逻辑斯谛回归模型"><a href="#6-1-2-二项逻辑斯谛回归模型" class="headerlink" title="6.1.2 二项逻辑斯谛回归模型"></a>6.1.2 二项逻辑斯谛回归模型</h3><ul>
+<li><p>这是一种分类模型，由条件概率分布$P(Y|X)$表示，形式为参数化的逻辑斯谛分布，$X$取值为实数，$Y$为1或0</p>
+</li>
+<li><p>二项逻辑斯谛回归模型是满足条件概率分布$P(Y=1|x)=\frac{exp(wx+b)}{1+exp(wx+b)},P(Y=0|x)=\frac{1}{1+exp(wx+b)}$，这里$x\in R^n$是输入，$Y \in \{0,1\}$是输出，$w\in R^n$和$b \in R$是参数，$w$是权值向量，$b$为偏置，$wx$为$w$和$x$的内积。比较两个条件概率值的大小，将实例$x$分类到概率较大的那一类。</p>
+<p>  有时为了方便，将权值向量和输入向量加以扩充，转换为拓展为$w=(w^{(1)},w^{(2)},…,w^{(n)},b)^T,x=(x^{(1)},x^{(2)},…,x^{(n)},1)^T$，此时偏置已经加入其中条件概率分布函数把+b去了即可。</p>
+</li>
+<li><p><strong>特点</strong>：一个事件的几率是指该事件发生的概率与该事件不发生的概率的比值。如果事件发生的概率是$p$，那么该事件的几率是$\frac {p}{1-p}$，该事件的对数几率或logit函数是$logit(p)=log \frac {p}{1-p}$。</p>
+<p>  对逻辑斯谛回归而言，可得$log\frac{P(Y=1|x)}{1-P(Y=1|x)}=wx$，输出$Y=1$的对数几率是输入$x$的线性函数，或者说输出$Y=1$的对数几率是由输入$x$的线性函数表示的模型。</p>
+<p>  可以将线性函数$wx$转换为概率$P(Y=1|x)=\frac{exp(wx)}{1+exp(wx)}$，这时线性函数的值接近于正无穷，概率值就接近于1，线性函数的值接近于负无穷，概率值就接近于0。</p>
+</li>
+</ul>
+<h3 id="6-1-3-模型参数估计"><a href="#6-1-3-模型参数估计" class="headerlink" title="6.1.3 模型参数估计"></a>6.1.3 模型参数估计</h3><ul>
+<li><p>对于给定的训练集$T=\{(x_1,y_1),(x_2,y_2),…,(x_n,y_n)\}$，其中，$x_i \in R^n, y_i \in \{0,1\}$，可以用极大似然估计估计模型参数，从而得到逻辑斯谛回归模型。设$P(Y=1|x)=\pi(x),P(Y=0|x)=1-\pi(x)$，似然函数为$\prod_{i=1}^N[\pi(x_i)]^{y_i}[1-\pi(x_i)]^{1-y_i}$。</p>
+</li>
+<li><p>对数似然函数为</p>
+<script type="math/tex; mode=display">
+  L(w)=\sum_{i=1}^N[y_ilog(\pi(x_i))+(1-y_i)log(1-\pi(x_i))]\\=\sum_{i=1}^N[y_ilog(\frac{\pi(x_i)}{1-\pi(x_i)}+log(1-\pi(x_i))]\\=\sum_{i=1}^N[y_i(wx_i)-log(1+exp(wx_i))]</script><p>  对$L(w)$求极大值，得到$w$的估计值</p>
+</li>
+<li><p>假设$w$的极大似然估计为$\hat w$，那么学习到的逻辑斯谛回归模型为$P(Y=1|x)=\frac{exp(\hat w x)}{1+exp(\hat w x)},P(Y=0|x)=\frac1{1+exp(\hat w x)}$</p>
+</li>
+</ul>
+<h3 id="6-1-4-多项逻辑斯谛回归"><a href="#6-1-4-多项逻辑斯谛回归" class="headerlink" title="6.1.4 多项逻辑斯谛回归"></a>6.1.4 多项逻辑斯谛回归</h3><ul>
+<li>推广到多分类模型之中，设离散型随机变量$Y$的取值集合为$\{1,2,…,K\}$，那么多项逻辑斯谛回归模型为<script type="math/tex; mode=display">
+  P(Y=k|x)=\frac{exp(w_kx)}{1+\sum_{k=1}^{K-1}exp(w_kx)},k=1,2,...,K-1\\
+  P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}exp(w_kx)}\\
+  x\in R^{n+1},w_k \in R^{n+1}</script></li>
+</ul>
+<h2 id="6-2-最大熵模型"><a href="#6-2-最大熵模型" class="headerlink" title="6.2 最大熵模型"></a>6.2 最大熵模型</h2><h3 id="6-2-1-最大熵原理"><a href="#6-2-1-最大熵原理" class="headerlink" title="6.2.1 最大熵原理"></a>6.2.1 最大熵原理</h3><ul>
+<li><strong>原理</strong>：学习概率模型时，所有可能的概率模型中，熵最大的模型时最好的模型，通常用约束条件来确定概率模型的集合，所以，最大熵模型也可以表述为满足约束条件的模型集合中选取熵最大的模型。</li>
+<li>假设离散随机变量$X$的概率分布是$P(X)$，则其熵为$H(P)=-\sum_xP(x)log P(x)$，熵满足下列不等式$0&lt;=H(P)&lt;=log|X|$。其中$|X|$是$X$的取值个数，当且仅当$X$的分布是均匀分布时右边的等号成立。换言之，当$X$服从均匀分布时，熵最大。</li>
+<li>直观地讲，概率模型必须先满足约束条件，在没有更多信息的情况下，不确定的部分都是等可能的。最大熵原理通过熵的最大化来表示等可能性。</li>
+</ul>
+<h3 id="6-2-2-最大熵模型的定义"><a href="#6-2-2-最大熵模型的定义" class="headerlink" title="6.2.2 最大熵模型的定义"></a>6.2.2 最大熵模型的定义</h3><ul>
+<li>假设分类是一个条件概率分布$P(Y|X),X\in \cal X \subset R^n$表示输入，$Y\in \cal Y$表示输出，$\cal X$和$\cal Y$分别是输入和输出的集合，这个模型表示的是对于给定的输入$X$，以条件概率$P(Y|X)$输出$Y$。</li>
+<li>给定一个训练数据集$T=\{(x_1,y_1),(x_2,y_2),…,(x_n,y_n)\}$，学习的目标是用最大熵原理选择最好的分类模型。首先要考虑模型应该满足的条件，可以确定联合分布$P(X,Y)$的经验分布和边缘分布$P(X)$的经验分布，分别以$\widetilde P(X=x,Y=y)=\frac{\upsilon(X=x,Y=y)}{N},\widetilde P(X=x)=\frac{\upsilon(X=x)}{N}$，其中$\upsilon (X=x,Y=y)$表示训练数据中样本$(x,y)$出现的频数，$\upsilon(X=x)$表示训练数据中输入$x$出现的频数，$N$表示训练样本容量。</li>
+<li>用特征函数$f(x,y)$描述输入$x$和输出$y$之间的某一个事实，其定义是$f(x,y)=1,x与y满足某一事实；=0,否则。$他是一个二值函数（二值函数的特征函数可以是任意实值函数）。</li>
+<li>特征函数$f(x,y)$关于经验分布$\widetilde P(X,Y)$的期望值，用$E_{\widetilde P}(f)=\sum_{x,y} \widetilde P(x,y)f(x,y)$表示，特征函数$f(x,y)$关于模型$P(Y|X)$与经验分布$\widetilde P(X)$的期望值，用$E_P(f)=\sum_{x,y}\widetilde P(x)P(y|x)f(x,y)$表示。假定这两者相等。</li>
+<li>假设满足所有约束条件的模型集合为$\cal C \equiv \{P \in \cal{P} | E_p(f_i)=E_{\widetilde P}(f_i),i=1,2,…,n\}$ 定义在这条件概率分布$P(Y|X)$的条件熵为$H(P)=-\sum_{x,y}\widetilde P(x)P(y|x)log P(y|x)$。这个条件熵最大的模型成为最大熵模型。</li>
+</ul>
+<h3 id="6-2-3-最大熵模型的学习"><a href="#6-2-3-最大熵模型的学习" class="headerlink" title="6.2.3 最大熵模型的学习"></a>6.2.3 最大熵模型的学习</h3><ul>
+<li><p>对于给定的数据集$T=\{(x_1,y_1),(x_2,y_2),…,(x_n,y_n)\}$，以及特征函数$f_i(x,y),i=1,2,…,n$最大熵模型的学习等驾驭约束最优化问题：</p>
+<script type="math/tex; mode=display">
+  max_{p \in \cal C}H(P)=-\sum_{x,y}\widetilde P(x)P(y|x)logP(y|x)\\
+  s.t.  E_P(f_i)=E_{\widetilde P}(f_i), i=1,2,...,n \\
+  \sum_yP(y|x)=1</script><p>  按照最优化问题的习惯，将最大值问题改写为等价的求最小问题：</p>
+<script type="math/tex; mode=display">
+  min_{p \in \cal C}-H(P)=\sum_{x,y}\widetilde P(x)P(y|x)logP(y|x)\\
+  s.t.  E_P(f_i)-E_{\widetilde P}(f_i)=0, i=1,2,...,n \\
+  \sum_yP(y|x)=1</script></li>
+<li><p>最大熵模型的学习归结为对偶函数的极大化。</p>
+</li>
+</ul>
+<h3 id="6-2-4-极大似然估计"><a href="#6-2-4-极大似然估计" class="headerlink" title="6.2.4 极大似然估计"></a>6.2.4 极大似然估计</h3><ul>
+<li>模型学习就是在给定训练数据条件下对模型进行极大似然估计或正则化的极大似然估计。</li>
+<li>证明略，具体可以看书P102页</li>
+</ul>
+<h2 id="6-3-模型学习的最优化算法"><a href="#6-3-模型学习的最优化算法" class="headerlink" title="6.3 模型学习的最优化算法"></a>6.3 模型学习的最优化算法</h2></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-24T06:39:00.000Z" title="2021/10/24 下午2:39:00">2021-10-24</time>发表</span><span class="level-item"><time dateTime="2021-10-26T14:18:21.842Z" title="2021/10/26 下午10:18:21">2021-10-26</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></span><span class="level-item">15 分钟读完 (大约2306个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/24/A_Star%E7%AE%97%E6%B3%95/">A*算法</a></h1><div class="content"><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>A_Star很常用的路径查找和图形遍历算法。目前很多项目和图论都是基于A_Star算法开发的。本章旨在学习A_Star算法的基本思想与理论，并动手实现一个简单的A_Star算法模板。</p>
 <h2 id="算法过程"><a href="#算法过程" class="headerlink" title="算法过程"></a>算法过程</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">* 初始化open_set和close_set；</span><br><span class="line">* 将起点加入open_set中，并设置优先级为<span class="number">0</span>（优先级最高）；</span><br><span class="line">* 如果open_set不为空，则从open_set中选取优先级最高的节点n：</span><br><span class="line">    * 如果节点n为终点，则：</span><br><span class="line">        * 从终点开始逐步追踪parent节点，一直达到起点；</span><br><span class="line">        * 返回找到的结果路径，算法结束；</span><br><span class="line">    * 如果节点n不是终点，则：</span><br><span class="line">        * 将节点n从open_set中删除，并加入close_set中；</span><br><span class="line">        * 遍历节点n所有的邻近节点：</span><br><span class="line">            * 如果邻近节点m在close_set中，则：</span><br><span class="line">                * 跳过，选取下一个邻近节点</span><br><span class="line">            * 如果邻近节点m也不在open_set中，则：</span><br><span class="line">                * 设置节点m的parent为节点n</span><br><span class="line">                * 计算节点m的优先级</span><br><span class="line">                * 将节点m加入open_set中</span><br><span class="line">    		* 如果邻近节点在open_set中，则比较gcost是否比原来更小，如果更小则更新其父节点</span><br></pre></td></tr></table></figure>
 <p>A_Star算法用$f(n)=g(n)+h(n)$来计算每个节点的优先级。</p>
 <ul>
@@ -509,197 +574,7 @@ L_p(x_i,x_j)=(\sum_{l=1}^n|x_i^{(l)}-x_j^{l}|^p)^{\frac{1}{p}},p>=1</script></li
 <p>大体题意同上，但是有些节点的颜色指定。</p>
 <p><strong>题解</strong>：</p>
 <p>感觉是dp。待补。</p>
-<h2 id="F-Ideal-Farm"><a href="#F-Ideal-Farm" class="headerlink" title="F Ideal Farm"></a>F <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1594/problem/F">Ideal Farm</a></h2></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-13T06:00:00.000Z" title="2021/10/13 下午2:00:00">2021-10-13</time>发表</span><span class="level-item"><time dateTime="2021-10-17T14:40:16.779Z" title="2021/10/17 下午10:40:16">2021-10-17</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">24 分钟读完 (大约3552个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/13/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B8%80%E7%AB%A0/">统计学习方法第一章</a></h1><div class="content"><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
-<li>机器学习入门，读完第一章才发现以前自己是多么的胡说八道，没什么好说的都是概念</li>
-<li>后面着重精简了一波书上的概念和摘要</li>
-</ul>
-<h2 id="1-1统计学习"><a href="#1-1统计学习" class="headerlink" title="1.1统计学习"></a>1.1统计学习</h2><p><strong>定义</strong>：关于计算机基于数据构建概率统计模型并运用模型对数据进行预测与分析的一门学科，或者说，是计算机系统通过运用数据及统计方法提高系统性能的机器学习。学习的定义，一个系统能够通过执行某个过程改进它的性能就是学习。</p>
-<p><strong>特点</strong>：1以计算机及网络为平台；2数据驱动；3对数据进行预测与分析；4以方法为中心，统计学习方法构建模型并应用模型进行预测与分析；5多领域交叉学科；</p>
-<p><strong>对象</strong>：研究的对象是数据，从数据出发，提取数据特征，抽象数据模型，统计数据规律。</p>
-<p><strong>目的</strong>：对数据的预测与分析，对未知新数据的预测与分析。考虑学习什么样的模型和如何学习模型。</p>
-<p><strong>方法</strong>：基于数据构建概率统计模型从而对数据进行预测与分类。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">实现统计学习方法的步骤如下：</span><br><span class="line">（1）得到一个有限的训练数据集合；</span><br><span class="line">（2）确定包含所有可能的模型的假设空间，即学习模型的集合；</span><br><span class="line">（3）确定模型选择的准则，即学习的策略；</span><br><span class="line">（4）实现求解最有模型的算法，即学习的算法；</span><br><span class="line">（5）通过学习方法选择最优模型；</span><br><span class="line">（6）利用学习的最优模型对新数据进行预测或分析。</span><br></pre></td></tr></table></figure>
-<p><strong>研究</strong>：开发新的学习方法；探求统计学习方法的有效性与效率，学习的基本理论问题；应用到实际问题中去，解决实际问题。</p>
-<p><strong>重要性</strong>：处理海量数据；计算机智能化；计算机科学发展的重要组成部分</p>
-<h2 id="1-2-统计学习的分类"><a href="#1-2-统计学习的分类" class="headerlink" title="1.2 统计学习的分类"></a>1.2 统计学习的分类</h2><h3 id="1-2-1-基本分类"><a href="#1-2-1-基本分类" class="headerlink" title="1.2.1 基本分类"></a>1.2.1 基本分类</h3><h4 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h4><ul>
-<li>定义：从标注数据中学习预测模型的机器学习问题</li>
-<li>输入空间与输出空间</li>
-<li>特征空间：每个具体的输入是一个实例，通常由特征向量表示</li>
-<li>监督学习假设输入与输出的随机变量$X$和$Y$遵循联合概率分布$P(X,Y)$</li>
-<li>目的：在于学习一个由输入到输出的映射；模型属于由输入空间到输出空间的映射的集合，集合就是假设空间。</li>
-</ul>
-<h4 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h4><ul>
-<li>定义：从无标注数据中学习预测模型的机器学习问题，本质是谁学习数据中的统计规律或潜在结构</li>
-</ul>
-<h4 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h4><ul>
-<li><p>定义：智能系统在与环境的连续互动中学习最优行为策略的机器学习问题</p>
-</li>
-<li><p>马尔科夫决策过程</p>
-<p>  由五元组$[S,A,P,r,\gamma]$组成，$S$是有限状态的集合，$A$是有限动作的集合，$P$是状态转移概率函数$P(s’|s,a)=P(s_{t+1}=s’|s_t=s,a_t=a)$，$r$是奖励函数$r(s,a)=E(r_{t+1}|s_t=s,a_t=a)$，$\gamma$是衰减系数$\gamma \in[0,1]$</p>
-<p>  马尔可夫决策过程具有马尔科夫性，下一个状态只依赖于前一个状态与动作，状态转移概率函数$P$表示。下一个奖励依赖于前一个状态与动作，奖励函数$r$表示。</p>
-</li>
-<li><p>价值函数或状态价值函数定义为策略$\pi$从某一个状态$s$开始的长期累积奖励的数学期望</p>
-<script type="math/tex; mode=display">
-  v_\pi(s) = E_\pi[r_{t+1}+\gamma r_{t+2}+\gamma^2r_{t+3}+...|s_t=s]</script></li>
-<li><p>动作价值函数定义为策略$\pi$从某一个状态$s$和动作$a$开始的长期累积的数学期望</p>
-<script type="math/tex; mode=display">
-  q_\pi(s,a)=E_\pi[r_{t+1}+\gamma r_{t+2}+\gamma^2r_{t+3}+...|s_t=s,a_t=a]</script></li>
-<li><p>目的：在所有可能的策略中选出价值函数最大的策略</p>
-</li>
-<li><p>方法：无模型的（基于策略的，基于价值的），有模型的</p>
-</li>
-</ul>
-<h4 id="半监督学习与主动学习"><a href="#半监督学习与主动学习" class="headerlink" title="半监督学习与主动学习"></a>半监督学习与主动学习</h4><p><strong>半监督学习</strong>：利用标注数据和为标注数据学习预测模型的机器学习，通常含有少量标注数据和大量未标注数据。利用未标注数据中的信息辅助标注数据，进行监督学习，达到更好的效果。</p>
-<p><strong>主动学习</strong>：不断给出实例让教师标注，利用标注数据学习预测模型的机器学习。找出对学习最有帮助的实例让教师标注。</p>
-<h3 id="1-2-2-模型分类"><a href="#1-2-2-模型分类" class="headerlink" title="1.2.2 模型分类"></a>1.2.2 模型分类</h3><h4 id="概率模型与非概率模型"><a href="#概率模型与非概率模型" class="headerlink" title="概率模型与非概率模型"></a>概率模型与非概率模型</h4><ul>
-<li>概率模型条件概率分布形式$P(y|x)$，非概率模型函数形式$y=f(x)$</li>
-<li>二者可以相互转化，通常条件概率分布最大化后得到函数，函数归一化后得到条件概率分布</li>
-<li>区别在于模型的内部结构</li>
-</ul>
-<h4 id="线性模型与非线性模型"><a href="#线性模型与非线性模型" class="headerlink" title="线性模型与非线性模型"></a>线性模型与非线性模型</h4><ul>
-<li>如果函数是$y=f(x)$，那么就是线性模型否则不是</li>
-<li>深度学习是复杂神经网络学习，也是复杂非线性模型的学习</li>
-</ul>
-<h4 id="参数化模型与非参数化模型"><a href="#参数化模型与非参数化模型" class="headerlink" title="参数化模型与非参数化模型"></a>参数化模型与非参数化模型</h4><ul>
-<li>参数化模型参数维数固定，反之不然。</li>
-</ul>
-<h3 id="1-2-3-算法分类"><a href="#1-2-3-算法分类" class="headerlink" title="1.2.3 算法分类"></a>1.2.3 算法分类</h3><h4 id="在线学习"><a href="#在线学习" class="headerlink" title="在线学习"></a>在线学习</h4><ul>
-<li>每次接受一个样本，进行预测，学习模型，不断重复</li>
-<li>必须在线</li>
-</ul>
-<h4 id="批量学习"><a href="#批量学习" class="headerlink" title="批量学习"></a>批量学习</h4><ul>
-<li>一次接受所有数据，学习模型，进行预测</li>
-</ul>
-<h3 id="1-2-4-技巧分类"><a href="#1-2-4-技巧分类" class="headerlink" title="1.2.4 技巧分类"></a>1.2.4 技巧分类</h3><h4 id="贝叶斯学习"><a href="#贝叶斯学习" class="headerlink" title="贝叶斯学习"></a>贝叶斯学习</h4><ul>
-<li>在概率模型的学习和推理中，利用贝叶斯定理计算在给定数据条件下模型的条件概率。</li>
-</ul>
-<h4 id="核方法"><a href="#核方法" class="headerlink" title="核方法"></a>核方法</h4><h2 id="1-3-统计学习方法三要素"><a href="#1-3-统计学习方法三要素" class="headerlink" title="1.3 统计学习方法三要素"></a>1.3 统计学习方法三要素</h2><script type="math/tex; mode=display">
-方法 = 模型+策略+算法</script><h3 id="1-3-1-模型"><a href="#1-3-1-模型" class="headerlink" title="1.3.1 模型"></a>1.3.1 模型</h3><ul>
-<li><p>模型就是所要学习的条件概率分布或决策函数。</p>
-<h3 id="1-3-2-策略"><a href="#1-3-2-策略" class="headerlink" title="1.3.2 策略"></a>1.3.2 策略</h3></li>
-<li><p>损失函数度量模型一次预测的好坏，风险函数度量平均意义下模型预测的好坏。</p>
-</li>
-<li><p>损失函数定义为给定输入$X$的预测值$f(X)$和真实值$Y$之间的非负实值函数，记作$L(Y,f(X))$</p>
-<p> 01损失函数 $0,Y=f(X);1,Y\neq f(X)$</p>
-<p> 平方损失函数$(Y-f(X))^2$</p>
-<p> 绝对损失函数$|Y-f(X)|$</p>
-<p> 对数损失函数$-logP(Y|X)$</p>
-</li>
-<li><p>风险函数期望损失$R_{exp}$，这个表示其实就是损失的均值，反映了对整个数据的预测效果的好坏</p>
-<script type="math/tex; mode=display">
-  R_{exp}=E_P[L(Y,f(X))]=\int_{\cal X\times \cal Y}L(y,f(x))P(x,y)dxdy</script></li>
-<li><p>学习的目标是选择期望风险最小的模型，平均损失经验风险$R_{emp}$，模型$f$关于<strong>训练样本集</strong>的平均损失根据大数定律，当样本容量N趋于无穷大时，经验风险趋于期望风险</p>
-<script type="math/tex; mode=display">
-  R_{emp}(f)=\frac{1}{N}\sum_{i=1}^NL(y_i,f(x_i))</script></li>
-<li><p>经验风险最小化和结构风险最小化</p>
-</li>
-<li><strong>极大似然估计</strong>是经验风险最小化的一个例子 当模型是条件概率分布，损失函数是对数损失函数时，经验风险最小化等价于极大似然估计</li>
-<li><strong>贝叶斯估计</strong>中的<strong>最大后验概率估计</strong>是结构风险最小化的一个例子 当模型是条件概率分布，损失函数是对数损失函数，<strong>模型复杂度由模型的先验概率表示</strong>时，结构风险最小化等价于最大后验概率估计</li>
-</ul>
-<h3 id="1-3-3-算法"><a href="#1-3-3-算法" class="headerlink" title="1.3.3 算法"></a>1.3.3 算法</h3><ul>
-<li>学习模型的具体计算方法</li>
-</ul>
-<h2 id="1-4-模型评估与模型选择"><a href="#1-4-模型评估与模型选择" class="headerlink" title="1.4 模型评估与模型选择"></a>1.4 模型评估与模型选择</h2><h3 id="1-4-1训练误差与测试误差"><a href="#1-4-1训练误差与测试误差" class="headerlink" title="1.4.1训练误差与测试误差"></a>1.4.1训练误差与测试误差</h3><ul>
-<li><p>训练误差和测试误差是模型关于数据集的平均损失。</p>
-</li>
-<li><p>训练误差是关于训练数据集的平均损失</p>
-<script type="math/tex; mode=display">
-  R_{emp}(\hat f)=\frac{1}{N}\sum_{i=1}^{N}L(y_i,\hat f(x_i))</script></li>
-<li><p>测试误差是关于测试数据集的平均损失</p>
-<script type="math/tex; mode=display">
-  e_test=\frac{1}{N'}\sum_{i=1}^{N'}L(y_i,\hat f(x_i))</script></li>
-</ul>
-<h3 id="1-4-2-过拟合与模型选择"><a href="#1-4-2-过拟合与模型选择" class="headerlink" title="1.4.2 过拟合与模型选择"></a>1.4.2 过拟合与模型选择</h3><p><strong>过拟合</strong>：学习时模型所包含的参数过多，导致对已知数据预测得很好，对未知数据预测的很差</p>
-<h2 id="1-5-正则化与交叉验证"><a href="#1-5-正则化与交叉验证" class="headerlink" title="1.5 正则化与交叉验证"></a>1.5 正则化与交叉验证</h2><h3 id="1-5-1-正则化"><a href="#1-5-1-正则化" class="headerlink" title="1.5.1 正则化"></a>1.5.1 正则化</h3><ul>
-<li>模型选择的典型方法是正则化，正则化湿结构风险最小化策略的实现，在经验风险上加一个正则化项或罚项。</li>
-<li>$min_{f\in \cal F}=\frac{1}{N}\sum_{i=1}^{N}L(y_i,f(x_i))+\lambda J(f)$，$\lambda &gt;=0$调整两者之间关系的系数</li>
-<li>奥卡姆剃刀原理：所有可能选择的模型中，能够很好地解释已知数据并且十分简单才是最好的模型，也就是应该选择的模型</li>
-</ul>
-<h3 id="1-5-2-交叉验证"><a href="#1-5-2-交叉验证" class="headerlink" title="1.5.2 交叉验证"></a>1.5.2 交叉验证</h3><ul>
-<li>简单交叉验证：将数据划分为两部分，70%用于训练，30%用于测试，选出测试误差最小的模型</li>
-<li>S折交叉验证：划分为S个互不相交大小相同的子集，利用S-1个训练，剩下的测试，重复进行，选择S次中平均测试误差最小的</li>
-<li>留—交叉验证</li>
-</ul>
-<h2 id="1-6-泛化能力"><a href="#1-6-泛化能力" class="headerlink" title="1.6 泛化能力"></a>1.6 泛化能力</h2><ul>
-<li>模型对未知数据的预测能力</li>
-<li>泛化误差：$R_{exp}(\hat f) =E_P[L(Y,\hat f(X))]=\int_{\cal X \times \cal Y}L(y,\hat f(x))P(x,y)dxdy$</li>
-<li>泛化误差就是期望风险，越小越好</li>
-<li>泛化误差上界：通过比较这个的大小来比较他们的优劣。样本容量增加时，其趋近于0；它是假设空间容量的函数，假设空间容量越大，模型越难学，泛化误差上界就越大。</li>
-</ul>
-<h2 id="1-7-生成模型与判别模型"><a href="#1-7-生成模型与判别模型" class="headerlink" title="1.7 生成模型与判别模型"></a>1.7 生成模型与判别模型</h2><ul>
-<li>生成模型</li>
-</ul>
-<p>由数据学习联合概率分布$P(X,Y)$，然后求出条件概率分布$P(Y|X)$作为预测模型。生成方法可以还原出联合概率分布，学习收敛速度更快学到的模型更快地收敛于真实模型，存在隐变量时仍然可以学习</p>
-<ul>
-<li>判别模型</li>
-</ul>
-<p>由数据直接学习决策函数$f(X)$或者条件概率分布$P(Y|X)$作为预测的模型。判别方法直接面对预测，准确率更高；简化学习问题。</p>
-<h2 id="1-8-监督学习应用"><a href="#1-8-监督学习应用" class="headerlink" title="1.8 监督学习应用"></a>1.8 监督学习应用</h2><h3 id="1-8-1-分类问题"><a href="#1-8-1-分类问题" class="headerlink" title="1.8.1 分类问题"></a>1.8.1 分类问题</h3><ul>
-<li>学习和分类，学习过程中根据已知训练数据集利用有效的学习方法学习一个分类器。</li>
-<li>评价标准</li>
-</ul>
-<p>TP 正正，FN 正负，FP 负正，TN 负负</p>
-<p>精确率$P = \frac{TP}{TP+FP}$</p>
-<p>召回率$R = \frac{TP}{TP+FN}$</p>
-<p>F1值是召回率和精确率调和均值</p>
-<h3 id="1-8-2-标注问题"><a href="#1-8-2-标注问题" class="headerlink" title="1.8.2 标注问题"></a>1.8.2 标注问题</h3><ul>
-<li>输入是一个标记序列或状态序列</li>
-<li>常用：隐马尔可夫模型、条件随机场</li>
-</ul>
-<h3 id="1-8-3-回归问题"><a href="#1-8-3-回归问题" class="headerlink" title="1.8.3 回归问题"></a>1.8.3 回归问题</h3><ul>
-<li>用于预测输入变量和输出变量之间的关系</li>
-<li>常用损失函数：平房损失函数，最小二乘法</li>
-</ul>
-<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><h3 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h3><p><strong>题目：说明伯努利模型的极大似然估计以及贝叶斯估计中的统计学习方法三要素。伯努利模型是定义在取值为0与1的随机变量上的概率分布。假设观测到伯努利模型n次独立的数据生成结果，其中k次的结果为1，这时可以用极大似然估计或贝叶斯估计来估计结果为1的概率。</strong></p>
-<p><strong>答案</strong>：</p>
-<p>三要素是：模型、策略、算法</p>
-<p>模型：伯努利模型，即定义在取值0与1的随机变量上的概率分布。</p>
-<p>策略：极大似然估计和贝叶斯估计的策略都是对数损失函数，只不过贝叶斯估计使用的是结构风险最小化。</p>
-<p>算法：极大似然估计所使用的算法是求取经验风险函数的极小值，贝叶斯估计所使用的算法是求取参数的后验分布，然后计算其期望。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>模型</th>
-<th>策略</th>
-<th>算法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>极大似然估计</td>
-<td>条件概率</td>
-<td>经验风险最小化</td>
-<td>求解析解</td>
-</tr>
-<tr>
-<td>贝叶斯估计</td>
-<td>条件概率</td>
-<td>结构风险最小化</td>
-<td>求数值解</td>
-</tr>
-</tbody>
-</table>
-</div>
-<script type="math/tex; mode=display">
-伯努利概型：P(A=1)=\theta,P(A=0)=1-\theta\\
-极大似然估计：\\
-抽取n个独立同分布的随机变量\\
-取经验风险函数的极值点 L(P)=-\sum_{i=1}^{N}log(P(A_i))=-klog\theta-(n-k)log(1-\theta)\\
-求导，令导数为0可以得到\theta=\frac{k}{n}\\
-贝叶斯估计：\\
-f(\theta)=1\\
-后验分布为f(\theta|A_1,...,A_n)=\frac{f(\theta|A_1,...,A_n)f(\theta)}{\int f(A_1,...,A_n)f(\theta)d\theta}\\
-分母与\theta无关可以忽略，所以f(\theta|A_1,...,A_n)与\theta^k(1-\theta)^{1-k}正相关\\
-要使得f(\theta|A_1,...,A_n)最大，就要使得\theta^k(1-\theta)^{1-k}取极值</script><h3 id="1-2"><a href="#1-2" class="headerlink" title="1.2"></a>1.2</h3><p><strong>题目：通过经验风险最小化推到极大似然估计证明模型是条件概率分布，当损失函数是对数损失函数时，经验风险最小化等价于极大似然估计。</strong></p>
-<script type="math/tex; mode=display">
-模型是条件概率分布\\
-说明预测值f(x)=P(Y|X)=\frac{P(Y,X)}{P(X)} \\ 
-所以对数损失函数的定义为L(Y,f(X))=-logP(Y|X) \\
-那么经验风险为：\\
-R_{emp}(f)=\frac{1}{N}\sum_{i=1}^{N}L(Y_i,f(X_i))=\frac{1}{N}\sum_{i=1}^{N}-log(\frac{P(Y_i,X_i)}{P(X_i)})=-\frac{1}{N}log\prod_{i=1}^{N}\frac{P(Y_i,X_i)}{P(Xi)}\\
-最小化该函数，相当于极大似然估计</script></div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">上一页</a></div><div class="pagination-next"><a href="/page/2/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="小涵少年"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">小涵少年</p><p class="is-size-6 is-block">风花飞有态 烟絮坠无痕</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>南京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">10</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Micro-han" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Zhihu" href="https://www.zhihu.com/people/yan-xiao-han-68-1"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Codeforces" href="https://codeforces.com/profile/YanXiaohan"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://vcode28629.github.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">VCode</span></span><span class="level-right"><span class="level-item tag">vcode28629.github.io</span></span></a></li><li><a class="level is-mobile" href="https://dragonbra.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Dragonbra</span></span><span class="level-right"><span class="level-item tag">dragonbra.github.io</span></span></a></li><li><a class="level is-mobile" href="https://micro-han.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">友链招租</span></span><span class="level-right"><span class="level-item tag">micro-han.github.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/"><span class="level-start"><span class="level-item">杂七杂八</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/"><span class="level-start"><span class="level-item">知识积累</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"><span class="level-start"><span class="level-item">算法竞赛</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">读书笔记</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"><span class="level-start"><span class="level-item">项目实战</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-05T11:00:00.000Z">2021-11-05</time></p><p class="title"><a href="/2021/11/05/2021-11-5-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B/">深度学习与围棋</a></p><p class="categories"><a href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-24T06:39:00.000Z">2021-10-24</time></p><p class="title"><a href="/2021/10/24/A_Star%E7%AE%97%E6%B3%95/">A*算法</a></p><p class="categories"><a href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-21T11:10:00.000Z">2021-10-21</time></p><p class="title"><a href="/2021/10/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E7%AB%A0/">强化学习第二章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-18T12:00:00.000Z">2021-10-18</time></p><p class="title"><a href="/2021/10/18/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%BA%94%E7%AB%A0/">统计学习方法第五章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-17T04:58:00.000Z">2021-10-17</time></p><p class="title"><a href="/2021/10/17/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E7%AB%A0/">强化学习第一章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Codeforces/"><span class="tag">Codeforces</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E3%80%8B/"><span class="tag">《强化学习》</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B%E3%80%8B/"><span class="tag">《深度学习与围棋》</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/"><span class="tag">《统计学习方法》</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8E%A8%E5%85%8D%E4%BF%9D%E7%A0%94/"><span class="tag">推免保研</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="tag">机器学习</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><span class="tag">算法学习</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/"><span class="tag">解题报告</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"><span class="tag">论文阅读</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/"><span class="tag">项目记录</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 Micro han</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+<h2 id="F-Ideal-Farm"><a href="#F-Ideal-Farm" class="headerlink" title="F Ideal Farm"></a>F <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1594/problem/F">Ideal Farm</a></h2></div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">上一页</a></div><div class="pagination-next"><a href="/page/2/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="小涵少年"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">小涵少年</p><p class="is-size-6 is-block">风花飞有态 烟絮坠无痕</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>南京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">12</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">10</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Micro-han" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Zhihu" href="https://www.zhihu.com/people/yan-xiao-han-68-1"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Codeforces" href="https://codeforces.com/profile/YanXiaohan"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://vcode28629.github.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">VCode</span></span><span class="level-right"><span class="level-item tag">vcode28629.github.io</span></span></a></li><li><a class="level is-mobile" href="https://dragonbra.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Dragonbra</span></span><span class="level-right"><span class="level-item tag">dragonbra.github.io</span></span></a></li><li><a class="level is-mobile" href="https://micro-han.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">友链招租</span></span><span class="level-right"><span class="level-item tag">micro-han.github.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/"><span class="level-start"><span class="level-item">杂七杂八</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/"><span class="level-start"><span class="level-item">知识积累</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"><span class="level-start"><span class="level-item">算法竞赛</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">读书笔记</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"><span class="level-start"><span class="level-item">项目实战</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-05T11:00:00.000Z">2021-11-05</time></p><p class="title"><a href="/2021/11/05/2021-11-5-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B/">深度学习与围棋</a></p><p class="categories"><a href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-26T03:25:00.000Z">2021-10-26</time></p><p class="title"><a href="/2021/10/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%85%AD%E7%AB%A0/">统计学习方法第六章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-24T06:39:00.000Z">2021-10-24</time></p><p class="title"><a href="/2021/10/24/A_Star%E7%AE%97%E6%B3%95/">A*算法</a></p><p class="categories"><a href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-21T11:10:00.000Z">2021-10-21</time></p><p class="title"><a href="/2021/10/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E7%AB%A0/">强化学习第二章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-18T12:00:00.000Z">2021-10-18</time></p><p class="title"><a href="/2021/10/18/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%BA%94%E7%AB%A0/">统计学习方法第五章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Codeforces/"><span class="tag">Codeforces</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E3%80%8B/"><span class="tag">《强化学习》</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B%E3%80%8B/"><span class="tag">《深度学习与围棋》</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/"><span class="tag">《统计学习方法》</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8E%A8%E5%85%8D%E4%BF%9D%E7%A0%94/"><span class="tag">推免保研</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="tag">机器学习</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><span class="tag">算法学习</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/"><span class="tag">解题报告</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"><span class="tag">论文阅读</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/"><span class="tag">项目记录</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 Micro han</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
