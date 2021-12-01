@@ -1,5 +1,212 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Micro-han&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Micro-han&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Micro-han&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Micro-han&#039;s blog"><meta property="og:url" content="https://micro-han.github.io/"><meta property="og:site_name" content="Micro-han&#039;s blog"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://micro-han.github.io/img/og_image.png"><meta property="article:author" content="Micro han"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://micro-han.github.io"},"headline":"Micro-han's blog","image":["https://micro-han.github.io/img/og_image.png"],"author":{"@type":"Person","name":"Micro han"},"publisher":{"@type":"Organization","name":"Micro-han's blog","logo":{"@type":"ImageObject","url":"https://micro-han.github.io/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-26T03:25:00.000Z" title="2021/10/26 上午11:25:00">2021-10-26</time>发表</span><span class="level-item"><time dateTime="2021-11-16T05:03:49.041Z" title="2021/11/16 下午1:03:49">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">16 分钟读完 (大约2390个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%85%AD%E7%AB%A0/">统计学习方法第六章</a></h1><div class="content"><h2 id="概论-逻辑斯谛回归与最大熵模型"><a href="#概论-逻辑斯谛回归与最大熵模型" class="headerlink" title="概论 逻辑斯谛回归与最大熵模型"></a>概论 逻辑斯谛回归与最大熵模型</h2><ul>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Micro-han&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Micro-han&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Micro-han&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Micro-han&#039;s blog"><meta property="og:url" content="https://micro-han.github.io/"><meta property="og:site_name" content="Micro-han&#039;s blog"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://micro-han.github.io/img/og_image.png"><meta property="article:author" content="Micro han"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://micro-han.github.io"},"headline":"Micro-han's blog","image":["https://micro-han.github.io/img/og_image.png"],"author":{"@type":"Person","name":"Micro han"},"publisher":{"@type":"Organization","name":"Micro-han's blog","logo":{"@type":"ImageObject","url":"https://micro-han.github.io/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-07T13:09:00.000Z" title="2021/11/7 下午9:09:00">2021-11-07</time>发表</span><span class="level-item"><time dateTime="2021-11-16T05:03:16.114Z" title="2021/11/16 下午1:03:16">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">26 分钟读完 (大约3962个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B8%83%E7%AB%A0/">统计学习方法第七章</a></h1><div class="content"><h2 id="概要-支持向量机"><a href="#概要-支持向量机" class="headerlink" title="概要 支持向量机"></a>概要 支持向量机</h2><ul>
+<li>定义在特征空间上的<strong>间隔最大</strong>的线性分类器，间隔最大使其区别于感知机；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。</li>
+<li>学习策略就是间隔最大化，形式化为一个求解凸二次规划的问题，也等价于正则化的合页损失函数的最小华问题。学习算法是求解凸二次规划的最优化算法。</li>
+<li>由简至繁的模型：线性可分支持向量机，线性支持向量机以及非线性支持向量机。训练数据集可分时，硬间隔最大化学习一个线性分类器；训练数据集近似可分时，软间隔最大化学习一个线性分类器；训练数据集不可分时，通过核技巧及软间隔最大化学习非线性支持向量机。</li>
+</ul>
+<h2 id="7-1-线性可分支持向量机与硬间隔最大化"><a href="#7-1-线性可分支持向量机与硬间隔最大化" class="headerlink" title="7.1 线性可分支持向量机与硬间隔最大化"></a>7.1 线性可分支持向量机与硬间隔最大化</h2><h3 id="7-1-1-线性可分支持向量机"><a href="#7-1-1-线性可分支持向量机" class="headerlink" title="7.1.1 线性可分支持向量机"></a>7.1.1 线性可分支持向量机</h3><ul>
+<li>考虑一个二类分类问题，假设输入空间与特征空间为两个不同的空间。线性可分支持向量机，线性支持向量机假设这两个空间的元素一一对应，并将输入空间中的输入映射为特征空间的特征向量。非线性支持向量机利用一个从输入空间到特征空间的非线性映射将输入映射为特征向量。<strong>支持向量机的学习都是在特征空间进行的</strong>。</li>
+<li><strong>线性可分支持向量机定义</strong>：给定线性可分训练数据集，通过间隔最大化或者等价地求解相应的凸二次规划问题学习得到的分离超平面为$w^<em>x+b^</em>=0$，以及相应的分类决策函数为$f(x)=sign(w^<em>x+b^</em>)$称为线性可分支持向量机。</li>
+</ul>
+<h3 id="7-1-2-函数间隔和几何间隔"><a href="#7-1-2-函数间隔和几何间隔" class="headerlink" title="7.1.2 函数间隔和几何间隔"></a>7.1.2 函数间隔和几何间隔</h3><p><strong>函数间隔</strong></p>
+<ul>
+<li><strong>函数间隔定义</strong>：对于给定的训练数据集$T$和超平面$(w,b)$，定义超平面$(w,b)$关于样本点$(x_i,y_i)$的函数间隔为$\hat \gamma_i=y_i(wx_i+b)$。定义超平面$(w,b)$关于训练数据集$T$的函数间隔为超平面$(w,b)$关于$T$中所有样本点$(x_i,y_i)$的函数间隔最小值即$\hat \gamma=min_{i=1,2,…,N}\hat \gamma_i$</li>
+<li>函数间隔可以表示分类预测的正确性及置信度。</li>
+</ul>
+<p><strong>几何间隔</strong></p>
+<ul>
+<li><strong>几何间隔定义</strong>：对于给定的训练数据集$T$和超平面$(w,b)$，定义超平面$(w,b)$关于样本点$(x_i,y_i)$的几何间隔为$\gamma_i=y_i(\frac{w}{||w||}x_i+\frac{b}{||w||})$。定义超平面$(w,b)$关于训练数据集$T$的几何间隔为超平面$(w,b)$关于$T$中所有样本点$(x_i,y_i)$的几何间隔最小值即$\gamma=min_{i=1,2,…,N}\gamma_i$</li>
+<li>几何间隔可以表示实例点到超平面的带符号距离，当样本点被正确分类时，就是实例点到超平面的距离。</li>
+</ul>
+<h3 id="7-1-3-间隔最大化"><a href="#7-1-3-间隔最大化" class="headerlink" title="7.1.3 间隔最大化"></a>7.1.3 间隔最大化</h3><ul>
+<li><p>直观解释：对训练数据集找到几何间隔最大的超平面意味着以充分大的置信度对训练数据进行分类。不仅将正负实例点分开，而且对最难分类的实例点也有足够大的置信度将它们分开。</p>
+</li>
+<li><p>最大间隔分离超平面</p>
+<script type="math/tex; mode=display">
+  该问题可以描述为下面的约束最优化问题\\
+  max_{w,b}\frac12||w||^2 \\
+  s.t. y_i(wx_i+b)-1>=0, i=1,2,...,N\\</script><p>  这是一个凸二次规划问题。</p>
+<script type="math/tex; mode=display">
+  凸优化问题:\\
+  min_wf(w)\\
+  s.t. g_i(w)<=0,h_i(w)=0\\
+  目标函数f(w)和约束函数g_i(w)都是R^n上的连续可微的凸函数，约束函数h_i(w)是R^n上的仿射函数\\
+  当目标函数f(w)是二次函数且约束函数是仿射函数时为凸二次规划函数</script><script type="math/tex; mode=display">
+  线性可分支持向量机学习算法——最大间隔法\\
+  输入：线性可分训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}\\
+  其中，x_i\in\cal X=R^n,y_i\in \cal Y=\{-1,+1\},i=1,2,...,N\\
+  输出：最小间隔分离超平面和分类决策函数\\
+  步骤：（1）构造并求解约束最优化问题min_{w,b}\frac12||w||^2,s.t. \space\space y_i(wx_i+b)-1>=0,i=1,2,...,N\\
+  (2)由此得到分离超平面w^*x+b^*=0,分类决策函数为f(x)=sign(w^*x+b^*)\\</script></li>
+<li><p>最大间隔分离超平面存在唯一性</p>
+<p>  若训练数据集$T$线性可分，则可将训练数据集中的样本点完全正确分开的最大间隔分离超平面存在且唯一。</p>
+</li>
+<li><p>支持向量和间隔边界</p>
+<p>  在线性可分情况下，训练数据集的样本点中与分离超平面距离最近的样本点的实例称为支持向量。支持向量是使约束条件等号成立的点即$y_i(wx_i+b)-1=0$。对$y_i=+1$的正例点，支持向量在超平面$H_1:wx+b=1$。对$y_i=-1$的实例点，支持向量在超平面在$H_2:wx+b=-1$上。</p>
+<p>  $H_1$和$H_2$平行，并且没有实例点在他们中间分离超平面与他们平行且位于他们中央。长待的宽度即$H_1$和$H_2$之间的距离称为间隔。间隔依赖于分离超平面的法向量$w$，等于$\frac2{||w||}$。$H_1$和$H_2$称为间隔边界。   </p>
+</li>
+</ul>
+<h3 id="7-1-4-学习的对偶算法"><a href="#7-1-4-学习的对偶算法" class="headerlink" title="7.1.4 学习的对偶算法"></a>7.1.4 学习的对偶算法</h3><ul>
+<li><p>设$\alpha^{<em>}=(\alpha_1^{</em>},\alpha_2^{<em>},…,\alpha_l^{</em>})^T$是对偶最优化问题的解，则存在下标$j$使得$\alpha_j^<em>&gt;0$并可以按照$w^</em>=\sum_{i=1}^N\alpha_i^<em>y_ix_i,b^</em>=y_j-\sum_{i=1}^N\alpha_i^<em>y_i(x_ix_j)$求解$w^</em>$和$b^*$</p>
+<script type="math/tex; mode=display">
+线性可分支持向量机学习算法\\
+输入：线性可分训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}，其中x_i\in \cal X=R^n,y_i\in\cal Y=\{+1,-1\},i=1,2,..,N\\
+输出：分离超平面和分类决策函数\\
+步骤：(1)构造并求解约束最优化问题\\
+min_\alpha\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_ix_j)-\sum_{i=1}^N\alpha_i\\
+s.t. \space \space\sum_{i=1}^N\alpha_iy_i=0,\alpha_i>=0,i=1,2,...,N\\
+求得最优解\alpha^*=(\alpha_1^*,\alpha_2^*,...,\alpha_l^*)^T\\
+(2)计算w^*=\sum_{i=1}^N\alpha_i^*y_ix_i\\
+并选择\alpha^*的一个正分量\alpha_j^*>0，计算b^*=y_j-\sum_{i=1}^N\alpha_i^*y_i(x_ix_j)\\
+(3)求得分离超平面w^*x+b^*=0\\
+分类决策函数：f(x)=sign(w^*x+b^*)</script></li>
+<li><p>考虑原始最优化问题及对偶最优化问题，将训练数据集中对应于$\alpha_i^*&gt;0$的实例点$x_i\in R^n$称为支持向量。</p>
+</li>
+</ul>
+<h2 id="7-2-线性支持向量机与软间隔最大化"><a href="#7-2-线性支持向量机与软间隔最大化" class="headerlink" title="7.2 线性支持向量机与软间隔最大化"></a>7.2 线性支持向量机与软间隔最大化</h2><h3 id="7-2-1线性支持向量机"><a href="#7-2-1线性支持向量机" class="headerlink" title="7.2.1线性支持向量机"></a>7.2.1线性支持向量机</h3><ul>
+<li><p>线性不可分训练数据集，推广到软间隔最大化。</p>
+</li>
+<li><p>线性不可分意味着某些样本点$(x_i,y_i)$不能满足函数间隔大于等于1的约束条件，为了解决这个问题，可以对每个样本点$(x_i,y_i)$引进一个松弛变量$\xi&gt;=0$使得函数间隔加上松弛变量大于等于1，这样约束条件变为$y_i(wx_i+b)&gt;=1-\xi_i$。目标函数为$\frac12||w||^2+C\sum_{i=1}^N\xi_i$，这里$C&gt;0$称为惩罚参数，由应用问题决定，其越大对误分类的惩罚增大，其越小对误分类的惩罚最小。</p>
+</li>
+<li><p><strong>线性支持向量机定义：</strong>对于给定的线性不可分的训练数据集，通过求解如下的凸二次规划问题，得到的分离超平面为$w^<em>x+b^</em>=0$以及相应的分类决策函数$f(x)=sign(w^<em>x+b^</em>)$成为线性支持向量机</p>
+<script type="math/tex; mode=display">
+min_{w,b,\xi}\frac12||w||^2+C\sum_{i=1}^N\xi_i \\
+s.t.\space \space y_i(wx_i+b)>=1-\xi_i,i=1,2,...,N \\
+\xi_i>=0, i=1,2,...,N</script></li>
+</ul>
+<h3 id="7-2-2-学习的对偶算法"><a href="#7-2-2-学习的对偶算法" class="headerlink" title="7.2.2 学习的对偶算法"></a>7.2.2 学习的对偶算法</h3><ul>
+<li><p>$\alpha^<em>=(\alpha_1^</em>,\alpha_2^<em>,…,\alpha_l^</em>)^T$是对偶最优化问题的解，则存在下标$j$使得$\alpha_j^<em>&gt;0$并可以按照$w^</em>=\sum_{i=1}^N\alpha_i^<em>y_ix_i,b^</em>=y_j-\sum_{i=1}^N\alpha_i^<em>y_i(x_ix_j)$求解$w^</em>$和$b^*$</p>
+</li>
+<li><script type="math/tex; mode=display">
+线性支持向量机学习算法\\
+输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}，其中x_i\in \cal X=R^n,y_i\in\cal Y=\{+1,-1\},i=1,2,..,N\\
+输出：分离超平面和分类决策函数\\
+步骤：(1)选择惩罚参数C>0，构造并求解凸二次规划问题\\
+min_\alpha\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_ix_j)-\sum_{i=1}^N\alpha_i\\
+s.t. \space \space\sum_{i=1}^N\alpha_iy_i=0,0<=\alpha_i<=C,i=1,2,...,N\\
+求得最优解\alpha^*=(\alpha_1^*,\alpha_2^*,...,\alpha_l^*)^T\\
+(2)计算w^*=\sum_{i=1}^N\alpha_i^*y_ix_i\\
+并选择\alpha^*的一个分量0<\alpha_j^*<C，计算b^*=y_j-\sum_{i=1}^N\alpha_i^*y_i(x_ix_j)\\
+(3)求得分离超平面w^*x+b^*=0\\
+分类决策函数：f(x)=sign(w^*x+b^*)</script><h3 id="7-2-3-支持向量"><a href="#7-2-3-支持向量" class="headerlink" title="7.2.3 支持向量"></a>7.2.3 支持向量</h3></li>
+<li><p>在线性不可分的情况下，将对偶问题的解$\alpha^<em>$中，对应于$\alpha_i^</em>&gt;0$的样本点$(x_i,y_i)$的实例$x_i$称为支持向量。</p>
+</li>
+<li><p>软间隔的支持向量$x_i$或者在间隔边界上，或者在间隔边界与分离超平面之间，或者在分离超平面误分一侧。</p>
+<p>  若$\alpha_i^<em>&lt;C$则$\xi_i=0$，支持向量$x_i$恰好落在间隔边界上；若$\alpha_i^</em>=C$，则$0&lt; \xi_i<1$，分类正确，支持向量$x_i$在间隔边界与分离超平面之间；若$\alpha_i^*=C$，则$\xi_i=1$，分支持向量$x_i$在分离超平面上；若$\alpha_i^*=C$，则$ \xi_i>1$，则$x_i$位于分离超平面误分类一侧。</p>
+</li>
+</ul>
+<h3 id="7-2-4-合页损失函数"><a href="#7-2-4-合页损失函数" class="headerlink" title="7.2.4 合页损失函数"></a>7.2.4 合页损失函数</h3><ul>
+<li>线性支持向量机另一种解释，最小化$\sum_{i=1}^N[1-y_i(wx_i+b)]_++\lambda||w||^2$。该函数的第一项是经验损失或经验风险函数，函数$L(y(wx+b))=[1-y(wx+b)]_+$称为合页损失函数。下标+表示$[z]_+=z,z&gt;0;0,z&lt;=0$</li>
+</ul>
+<h2 id="7-3-非线性支持向量机与核函数"><a href="#7-3-非线性支持向量机与核函数" class="headerlink" title="7.3 非线性支持向量机与核函数"></a>7.3 非线性支持向量机与核函数</h2><h3 id="7-3-1-核技巧"><a href="#7-3-1-核技巧" class="headerlink" title="7.3.1 核技巧"></a>7.3.1 核技巧</h3><ul>
+<li><p>非线性分类问题</p>
+<p>  一般来说，对给定的训练数据集$T=\{(x_1,y_1),(x_2,y_2),…,(x_N,y_N)\}$，其中实例$x_i$属于输入空间，$x_i \in \cal X=R^n$，对于给定的标记有两类$y_i\in \cal Y=\{-1,+1\},i=1,2,…,N$。如果能用$R^n$中的一个超曲面将正负实例正确分开，则称这个问题为非线性可分问题。</p>
+<p>  用线性分类方法求解非线性分类问题分为两步：首先使用一个变换将原空间映射到新空间，在新空间用线性分类学习方法从训练数据集学习分类。</p>
+<p>  核技巧应用到支持向量机，基本想法就是通过一个非线性变换将输入空间对应于一个特征空间，使得在输入空间中的超曲面模型对英语特征空间中的超平面模型。</p>
+</li>
+<li><p>核函数的定义</p>
+<p>  设$\cal X$是输入空间，又设$\cal H$为特征空间，如果存在一个从$\cal X$到$\cal H$的映射$\phi(x):\cal X \rightarrow H$，使得对所有的$x,z\in \cal X$，函数$K(x,z)$满足条件$K(x,z)=\phi(x)\phi(z)$则称$K(x,z)$为和函数，$\phi(x)$为映射函数，式中$\phi(x)\phi(z)$为$\phi(x)$和$\phi(z)$的内积。</p>
+<p>  核技巧的想法是在学习和预测中只定义核函数，而不显式地定义映射函数。</p>
+</li>
+<li><p>核技巧在支持向量机中的应用</p>
+<p>  对偶问题的目标函数更改为$W(\alpha)=\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i$，同样，分类决策函数的内积也用核函数来代替$f(x)=sign(\sum_{i=1}^{N_s}\alpha_i^<em>y_i\phi(x_i)\phi(x)+b^</em>)=sign(\sum_{i=1}^{N_s}\alpha_i^<em>y_iK(x_i,x)+b^</em>)$。</p>
+</li>
+</ul>
+<h3 id="7-3-2-正定核"><a href="#7-3-2-正定核" class="headerlink" title="7.3.2 正定核"></a>7.3.2 正定核</h3><ul>
+<li><p>通常所说的核函数就是正定核函数。假设$K(x,z)$是定义在$\cal X \times X$上的对称函数，并且对任意$x_1,x_2,…,x_m\in \cal X$，$K(x,z)$关于他们的Gram矩阵是半正定的。根据函数K可以构造一个希尔伯特空间。步骤是：首先定义映射$\phi$并构成向量空间$\cal S$然后在$\cal S$上定义内积构成内积空间，最后将$S$完备化构成希尔伯特空间。</p>
+</li>
+<li><p>定义映射，构成向量空间S</p>
+<p>  定义映射$\phi:x\rightarrow K(\cdot,x)$，根据这一映射对任意的$x_i\in \cal X,\alpha_i\in R,i=1,2,…,m$定义线性组合$f(\cdot)=\sum_{i=1}^N\alpha_iK(\cdot,x_i)$。考虑由线性组合为元素的集合S，其对于加法和乘法是封闭的。</p>
+</li>
+<li><p>在S上定义内积，使其成为内积空间</p>
+<p>  在$S$上定义一个运算$*$，对任意$f,g\in S$，$f(\cdot)=\sum_{i=1}^m\alpha_iK(\cdot,x_i),g(\cdot)=\sum_{j=1}^l\beta_jK(\cdot,z_j)$</p>
+<p>  运算$<em>$为$f</em>g=\sum_{i=1}^m\sum_{j=1}^l\alpha_i\beta_jK(x_i,z_j)$</p>
+</li>
+<li><p>将内积空间S完备化为希尔伯特空间</p>
+<p>  希尔伯特空间$\cal H$称为再生希尔伯特空间，这是由于核满足再生性。$K(\cdot,x)\cdot f=f(x)$和$K(\cdot,x)\cdot K(\cdot,z)=K(x,z)$成为再生核。</p>
+</li>
+<li><p><strong>正定核的充要条件</strong>：设$K:\cal X \times X \rightarrow R$是对称函数，则$K(x,z)$为正定核函数的充要条件是对任意$x_i\in \cal X,i=1,2,…,m$，$K(x,z)$对应的Gram矩阵$K=[K(x_i,x_j)]_{m\times m}$是半正定矩阵。</p>
+<p>  <strong>正定核的等价定义</strong>：设$\cal X \subset R^n$,$K(x,z)$是定义在$\cal X\times X$上的对称函数，如果对于任意$x_i\in \cal X,i=1,2,…,m$，$K(x,z)$对应的Gram矩阵$K=[K(x_i,x_j)]_{m\times m}$是半正定矩阵，则称$K(x,z)$是正定核。</p>
+</li>
+</ul>
+<h3 id="7-3-3-常用核函数"><a href="#7-3-3-常用核函数" class="headerlink" title="7.3.3 常用核函数"></a>7.3.3 常用核函数</h3><ul>
+<li><p>多项式核函数</p>
+<p>  $K(x,z)=(x\cdot t+1)^p$，对应的支持向量机是一个$p$次多项式分类器，分类决策函数为$f(x)=sign(\sum_{i=1}^{N_s}\alpha_i^<em>y_i(x_ix+1)^p+b^</em>)$</p>
+</li>
+<li><p>高斯核函数</p>
+<p>  $K(x,z)=exp(-\frac{||x-z||^2}{2\sigma^2})$，对应的支持向量机是高斯径向基函数分类器，分类决策函数为$f(x)=sign(\sum_{i=1}^{N-s}\alpha_i^<em>y_iexp(-\frac{||x-x_i||^2}{2\sigma^2})+b^</em>)$</p>
+</li>
+<li><p>字符串核函数</p>
+<p>  核函数不仅可以定义在欧式空间上，还可以定在离散数据的集合上。</p>
+</li>
+</ul>
+<h3 id="7-3-4-非线性支持向量分类机"><a href="#7-3-4-非线性支持向量分类机" class="headerlink" title="7.3.4 非线性支持向量分类机"></a>7.3.4 非线性支持向量分类机</h3><ul>
+<li><p><strong>非线性支持向量机的定义</strong>：从非线性分类数据集，通过核函数与软间隔最大化或凸二次规划，学习得到的分类决策函数$f(x)=sign(\sum_{i=1}^N\alpha_i^<em>y_iK(x,z)+b^</em>)$称为非线性支持向量机，$K(x,z)$是正定核函数。</p>
+</li>
+<li><script type="math/tex; mode=display">
+  非线性支持向量机学习算法\\
+  输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}，其中x_i\in \cal X=R^n,y_i\in\cal Y=\{+1,-1\},i=1,2,..,N\\
+  输出：分类决策函数\\
+  步骤：(1)选取适当的核函数K(x,z)和适当的参数C，构造并求解最优化问题\\
+  min_\alpha\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i\\
+  s.t.\space \space \sum_{i=1}^N\alpha_iy_i=0\\
+  0<=\alpha_i<=C,i=1,2,...,N\\
+  求得最优解\alpha^*=(\alpha_1^*,\alpha_2^*,...,\alpha_l^*)^T\\
+  (2)选择\alpha^*的一个正分量0<\alpha_j^*<C，计算b^*=y_j-\sum_{i=1}^N\alpha_i^*y_iK(x_i,x_j)\\
+  (3)构造决策函数f(x)=sign(\sum_{i=1}^N\alpha_i^*y_iK(x,x_i)+b^*)</script></li>
+</ul>
+<h2 id="7-4-序列最小最优化算法"><a href="#7-4-序列最小最优化算法" class="headerlink" title="7.4 序列最小最优化算法"></a>7.4 序列最小最优化算法</h2><h3 id="7-4-1-两个变量二次规划的求解方式"><a href="#7-4-1-两个变量二次规划的求解方式" class="headerlink" title="7.4.1 两个变量二次规划的求解方式"></a>7.4.1 两个变量二次规划的求解方式</h3><ul>
+<li>最优化问题没有剪辑时的解为$\alpha_2^{new,unc}=\alpha_2^{old}+\frac{y_2(E_1-E_2)}{\eta}$，令$E_i=g(x_i)-y_i=(\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b)-y_i,i=1,2$，$\eta=K_{11}+K_{22}-2K{12}=||\phi(x_1)-\phi(x_2)||^2$</li>
+<li>剪辑后的解是$\alpha_2^{new}=H,\alpha_2^{new,unc}&gt;H;\alpha_2^{new}=\alpha_2^{new,unc},L&lt;=\alpha_2^{new,unc}&lt;=H;\alpha_2^{new}=L,\alpha_2^{new,unc}&lt;L$,$\alpha_1^{new}=\alpha_1^{old}+y_1y_2(\alpha_2^{old}-\alpha_2^{new})$</li>
+</ul>
+<h3 id="7-4-2-变量的选择方法"><a href="#7-4-2-变量的选择方法" class="headerlink" title="7.4.2 变量的选择方法"></a>7.4.2 变量的选择方法</h3><ul>
+<li>外层循环寻找第一个变量，检验训练样本点是否满足KKT条件。检验在精度范围之内。</li>
+<li>内层循环寻找第二个变量，使得其变化尽可能大，先遍历间隔边界，再遍历剩下的。</li>
+<li>计算阈值b和差值E供下次寻找</li>
+</ul>
+<h3 id="7-4-3-SMO算法"><a href="#7-4-3-SMO算法" class="headerlink" title="7.4.3 SMO算法"></a>7.4.3 SMO算法</h3><script type="math/tex; mode=display">
+SMO算法\\
+输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}\\
+其中x_i\in \cal X=R^n,y_i\in\cal Y=\{+1,-1\},i=1,2,..,N，精度\varepsilon\\
+输出：近似解\hat \alpha \\
+步骤：(1)取初值\alpha^{(0)}=0,令k=0\\
+(2)选取优化变量\alpha_1^{(k)},\alpha_2^{(k)}，解析求解两个变量的最优化问题，求得最优解\alpha_1^{(k+1)},\alpha_2^{(k+1)}\\
+更新\alpha为\alpha^{(k+1)}、、
+(3)若在精度\varepsilon范围内满足停机条件\\
+\sum_{i=1}^N\alpha_iy_i=0,0<=\alpha_i<=C,i=1,2,...,N\\
+y_i\cdot g(x_i)>=1,{x_i|\alpha_i=0}\\
+y_i\cdot g(x_i)=1,{x_i|0<\alpha_i<C}\\
+y_i\cdot g(x_i)<=1,{x_i|\alpha_i=C}\\
+其中，g(x_i)=\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b，则转(4),否则令k=k+1，转(2)
+(4)取\hat \alpha=\alpha^{(k+1)}</script></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-05T11:00:00.000Z" title="2021/11/5 下午7:00:00">2021-11-05</time>发表</span><span class="level-item"><time dateTime="2021-11-08T05:24:11.046Z" title="2021/11/8 下午1:24:11">2021-11-08</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a></span><span class="level-item">5 分钟读完 (大约701个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/05/2021-11-5-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B/">深度学习与围棋</a></h1><div class="content"><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
+<li>本篇博客用于记录学习《深度学习与围棋》一书的历程。</li>
+<li>项目地址 <a target="_blank" rel="noopener" href="https://github.com/Micro-han/GameOfGO">https://github.com/Micro-han/GameOfGO</a></li>
+<li>想了半天，感觉整体都很玄学，于是打算通过日期为小标题更新学习进度</li>
+</ul>
+<h2 id="1-2021年11月2日"><a href="#1-2021年11月2日" class="headerlink" title="1 2021年11月2日"></a>1 2021年11月2日</h2><h3 id="1-1-启动"><a href="#1-1-启动" class="headerlink" title="1.1 启动"></a>1.1 启动</h3><p><strong>在main中启动</strong></p>
+<p>安装好所需要的配置之后直接运行以下文件即可启动</p>
+<p>end_to_end.py实现了基于深度学习的围棋AI，在本地127.0.0.1:5000/static/play_predict_19.html实现对局；</p>
+<p>bot_v_bot.py实现了命令行的机器对机器；</p>
+<p>human_v_bot.py实现了命令行的人机对战；</p>
+<p>human_v_betago.py部署了一个成熟的围棋AI betago，在本地127.0.0.1:5000/static/play_predict_19.html实现对局</p>
+<p>human_v_human.py是基于tkinter的客户端人人对战</p>
+<h3 id="1-2-训练"><a href="#1-2-训练" class="headerlink" title="1.2 训练"></a>1.2 训练</h3><p><strong>网络调整</strong></p>
+<p>通过修改networks文件夹中的large.py即可修改神经网络</p>
+<p><strong>特征参数调整</strong></p>
+<p>通过修改end_to_end.py第23行的num_samples参数大小即可修改加载特征的数量，通过processor.py第117行的chunksize即可修改生成特征的基础要求数量</p>
+<p><strong>别的调整</strong></p>
+<p>同理，processor.py的采样器也可以进行修改；可以参考原书稍作修改写一个并行的processor等等</p>
+<p><strong>学习方法</strong></p>
+<p>后续可以加入强化学习和对抗学习，具体如何实现参照原书</p>
+<h3 id="1-3-使用的黑盒代码"><a href="#1-3-使用的黑盒代码" class="headerlink" title="1.3 使用的黑盒代码"></a>1.3 使用的黑盒代码</h3><p>按照文件夹依次说明</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">agents</span><br><span class="line">	betago.hdf5 <span class="comment"># 训练好的机器人</span></span><br><span class="line">dlgo</span><br><span class="line">	data</span><br><span class="line">		index_processor.py <span class="comment"># u-go网站爬虫代码</span></span><br><span class="line">		sampling.py <span class="comment"># 特征采样器代码</span></span><br><span class="line">	encoders</span><br><span class="line">		betago.py <span class="comment"># betago的特征提取器</span></span><br><span class="line">	gosgf全部 <span class="comment"># 爬虫爬取的sgf文件转换器</span></span><br><span class="line">	httpfrontend</span><br><span class="line">		server.py <span class="comment"># flask前端启动器</span></span><br><span class="line">		static中的前端代码 <span class="comment"># flask围棋前端</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-4-其余的补充说明"><a href="#1-4-其余的补充说明" class="headerlink" title="1.4 其余的补充说明"></a>1.4 其余的补充说明</h3><ul>
+<li>从一个项目的角度来讲，目前是很稚嫩的一个项目，下面开始来介绍一个整个项目。</li>
+<li>前端：前端采用flask框架完成了服务器通信部署，其原本的h5、js和css是由原作者提供的。我部分修改了里面的显示代码。</li>
+<li>网络：学习方法采用的可以说是有监督学习，编写了一个七层编码器，编码器具体含义可以看代码。每一层编码器布置一个卷积层提取特征，最后用一个稠密层将特征传递下去。</li>
+<li>其余没什么特别的了，下面纠正一些原书给定代码的一些bug</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># end_v_end.py 读取文件部分需要使用</span></span><br><span class="line">h5py.file(<span class="string">&quot;&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要新增一个全局的graph传递给get_web_app.py</span></span><br><span class="line"><span class="keyword">global</span> graph</span><br><span class="line">graph = tf.get_default_graph()</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-26T03:25:00.000Z" title="2021/10/26 上午11:25:00">2021-10-26</time>发表</span><span class="level-item"><time dateTime="2021-11-16T05:03:49.041Z" title="2021/11/16 下午1:03:49">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">16 分钟读完 (大约2390个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%85%AD%E7%AB%A0/">统计学习方法第六章</a></h1><div class="content"><h2 id="概论-逻辑斯谛回归与最大熵模型"><a href="#概论-逻辑斯谛回归与最大熵模型" class="headerlink" title="概论 逻辑斯谛回归与最大熵模型"></a>概论 逻辑斯谛回归与最大熵模型</h2><ul>
 <li>逻辑斯谛回归是统计学习中的经典分类方法。</li>
 <li>最大熵是概率模型学习的一个准则，推广到分类问题得到最大熵模型</li>
 <li>迭代尺度算法和拟牛顿法</li>
@@ -84,7 +291,7 @@
 (5)令w^{(k+1)}=w^{(k)}+\lambda_kp_k\\
 (6)计算g_{k+1}=g(w^{(k+1)}),若||g_{k+1}||<\epsilon 则停止计算，得w^*=w^{(k+1)}，否则按照下个式子求B_{k+1}\\
 B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delta_k^TB_k\delta_k}\\
-其中，y_k=g_{k+1}-g_k,\delta_k=w^{(k+1)}-w^{(k)},令k=k+1,到(3)</script></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-24T06:39:00.000Z" title="2021/10/24 下午2:39:00">2021-10-24</time>发表</span><span class="level-item"><time dateTime="2021-11-29T14:00:48.372Z" title="2021/11/29 下午10:00:48">2021-11-29</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></span><span class="level-item">21 分钟读完 (大约3117个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/24/A_Star%E7%AE%97%E6%B3%95/">A*算法</a></h1><div class="content"><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>A_Star很常用的路径查找和图形遍历算法。目前很多项目和图论都是基于A_Star算法开发的。本章旨在学习A_Star算法的基本思想与理论，并动手实现一个简单的A_Star算法模板。</p>
+其中，y_k=g_{k+1}-g_k,\delta_k=w^{(k+1)}-w^{(k)},令k=k+1,到(3)</script></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-24T06:39:00.000Z" title="2021/10/24 下午2:39:00">2021-10-24</time>发表</span><span class="level-item"><time dateTime="2021-11-30T13:37:37.486Z" title="2021/11/30 下午9:37:37">2021-11-30</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></span><span class="level-item">27 分钟读完 (大约4046个字)</span></div></div><div class="content"><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>A_Star很常用的路径查找和图形遍历算法。目前很多项目和图论都是基于A_Star算法开发的。本章旨在学习A_Star算法的基本思想与理论，并动手实现一个简单的A_Star算法模板。</p>
 <h2 id="算法过程"><a href="#算法过程" class="headerlink" title="算法过程"></a>算法过程</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">* 初始化open_set和close_set；</span><br><span class="line">* 将起点加入open_set中，并设置优先级为<span class="number">0</span>（优先级最高）；</span><br><span class="line">* 如果open_set不为空，则从open_set中选取优先级最高的节点n：</span><br><span class="line">    * 如果节点n为终点，则：</span><br><span class="line">        * 从终点开始逐步追踪parent节点，一直达到起点；</span><br><span class="line">        * 返回找到的结果路径，算法结束；</span><br><span class="line">    * 如果节点n不是终点，则：</span><br><span class="line">        * 将节点n从open_set中删除，并加入close_set中；</span><br><span class="line">        * 遍历节点n所有的邻近节点：</span><br><span class="line">            * 如果邻近节点m在close_set中，则：</span><br><span class="line">                * 跳过，选取下一个邻近节点</span><br><span class="line">            * 如果邻近节点m也不在open_set中，则：</span><br><span class="line">                * 设置节点m的parent为节点n</span><br><span class="line">                * 计算节点m的优先级</span><br><span class="line">                * 将节点m加入open_set中</span><br><span class="line">    		* 如果邻近节点在open_set中，则比较gcost是否比原来更小，如果更小则更新其父节点</span><br></pre></td></tr></table></figure>
 
 <p>A_Star算法用$f(n)=g(n)+h(n)$来计算每个节点的优先级。</p>
@@ -140,8 +347,33 @@ B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delt
 </ul>
 <p><strong>管道表示</strong></p>
 <ul>
-<li>管道路径可以用每个网格的中心点坐标序列表示，定义为$p_1(x_1,y_1,z_1)\rightarrow p_2(x_2,y_2,z_2)\rightarrow … \rightarrow p_n(x_n,y_n,z_n)$。$p_1$是起始点，$p_n$是目标点，在网格分解空间中，可以将网格坐标序列转换为网格位置序列$p_1(r_1,c_1,l_1)\rightarrow p_2(r_2,c_2,l_2)\rightarrow … \rightarrow p_n(r_n,c_n,l_n),|r_i-r_{i-1}|+|c_i-r_{i-1}|+|l_i-l_{i-1}|=1,(1&lt;i\leq n)$，根据管道的半径向外扩展路径可以得到最终形状。</li>
+<li>管道路径可以用每个网格的中心点坐标序列表示，定义为$p_1(x_1,y_1,z_1)\rightarrow p_2(x_2,y_2,z_2)\rightarrow … \rightarrow p_n(x_n,y_n,z_n)$。$p_1$是起始点，$p_n$是目标点，在网格分解空间中，可以将网格坐标序列转换为网格位置序列$p_1(r_1,c_1,l_1)\rightarrow p_2(r_2,c_2,l_2)\rightarrow … \rightarrow p_n(r_n,c_n,l_n),|r_i-r_{i-1}|+|c_i-r_{i-1}|+|l_i-l_{i-1}|=1,(1&lt;i\leq n)$，根据管道的半径向外扩展路径可以得到最终形状。如果为了指明某个管道，在每个字母上加一个$p_1^i$即可。</li>
+<li>如果俩管道的某个节点在网格里的曼哈顿距离为1，那么就是相邻的，需要重新安排</li>
 </ul>
+<p><strong>约束和目标</strong></p>
+<ul>
+<li>连接管口，避免任何障碍物干扰；管道与刚性结构正交布置；满足两个相邻弯头之间的最小长度要求；尽可能最小化路径长度；尽可能减少玩去次数；将管道沿墙壁，地板或设备铺设，取得更好地支撑；尽可能平行排列；</li>
+</ul>
+<p><strong>数学建模</strong></p>
+<ul>
+<li>约束和目标分别用A*算法和遗传算法解决。</li>
+<li>目标函数为$Min.f_{Objective}(path)=\alpha \times f_L(path) + \beta \times f_B(path)+\gamma \times f_E(path) - \delta \times f_N(path)$，其中$f_L(path)$为路径上网格数；$f_B(path)$为路径上弯曲数量；$f_E(path)$为路径上能量值之和；$f_N(path)$衡量当前管道和路由管道的平行路由效果。该值越大，相邻的网格对越多，其中各希腊字母是用户自行选择的，用来平衡。</li>
+</ul>
+<p><strong>改进A*算法</strong></p>
+<ul>
+<li><p>$g(n)=a\times L_{cost}(n) + b\times E_{cost}(n)+ c\times B_{cost}(n)$，其中$a,b,c$是关心权重因子，$L_{cost}(n),E_{cost}(n),B_{cost}(n)$分别是长度成本，能量成本和弯曲数成本。每次在搜索过程中都需要对应的更新</p>
+</li>
+<li><p>$h(n)=abs(x_n-x_t)+abs(y_n-y_t)+abs(z_n-z_t)$，采用曼哈顿距离，$(x_n,y_n,z_n)$是网格位置，$(x_t,y_t,z_t)$是目标网格。可以适当放大h函数。</p>
+</li>
+<li><p>$f(n)=g(n)+w\times h(n)=a\times L_{cost}(n)+b\times E_{cost}(n)+c\times B_{cost}(n)+w\times(abs(x_n-x_t)+abs(y_n-y_t)+abs(z_n-z_t)), w \geq 1$，如果b和c为0，则搜索只受路径长度的引导；当b和c为正值时，考虑弯曲次数和沿支架走线的约束。</p>
+</li>
+<li><p>开三个三维数组，close_map，open_map和dir_map。close_map表示是否被搜过，open_map用来改进效率，dir_map用来保持路径上网格的顺序。管道的网格路径可以使用dir_map和管道喷嘴来跟踪。</p>
+</li>
+<li><p>$$<br>输入:起始网络s,目标网格e,S_p[M][N][L]表示路由空间,M、N、L分别表示空间的层号、列号和行号\<br>输出:管道路径\<br>步骤:(1)创建一个空的优先队列,openmap[c.layer][c.column][c.row] \leftarrow 0,\closemap[c.layer][c.column][c.row] \leftarrow 0,\dirmap[c.layer][c.column][c.row] \leftarrow 1\<br>(2)计算初始结点的f(s),将(f(s),s)放入pq,计算s的实际消耗 openmap[s.layer][s.column][s.row]\leftarrow g(s) \<br>(3)如果pq非空的进入(4)到(17)循环\<br>(4)取pq顶部元素v \<br>(5)如果v是目标网格,停止搜索并通过dirmap建立管道路径,如果v不是继续下面步骤 \<br>(6)设置状态为已经搜索过 openmap[v.layer][v.column][v.row] \leftarrow 0, clsoemap[v.layer][v.column][v.row] \leftarrow1 \<br>(7)令v_0 = v \<br>(8)探索v周围六个正交方向的网格,继续下面9到17步骤 \<br>(9)如果满足以下abc三种情况,继续步骤10到16,否则继续步骤17 \<br>(a)(v.layer + k, v.column + j, v.row +i)是一个可以使用的有效坐标 \<br>(b)S_p[v.layer+k,v.column+j,v.row+i]是一个自由网格,不在任何障碍物或者其他路由管道之中 \<br>(c)closemap[v.layer+k,v.column+j,v.row+i]=0 \<br>(10) \<br>(11) \<br>(12) \<br>(13) \<br>(14) \<br>(15) \<br>(16) \<br>(17) \<br>(18)<br>$$</p>
+</li>
+<li></li>
+</ul>
+<p><strong>改进遗传算法</strong></p>
 <h3 id="Automating-the-Generation-of-3D-Multiple-Pipe-Layout-Design-Using-BIM-and-Heuristic-Search-Methods"><a href="#Automating-the-Generation-of-3D-Multiple-Pipe-Layout-Design-Using-BIM-and-Heuristic-Search-Methods" class="headerlink" title="Automating the Generation of 3D Multiple Pipe Layout Design Using BIM and Heuristic Search Methods"></a>Automating the Generation of 3D Multiple Pipe Layout Design Using BIM and Heuristic Search Methods</h3><p>待更</p>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-21T11:10:00.000Z" title="2021/10/21 下午7:10:00">2021-10-21</time>发表</span><span class="level-item"><time dateTime="2021-11-16T05:05:35.469Z" title="2021/11/16 下午1:05:35">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">14 分钟读完 (大约2056个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E7%AB%A0/">强化学习第二章</a></h1><div class="content"><h2 id="概要-多臂赌博机"><a href="#概要-多臂赌博机" class="headerlink" title="概要 多臂赌博机"></a>概要 多臂赌博机</h2><h2 id="2-1-一个k臂赌博机问题"><a href="#2-1-一个k臂赌博机问题" class="headerlink" title="2.1 一个k臂赌博机问题"></a>2.1 一个k臂赌博机问题</h2><ul>
 <li><p>重复地在$k$个选项或动作中进行选择，每次选择之后获得一定的收益收益有选择的动作决定的平稳概率分布产生。目标是在某一段时间内最大化总收益的期望。</p>
@@ -521,260 +753,7 @@ L_p(x_i,x_j)=(\sum_{l=1}^n|x_i^{(l)}-x_j^{l}|^p)^{\frac{1}{p}},p>=1</script></li
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myPreceptron</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.a = <span class="literal">None</span></span><br><span class="line">        self.w = <span class="literal">None</span></span><br><span class="line">        self.b = <span class="number">0</span></span><br><span class="line">        <span class="comment"># self.l_rate = 0.1</span></span><br><span class="line">        self.l_rate = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trainMethod_easy</span>(<span class="params">self, x_train, y_train</span>):</span></span><br><span class="line">        self.w = np.ones(x_train.shape[<span class="number">1</span>])</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; x_train.shape[<span class="number">0</span>]:</span><br><span class="line">            x = x_train[i]</span><br><span class="line">            y = y_train[i]</span><br><span class="line">            <span class="keyword">if</span> y * (np.dot(self.w, x) + self.b) &lt;= <span class="number">0</span>:</span><br><span class="line">                self.w = self.w + self.l_rate * np.dot(y, x)</span><br><span class="line">                self.b = self.b + self.l_rate * y</span><br><span class="line">                i = <span class="number">0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trainMethod_even</span>(<span class="params">self, x_train, y_train, gram_matrix</span>):</span></span><br><span class="line">        self.a = np.zeros(x_train.shape[<span class="number">0</span>])</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; x_train.shape[<span class="number">0</span>]:</span><br><span class="line">            x = x_train[i]</span><br><span class="line">            y = y_train[i]</span><br><span class="line">            <span class="keyword">if</span> y * (np.<span class="built_in">sum</span>(self.a * y_train * gram_matrix[:, i]) + self.b) &lt;= <span class="number">0</span>:</span><br><span class="line">                self.a[i] = self.a[i] + self.l_rate</span><br><span class="line">                self.b = self.b + self.l_rate * y</span><br><span class="line">                i = <span class="number">0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">        self.w = y_train * self.a * np.mat(x_train)</span><br><span class="line">        self.w = np.squeeze(np.array(self.w))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw</span>(<span class="params">X, w, b</span>):</span></span><br><span class="line">    X1 = np.array([<span class="number">0</span>, <span class="number">10</span>])</span><br><span class="line">    Y = - (b + w[<span class="number">0</span>] * X1) / w[<span class="number">1</span>]</span><br><span class="line">    plt.plot(X[:<span class="number">2</span>, <span class="number">0</span>], X[:<span class="number">2</span>, <span class="number">1</span>], <span class="string">&quot;g*&quot;</span>, label=<span class="string">&quot;1&quot;</span>)</span><br><span class="line">    plt.plot(X[<span class="number">2</span>:, <span class="number">0</span>], X[<span class="number">2</span>:, <span class="number">1</span>], <span class="string">&quot;rx&quot;</span>, label=<span class="string">&quot;-1&quot;</span>)</span><br><span class="line">    plt.plot(X1, Y, <span class="string">&quot;b-&quot;</span>)</span><br><span class="line">    plt.axis([<span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">10</span>])</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;x1&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;x2&#x27;</span>)</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    x_train = np.array([[<span class="number">3</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">1</span>], [<span class="number">2</span>, <span class="number">3</span>]])</span><br><span class="line">    y_train = np.array([<span class="number">1</span>, <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>])</span><br><span class="line">    gram_matrix = np.zeros(shape=(<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">4</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">4</span>):</span><br><span class="line">            gram_matrix[i][j] = np.dot(x_train[i], x_train[j].T)</span><br><span class="line">    m_model = myPreceptron()</span><br><span class="line">    <span class="comment"># m_model.trainMethod_easy(x_train, y_train)</span></span><br><span class="line">    m_model.trainMethod_even(x_train, y_train, gram_matrix)</span><br><span class="line">    draw(x_train, m_model.w, m_model.b)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>2.3 证明：样本集线性可分的充要条件是正实例点集所构成的凸壳和负实例点集构成的凸壳不相交。</strong></p>
 <p>懂了，但是很难写</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-14T06:00:00.000Z" title="2021/10/14 下午2:00:00">2021-10-14</time>发表</span><span class="level-item"><time dateTime="2021-10-27T01:58:31.330Z" title="2021/10/27 上午9:58:31">2021-10-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/">算法竞赛</a></span><span class="level-item">8 分钟读完 (大约1270个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/14/Codeforces%20Round%20#747%20div2/">Codeforces Round 747 div2 题解</a></h1><div class="content"><div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>A</th>
-<th>B</th>
-<th>C</th>
-<th>D</th>
-<th>E1</th>
-<th>E2</th>
-<th>F</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>4498</td>
-<td>492(00:04)</td>
-<td>960(00:10)</td>
-<td>1302(00:33)</td>
-<td>924(01:58)</td>
-<td>820(00:45)</td>
-<td>待补</td>
-<td>待补</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="A-Consecutive-Sum-Riddle"><a href="#A-Consecutive-Sum-Riddle" class="headerlink" title="A Consecutive Sum Riddle"></a>A <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1594/problem/A">Consecutive Sum Riddle</a></h2><p><strong>题意</strong>：</p>
-<p>给出$T$组读入，每组输入一个$n$，要求找到两个整数$l,r$使得$\sum_{i=l}^ri=n$，范围为long long范围</p>
-<p><strong>题解</strong>：</p>
-<p>很简单，$l = - (n-1), r=n$即可</p>
-<p><strong>代码</strong>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--) &#123;</span><br><span class="line">        ll n;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;n);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>, -(n - <span class="number">1</span>), n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="B-Special-Numbers"><a href="#B-Special-Numbers" class="headerlink" title="B Special Numbers"></a>B <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1594/problem/B">Special Numbers</a></h2><p><strong>题意</strong>：</p>
-<p>定义一种特殊数字序列，仅能通过n的不重复次幂之和求得，求第k个数字是什么。比如n=3的时候，该特殊数列为$[1=3^0,3=3^1,4=3^0+3^1,9=3^2,…]$</p>
-<p><strong>题解</strong>：</p>
-<p>观察可以知道，这个特殊数字序列实际上就是代表的二进制数字，将幂数存下来发现是$[0,1,10,11,100,…]$那么就很简单了，对k进行二进制拆分即可，然后按n幂次还原。</p>
-<p><strong>代码</strong>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt;G;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">        G.<span class="built_in">clear</span>();</span><br><span class="line">        <span class="keyword">while</span>(m) &#123;</span><br><span class="line">            G.<span class="built_in">push_back</span>(m % <span class="number">2</span>);</span><br><span class="line">            m /= <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ll ans = <span class="number">0</span>, tmp = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            ans = (ans + <span class="number">1ll</span> * G[i] * tmp % mod) % mod;</span><br><span class="line">            tmp = tmp * n % mod;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="C-Make-Them-Equal"><a href="#C-Make-Them-Equal" class="headerlink" title="C Make Them Equal"></a>C <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1594/problem/C">Make Them Equal</a></h2><p><strong>题意</strong>：</p>
-<p>长度为n的字符串s，算出将其全部替换成指定字符的操作数。定义一次操作为：选择一个数字x，对于每一个位置i如果i % x != 0，那么就可以替换。</p>
-<p><strong>题解</strong>：</p>
-<p>又是一道人类智慧题，打个表就可以发现，用n和n - 1可以完成所有操作。如果原串本身就都是指定字符那么就需要0次，如果存在某个位置x为指定字符且$\frac{n}{x}=1$，那么就只需要1次。</p>
-<p><strong>代码</strong>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">3e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">char</span> opt[N], s[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %s&quot;</span>, &amp;n, opt);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s);</span><br><span class="line">        <span class="keyword">int</span> flag1 = <span class="number">0</span>, flag2 = <span class="number">0</span>, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">            <span class="keyword">if</span>(s[i] == opt[<span class="number">0</span>]) &#123;</span><br><span class="line">                <span class="keyword">if</span>(n / (i + <span class="number">1</span>) == <span class="number">1</span>) flag2 = <span class="number">1</span>, ans = i + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> flag1 = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(!flag1) <span class="built_in">puts</span>(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(flag2) <span class="built_in">puts</span>(<span class="string">&quot;1&quot;</span>), <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;2&quot;</span>), <span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, n, n - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="D-The-Number-of-Imposters"><a href="#D-The-Number-of-Imposters" class="headerlink" title="D The Number of Imposters"></a>D <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1594/problem/D">The Number of Imposters</a></h2><p><strong>题意</strong>：</p>
-<p>有n个人，身份不确定有好人有坏人，好人只说真话，坏人只说假话。有m条信息指认消息，形如a说b是好人，或者a说b是坏人。需要求出最多的可能是坏人的数量。如果矛盾输出-1。</p>
-<p><strong>题解</strong>：</p>
-<p>一眼并查集，对于每个人x，可以拆成xc=x和xi=x+n两个身份。如果a说b是好人，那么就看ac和bi是不是处于一个集合，之后将ac,bc和ai,bi连在一起；如果a说b是坏人，那么就看ac和bc是不是处于一个集合，之后将ac,bi和ai,bc连在一起即可。链接过程算size。</p>
-<p><strong>代码</strong>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, f[N * <span class="number">2</span>], sz[N * <span class="number">2</span>];</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(f[x] == x) <span class="keyword">return</span> x;</span><br><span class="line">	<span class="keyword">return</span> f[x] = <span class="built_in">find</span>(f[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">join</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> fa = <span class="built_in">find</span>(u), fb = <span class="built_in">find</span>(v);</span><br><span class="line">	<span class="keyword">if</span>(fa != fb) f[fb] = fa, sz[fa] += sz[fb];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--) &#123;</span><br><span class="line">        <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n * <span class="number">2</span>; i++) &#123;</span><br><span class="line">        	f[i] = i;</span><br><span class="line">        	<span class="keyword">if</span>(i &gt; n) sz[i] = <span class="number">1</span>;</span><br><span class="line">        	<span class="keyword">else</span> sz[i] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> u, v;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %s&quot;</span>, &amp;u, &amp;v, s);</span><br><span class="line">            <span class="keyword">int</span> uc = u, vc = v, ui = u + n, vi = v + n;</span><br><span class="line">			<span class="keyword">if</span>(s[<span class="number">0</span>] == <span class="string">&#x27;i&#x27;</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span>(<span class="built_in">find</span>(uc) == <span class="built_in">find</span>(vc)) flag = <span class="number">1</span>;</span><br><span class="line">				<span class="built_in">join</span>(uc, vi);</span><br><span class="line">				<span class="built_in">join</span>(ui, vc);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">find</span>(uc) == <span class="built_in">find</span>(vi)) flag = <span class="number">1</span>;</span><br><span class="line">                <span class="built_in">join</span>(uc, vc);</span><br><span class="line">                <span class="built_in">join</span>(ui, vi);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag) <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            	<span class="keyword">if</span>(f[i] == i) ans += <span class="built_in">max</span>(sz[i], sz[i + n]);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="E1-Rubik’s-Cube-Coloring-easy-version"><a href="#E1-Rubik’s-Cube-Coloring-easy-version" class="headerlink" title="E1 Rubik’s Cube Coloring (easy version)"></a>E1 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1594/problem/E1">Rubik’s Cube Coloring (easy version)</a></h2><p><strong>题意</strong>：</p>
-<p>给出一颗深为n的完全二叉树，问不同的染色方案。染色规则为，共有6种颜色，指定的相邻节点不能染如下颜色。具体规则如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a white node can not be neighboring with white and yellow nodes;</span><br><span class="line">a yellow node can not be neighboring with white and yellow nodes;</span><br><span class="line">a green node can not be neighboring with green and blue nodes;</span><br><span class="line">a blue node can not be neighboring with green and blue nodes;</span><br><span class="line">a red node can not be neighboring with red and orange nodes;</span><br><span class="line">an orange node can not be neighboring with red and orange nodes;</span><br></pre></td></tr></table></figure>
-<p><strong>题解</strong>：</p>
-<p>公式一眼就出来了。$ans=6*4^{(2^n \mod phi(m)-2) \mod phi(m)}\mod m,m=1e9+7 $。没什么好说的。</p>
-<p><strong>代码</strong>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">3e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function">ll <span class="title">quick</span><span class="params">(ll a, ll b, ll mod)</span> </span>&#123;</span><br><span class="line">    ll res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(b) &#123;</span><br><span class="line">        <span class="keyword">if</span>(b &amp; <span class="number">1</span>) res = res * a % mod;</span><br><span class="line">        b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        a = a * a % mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    ll ans = <span class="number">6ll</span> * <span class="built_in">quick</span>(<span class="number">4</span>, (<span class="built_in">quick</span>(<span class="number">2</span>, n, mod - <span class="number">1</span>) - <span class="number">2</span> + mod - <span class="number">1</span>) % (mod - <span class="number">1</span>), mod) % mod;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="E2-Rubik’s-Cube-Coloring-hard-version"><a href="#E2-Rubik’s-Cube-Coloring-hard-version" class="headerlink" title="E2 Rubik’s Cube Coloring (hard version)"></a>E2 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1594/problem/E2">Rubik’s Cube Coloring (hard version)</a></h2><p><strong>题意</strong>：</p>
-<p>大体题意同上，但是有些节点的颜色指定。</p>
-<p><strong>题解</strong>：</p>
-<p>感觉是dp。待补。</p>
-<h2 id="F-Ideal-Farm"><a href="#F-Ideal-Farm" class="headerlink" title="F Ideal Farm"></a>F <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1594/problem/F">Ideal Farm</a></h2></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-13T06:00:00.000Z" title="2021/10/13 下午2:00:00">2021-10-13</time>发表</span><span class="level-item"><time dateTime="2021-11-16T05:04:57.250Z" title="2021/11/16 下午1:04:57">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">24 分钟读完 (大约3563个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/13/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B8%80%E7%AB%A0/">统计学习方法第一章</a></h1><div class="content"><h2 id="概要-统计学习及监督学习概论"><a href="#概要-统计学习及监督学习概论" class="headerlink" title="概要 统计学习及监督学习概论"></a>概要 统计学习及监督学习概论</h2><ul>
-<li>机器学习入门，读完第一章才发现以前自己是多么的胡说八道，没什么好说的都是概念</li>
-<li>后面着重精简了一波书上的概念和摘要</li>
-</ul>
-<h2 id="1-1统计学习"><a href="#1-1统计学习" class="headerlink" title="1.1统计学习"></a>1.1统计学习</h2><p><strong>定义</strong>：关于计算机基于数据构建概率统计模型并运用模型对数据进行预测与分析的一门学科，或者说，是计算机系统通过运用数据及统计方法提高系统性能的机器学习。学习的定义，一个系统能够通过执行某个过程改进它的性能就是学习。</p>
-<p><strong>特点</strong>：1以计算机及网络为平台；2数据驱动；3对数据进行预测与分析；4以方法为中心，统计学习方法构建模型并应用模型进行预测与分析；5多领域交叉学科；</p>
-<p><strong>对象</strong>：研究的对象是数据，从数据出发，提取数据特征，抽象数据模型，统计数据规律。</p>
-<p><strong>目的</strong>：对数据的预测与分析，对未知新数据的预测与分析。考虑学习什么样的模型和如何学习模型。</p>
-<p><strong>方法</strong>：基于数据构建概率统计模型从而对数据进行预测与分类。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">实现统计学习方法的步骤如下：</span><br><span class="line">（1）得到一个有限的训练数据集合；</span><br><span class="line">（2）确定包含所有可能的模型的假设空间，即学习模型的集合；</span><br><span class="line">（3）确定模型选择的准则，即学习的策略；</span><br><span class="line">（4）实现求解最有模型的算法，即学习的算法；</span><br><span class="line">（5）通过学习方法选择最优模型；</span><br><span class="line">（6）利用学习的最优模型对新数据进行预测或分析。</span><br></pre></td></tr></table></figure>
-<p><strong>研究</strong>：开发新的学习方法；探求统计学习方法的有效性与效率，学习的基本理论问题；应用到实际问题中去，解决实际问题。</p>
-<p><strong>重要性</strong>：处理海量数据；计算机智能化；计算机科学发展的重要组成部分</p>
-<h2 id="1-2-统计学习的分类"><a href="#1-2-统计学习的分类" class="headerlink" title="1.2 统计学习的分类"></a>1.2 统计学习的分类</h2><h3 id="1-2-1-基本分类"><a href="#1-2-1-基本分类" class="headerlink" title="1.2.1 基本分类"></a>1.2.1 基本分类</h3><h4 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h4><ul>
-<li>定义：从标注数据中学习预测模型的机器学习问题</li>
-<li>输入空间与输出空间</li>
-<li>特征空间：每个具体的输入是一个实例，通常由特征向量表示</li>
-<li>监督学习假设输入与输出的随机变量$X$和$Y$遵循联合概率分布$P(X,Y)$</li>
-<li>目的：在于学习一个由输入到输出的映射；模型属于由输入空间到输出空间的映射的集合，集合就是假设空间。</li>
-</ul>
-<h4 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h4><ul>
-<li>定义：从无标注数据中学习预测模型的机器学习问题，本质是谁学习数据中的统计规律或潜在结构</li>
-</ul>
-<h4 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h4><ul>
-<li><p>定义：智能系统在与环境的连续互动中学习最优行为策略的机器学习问题</p>
-</li>
-<li><p>马尔科夫决策过程</p>
-<p>  由五元组$[S,A,P,r,\gamma]$组成，$S$是有限状态的集合，$A$是有限动作的集合，$P$是状态转移概率函数$P(s’|s,a)=P(s_{t+1}=s’|s_t=s,a_t=a)$，$r$是奖励函数$r(s,a)=E(r_{t+1}|s_t=s,a_t=a)$，$\gamma$是衰减系数$\gamma \in[0,1]$</p>
-<p>  马尔可夫决策过程具有马尔科夫性，下一个状态只依赖于前一个状态与动作，状态转移概率函数$P$表示。下一个奖励依赖于前一个状态与动作，奖励函数$r$表示。</p>
-</li>
-<li><p>价值函数或状态价值函数定义为策略$\pi$从某一个状态$s$开始的长期累积奖励的数学期望</p>
-<script type="math/tex; mode=display">
-  v_\pi(s) = E_\pi[r_{t+1}+\gamma r_{t+2}+\gamma^2r_{t+3}+...|s_t=s]</script></li>
-<li><p>动作价值函数定义为策略$\pi$从某一个状态$s$和动作$a$开始的长期累积的数学期望</p>
-<script type="math/tex; mode=display">
-  q_\pi(s,a)=E_\pi[r_{t+1}+\gamma r_{t+2}+\gamma^2r_{t+3}+...|s_t=s,a_t=a]</script></li>
-<li><p>目的：在所有可能的策略中选出价值函数最大的策略</p>
-</li>
-<li><p>方法：无模型的（基于策略的，基于价值的），有模型的</p>
-</li>
-</ul>
-<h4 id="半监督学习与主动学习"><a href="#半监督学习与主动学习" class="headerlink" title="半监督学习与主动学习"></a>半监督学习与主动学习</h4><p><strong>半监督学习</strong>：利用标注数据和为标注数据学习预测模型的机器学习，通常含有少量标注数据和大量未标注数据。利用未标注数据中的信息辅助标注数据，进行监督学习，达到更好的效果。</p>
-<p><strong>主动学习</strong>：不断给出实例让教师标注，利用标注数据学习预测模型的机器学习。找出对学习最有帮助的实例让教师标注。</p>
-<h3 id="1-2-2-模型分类"><a href="#1-2-2-模型分类" class="headerlink" title="1.2.2 模型分类"></a>1.2.2 模型分类</h3><h4 id="概率模型与非概率模型"><a href="#概率模型与非概率模型" class="headerlink" title="概率模型与非概率模型"></a>概率模型与非概率模型</h4><ul>
-<li>概率模型条件概率分布形式$P(y|x)$，非概率模型函数形式$y=f(x)$</li>
-<li>二者可以相互转化，通常条件概率分布最大化后得到函数，函数归一化后得到条件概率分布</li>
-<li>区别在于模型的内部结构</li>
-</ul>
-<h4 id="线性模型与非线性模型"><a href="#线性模型与非线性模型" class="headerlink" title="线性模型与非线性模型"></a>线性模型与非线性模型</h4><ul>
-<li>如果函数是$y=f(x)$，那么就是线性模型否则不是</li>
-<li>深度学习是复杂神经网络学习，也是复杂非线性模型的学习</li>
-</ul>
-<h4 id="参数化模型与非参数化模型"><a href="#参数化模型与非参数化模型" class="headerlink" title="参数化模型与非参数化模型"></a>参数化模型与非参数化模型</h4><ul>
-<li>参数化模型参数维数固定，反之不然。</li>
-</ul>
-<h3 id="1-2-3-算法分类"><a href="#1-2-3-算法分类" class="headerlink" title="1.2.3 算法分类"></a>1.2.3 算法分类</h3><h4 id="在线学习"><a href="#在线学习" class="headerlink" title="在线学习"></a>在线学习</h4><ul>
-<li>每次接受一个样本，进行预测，学习模型，不断重复</li>
-<li>必须在线</li>
-</ul>
-<h4 id="批量学习"><a href="#批量学习" class="headerlink" title="批量学习"></a>批量学习</h4><ul>
-<li>一次接受所有数据，学习模型，进行预测</li>
-</ul>
-<h3 id="1-2-4-技巧分类"><a href="#1-2-4-技巧分类" class="headerlink" title="1.2.4 技巧分类"></a>1.2.4 技巧分类</h3><h4 id="贝叶斯学习"><a href="#贝叶斯学习" class="headerlink" title="贝叶斯学习"></a>贝叶斯学习</h4><ul>
-<li>在概率模型的学习和推理中，利用贝叶斯定理计算在给定数据条件下模型的条件概率。</li>
-</ul>
-<h4 id="核方法"><a href="#核方法" class="headerlink" title="核方法"></a>核方法</h4><h2 id="1-3-统计学习方法三要素"><a href="#1-3-统计学习方法三要素" class="headerlink" title="1.3 统计学习方法三要素"></a>1.3 统计学习方法三要素</h2><script type="math/tex; mode=display">
-方法 = 模型+策略+算法</script><h3 id="1-3-1-模型"><a href="#1-3-1-模型" class="headerlink" title="1.3.1 模型"></a>1.3.1 模型</h3><ul>
-<li><p>模型就是所要学习的条件概率分布或决策函数。</p>
-<h3 id="1-3-2-策略"><a href="#1-3-2-策略" class="headerlink" title="1.3.2 策略"></a>1.3.2 策略</h3></li>
-<li><p>损失函数度量模型一次预测的好坏，风险函数度量平均意义下模型预测的好坏。</p>
-</li>
-<li><p>损失函数定义为给定输入$X$的预测值$f(X)$和真实值$Y$之间的非负实值函数，记作$L(Y,f(X))$</p>
-<p> 01损失函数 $0,Y=f(X);1,Y\neq f(X)$</p>
-<p> 平方损失函数$(Y-f(X))^2$</p>
-<p> 绝对损失函数$|Y-f(X)|$</p>
-<p> 对数损失函数$-logP(Y|X)$</p>
-</li>
-<li><p>风险函数期望损失$R_{exp}$，这个表示其实就是损失的均值，反映了对整个数据的预测效果的好坏</p>
-<script type="math/tex; mode=display">
-  R_{exp}=E_P[L(Y,f(X))]=\int_{\cal X\times \cal Y}L(y,f(x))P(x,y)dxdy</script></li>
-<li><p>学习的目标是选择期望风险最小的模型，平均损失经验风险$R_{emp}$，模型$f$关于<strong>训练样本集</strong>的平均损失根据大数定律，当样本容量N趋于无穷大时，经验风险趋于期望风险</p>
-<script type="math/tex; mode=display">
-  R_{emp}(f)=\frac{1}{N}\sum_{i=1}^NL(y_i,f(x_i))</script></li>
-<li><p>经验风险最小化和结构风险最小化</p>
-</li>
-<li><strong>极大似然估计</strong>是经验风险最小化的一个例子 当模型是条件概率分布，损失函数是对数损失函数时，经验风险最小化等价于极大似然估计</li>
-<li><strong>贝叶斯估计</strong>中的<strong>最大后验概率估计</strong>是结构风险最小化的一个例子 当模型是条件概率分布，损失函数是对数损失函数，<strong>模型复杂度由模型的先验概率表示</strong>时，结构风险最小化等价于最大后验概率估计</li>
-</ul>
-<h3 id="1-3-3-算法"><a href="#1-3-3-算法" class="headerlink" title="1.3.3 算法"></a>1.3.3 算法</h3><ul>
-<li>学习模型的具体计算方法</li>
-</ul>
-<h2 id="1-4-模型评估与模型选择"><a href="#1-4-模型评估与模型选择" class="headerlink" title="1.4 模型评估与模型选择"></a>1.4 模型评估与模型选择</h2><h3 id="1-4-1训练误差与测试误差"><a href="#1-4-1训练误差与测试误差" class="headerlink" title="1.4.1训练误差与测试误差"></a>1.4.1训练误差与测试误差</h3><ul>
-<li><p>训练误差和测试误差是模型关于数据集的平均损失。</p>
-</li>
-<li><p>训练误差是关于训练数据集的平均损失</p>
-<script type="math/tex; mode=display">
-  R_{emp}(\hat f)=\frac{1}{N}\sum_{i=1}^{N}L(y_i,\hat f(x_i))</script></li>
-<li><p>测试误差是关于测试数据集的平均损失</p>
-<script type="math/tex; mode=display">
-  e_test=\frac{1}{N'}\sum_{i=1}^{N'}L(y_i,\hat f(x_i))</script></li>
-</ul>
-<h3 id="1-4-2-过拟合与模型选择"><a href="#1-4-2-过拟合与模型选择" class="headerlink" title="1.4.2 过拟合与模型选择"></a>1.4.2 过拟合与模型选择</h3><p><strong>过拟合</strong>：学习时模型所包含的参数过多，导致对已知数据预测得很好，对未知数据预测的很差</p>
-<h2 id="1-5-正则化与交叉验证"><a href="#1-5-正则化与交叉验证" class="headerlink" title="1.5 正则化与交叉验证"></a>1.5 正则化与交叉验证</h2><h3 id="1-5-1-正则化"><a href="#1-5-1-正则化" class="headerlink" title="1.5.1 正则化"></a>1.5.1 正则化</h3><ul>
-<li>模型选择的典型方法是正则化，正则化湿结构风险最小化策略的实现，在经验风险上加一个正则化项或罚项。</li>
-<li>$min_{f\in \cal F}=\frac{1}{N}\sum_{i=1}^{N}L(y_i,f(x_i))+\lambda J(f)$，$\lambda &gt;=0$调整两者之间关系的系数</li>
-<li>奥卡姆剃刀原理：所有可能选择的模型中，能够很好地解释已知数据并且十分简单才是最好的模型，也就是应该选择的模型</li>
-</ul>
-<h3 id="1-5-2-交叉验证"><a href="#1-5-2-交叉验证" class="headerlink" title="1.5.2 交叉验证"></a>1.5.2 交叉验证</h3><ul>
-<li>简单交叉验证：将数据划分为两部分，70%用于训练，30%用于测试，选出测试误差最小的模型</li>
-<li>S折交叉验证：划分为S个互不相交大小相同的子集，利用S-1个训练，剩下的测试，重复进行，选择S次中平均测试误差最小的</li>
-<li>留—交叉验证</li>
-</ul>
-<h2 id="1-6-泛化能力"><a href="#1-6-泛化能力" class="headerlink" title="1.6 泛化能力"></a>1.6 泛化能力</h2><ul>
-<li>模型对未知数据的预测能力</li>
-<li>泛化误差：$R_{exp}(\hat f) =E_P[L(Y,\hat f(X))]=\int_{\cal X \times \cal Y}L(y,\hat f(x))P(x,y)dxdy$</li>
-<li>泛化误差就是期望风险，越小越好</li>
-<li>泛化误差上界：通过比较这个的大小来比较他们的优劣。样本容量增加时，其趋近于0；它是假设空间容量的函数，假设空间容量越大，模型越难学，泛化误差上界就越大。</li>
-</ul>
-<h2 id="1-7-生成模型与判别模型"><a href="#1-7-生成模型与判别模型" class="headerlink" title="1.7 生成模型与判别模型"></a>1.7 生成模型与判别模型</h2><ul>
-<li>生成模型</li>
-</ul>
-<p>由数据学习联合概率分布$P(X,Y)$，然后求出条件概率分布$P(Y|X)$作为预测模型。生成方法可以还原出联合概率分布，学习收敛速度更快学到的模型更快地收敛于真实模型，存在隐变量时仍然可以学习</p>
-<ul>
-<li>判别模型</li>
-</ul>
-<p>由数据直接学习决策函数$f(X)$或者条件概率分布$P(Y|X)$作为预测的模型。判别方法直接面对预测，准确率更高；简化学习问题。</p>
-<h2 id="1-8-监督学习应用"><a href="#1-8-监督学习应用" class="headerlink" title="1.8 监督学习应用"></a>1.8 监督学习应用</h2><h3 id="1-8-1-分类问题"><a href="#1-8-1-分类问题" class="headerlink" title="1.8.1 分类问题"></a>1.8.1 分类问题</h3><ul>
-<li>学习和分类，学习过程中根据已知训练数据集利用有效的学习方法学习一个分类器。</li>
-<li>评价标准</li>
-</ul>
-<p>TP 正正，FN 正负，FP 负正，TN 负负</p>
-<p>精确率$P = \frac{TP}{TP+FP}$</p>
-<p>召回率$R = \frac{TP}{TP+FN}$</p>
-<p>F1值是召回率和精确率调和均值</p>
-<h3 id="1-8-2-标注问题"><a href="#1-8-2-标注问题" class="headerlink" title="1.8.2 标注问题"></a>1.8.2 标注问题</h3><ul>
-<li>输入是一个标记序列或状态序列</li>
-<li>常用：隐马尔可夫模型、条件随机场</li>
-</ul>
-<h3 id="1-8-3-回归问题"><a href="#1-8-3-回归问题" class="headerlink" title="1.8.3 回归问题"></a>1.8.3 回归问题</h3><ul>
-<li>用于预测输入变量和输出变量之间的关系</li>
-<li>常用损失函数：平房损失函数，最小二乘法</li>
-</ul>
-<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><h3 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h3><p><strong>题目：说明伯努利模型的极大似然估计以及贝叶斯估计中的统计学习方法三要素。伯努利模型是定义在取值为0与1的随机变量上的概率分布。假设观测到伯努利模型n次独立的数据生成结果，其中k次的结果为1，这时可以用极大似然估计或贝叶斯估计来估计结果为1的概率。</strong></p>
-<p><strong>答案</strong>：</p>
-<p>三要素是：模型、策略、算法</p>
-<p>模型：伯努利模型，即定义在取值0与1的随机变量上的概率分布。</p>
-<p>策略：极大似然估计和贝叶斯估计的策略都是对数损失函数，只不过贝叶斯估计使用的是结构风险最小化。</p>
-<p>算法：极大似然估计所使用的算法是求取经验风险函数的极小值，贝叶斯估计所使用的算法是求取参数的后验分布，然后计算其期望。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>模型</th>
-<th>策略</th>
-<th>算法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>极大似然估计</td>
-<td>条件概率</td>
-<td>经验风险最小化</td>
-<td>求解析解</td>
-</tr>
-<tr>
-<td>贝叶斯估计</td>
-<td>条件概率</td>
-<td>结构风险最小化</td>
-<td>求数值解</td>
-</tr>
-</tbody>
-</table>
-</div>
-<script type="math/tex; mode=display">
-伯努利概型：P(A=1)=\theta,P(A=0)=1-\theta\\
-极大似然估计：\\
-抽取n个独立同分布的随机变量\\
-取经验风险函数的极值点 L(P)=-\sum_{i=1}^{N}log(P(A_i))=-klog\theta-(n-k)log(1-\theta)\\
-求导，令导数为0可以得到\theta=\frac{k}{n}\\
-贝叶斯估计：\\
-f(\theta)=1\\
-后验分布为f(\theta|A_1,...,A_n)=\frac{f(\theta|A_1,...,A_n)f(\theta)}{\int f(A_1,...,A_n)f(\theta)d\theta}\\
-分母与\theta无关可以忽略，所以f(\theta|A_1,...,A_n)与\theta^k(1-\theta)^{1-k}正相关\\
-要使得f(\theta|A_1,...,A_n)最大，就要使得\theta^k(1-\theta)^{1-k}取极值</script><h3 id="1-2"><a href="#1-2" class="headerlink" title="1.2"></a>1.2</h3><p><strong>题目：通过经验风险最小化推到极大似然估计证明模型是条件概率分布，当损失函数是对数损失函数时，经验风险最小化等价于极大似然估计。</strong></p>
-<script type="math/tex; mode=display">
-模型是条件概率分布\\
-说明预测值f(x)=P(Y|X)=\frac{P(Y,X)}{P(X)} \\ 
-所以对数损失函数的定义为L(Y,f(X))=-logP(Y|X) \\
-那么经验风险为：\\
-R_{emp}(f)=\frac{1}{N}\sum_{i=1}^{N}L(Y_i,f(X_i))=\frac{1}{N}\sum_{i=1}^{N}-log(\frac{P(Y_i,X_i)}{P(X_i)})=-\frac{1}{N}log\prod_{i=1}^{N}\frac{P(Y_i,X_i)}{P(Xi)}\\
-最小化该函数，相当于极大似然估计</script></div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/">上一页</a></div><div class="pagination-next"><a href="/page/3/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link is-current" href="/page/2/">2</a></li><li><a class="pagination-link" href="/page/3/">3</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="小涵少年"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">小涵少年</p><p class="is-size-6 is-block">风花飞有态 烟絮坠无痕</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>南京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">21</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">10</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Micro-han" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="twitter" href="https://twitter.com/Bless788"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Zhihu" href="https://www.zhihu.com/people/yan-xiao-han-68-1"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Codeforces" href="https://codeforces.com/profile/YanXiaohan"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://vcode28629.github.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">VCode</span></span><span class="level-right"><span class="level-item tag">vcode28629.github.io</span></span></a></li><li><a class="level is-mobile" href="https://dragonbra.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Dragonbra</span></span><span class="level-right"><span class="level-item tag">dragonbra.github.io</span></span></a></li><li><a class="level is-mobile" href="https://micro-han.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">友链招租</span></span><span class="level-right"><span class="level-item tag">micro-han.github.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/"><span class="level-start"><span class="level-item">杂七杂八</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/"><span class="level-start"><span class="level-item">知识积累</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"><span class="level-start"><span class="level-item">算法竞赛</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">读书笔记</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"><span class="level-start"><span class="level-item">项目实战</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-29T07:43:04.000Z">2021-11-29</time></p><p class="title"><a href="/2021/11/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0/">读书笔记-统计学习方法第十三章</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-26T09:45:00.000Z">2021-11-26</time></p><p class="title"><a href="/2021/11/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">统计学习方法第十二章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-22T10:12:00.000Z">2021-11-22</time></p><p class="title"><a href="/2021/11/22/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/">统计学习方法第十一章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-17T06:42:00.000Z">2021-11-17</time></p><p class="title"><a href="/2021/11/17/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E7%AB%A0/">统计学习方法第十章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-16T05:00:00.000Z">2021-11-16</time></p><p class="title"><a href="/2021/11/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B9%9D%E7%AB%A0/">统计学习方法第九章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Codeforces/"><span class="tag">Codeforces</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E3%80%8B/"><span class="tag">《强化学习》</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B%E3%80%8B/"><span class="tag">《深度学习与围棋》</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/"><span class="tag">《统计学习方法》</span><span class="tag">13</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8E%A8%E5%85%8D%E4%BF%9D%E7%A0%94/"><span class="tag">推免保研</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="tag">机器学习</span><span class="tag">17</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><span class="tag">算法学习</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/"><span class="tag">解题报告</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"><span class="tag">论文阅读</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/"><span class="tag">项目记录</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 Micro han</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/">上一页</a></div><div class="pagination-next"><a href="/page/3/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link is-current" href="/page/2/">2</a></li><li><a class="pagination-link" href="/page/3/">3</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="小涵少年"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">小涵少年</p><p class="is-size-6 is-block">风花飞有态 烟絮坠无痕</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>南京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">23</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">10</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Micro-han" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="twitter" href="https://twitter.com/Bless788"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Zhihu" href="https://www.zhihu.com/people/yan-xiao-han-68-1"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Codeforces" href="https://codeforces.com/profile/YanXiaohan"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://vcode28629.github.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">VCode</span></span><span class="level-right"><span class="level-item tag">vcode28629.github.io</span></span></a></li><li><a class="level is-mobile" href="https://dragonbra.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Dragonbra</span></span><span class="level-right"><span class="level-item tag">dragonbra.github.io</span></span></a></li><li><a class="level is-mobile" href="https://micro-han.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">友链招租</span></span><span class="level-right"><span class="level-item tag">micro-han.github.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/"><span class="level-start"><span class="level-item">杂七杂八</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/"><span class="level-start"><span class="level-item">知识积累</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"><span class="level-start"><span class="level-item">算法竞赛</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">读书笔记</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"><span class="level-start"><span class="level-item">项目实战</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-01T04:25:00.000Z">2021-12-01</time></p><p class="title"><a href="/2021/12/01/Codeforces%20Round%20#757%20div2/">Codeforces Round 757 div2 题解</a></p><p class="categories"><a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/">算法竞赛</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-01T04:16:20.000Z">2021-12-01</time></p><p class="title"><a href="/2021/12/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">读书笔记-统计学习方法第十四章</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-29T07:43:04.000Z">2021-11-29</time></p><p class="title"><a href="/2021/11/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0/">读书笔记-统计学习方法第十三章</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-26T09:45:00.000Z">2021-11-26</time></p><p class="title"><a href="/2021/11/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">统计学习方法第十二章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-22T10:12:00.000Z">2021-11-22</time></p><p class="title"><a href="/2021/11/22/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/">统计学习方法第十一章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Codeforces/"><span class="tag">Codeforces</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E3%80%8B/"><span class="tag">《强化学习》</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B%E3%80%8B/"><span class="tag">《深度学习与围棋》</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/"><span class="tag">《统计学习方法》</span><span class="tag">14</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8E%A8%E5%85%8D%E4%BF%9D%E7%A0%94/"><span class="tag">推免保研</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="tag">机器学习</span><span class="tag">18</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><span class="tag">算法学习</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/"><span class="tag">解题报告</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"><span class="tag">论文阅读</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/"><span class="tag">项目记录</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 Micro han</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
