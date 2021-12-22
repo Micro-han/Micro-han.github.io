@@ -8,9 +8,9 @@
 </li>
 <li><p>更具体地说，在每一个离散时刻，智能体和环境都发生了交互，每个时刻$t$，智能体观察到所在的环境状态的某种特征表达，并且在此基础上选择一个动作。</p>
 </li>
-<li><p>在有限MDP三种，状态、动作和收益都只有有限个元素，收益$R$和状态$S$出现的概率是$p(s’,r|s,a)\dot =P_r\{S_t=s’,R_t=r|S_{t-1}=s,A_{t-1}=a\}$。函数$p$为每一个$s$和$a$的选择都指定了一个概率分布$\sum_{s’\in S} \sum_{r\in R}p(s’,r|s,a)=1,对于\forall s\in S,a\in A(s)$</p>
+<li><p>在有限MDP三种，状态、动作和收益都只有有限个元素，收益$R$和状态$S$出现的概率是$p(s’,r|s,a)\dot =P_r{S_t=s’,R_t=r|S_{t-1}=s,A_{t-1}=a}$。函数$p$为每一个$s$和$a$的选择都指定了一个概率分布$\sum_{s’\in S} \sum_{r\in R}p(s’,r|s,a)=1,对于\forall s\in S,a\in A(s)$</p>
 </li>
-<li><p>在四参数动态函数$p$中，我们可以计算出关于环境的任何其他信息$p(s’|s,a)\dot =Pr\{S_t=S’|S_{t-1}=s,A_{t-1}=a\}=\sum_{r\in R}p(s’,r|s,a)$。还可以定义状态-动作二元组的期望收益，将其表示为一个双参数函数$r(s,a)\dot = E[R_t|S_{t-1}=s,A_{t-1}=a]=\sum_{r\in R}r\sum_{s’\in S}p(s’,r|s,a)$。状态-动作-后继状态的三元组的期望收益$r(s,a,s’)=E[R_t|S_{t-1}=s,A_{t-1}=a,S_t=s’]=\sum_{r\in R}r\frac{p(s’,r|s,a)}{p(s’|s,a)}$</p>
+<li><p>在四参数动态函数$p$中，我们可以计算出关于环境的任何其他信息$p(s’|s,a)\dot =Pr{S_t=S’|S_{t-1}=s,A_{t-1}=a}=\sum_{r\in R}p(s’,r|s,a)$。还可以定义状态-动作二元组的期望收益，将其表示为一个双参数函数$r(s,a)\dot = E[R_t|S_{t-1}=s,A_{t-1}=a]=\sum_{r\in R}r\sum_{s’\in S}p(s’,r|s,a)$。状态-动作-后继状态的三元组的期望收益$r(s,a,s’)=E[R_t|S_{t-1}=s,A_{t-1}=a,S_t=s’]=\sum_{r\in R}r\frac{p(s’,r|s,a)}{p(s’|s,a)}$</p>
 </li>
 <li><p>MDP框架是一个非常抽象而灵活的应用框架，可以通过不同方式用到不同问题上。比如，时间步骤不一定非得是固定间隔的，可以使任意需要作出决策的连续序列。动作可以使低层次的控制比如电压控制，也可以是高层次的决策比如去哪里吃饭。同样状态也可以是各种表现形式，动作也是一样。</p>
 </li>
@@ -30,19 +30,15 @@
 <h2 id="3-5-策略和价值函数"><a href="#3-5-策略和价值函数" class="headerlink" title="3.5 策略和价值函数"></a>3.5 策略和价值函数</h2><ul>
 <li>基本所有的强化学习算法都会评估值函数，也就是评估状态或者状态动作对中的agent是否更接近目标。更接近定义为未来反馈值的期望。而值函数是根据某种特殊的动作选择方式来定义的。这种选择动作的方式叫做策略（policy）。</li>
 <li>策略是从状态到每个动作的选择概率之间的映射。如果智能体在$t$时刻选择了策略$\pi$，那么$\pi(a|s)$就是当$S_t=s$时$A_t=a$的概率。</li>
-<li>对于任何策略$\pi$和任何状态$s$，$s$的价值与其可能的后继状态的价值之间存在以下关系$v_\pi(s)\dot=E_\pi[G_t|S_t=s]=E_\pi[R_{t+1}+\gamma G_{t+1}|S_t=s]\\=\sum_a\pi(a|s)\sum_{s’}\sum_{r}p(s’,r|s,a)[r+\gamma E_\pi[G_{t+1}|S_{t+1}=s’]]=\sum_a\pi(a|s)\sum_{s’,r}p(s’,r|s,a)[r+\gamma v_\pi(s’)],\forall s\in S$，动作$a$取自集合$A(s)$</li>
+<li>对于任何策略$\pi$和任何状态$s$，$s$的价值与其可能的后继状态的价值之间存在以下关系$v_\pi(s)\dot=E_\pi[G_t|S_t=s]=E_\pi[R_{t+1}+\gamma G_{t+1}|S_t=s]\=\sum_a\pi(a|s)\sum_{s’}\sum_{r}p(s’,r|s,a)[r+\gamma E_\pi[G_{t+1}|S_{t+1}=s’]]=\sum_a\pi(a|s)\sum_{s’,r}p(s’,r|s,a)[r+\gamma v_\pi(s’)],\forall s\in S$，动作$a$取自集合$A(s)$</li>
 </ul>
 <h2 id="3-6-最优策略和最优价值函数"><a href="#3-6-最优策略和最优价值函数" class="headerlink" title="3.6 最优策略和最优价值函数"></a>3.6 最优策略和最优价值函数</h2><ul>
 <li><p>解决一个强化学习任务就意味着要找出一个策略，使其能够在长期过程中获得大量收益。</p>
 </li>
-<li><p>若对于所有的$s\in S,\pi \geq\pi’$，当$v_\pi(s)\geq v_{\pi’}(s)$，总会存在至少一个策略不劣于其他所有策略，这就是最优策略。最优策略不止一个，用$\pi_<em>$来表示所有这些最优策略。他们共享相同的状态价值函数，称之为最优状态价值函数。记作$v_</em>$，其定义为：</p>
-<script type="math/tex; mode=display">
-\forall s\in S,v_*(s)\dot = max_\pi v_\pi(s)</script><p>最优的策略也共享相同的最优动作价值函数，记作$q_*$，其定义为：对于任意$s\in S$，$a\in A$，有$q_(s,a)\dot = max_\pi q_\pi(s,a)$。</p>
+<li><p>若对于所有的$s\in S,\pi \geq\pi’$，当$v_\pi(s)\geq v_{\pi’}(s)$，总会存在至少一个策略不劣于其他所有策略，这就是最优策略。最优策略不止一个，用$\pi_*$来表示所有这些最优策略。他们共享相同的状态价值函数，称之为最优状态价值函数。记作$v_*$，其定义为：<br>$$<br>\forall s\in S,v_*(s)\dot = max_\pi v_\pi(s)<br>$$<br>最优的策略也共享相同的最优动作价值函数，记作$q_*$，其定义为：对于任意$s\in S$，$a\in A$，有$q_(s,a)\dot = max_\pi q_\pi(s,a)$。</p>
 </li>
-<li><p>对于状态-动作二元组$(s,a)$，这个函数给出了在状态$s$下，先采取动作$a$，之后按照最优策略去决策的期望回报</p>
-<script type="math/tex; mode=display">
-q_*(s,a)=E[R_{t+1}+\gamma 
-v_*(S_{t+1})|S_t=s,A_t=a]</script></li>
+<li><p>对于状态-动作二元组$(s,a)$，这个函数给出了在状态$s$下，先采取动作$a$，之后按照最优策略去决策的期望回报<br>$$<br>q_*(s,a)=E[R_{t+1}+\gamma<br>v_*(S_{t+1})|S_t=s,A_t=a]<br>$$</p>
+</li>
 </ul>
 <h2 id="3-7-最优性和近似算法"><a href="#3-7-最优性和近似算法" class="headerlink" title="3.7 最优性和近似算法"></a>3.7 最优性和近似算法</h2><p>我们已经定义了最优价值函数和最优策略。显然，学习最优策略的个体会做得很好，但在实践中却很少发生。 对于我们感兴趣的各种任务，只能以极高的计算成本才能生成最优策略。 一个明确定义的最优化概念组织了我们在本书中描述的学习方法，并提供了一种了解各种学习算法的理论属性的方法， 但个体只能不同程度的接近理想值。正如我们上面讨论的，即使我们有一个完整和准确的环境动态模型， 通常不可能通过求解贝尔曼最优方程来简单地计算最优策略。 例如，像西洋棋这样的棋盘游戏是人类经验的一小部分，即使是大型的定制计算机仍然无法计算出最优的动作。 个体面临的一个关键问题一直是可用的计算能力，特别是在单个时间步长中可以执行的计算量。</p>
 <p>可用的内存也是一个重要的限制。 通常需要大量内存来建立价值函数，策略和模型的近似值。 在具有小的有限状态集的任务中，可以使用对于每个状态（或状态-动作对）具有一个条目的数组或表来形成这些近似。 这个我们称之为 <em>表格</em> 的情况，相应的方法称之为表格方法。 然而，在许多实际感兴趣的情况下，还有更多的状态不可能在一个表格中完整表达。 在这些情况下，必须使用某种更紧凑的参数化函数表示来近似函数。</p>
@@ -60,42 +56,20 @@ v_*(S_{t+1})|S_t=s,A_t=a]</script></li>
 <li>强可学习和弱可学习：一个概念如果存在一个多项式的学习算法能够学习他，并且正确率很高，那么就是强可学习的；一个概念如果存在一个多项式的学习算法能够学习他，并且正确率仅比随机采策略好，那么就是弱可学习的。强可学习和弱可学习是等价的。在PAC框架下，两者是充要条件。</li>
 <li>提升方法是从弱学习算法出发，得到一系列弱分类器，然后组合这些弱分类器构造一个强分类器。</li>
 </ul>
-<h3 id="8-1-2-AdaBoost算法"><a href="#8-1-2-AdaBoost算法" class="headerlink" title="8.1.2 AdaBoost算法"></a>8.1.2 AdaBoost算法</h3><script type="math/tex; mode=display">
-AdaBoost算法:\\
-输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\};弱学习算法;\\
-其中每个样本点由实例与标记组成。实例x_i\in \cal X \subset R^n,标记y_i \in \cal Y=\{+1,-1\},\cal X是实例空间,\cal Y是标记集合 \\
-输出：最终分类器G(x)\\
-步骤：(1)初始化训练数据的权值分布D_1=(w_{11},...,w_{1i},...,w_{1N}),w_{1i}=\frac1N,i=1,2,...,N\\
-(2)对m=1,2,...,M\\
-(a)使用具有权值分布D_m的训练数据集学习，得到基本分类器G_m(x):\cal X\rightarrow\{+1,-1\} \\
-(b)计算G_m(x)在训练数据集上的分类误差率e_m=\sum_{i=1}^NP(G_m(x_i)\neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i)\neq y_i)\\
-(c)计算G_m(x)的系数\alpha_m=\frac12log\frac{1-e_m}{e_m},这里的对数是自然对数\\
-(d)更新训练数据集的权值分布\\
-D_{m+1}=\{w_{m+1,1},...,w_{m+1,i},...,w_{m+1,N}\}\\
-w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),i=1,2,...,N\\
-这里,Z_m是规范化因子Z_m=\sum_{i=1}^Nw_{mi}exp(-\alpha_my_iG_m(x_i)),这使得D_{m+1}成为一个概率分布\\
-(3)构建基本分类器的线性组合f(x)=\sum_{m=1}^M\alpha_mG_m(x)\\
-到最终分类器G(x)=sign(f(x))=sign(\sum_{m=1}^M\alpha_mG_m(x))</script><p>步骤（1）假设训练数据集具有均匀的权值分布，即每个训练样本在基本分类器的学习中作用相同，这一假设保证第1步能够在原始数据上学习基本分类器$G_1(x)$；</p>
+<h3 id="8-1-2-AdaBoost算法"><a href="#8-1-2-AdaBoost算法" class="headerlink" title="8.1.2 AdaBoost算法"></a>8.1.2 AdaBoost算法</h3><p>$$<br>AdaBoost算法:\<br>输入：训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)};弱学习算法;\<br>其中每个样本点由实例与标记组成。实例x_i\in \cal X \subset R^n,标记y_i \in \cal Y={+1,-1},\cal X是实例空间,\cal Y是标记集合 \<br>输出：最终分类器G(x)\<br>步骤：(1)初始化训练数据的权值分布D_1=(w_{11},…,w_{1i},…,w_{1N}),w_{1i}=\frac1N,i=1,2,…,N\<br>(2)对m=1,2,…,M\<br>(a)使用具有权值分布D_m的训练数据集学习，得到基本分类器G_m(x):\cal X\rightarrow{+1,-1} \<br>(b)计算G_m(x)在训练数据集上的分类误差率e_m=\sum_{i=1}^NP(G_m(x_i)\neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i)\neq y_i)\<br>(c)计算G_m(x)的系数\alpha_m=\frac12log\frac{1-e_m}{e_m},这里的对数是自然对数\<br>(d)更新训练数据集的权值分布\<br>D_{m+1}={w_{m+1,1},…,w_{m+1,i},…,w_{m+1,N}}\<br>w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),i=1,2,…,N\<br>这里,Z_m是规范化因子Z_m=\sum_{i=1}^Nw_{mi}exp(-\alpha_my_iG_m(x_i)),这使得D_{m+1}成为一个概率分布\<br>(3)构建基本分类器的线性组合f(x)=\sum_{m=1}^M\alpha_mG_m(x)\<br>到最终分类器G(x)=sign(f(x))=sign(\sum_{m=1}^M\alpha_mG_m(x))<br>$$</p>
+<p>步骤（1）假设训练数据集具有均匀的权值分布，即每个训练样本在基本分类器的学习中作用相同，这一假设保证第1步能够在原始数据上学习基本分类器$G_1(x)$；</p>
 <p>步骤（2）AdaBoost反复学习基本分类器，在每一轮$m=1,2,…,M$顺次地执行以下操作（a）使用当前分布$D_m$加权的训练数据集，学习基本分类器$G_m(x)$；（b）计算基本分类器$G_m(x)$在加权训练数据集上的分类误差率$e_m=\sum_{i=1}^NP(G_m(x_i)\neq y_i)=\sum_{G_m(x_i)\neq y_i}w_{mi}$，这里$w_{mi}$表示第$m$轮第$i$个实例的权值，$\sum_{i=1}^Nw_{mi}=1$。这说明，$G_m(x)$在加权的训练数据集的分类误差率是被$G_m(x)$的误分类样本的权值之和，由此可以看出数据权值分布$D_m$与基本分类器的分类误差率的关系；（c）计算基本分类器$G_m(x)$的系数$\alpha_m$，表示$G_m(x)$在最终分类器的重要性。当$e_m&lt;=\frac12$时，$\alpha_m&gt;=0$并且随着$e_m$的减小而增大，所以分类误差率越小的基本分类器在最终分类器忠的作用越大。（d）更新训练数据的权值分布为下一轮做准备，$w_{m+1,i}=\frac{w_{mi}}{Z_m}e^{-\alpha_m},G_m(x_i)=y_i$，$w_{m+1,i}=\frac{w_{mi}}{Z_m}e^{\alpha_m},G_m(x_i)\neq y_i$。由此可知，基本分类器误分类样本的权值得以扩大，而被正确分类样本的权值却得以缩小。因此，误分类样本的在下一轮会起到更大的作用。</p>
 <p>步骤（3）线性组合$f(x)$实现$M$个基本分类器的加权表决，系数$\alpha_m$表示了基本分类器$G_m(x)$的重要性，这里$\alpha_m$之和并不为1。$f(x)$的符号决定实例$x$的分类，$f(x)$的绝对值表示分类的确信度。</p>
 <h2 id="8-2-AdaBoost算法的训练误差分析"><a href="#8-2-AdaBoost算法的训练误差分析" class="headerlink" title="8.2 AdaBoost算法的训练误差分析"></a>8.2 AdaBoost算法的训练误差分析</h2><ul>
 <li><strong>AdaBoost的训练误差界</strong>AdaBoost算法最终分类器的训练误差界为$\frac1N\sum_{i=1}^NI(G(x_i)\neq y_i)&lt;=\frac1N\sum_iexp(-y_if(x_i))=\prod_mZ_m$，这里$G(x)$，$f(x)$和$Z_m$分别由之前的石子给出。</li>
-<li>二类分类问题AdaBoost的训练误差界$\prod_{m=1}^MZ_m=\prod_{m=1}^M[2\sqrt{e_m(1-e_m)}]=\prod_{m=1}^M\sqrt{(1-4\gamma _m^2)}&lt;=exp(-2\sum_{m=1}^M\gamma_m^2)$，这里$\gamma_m=\frac12-e_m$</li>
+<li>二类分类问题AdaBoost的训练误差界$\prod_{m=1}^MZ_m=\prod_{m=1}^M[2\sqrt{e_m(1-e_m)}]=\prod_{m=1}^M\sqrt{(1-4\gamma <em>m^2)}&lt;=exp(-2\sum</em>{m=1}^M\gamma_m^2)$，这里$\gamma_m=\frac12-e_m$</li>
 <li>推论：如果存在$\gamma&gt;0$，对所有$m$有$\gamma_m&gt;\gamma$则$\frac1N\sum_{i=1}^NI(G(x_i)\neq y_i)&lt;=exp(-2M\gamma^2)$</li>
 </ul>
 <h2 id="8-3-AdaBoost算法的解释"><a href="#8-3-AdaBoost算法的解释" class="headerlink" title="8.3 AdaBoost算法的解释"></a>8.3 AdaBoost算法的解释</h2><h3 id="8-3-1-前向分步算法"><a href="#8-3-1-前向分步算法" class="headerlink" title="8.3.1 前向分步算法"></a>8.3.1 前向分步算法</h3><ul>
 <li><p>考虑加法模型$f(x)=\sum_{m=1}^M\beta_mb(x;\gamma_m)$，其中$b(x;\gamma_m)$为基函数，$\gamma_m$为基函数的系数。在给定训练数据及损失函数$L(y,f(x))$的条件下，学习加法模型成为经验风险极小化即函数最小化问题$min_{\beta_m\gamma_m}\sum_{i=1}^NL(y_i,\sum_{m=1}^M\beta_mb(x_i;\gamma_m))$。前向分步算法求解这一优化问题的想法：学习的是加法模型，如果能够从前向后，每一步只学习一个基函数及其系数，逐步逼近优化目标函数，简化优化的复杂度，即每一步只需要优化损失函数即可。</p>
 </li>
-<li><script type="math/tex; mode=display">
-前向分步算法\\
-输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\};损失函数L(y,f(x));基函数集\{b(x;\gamma\}\\
-输出：加法模型f(x)
-步骤：(1)初始化f_0(x)=0;\\
-(2)对m=1,2,...,M\\
-(a)极小化损失函数(\beta_m,\gamma_m)=argmin_{\beta,\gamma}\sum_{i=1}^NL(y_i,f_{m-1}(x_i)+\beta b(x_i;\gamma))\\
-得到参数\beta_m,\gamma_m\\
-(b)更新f_m(x)=f_{m-1}(x)+\beta_mb(x;\gamma_m)\\
-(3)得到加法模型f(x)=f_M(x)=\sum_[m=1]^M\beta_mb(x;\gamma_m)</script></li>
+<li><p>$$<br>前向分步算法\<br>输入：训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)};损失函数L(y,f(x));基函数集{b(x;\gamma}\<br>输出：加法模型f(x)<br>步骤：(1)初始化f_0(x)=0;\<br>(2)对m=1,2,…,M\<br>(a)极小化损失函数(\beta_m,\gamma_m)=argmin_{\beta,\gamma}\sum_{i=1}^NL(y_i,f_{m-1}(x_i)+\beta b(x_i;\gamma))\<br>得到参数\beta_m,\gamma_m\<br>(b)更新f_m(x)=f_{m-1}(x)+\beta_mb(x;\gamma_m)\<br>(3)得到加法模型f(x)=f_M(x)=\sum_[m=1]^M\beta_mb(x;\gamma_m)<br>$$</p>
+</li>
 </ul>
 <h3 id="8-3-2-前向分步算法与AdaBoost"><a href="#8-3-2-前向分步算法与AdaBoost" class="headerlink" title="8.3.2 前向分步算法与AdaBoost"></a>8.3.2 前向分步算法与AdaBoost</h3><ul>
 <li>AdaBoost算法是前向分部算法的特例，模型是由基本分类器组成的加法模型，损失函数是指数函数。</li>
@@ -103,29 +77,9 @@ w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),i=1,2,...,N\\
 <h2 id="8-4-提升树"><a href="#8-4-提升树" class="headerlink" title="8.4 提升树"></a>8.4 提升树</h2><h3 id="8-4-1-提升树模型"><a href="#8-4-1-提升树模型" class="headerlink" title="8.4.1 提升树模型"></a>8.4.1 提升树模型</h3><ul>
 <li>提升方法实际采用加法模型与前向分步算法。以决策树为基函数的提升方法称为提升树。对分类问题决策树是二叉分类树，对回归问题决策树是二叉决策树。$f_M(x)=\sum_{m=1}^MT(x;\Theta_m)$，其中$\Theta_m$为决策树的参数，$M$为树个数，$T(x;\Theta_m)$表示决策树。</li>
 </ul>
-<h3 id="8-4-2-提升树模型"><a href="#8-4-2-提升树模型" class="headerlink" title="8.4.2 提升树模型"></a>8.4.2 提升树模型</h3><script type="math/tex; mode=display">
-回归问题的提升树算法\\
-输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\},x_i\in\cal X\sub R^n,y_i\in\cal Y\sub R;\\
-输出：提升树f_M(x)\\
-步骤：(1)初始化f_0(x)=0\\
-(2)对m=1,2,...,M\\
-(a)按照T(x;\Theta)=\sum_{j=1}^Jc_jI(x\in R_j)计算残差r_{mi}=y_i-f_{m-1}(x_i),i=1,2,..,N\\
-(b)拟合残差r_{mi}学习一个回归树,得到T(x;\Theta_m)\\
-(c)更新f_m(x)=f_{m-1}(x)+T(x;\Theta_m)\\
-(3)得到回归问题提升树f_M(x)=\sum_{m=1}^MT(x;\Theta_m)\\
-\\
-树T(x;\Theta)=\sum_{j=1}^Jc_jI(x\in R_j),其中将输入空间\cal X划分为J个互不相交的区域R_1,R_2,...,R_J\\并且在每个区域上确定输出的常量c_j\\
-其中\Theta=\{(R_1,c_1),(R_2,c_2),...,(R_J,c_J)\}表示树的区域划分和各区域上的常数\\J是回归树的复杂度即叶结点个数</script><h3 id="8-4-3-梯度提升算法"><a href="#8-4-3-梯度提升算法" class="headerlink" title="8.4.3 梯度提升算法"></a>8.4.3 梯度提升算法</h3><script type="math/tex; mode=display">
-梯度提升算法\\
-输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\},x_i\in\cal X\sub R^n,y_i\in\cal{ Y}\sub R,损失函数L(y,f(x))\\
-输出：回归树\hat f(x)\\
-步骤：(1)初始化f_0(x)=argmin_c\sum_{i=1}^NL(y_i,c)\\
-(2)对m=1,2,..,M\\
-(a)对i=1,2,..,N,计算r_{mi}=-[\frac{\partial L(y_i,f(x_i))}{\partial f(x_i)}]_{f(x)=f_{m-1}(x)}\\
-(b)对r_{mi}拟合一个回归树，得到第m棵树的叶结点区域R_{mj},j=1,2,...,J\\
-(c)对j=1,2,...,J,计算c_{mj}=argmin_c\sum_{x_i\in R_{mj}}L(y_i,f_{m-1}x(x_i)+c)\\
-(d)更新f_m(x)=f_{m-1}(x)+\sum_{j=1}^Jc_{mj}I(x\in R_{mj})\\
-(3)得到回归树\hat f(x)=f_M(x)=\sum_{m=1}^M\sum_{j=1}^Jc_{mj}I(x\in R_{mj})</script></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-07T13:09:00.000Z" title="2021/11/7 下午9:09:00">2021-11-07</time>发表</span><span class="level-item"><time dateTime="2021-11-16T05:03:16.114Z" title="2021/11/16 下午1:03:16">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">26 分钟读完 (大约3962个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B8%83%E7%AB%A0/">统计学习方法第七章</a></h1><div class="content"><h2 id="概要-支持向量机"><a href="#概要-支持向量机" class="headerlink" title="概要 支持向量机"></a>概要 支持向量机</h2><ul>
+<h3 id="8-4-2-提升树模型"><a href="#8-4-2-提升树模型" class="headerlink" title="8.4.2 提升树模型"></a>8.4.2 提升树模型</h3><p>$$<br>回归问题的提升树算法\<br>输入：训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)},x_i\in\cal X\sub R^n,y_i\in\cal Y\sub R;\<br>输出：提升树f_M(x)\<br>步骤：(1)初始化f_0(x)=0\<br>(2)对m=1,2,…,M\<br>(a)按照T(x;\Theta)=\sum_{j=1}^Jc_jI(x\in R_j)计算残差r_{mi}=y_i-f_{m-1}(x_i),i=1,2,..,N\<br>(b)拟合残差r_{mi}学习一个回归树,得到T(x;\Theta_m)\<br>(c)更新f_m(x)=f_{m-1}(x)+T(x;\Theta_m)\<br>(3)得到回归问题提升树f_M(x)=\sum_{m=1}^MT(x;\Theta_m)\<br>\<br>树T(x;\Theta)=\sum_{j=1}^Jc_jI(x\in R_j),其中将输入空间\cal X划分为J个互不相交的区域R_1,R_2,…,R_J\并且在每个区域上确定输出的常量c_j\<br>其中\Theta={(R_1,c_1),(R_2,c_2),…,(R_J,c_J)}表示树的区域划分和各区域上的常数\J是回归树的复杂度即叶结点个数<br>$$</p>
+<h3 id="8-4-3-梯度提升算法"><a href="#8-4-3-梯度提升算法" class="headerlink" title="8.4.3 梯度提升算法"></a>8.4.3 梯度提升算法</h3><p>$$<br>梯度提升算法\<br>输入：训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)},x_i\in\cal X\sub R^n,y_i\in\cal{ Y}\sub R,损失函数L(y,f(x))\<br>输出：回归树\hat f(x)\<br>步骤：(1)初始化f_0(x)=argmin_c\sum_{i=1}^NL(y_i,c)\<br>(2)对m=1,2,..,M\<br>(a)对i=1,2,..,N,计算r_{mi}=-[\frac{\partial L(y_i,f(x_i))}{\partial f(x_i)}]<em>{f(x)=f</em>{m-1}(x)}\<br>(b)对r_{mi}拟合一个回归树，得到第m棵树的叶结点区域R_{mj},j=1,2,…,J\<br>(c)对j=1,2,…,J,计算c_{mj}=argmin_c\sum_{x_i\in R_{mj}}L(y_i,f_{m-1}x(x_i)+c)\<br>(d)更新f_m(x)=f_{m-1}(x)+\sum_{j=1}^Jc_{mj}I(x\in R_{mj})\<br>(3)得到回归树\hat f(x)=f_M(x)=\sum_{m=1}^M\sum_{j=1}^Jc_{mj}I(x\in R_{mj})<br>$$</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-07T13:09:00.000Z" title="2021/11/7 下午9:09:00">2021-11-07</time>发表</span><span class="level-item"><time dateTime="2021-11-16T05:03:16.114Z" title="2021/11/16 下午1:03:16">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">26 分钟读完 (大约3962个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B8%83%E7%AB%A0/">统计学习方法第七章</a></h1><div class="content"><h2 id="概要-支持向量机"><a href="#概要-支持向量机" class="headerlink" title="概要 支持向量机"></a>概要 支持向量机</h2><ul>
 <li>定义在特征空间上的<strong>间隔最大</strong>的线性分类器，间隔最大使其区别于感知机；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。</li>
 <li>学习策略就是间隔最大化，形式化为一个求解凸二次规划的问题，也等价于正则化的合页损失函数的最小华问题。学习算法是求解凸二次规划的最优化算法。</li>
 <li>由简至繁的模型：线性可分支持向量机，线性支持向量机以及非线性支持向量机。训练数据集可分时，硬间隔最大化学习一个线性分类器；训练数据集近似可分时，软间隔最大化学习一个线性分类器；训练数据集不可分时，通过核技巧及软间隔最大化学习非线性支持向量机。</li>
@@ -147,23 +101,9 @@ w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),i=1,2,...,N\\
 <h3 id="7-1-3-间隔最大化"><a href="#7-1-3-间隔最大化" class="headerlink" title="7.1.3 间隔最大化"></a>7.1.3 间隔最大化</h3><ul>
 <li><p>直观解释：对训练数据集找到几何间隔最大的超平面意味着以充分大的置信度对训练数据进行分类。不仅将正负实例点分开，而且对最难分类的实例点也有足够大的置信度将它们分开。</p>
 </li>
-<li><p>最大间隔分离超平面</p>
-<script type="math/tex; mode=display">
-  该问题可以描述为下面的约束最优化问题\\
-  max_{w,b}\frac12||w||^2 \\
-  s.t. y_i(wx_i+b)-1>=0, i=1,2,...,N\\</script><p>  这是一个凸二次规划问题。</p>
-<script type="math/tex; mode=display">
-  凸优化问题:\\
-  min_wf(w)\\
-  s.t. g_i(w)<=0,h_i(w)=0\\
-  目标函数f(w)和约束函数g_i(w)都是R^n上的连续可微的凸函数，约束函数h_i(w)是R^n上的仿射函数\\
-  当目标函数f(w)是二次函数且约束函数是仿射函数时为凸二次规划函数</script><script type="math/tex; mode=display">
-  线性可分支持向量机学习算法——最大间隔法\\
-  输入：线性可分训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}\\
-  其中，x_i\in\cal X=R^n,y_i\in \cal Y=\{-1,+1\},i=1,2,...,N\\
-  输出：最小间隔分离超平面和分类决策函数\\
-  步骤：（1）构造并求解约束最优化问题min_{w,b}\frac12||w||^2,s.t. \space\space y_i(wx_i+b)-1>=0,i=1,2,...,N\\
-  (2)由此得到分离超平面w^*x+b^*=0,分类决策函数为f(x)=sign(w^*x+b^*)\\</script></li>
+<li><p>最大间隔分离超平面<br>  $$<br>  该问题可以描述为下面的约束最优化问题\<br>  max_{w,b}\frac12||w||^2 \<br>  s.t. y_i(wx_i+b)-1&gt;=0, i=1,2,…,N\<br>  $$<br>  这是一个凸二次规划问题。<br>  $$<br>  凸优化问题:\<br>  min_wf(w)\<br>  s.t. g_i(w)&lt;=0,h_i(w)=0\<br>  目标函数f(w)和约束函数g_i(w)都是R^n上的连续可微的凸函数，约束函数h_i(w)是R^n上的仿射函数\<br>  当目标函数f(w)是二次函数且约束函数是仿射函数时为凸二次规划函数<br>  $$</p>
+<p>  $$<br>  线性可分支持向量机学习算法——最大间隔法\<br>  输入：线性可分训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)}\<br>  其中，x_i\in\cal X=R^n,y_i\in \cal Y={-1,+1},i=1,2,…,N\<br>  输出：最小间隔分离超平面和分类决策函数\<br>  步骤：（1）构造并求解约束最优化问题min_{w,b}\frac12||w||^2,s.t. \space\space y_i(wx_i+b)-1&gt;=0,i=1,2,…,N\<br>  (2)由此得到分离超平面w^<em>x+b^</em>=0,分类决策函数为f(x)=sign(w^<em>x+b^</em>)\<br>  $$</p>
+</li>
 <li><p>最大间隔分离超平面存在唯一性</p>
 <p>  若训练数据集$T$线性可分，则可将训练数据集中的样本点完全正确分开的最大间隔分离超平面存在且唯一。</p>
 </li>
@@ -173,19 +113,8 @@ w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),i=1,2,...,N\\
 </li>
 </ul>
 <h3 id="7-1-4-学习的对偶算法"><a href="#7-1-4-学习的对偶算法" class="headerlink" title="7.1.4 学习的对偶算法"></a>7.1.4 学习的对偶算法</h3><ul>
-<li><p>设$\alpha^{<em>}=(\alpha_1^{</em>},\alpha_2^{<em>},…,\alpha_l^{</em>})^T$是对偶最优化问题的解，则存在下标$j$使得$\alpha_j^<em>&gt;0$并可以按照$w^</em>=\sum_{i=1}^N\alpha_i^<em>y_ix_i,b^</em>=y_j-\sum_{i=1}^N\alpha_i^<em>y_i(x_ix_j)$求解$w^</em>$和$b^*$</p>
-<script type="math/tex; mode=display">
-线性可分支持向量机学习算法\\
-输入：线性可分训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}，其中x_i\in \cal X=R^n,y_i\in\cal Y=\{+1,-1\},i=1,2,..,N\\
-输出：分离超平面和分类决策函数\\
-步骤：(1)构造并求解约束最优化问题\\
-min_\alpha\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_ix_j)-\sum_{i=1}^N\alpha_i\\
-s.t. \space \space\sum_{i=1}^N\alpha_iy_i=0,\alpha_i>=0,i=1,2,...,N\\
-求得最优解\alpha^*=(\alpha_1^*,\alpha_2^*,...,\alpha_l^*)^T\\
-(2)计算w^*=\sum_{i=1}^N\alpha_i^*y_ix_i\\
-并选择\alpha^*的一个正分量\alpha_j^*>0，计算b^*=y_j-\sum_{i=1}^N\alpha_i^*y_i(x_ix_j)\\
-(3)求得分离超平面w^*x+b^*=0\\
-分类决策函数：f(x)=sign(w^*x+b^*)</script></li>
+<li><p>设$\alpha^{<em>}=(\alpha_1^{</em>},\alpha_2^{<em>},…,\alpha_l^{</em>})^T$是对偶最优化问题的解，则存在下标$j$使得$\alpha_j^*&gt;0$并可以按照$w^*=\sum_{i=1}^N\alpha_i^<em>y_ix_i,b^</em>=y_j-\sum_{i=1}^N\alpha_i^<em>y_i(x_ix_j)$求解$w^</em>$和$b^*$<br>$$<br>线性可分支持向量机学习算法\<br>输入：线性可分训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)}，其中x_i\in \cal X=R^n,y_i\in\cal Y={+1,-1},i=1,2,..,N\<br>输出：分离超平面和分类决策函数\<br>步骤：(1)构造并求解约束最优化问题\<br>min_\alpha\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_ix_j)-\sum_{i=1}^N\alpha_i\<br>s.t. \space \space\sum_{i=1}^N\alpha_iy_i=0,\alpha_i&gt;=0,i=1,2,…,N\<br>求得最优解\alpha^*=(\alpha_1^*,\alpha_2^*,…,\alpha_l^*)^T\<br>(2)计算w^*=\sum_{i=1}^N\alpha_i^<em>y_ix_i\<br>并选择\alpha^</em>的一个正分量\alpha_j^*&gt;0，计算b^*=y_j-\sum_{i=1}^N\alpha_i^<em>y_i(x_ix_j)\<br>(3)求得分离超平面w^</em>x+b^*=0\<br>分类决策函数：f(x)=sign(w^<em>x+b^</em>)<br>$$</p>
+</li>
 <li><p>考虑原始最优化问题及对偶最优化问题，将训练数据集中对应于$\alpha_i^*&gt;0$的实例点$x_i\in R^n$称为支持向量。</p>
 </li>
 </ul>
@@ -194,39 +123,26 @@ s.t. \space \space\sum_{i=1}^N\alpha_iy_i=0,\alpha_i>=0,i=1,2,...,N\\
 </li>
 <li><p>线性不可分意味着某些样本点$(x_i,y_i)$不能满足函数间隔大于等于1的约束条件，为了解决这个问题，可以对每个样本点$(x_i,y_i)$引进一个松弛变量$\xi&gt;=0$使得函数间隔加上松弛变量大于等于1，这样约束条件变为$y_i(wx_i+b)&gt;=1-\xi_i$。目标函数为$\frac12||w||^2+C\sum_{i=1}^N\xi_i$，这里$C&gt;0$称为惩罚参数，由应用问题决定，其越大对误分类的惩罚增大，其越小对误分类的惩罚最小。</p>
 </li>
-<li><p><strong>线性支持向量机定义：</strong>对于给定的线性不可分的训练数据集，通过求解如下的凸二次规划问题，得到的分离超平面为$w^<em>x+b^</em>=0$以及相应的分类决策函数$f(x)=sign(w^<em>x+b^</em>)$成为线性支持向量机</p>
-<script type="math/tex; mode=display">
-min_{w,b,\xi}\frac12||w||^2+C\sum_{i=1}^N\xi_i \\
-s.t.\space \space y_i(wx_i+b)>=1-\xi_i,i=1,2,...,N \\
-\xi_i>=0, i=1,2,...,N</script></li>
+<li><p><strong>线性支持向量机定义：</strong>对于给定的线性不可分的训练数据集，通过求解如下的凸二次规划问题，得到的分离超平面为$w^<em>x+b^</em>=0$以及相应的分类决策函数$f(x)=sign(w^<em>x+b^</em>)$成为线性支持向量机<br>$$<br>min_{w,b,\xi}\frac12||w||^2+C\sum_{i=1}^N\xi_i \<br>s.t.\space \space y_i(wx_i+b)&gt;=1-\xi_i,i=1,2,…,N \<br>\xi_i&gt;=0, i=1,2,…,N<br>$$</p>
+</li>
 </ul>
 <h3 id="7-2-2-学习的对偶算法"><a href="#7-2-2-学习的对偶算法" class="headerlink" title="7.2.2 学习的对偶算法"></a>7.2.2 学习的对偶算法</h3><ul>
-<li><p>$\alpha^<em>=(\alpha_1^</em>,\alpha_2^<em>,…,\alpha_l^</em>)^T$是对偶最优化问题的解，则存在下标$j$使得$\alpha_j^<em>&gt;0$并可以按照$w^</em>=\sum_{i=1}^N\alpha_i^<em>y_ix_i,b^</em>=y_j-\sum_{i=1}^N\alpha_i^<em>y_i(x_ix_j)$求解$w^</em>$和$b^*$</p>
+<li><p>$\alpha^*=(\alpha_1^*,\alpha_2^*,…,\alpha_l^*)^T$是对偶最优化问题的解，则存在下标$j$使得$\alpha_j^*&gt;0$并可以按照$w^*=\sum_{i=1}^N\alpha_i^<em>y_ix_i,b^</em>=y_j-\sum_{i=1}^N\alpha_i^<em>y_i(x_ix_j)$求解$w^</em>$和$b^*$</p>
 </li>
-<li><script type="math/tex; mode=display">
-线性支持向量机学习算法\\
-输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}，其中x_i\in \cal X=R^n,y_i\in\cal Y=\{+1,-1\},i=1,2,..,N\\
-输出：分离超平面和分类决策函数\\
-步骤：(1)选择惩罚参数C>0，构造并求解凸二次规划问题\\
-min_\alpha\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_ix_j)-\sum_{i=1}^N\alpha_i\\
-s.t. \space \space\sum_{i=1}^N\alpha_iy_i=0,0<=\alpha_i<=C,i=1,2,...,N\\
-求得最优解\alpha^*=(\alpha_1^*,\alpha_2^*,...,\alpha_l^*)^T\\
-(2)计算w^*=\sum_{i=1}^N\alpha_i^*y_ix_i\\
-并选择\alpha^*的一个分量0<\alpha_j^*<C，计算b^*=y_j-\sum_{i=1}^N\alpha_i^*y_i(x_ix_j)\\
-(3)求得分离超平面w^*x+b^*=0\\
-分类决策函数：f(x)=sign(w^*x+b^*)</script><h3 id="7-2-3-支持向量"><a href="#7-2-3-支持向量" class="headerlink" title="7.2.3 支持向量"></a>7.2.3 支持向量</h3></li>
-<li><p>在线性不可分的情况下，将对偶问题的解$\alpha^<em>$中，对应于$\alpha_i^</em>&gt;0$的样本点$(x_i,y_i)$的实例$x_i$称为支持向量。</p>
+<li><p>$$<br>线性支持向量机学习算法\<br>输入：训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)}，其中x_i\in \cal X=R^n,y_i\in\cal Y={+1,-1},i=1,2,..,N\<br>输出：分离超平面和分类决策函数\<br>步骤：(1)选择惩罚参数C&gt;0，构造并求解凸二次规划问题\<br>min_\alpha\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_ix_j)-\sum_{i=1}^N\alpha_i\<br>s.t. \space \space\sum_{i=1}^N\alpha_iy_i=0,0&lt;=\alpha_i&lt;=C,i=1,2,…,N\<br>求得最优解\alpha^*=(\alpha_1^*,\alpha_2^*,…,\alpha_l^*)^T\<br>(2)计算w^*=\sum_{i=1}^N\alpha_i^<em>y_ix_i\<br>并选择\alpha^</em>的一个分量0&lt;\alpha_j^*&lt;C，计算b^*=y_j-\sum_{i=1}^N\alpha_i^<em>y_i(x_ix_j)\<br>(3)求得分离超平面w^</em>x+b^*=0\<br>分类决策函数：f(x)=sign(w^<em>x+b^</em>)<br>$$</p>
+<h3 id="7-2-3-支持向量"><a href="#7-2-3-支持向量" class="headerlink" title="7.2.3 支持向量"></a>7.2.3 支持向量</h3></li>
+<li><p>在线性不可分的情况下，将对偶问题的解$\alpha^*$中，对应于$\alpha_i^*&gt;0$的样本点$(x_i,y_i)$的实例$x_i$称为支持向量。</p>
 </li>
 <li><p>软间隔的支持向量$x_i$或者在间隔边界上，或者在间隔边界与分离超平面之间，或者在分离超平面误分一侧。</p>
-<p>  若$\alpha_i^<em>&lt;C$则$\xi_i=0$，支持向量$x_i$恰好落在间隔边界上；若$\alpha_i^</em>=C$，则$0&lt; \xi_i<1$，分类正确，支持向量$x_i$在间隔边界与分离超平面之间；若$\alpha_i^*=C$，则$\xi_i=1$，分支持向量$x_i$在分离超平面上；若$\alpha_i^*=C$，则$ \xi_i>1$，则$x_i$位于分离超平面误分类一侧。</1$，分类正确，支持向量$x_i$在间隔边界与分离超平面之间；若$\alpha_i^*=C$，则$\xi_i=1$，分支持向量$x_i$在分离超平面上；若$\alpha_i^*=C$，则$></p>
+<p>  若$\alpha_i^*&lt;C$则$\xi_i=0$，支持向量$x_i$恰好落在间隔边界上；若$\alpha_i^*=C$，则$0&lt; \xi_i&lt;1$，分类正确，支持向量$x_i$在间隔边界与分离超平面之间；若$\alpha_i^*=C$，则$\xi_i=1$，分支持向量$x_i$在分离超平面上；若$\alpha_i^*=C$，则$ \xi_i&gt;1$，则$x_i$位于分离超平面误分类一侧。</p>
 </li>
 </ul>
 <h3 id="7-2-4-合页损失函数"><a href="#7-2-4-合页损失函数" class="headerlink" title="7.2.4 合页损失函数"></a>7.2.4 合页损失函数</h3><ul>
-<li>线性支持向量机另一种解释，最小化$\sum_{i=1}^N[1-y_i(wx_i+b)]_++\lambda||w||^2$。该函数的第一项是经验损失或经验风险函数，函数$L(y(wx+b))=[1-y(wx+b)]_+$称为合页损失函数。下标+表示$[z]_+=z,z&gt;0;0,z&lt;=0$</li>
+<li>线性支持向量机另一种解释，最小化$\sum_{i=1}^N[1-y_i(wx_i+b)]<em>++\lambda||w||^2$。该函数的第一项是经验损失或经验风险函数，函数$L(y(wx+b))=[1-y(wx+b)]</em>+$称为合页损失函数。下标+表示$[z]_+=z,z&gt;0;0,z&lt;=0$</li>
 </ul>
 <h2 id="7-3-非线性支持向量机与核函数"><a href="#7-3-非线性支持向量机与核函数" class="headerlink" title="7.3 非线性支持向量机与核函数"></a>7.3 非线性支持向量机与核函数</h2><h3 id="7-3-1-核技巧"><a href="#7-3-1-核技巧" class="headerlink" title="7.3.1 核技巧"></a>7.3.1 核技巧</h3><ul>
 <li><p>非线性分类问题</p>
-<p>  一般来说，对给定的训练数据集$T=\{(x_1,y_1),(x_2,y_2),…,(x_N,y_N)\}$，其中实例$x_i$属于输入空间，$x_i \in \cal X=R^n$，对于给定的标记有两类$y_i\in \cal Y=\{-1,+1\},i=1,2,…,N$。如果能用$R^n$中的一个超曲面将正负实例正确分开，则称这个问题为非线性可分问题。</p>
+<p>  一般来说，对给定的训练数据集$T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)}$，其中实例$x_i$属于输入空间，$x_i \in \cal X=R^n$，对于给定的标记有两类$y_i\in \cal Y={-1,+1},i=1,2,…,N$。如果能用$R^n$中的一个超曲面将正负实例正确分开，则称这个问题为非线性可分问题。</p>
 <p>  用线性分类方法求解非线性分类问题分为两步：首先使用一个变换将原空间映射到新空间，在新空间用线性分类学习方法从训练数据集学习分类。</p>
 <p>  核技巧应用到支持向量机，基本想法就是通过一个非线性变换将输入空间对应于一个特征空间，使得在输入空间中的超曲面模型对英语特征空间中的超平面模型。</p>
 </li>
@@ -269,17 +185,8 @@ s.t. \space \space\sum_{i=1}^N\alpha_iy_i=0,0<=\alpha_i<=C,i=1,2,...,N\\
 <h3 id="7-3-4-非线性支持向量分类机"><a href="#7-3-4-非线性支持向量分类机" class="headerlink" title="7.3.4 非线性支持向量分类机"></a>7.3.4 非线性支持向量分类机</h3><ul>
 <li><p><strong>非线性支持向量机的定义</strong>：从非线性分类数据集，通过核函数与软间隔最大化或凸二次规划，学习得到的分类决策函数$f(x)=sign(\sum_{i=1}^N\alpha_i^<em>y_iK(x,z)+b^</em>)$称为非线性支持向量机，$K(x,z)$是正定核函数。</p>
 </li>
-<li><script type="math/tex; mode=display">
-  非线性支持向量机学习算法\\
-  输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}，其中x_i\in \cal X=R^n,y_i\in\cal Y=\{+1,-1\},i=1,2,..,N\\
-  输出：分类决策函数\\
-  步骤：(1)选取适当的核函数K(x,z)和适当的参数C，构造并求解最优化问题\\
-  min_\alpha\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i\\
-  s.t.\space \space \sum_{i=1}^N\alpha_iy_i=0\\
-  0<=\alpha_i<=C,i=1,2,...,N\\
-  求得最优解\alpha^*=(\alpha_1^*,\alpha_2^*,...,\alpha_l^*)^T\\
-  (2)选择\alpha^*的一个正分量0<\alpha_j^*<C，计算b^*=y_j-\sum_{i=1}^N\alpha_i^*y_iK(x_i,x_j)\\
-  (3)构造决策函数f(x)=sign(\sum_{i=1}^N\alpha_i^*y_iK(x,x_i)+b^*)</script></li>
+<li><p>$$<br>  非线性支持向量机学习算法\<br>  输入：训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)}，其中x_i\in \cal X=R^n,y_i\in\cal Y={+1,-1},i=1,2,..,N\<br>  输出：分类决策函数\<br>  步骤：(1)选取适当的核函数K(x,z)和适当的参数C，构造并求解最优化问题\<br>  min_\alpha\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i\<br>  s.t.\space \space \sum_{i=1}^N\alpha_iy_i=0\<br>  0&lt;=\alpha_i&lt;=C,i=1,2,…,N\<br>  求得最优解\alpha^*=(\alpha_1^*,\alpha_2^*,…,\alpha_l^*)^T\<br>  (2)选择\alpha^<em>的一个正分量0&lt;\alpha_j^</em>&lt;C，计算b^*=y_j-\sum_{i=1}^N\alpha_i^<em>y_iK(x_i,x_j)\<br>  (3)构造决策函数f(x)=sign(\sum_{i=1}^N\alpha_i^</em>y_iK(x,x_i)+b^*)<br>$$</p>
+</li>
 </ul>
 <h2 id="7-4-序列最小最优化算法"><a href="#7-4-序列最小最优化算法" class="headerlink" title="7.4 序列最小最优化算法"></a>7.4 序列最小最优化算法</h2><h3 id="7-4-1-两个变量二次规划的求解方式"><a href="#7-4-1-两个变量二次规划的求解方式" class="headerlink" title="7.4.1 两个变量二次规划的求解方式"></a>7.4.1 两个变量二次规划的求解方式</h3><ul>
 <li>最优化问题没有剪辑时的解为$\alpha_2^{new,unc}=\alpha_2^{old}+\frac{y_2(E_1-E_2)}{\eta}$，令$E_i=g(x_i)-y_i=(\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b)-y_i,i=1,2$，$\eta=K_{11}+K_{22}-2K{12}=||\phi(x_1)-\phi(x_2)||^2$</li>
@@ -290,21 +197,8 @@ s.t. \space \space\sum_{i=1}^N\alpha_iy_i=0,0<=\alpha_i<=C,i=1,2,...,N\\
 <li>内层循环寻找第二个变量，使得其变化尽可能大，先遍历间隔边界，再遍历剩下的。</li>
 <li>计算阈值b和差值E供下次寻找</li>
 </ul>
-<h3 id="7-4-3-SMO算法"><a href="#7-4-3-SMO算法" class="headerlink" title="7.4.3 SMO算法"></a>7.4.3 SMO算法</h3><script type="math/tex; mode=display">
-SMO算法\\
-输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}\\
-其中x_i\in \cal X=R^n,y_i\in\cal Y=\{+1,-1\},i=1,2,..,N，精度\varepsilon\\
-输出：近似解\hat \alpha \\
-步骤：(1)取初值\alpha^{(0)}=0,令k=0\\
-(2)选取优化变量\alpha_1^{(k)},\alpha_2^{(k)}，解析求解两个变量的最优化问题，求得最优解\alpha_1^{(k+1)},\alpha_2^{(k+1)}\\
-更新\alpha为\alpha^{(k+1)}、、
-(3)若在精度\varepsilon范围内满足停机条件\\
-\sum_{i=1}^N\alpha_iy_i=0,0<=\alpha_i<=C,i=1,2,...,N\\
-y_i\cdot g(x_i)>=1,{x_i|\alpha_i=0}\\
-y_i\cdot g(x_i)=1,{x_i|0<\alpha_i<C}\\
-y_i\cdot g(x_i)<=1,{x_i|\alpha_i=C}\\
-其中，g(x_i)=\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b，则转(4),否则令k=k+1，转(2)
-(4)取\hat \alpha=\alpha^{(k+1)}</script></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-26T03:25:00.000Z" title="2021/10/26 上午11:25:00">2021-10-26</time>发表</span><span class="level-item"><time dateTime="2021-11-16T05:03:49.041Z" title="2021/11/16 下午1:03:49">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">16 分钟读完 (大约2390个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%85%AD%E7%AB%A0/">统计学习方法第六章</a></h1><div class="content"><h2 id="概论-逻辑斯谛回归与最大熵模型"><a href="#概论-逻辑斯谛回归与最大熵模型" class="headerlink" title="概论 逻辑斯谛回归与最大熵模型"></a>概论 逻辑斯谛回归与最大熵模型</h2><ul>
+<h3 id="7-4-3-SMO算法"><a href="#7-4-3-SMO算法" class="headerlink" title="7.4.3 SMO算法"></a>7.4.3 SMO算法</h3><p>$$<br>SMO算法\<br>输入：训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)}\<br>其中x_i\in \cal X=R^n,y_i\in\cal Y={+1,-1},i=1,2,..,N，精度\varepsilon\<br>输出：近似解\hat \alpha \<br>步骤：(1)取初值\alpha^{(0)}=0,令k=0\<br>(2)选取优化变量\alpha_1^{(k)},\alpha_2^{(k)}，解析求解两个变量的最优化问题，求得最优解\alpha_1^{(k+1)},\alpha_2^{(k+1)}\<br>更新\alpha为\alpha^{(k+1)}、、<br>(3)若在精度\varepsilon范围内满足停机条件\<br>\sum_{i=1}^N\alpha_iy_i=0,0&lt;=\alpha_i&lt;=C,i=1,2,…,N\<br>y_i\cdot g(x_i)&gt;=1,{x_i|\alpha_i=0}\<br>y_i\cdot g(x_i)=1,{x_i|0&lt;\alpha_i&lt;C}\<br>y_i\cdot g(x_i)&lt;=1,{x_i|\alpha_i=C}\<br>其中，g(x_i)=\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b，则转(4),否则令k=k+1，转(2)<br>(4)取\hat \alpha=\alpha^{(k+1)}<br>$$</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-26T03:25:00.000Z" title="2021/10/26 上午11:25:00">2021-10-26</time>发表</span><span class="level-item"><time dateTime="2021-11-16T05:03:49.041Z" title="2021/11/16 下午1:03:49">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">16 分钟读完 (大约2390个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%85%AD%E7%AB%A0/">统计学习方法第六章</a></h1><div class="content"><h2 id="概论-逻辑斯谛回归与最大熵模型"><a href="#概论-逻辑斯谛回归与最大熵模型" class="headerlink" title="概论 逻辑斯谛回归与最大熵模型"></a>概论 逻辑斯谛回归与最大熵模型</h2><ul>
 <li>逻辑斯谛回归是统计学习中的经典分类方法。</li>
 <li>最大熵是概率模型学习的一个准则，推广到分类问题得到最大熵模型</li>
 <li>迭代尺度算法和拟牛顿法</li>
@@ -316,7 +210,7 @@ y_i\cdot g(x_i)<=1,{x_i|\alpha_i=C}\\
 <h3 id="6-1-2-二项逻辑斯谛回归模型"><a href="#6-1-2-二项逻辑斯谛回归模型" class="headerlink" title="6.1.2 二项逻辑斯谛回归模型"></a>6.1.2 二项逻辑斯谛回归模型</h3><ul>
 <li><p>这是一种分类模型，由条件概率分布$P(Y|X)$表示，形式为参数化的逻辑斯谛分布，$X$取值为实数，$Y$为1或0</p>
 </li>
-<li><p>二项逻辑斯谛回归模型是满足条件概率分布$P(Y=1|x)=\frac{exp(wx+b)}{1+exp(wx+b)},P(Y=0|x)=\frac{1}{1+exp(wx+b)}$，这里$x\in R^n$是输入，$Y \in \{0,1\}$是输出，$w\in R^n$和$b \in R$是参数，$w$是权值向量，$b$为偏置，$wx$为$w$和$x$的内积。比较两个条件概率值的大小，将实例$x$分类到概率较大的那一类。</p>
+<li><p>二项逻辑斯谛回归模型是满足条件概率分布$P(Y=1|x)=\frac{exp(wx+b)}{1+exp(wx+b)},P(Y=0|x)=\frac{1}{1+exp(wx+b)}$，这里$x\in R^n$是输入，$Y \in {0,1}$是输出，$w\in R^n$和$b \in R$是参数，$w$是权值向量，$b$为偏置，$wx$为$w$和$x$的内积。比较两个条件概率值的大小，将实例$x$分类到概率较大的那一类。</p>
 <p>  有时为了方便，将权值向量和输入向量加以扩充，转换为拓展为$w=(w^{(1)},w^{(2)},…,w^{(n)},b)^T,x=(x^{(1)},x^{(2)},…,x^{(n)},1)^T$，此时偏置已经加入其中条件概率分布函数把+b去了即可。</p>
 </li>
 <li><p><strong>特点</strong>：一个事件的几率是指该事件发生的概率与该事件不发生的概率的比值。如果事件发生的概率是$p$，那么该事件的几率是$\frac {p}{1-p}$，该事件的对数几率或logit函数是$logit(p)=log \frac {p}{1-p}$。</p>
@@ -325,20 +219,15 @@ y_i\cdot g(x_i)<=1,{x_i|\alpha_i=C}\\
 </li>
 </ul>
 <h3 id="6-1-3-模型参数估计"><a href="#6-1-3-模型参数估计" class="headerlink" title="6.1.3 模型参数估计"></a>6.1.3 模型参数估计</h3><ul>
-<li><p>对于给定的训练集$T=\{(x_1,y_1),(x_2,y_2),…,(x_n,y_n)\}$，其中，$x_i \in R^n, y_i \in \{0,1\}$，可以用极大似然估计估计模型参数，从而得到逻辑斯谛回归模型。设$P(Y=1|x)=\pi(x),P(Y=0|x)=1-\pi(x)$，似然函数为$\prod_{i=1}^N[\pi(x_i)]^{y_i}[1-\pi(x_i)]^{1-y_i}$。</p>
+<li><p>对于给定的训练集$T={(x_1,y_1),(x_2,y_2),…,(x_n,y_n)}$，其中，$x_i \in R^n, y_i \in {0,1}$，可以用极大似然估计估计模型参数，从而得到逻辑斯谛回归模型。设$P(Y=1|x)=\pi(x),P(Y=0|x)=1-\pi(x)$，似然函数为$\prod_{i=1}^N[\pi(x_i)]^{y_i}[1-\pi(x_i)]^{1-y_i}$。</p>
 </li>
-<li><p>对数似然函数为</p>
-<script type="math/tex; mode=display">
-  L(w)=\sum_{i=1}^N[y_ilog(\pi(x_i))+(1-y_i)log(1-\pi(x_i))]\\=\sum_{i=1}^N[y_ilog(\frac{\pi(x_i)}{1-\pi(x_i)}+log(1-\pi(x_i))]\\=\sum_{i=1}^N[y_i(wx_i)-log(1+exp(wx_i))]</script><p>  对$L(w)$求极大值，得到$w$的估计值</p>
+<li><p>对数似然函数为<br>  $$<br>  L(w)=\sum_{i=1}^N[y_ilog(\pi(x_i))+(1-y_i)log(1-\pi(x_i))]\=\sum_{i=1}^N[y_ilog(\frac{\pi(x_i)}{1-\pi(x_i)}+log(1-\pi(x_i))]\=\sum_{i=1}^N[y_i(wx_i)-log(1+exp(wx_i))]<br>  $$<br>  对$L(w)$求极大值，得到$w$的估计值</p>
 </li>
 <li><p>假设$w$的极大似然估计为$\hat w$，那么学习到的逻辑斯谛回归模型为$P(Y=1|x)=\frac{exp(\hat w x)}{1+exp(\hat w x)},P(Y=0|x)=\frac1{1+exp(\hat w x)}$</p>
 </li>
 </ul>
 <h3 id="6-1-4-多项逻辑斯谛回归"><a href="#6-1-4-多项逻辑斯谛回归" class="headerlink" title="6.1.4 多项逻辑斯谛回归"></a>6.1.4 多项逻辑斯谛回归</h3><ul>
-<li>推广到多分类模型之中，设离散型随机变量$Y$的取值集合为$\{1,2,…,K\}$，那么多项逻辑斯谛回归模型为<script type="math/tex; mode=display">
-  P(Y=k|x)=\frac{exp(w_kx)}{1+\sum_{k=1}^{K-1}exp(w_kx)},k=1,2,...,K-1\\
-  P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}exp(w_kx)}\\
-  x\in R^{n+1},w_k \in R^{n+1}</script></li>
+<li>推广到多分类模型之中，设离散型随机变量$Y$的取值集合为${1,2,…,K}$，那么多项逻辑斯谛回归模型为<br>  $$<br>  P(Y=k|x)=\frac{exp(w_kx)}{1+\sum_{k=1}^{K-1}exp(w_kx)},k=1,2,…,K-1\<br>  P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}exp(w_kx)}\<br>  x\in R^{n+1},w_k \in R^{n+1}<br>  $$</li>
 </ul>
 <h2 id="6-2-最大熵模型"><a href="#6-2-最大熵模型" class="headerlink" title="6.2 最大熵模型"></a>6.2 最大熵模型</h2><h3 id="6-2-1-最大熵原理"><a href="#6-2-1-最大熵原理" class="headerlink" title="6.2.1 最大熵原理"></a>6.2.1 最大熵原理</h3><ul>
 <li><strong>原理</strong>：学习概率模型时，所有可能的概率模型中，熵最大的模型时最好的模型，通常用约束条件来确定概率模型的集合，所以，最大熵模型也可以表述为满足约束条件的模型集合中选取熵最大的模型。</li>
@@ -347,21 +236,14 @@ y_i\cdot g(x_i)<=1,{x_i|\alpha_i=C}\\
 </ul>
 <h3 id="6-2-2-最大熵模型的定义"><a href="#6-2-2-最大熵模型的定义" class="headerlink" title="6.2.2 最大熵模型的定义"></a>6.2.2 最大熵模型的定义</h3><ul>
 <li>假设分类是一个条件概率分布$P(Y|X),X\in \cal X \subset R^n$表示输入，$Y\in \cal Y$表示输出，$\cal X$和$\cal Y$分别是输入和输出的集合，这个模型表示的是对于给定的输入$X$，以条件概率$P(Y|X)$输出$Y$。</li>
-<li>给定一个训练数据集$T=\{(x_1,y_1),(x_2,y_2),…,(x_n,y_n)\}$，学习的目标是用最大熵原理选择最好的分类模型。首先要考虑模型应该满足的条件，可以确定联合分布$P(X,Y)$的经验分布和边缘分布$P(X)$的经验分布，分别以$\widetilde P(X=x,Y=y)=\frac{\upsilon(X=x,Y=y)}{N},\widetilde P(X=x)=\frac{\upsilon(X=x)}{N}$，其中$\upsilon (X=x,Y=y)$表示训练数据中样本$(x,y)$出现的频数，$\upsilon(X=x)$表示训练数据中输入$x$出现的频数，$N$表示训练样本容量。</li>
+<li>给定一个训练数据集$T={(x_1,y_1),(x_2,y_2),…,(x_n,y_n)}$，学习的目标是用最大熵原理选择最好的分类模型。首先要考虑模型应该满足的条件，可以确定联合分布$P(X,Y)$的经验分布和边缘分布$P(X)$的经验分布，分别以$\widetilde P(X=x,Y=y)=\frac{\upsilon(X=x,Y=y)}{N},\widetilde P(X=x)=\frac{\upsilon(X=x)}{N}$，其中$\upsilon (X=x,Y=y)$表示训练数据中样本$(x,y)$出现的频数，$\upsilon(X=x)$表示训练数据中输入$x$出现的频数，$N$表示训练样本容量。</li>
 <li>用特征函数$f(x,y)$描述输入$x$和输出$y$之间的某一个事实，其定义是$f(x,y)=1,x与y满足某一事实；=0,否则。$他是一个二值函数（二值函数的特征函数可以是任意实值函数）。</li>
 <li>特征函数$f(x,y)$关于经验分布$\widetilde P(X,Y)$的期望值，用$E_{\widetilde P}(f)=\sum_{x,y} \widetilde P(x,y)f(x,y)$表示，特征函数$f(x,y)$关于模型$P(Y|X)$与经验分布$\widetilde P(X)$的期望值，用$E_P(f)=\sum_{x,y}\widetilde P(x)P(y|x)f(x,y)$表示。假定这两者相等。</li>
-<li>假设满足所有约束条件的模型集合为$\cal C \equiv \{P \in \cal{P} | E_p(f_i)=E_{\widetilde P}(f_i),i=1,2,…,n\}$ 定义在这条件概率分布$P(Y|X)$的条件熵为$H(P)=-\sum_{x,y}\widetilde P(x)P(y|x)log P(y|x)$。这个条件熵最大的模型成为最大熵模型。</li>
+<li>假设满足所有约束条件的模型集合为$\cal C \equiv {P \in \cal{P} | E_p(f_i)=E_{\widetilde P}(f_i),i=1,2,…,n}$ 定义在这条件概率分布$P(Y|X)$的条件熵为$H(P)=-\sum_{x,y}\widetilde P(x)P(y|x)log P(y|x)$。这个条件熵最大的模型成为最大熵模型。</li>
 </ul>
 <h3 id="6-2-3-最大熵模型的学习"><a href="#6-2-3-最大熵模型的学习" class="headerlink" title="6.2.3 最大熵模型的学习"></a>6.2.3 最大熵模型的学习</h3><ul>
-<li><p>对于给定的数据集$T=\{(x_1,y_1),(x_2,y_2),…,(x_n,y_n)\}$，以及特征函数$f_i(x,y),i=1,2,…,n$最大熵模型的学习等驾驭约束最优化问题：</p>
-<script type="math/tex; mode=display">
-  max_{p \in \cal C}H(P)=-\sum_{x,y}\widetilde P(x)P(y|x)logP(y|x)\\
-  s.t.  E_P(f_i)=E_{\widetilde P}(f_i), i=1,2,...,n \\
-  \sum_yP(y|x)=1</script><p>  按照最优化问题的习惯，将最大值问题改写为等价的求最小问题：</p>
-<script type="math/tex; mode=display">
-  min_{p \in \cal C}-H(P)=\sum_{x,y}\widetilde P(x)P(y|x)logP(y|x)\\
-  s.t.  E_P(f_i)-E_{\widetilde P}(f_i)=0, i=1,2,...,n \\
-  \sum_yP(y|x)=1</script></li>
+<li><p>对于给定的数据集$T={(x_1,y_1),(x_2,y_2),…,(x_n,y_n)}$，以及特征函数$f_i(x,y),i=1,2,…,n$最大熵模型的学习等驾驭约束最优化问题：<br>  $$<br>  max_{p \in \cal C}H(P)=-\sum_{x,y}\widetilde P(x)P(y|x)logP(y|x)\<br>  s.t.  E_P(f_i)=E_{\widetilde P}(f_i), i=1,2,…,n \<br>  \sum_yP(y|x)=1<br>  $$<br>  按照最优化问题的习惯，将最大值问题改写为等价的求最小问题：<br>  $$<br>  min_{p \in \cal C}-H(P)=\sum_{x,y}\widetilde P(x)P(y|x)logP(y|x)\<br>  s.t.  E_P(f_i)-E_{\widetilde P}(f_i)=0, i=1,2,…,n \<br>  \sum_yP(y|x)=1<br>  $$</p>
+</li>
 <li><p>最大熵模型的学习归结为对偶函数的极大化。</p>
 </li>
 </ul>
@@ -369,30 +251,12 @@ y_i\cdot g(x_i)<=1,{x_i|\alpha_i=C}\\
 <li>模型学习就是在给定训练数据条件下对模型进行极大似然估计或正则化的极大似然估计。</li>
 <li>证明略，具体可以看书P102页</li>
 </ul>
-<h2 id="6-3-模型学习的最优化算法"><a href="#6-3-模型学习的最优化算法" class="headerlink" title="6.3 模型学习的最优化算法"></a>6.3 模型学习的最优化算法</h2><h3 id="6-3-1-改进的迭代尺度法"><a href="#6-3-1-改进的迭代尺度法" class="headerlink" title="6.3.1 改进的迭代尺度法"></a>6.3.1 改进的迭代尺度法</h3><script type="math/tex; mode=display">
-输入：
-    特征函数f_1,f_2,...,f_n:经验分布 P(X,Y), 模型P_w(y|x)\\
-输出：
-    最优参数值w_i^*，最优模型P_w^*\\
-步骤：\\
-    (1)对所有的i，取初值w_i=0\\
-  (2)(a)对每一个i，令\delta_i是方程\sum_{x,y}\widetilde P(x)P(y|x)f_i(x,y)exp(\delta_if^{*}(x,y))=E_{\widetilde P}(f_i),\\ f^{*}(x,y)=\sum_{i=1}^nf_i(x,y)\\
-  (2)(b)更新w_i的值，w_i=w_i+\delta_i\\
-  (3)如果不是所有w_i都收敛，重复(2)\\</script><h3 id="6-3-2-拟牛顿法"><a href="#6-3-2-拟牛顿法" class="headerlink" title="6.3.2 拟牛顿法"></a>6.3.2 拟牛顿法</h3><script type="math/tex; mode=display">
-输入：特征函数f_1,f_2,...,f_n；经验分布\widetilde P(x,y)，目标函数f(w),梯度g(w)=\nabla f(w),精度要求 \epsilon \\
-输出：最优参数值w^*，最优模型P_{w^*}(y|x)\\
-步骤：\\
-(1)选定初始点w^{(0)}，取B_0位正定对称矩阵，令k=0\\
-(2)计算g_k=g(w^{(k)})，若||g_k||<\epsilon 则停止计算，得w^*=w^{(k)}，否则转(3)\\
-(3)由B_kp_k=-g_k，求出p_k\\
-(4)一维搜索，求\lambda_k使得f(w^{(k)}+\lambda_kp_k)=min_{\lambda>=0}f(w^{(k)}+\lambda p_k)\\
-(5)令w^{(k+1)}=w^{(k)}+\lambda_kp_k\\
-(6)计算g_{k+1}=g(w^{(k+1)}),若||g_{k+1}||<\epsilon 则停止计算，得w^*=w^{(k+1)}，否则按照下个式子求B_{k+1}\\
-B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delta_k^TB_k\delta_k}\\
-其中，y_k=g_{k+1}-g_k,\delta_k=w^{(k+1)}-w^{(k)},令k=k+1,到(3)</script></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-21T11:10:00.000Z" title="2021/10/21 下午7:10:00">2021-10-21</time>发表</span><span class="level-item"><time dateTime="2021-12-20T05:32:18.945Z" title="2021/12/20 下午1:32:18">2021-12-20</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">14 分钟读完 (大约2056个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E7%AB%A0/">强化学习第二章</a></h1><div class="content"><h2 id="概要-多臂赌博机"><a href="#概要-多臂赌博机" class="headerlink" title="概要 多臂赌博机"></a>概要 多臂赌博机</h2><h2 id="2-1-一个k臂赌博机问题"><a href="#2-1-一个k臂赌博机问题" class="headerlink" title="2.1 一个k臂赌博机问题"></a>2.1 一个k臂赌博机问题</h2><ul>
+<h2 id="6-3-模型学习的最优化算法"><a href="#6-3-模型学习的最优化算法" class="headerlink" title="6.3 模型学习的最优化算法"></a>6.3 模型学习的最优化算法</h2><h3 id="6-3-1-改进的迭代尺度法"><a href="#6-3-1-改进的迭代尺度法" class="headerlink" title="6.3.1 改进的迭代尺度法"></a>6.3.1 改进的迭代尺度法</h3><p>$$<br>输入：<br>    特征函数f_1,f_2,…,f_n:经验分布 P(X,Y), 模型P_w(y|x)\<br>输出：<br>    最优参数值w_i^<em>，最优模型P_w^</em>\<br>步骤：\<br>    (1)对所有的i，取初值w_i=0\<br>  (2)(a)对每一个i，令\delta_i是方程\sum_{x,y}\widetilde P(x)P(y|x)f_i(x,y)exp(\delta_if^{<em>}(x,y))=E_{\widetilde P}(f_i),\ f^{</em>}(x,y)=\sum_{i=1}^nf_i(x,y)\<br>  (2)(b)更新w_i的值，w_i=w_i+\delta_i\<br>  (3)如果不是所有w_i都收敛，重复(2)\<br>$$</p>
+<h3 id="6-3-2-拟牛顿法"><a href="#6-3-2-拟牛顿法" class="headerlink" title="6.3.2 拟牛顿法"></a>6.3.2 拟牛顿法</h3><p>$$<br>输入：特征函数f_1,f_2,…,f_n；经验分布\widetilde P(x,y)，目标函数f(w),梯度g(w)=\nabla f(w),精度要求 \epsilon \<br>输出：最优参数值w^<em>，最优模型P_{w^</em>}(y|x)\<br>步骤：\<br>(1)选定初始点w^{(0)}，取B_0位正定对称矩阵，令k=0\<br>(2)计算g_k=g(w^{(k)})，若||g_k||&lt;\epsilon 则停止计算，得w^*=w^{(k)}，否则转(3)\<br>(3)由B_kp_k=-g_k，求出p_k\<br>(4)一维搜索，求\lambda_k使得f(w^{(k)}+\lambda_kp_k)=min_{\lambda&gt;=0}f(w^{(k)}+\lambda p_k)\<br>(5)令w^{(k+1)}=w^{(k)}+\lambda_kp_k\<br>(6)计算g_{k+1}=g(w^{(k+1)}),若||g_{k+1}||&lt;\epsilon 则停止计算，得w^*=w^{(k+1)}，否则按照下个式子求B_{k+1}\<br>B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delta_k^TB_k\delta_k}\<br>其中，y_k=g_{k+1}-g_k,\delta_k=w^{(k+1)}-w^{(k)},令k=k+1,到(3)<br>$$</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-21T11:10:00.000Z" title="2021/10/21 下午7:10:00">2021-10-21</time>发表</span><span class="level-item"><time dateTime="2021-12-20T05:32:18.945Z" title="2021/12/20 下午1:32:18">2021-12-20</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">14 分钟读完 (大约2056个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E7%AB%A0/">强化学习第二章</a></h1><div class="content"><h2 id="概要-多臂赌博机"><a href="#概要-多臂赌博机" class="headerlink" title="概要 多臂赌博机"></a>概要 多臂赌博机</h2><h2 id="2-1-一个k臂赌博机问题"><a href="#2-1-一个k臂赌博机问题" class="headerlink" title="2.1 一个k臂赌博机问题"></a>2.1 一个k臂赌博机问题</h2><ul>
 <li><p>重复地在$k$个选项或动作中进行选择，每次选择之后获得一定的收益收益有选择的动作决定的平稳概率分布产生。目标是在某一段时间内最大化总收益的期望。</p>
 </li>
-<li><p><strong>价值</strong>：$k$个动作中的每一个在被选择时都有一个期望后者平均收益，时刻$t$时选择的动作$A_t$，对应收益为$R_t$，任一动作$a$对应的价值为$q_<em>(a)$，是给定动作$a$时收益的期望。$q_</em>(a)=E[R_t|A_t=a]$</p>
+<li><p><strong>价值</strong>：$k$个动作中的每一个在被选择时都有一个期望后者平均收益，时刻$t$时选择的动作$A_t$，对应收益为$R_t$，任一动作$a$对应的价值为$q_*(a)$，是给定动作$a$时收益的期望。$q_*(a)=E[R_t|A_t=a]$</p>
 </li>
 <li><p><strong>试探</strong>从长远来看可能会带来总体收益的最大化</p>
 <p>  贪心的选择当前收益最多的动作，<strong>开发</strong>当前知道的关于动作的价值的知识</p>
@@ -411,25 +275,24 @@ B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delt
 <h2 id="2-4-增量式实现"><a href="#2-4-增量式实现" class="headerlink" title="2.4 增量式实现"></a>2.4 增量式实现</h2><ul>
 <li><p>令$R_i$表示单个动作被选择$i$次后获得的收益，$Q_n$表示被选择$n-1$后它的估计的动作价值，记作$Q_n=\frac{\sum_{i=1}^{n-1}R_i}{n-1}$</p>
 </li>
-<li><p>设计增量式公式从小而恒定的计算来更新平均值，给定$Q_n$和第$n$次的收益$R_n$，所有$n$个收益的新的均值可以表示为</p>
-<script type="math/tex; mode=display">
-  Q_{n+1}=\frac1n\sum_{i=1}^nR_i\\=\frac1n(R_n+\sum_{i=1}^{n-1}R_i)\\=\frac1n(R_n+(n-1)\frac1{n-1}\sum_{i=1}^{n-1}R_i)\\=\frac1n(R_n+(n-1)Q_n))\\=\frac1n(R_n)+nQ_n-Q_n\\=Q_n+\frac1n[R_n-Q_n]</script><p>  这个公式的一般形式$新估计值\leftarrow旧估计值+步长\times[目标-旧估计值]$，$[目标-旧估计值]$是估计值的误差。步长会随着时间而变化，处理动作$a$对应的第$n$个收益的方法用的步长是$\frac1n$，步长记作$\alpha$，记作$\alpha_t(a)$</p>
+<li><p>设计增量式公式从小而恒定的计算来更新平均值，给定$Q_n$和第$n$次的收益$R_n$，所有$n$个收益的新的均值可以表示为<br>  $$<br>  Q_{n+1}=\frac1n\sum_{i=1}^nR_i\=\frac1n(R_n+\sum_{i=1}^{n-1}R_i)\=\frac1n(R_n+(n-1)\frac1{n-1}\sum_{i=1}^{n-1}R_i)\=\frac1n(R_n+(n-1)Q_n))\=\frac1n(R_n)+nQ_n-Q_n\=Q_n+\frac1n[R_n-Q_n]<br>  $$<br>  这个公式的一般形式$新估计值\leftarrow旧估计值+步长\times[目标-旧估计值]$，$[目标-旧估计值]$是估计值的误差。步长会随着时间而变化，处理动作$a$对应的第$n$个收益的方法用的步长是$\frac1n$，步长记作$\alpha$，记作$\alpha_t(a)$</p>
 </li>
-<li><script type="math/tex; mode=display">
-  一个简单的多臂赌博机算法\\
-  初始化，令a=1到k\\
-      Q(a) <- 0\\
-      N(a) <- 0\\
-  无限循环\\
-      A<-argmax_aQ(a) 以1-\theta概率随机跳出贪心\\
-           一个随机的动作 以\theta概率\\
-      R<-bandit(A)\\
-      N(A)<-N(A)+1\\
-      Q(A)<-Q(A)+\frac{1}{N(A)}[R-Q(A)]</script></li>
+<li><p>$$<br>  一个简单的多臂赌博机算法\<br>  初始化，令a=1到k\</p>
+<pre><code>  Q(a) &lt;- 0\\
+  N(a) &lt;- 0\\
+</code></pre>
+<p>  无限循环\</p>
+<pre><code>  A&lt;-argmax_aQ(a) 以1-\theta概率随机跳出贪心\\
+       一个随机的动作 以\theta概率\\
+  R&lt;-bandit(A)\\
+  N(A)&lt;-N(A)+1\\
+  Q(A)&lt;-Q(A)+\frac&#123;1&#125;&#123;N(A)&#125;[R-Q(A)]
+</code></pre>
+<p>  $$</p>
+</li>
 </ul>
 <h2 id="2-5-跟踪一个非平稳问题"><a href="#2-5-跟踪一个非平稳问题" class="headerlink" title="2.5 跟踪一个非平稳问题"></a>2.5 跟踪一个非平稳问题</h2><ul>
-<li>给近期的收益赋予比过去很久的收益更高的权值就是一种合理的处理方式，固定步长，$Q_{n+1}=Q_n+\alpha[R_n-Q_n]$，步长参数$\alpha \in (0,1]$是一个常数，这使得$Q_{n+1}$成为对过去的收益和初始的估计$Q_1$的加权平均<script type="math/tex; mode=display">
-  Q_{n+1}=Q_n+\alpha[R_n-Q_n]\\=\alpha R_n+(1-\alpha)Q_n\\=\alpha R_n+(1-\alpha)[\alpha R_{n-1}+(1-\alpha)Q_{n-1}]\\=\alpha R_n + (1-\alpha)\alpha R_{n-1}+(1-\alpha)^2Q_{n-1}\\=\alpha R_n+(1-\alpha)\alpha R_{n-1}+(1-\alpha)^2\alpha R_{n-2}+...+(1-\alpha)^{n-1}\alpha R_1+(1-\alpha)^nQ_1\\=(1-\alpha)^nQ_1+\sum_{i=1}^n\alpha(1-\alpha)^{(n-i)}R_i</script>  指数近因加权平均。</li>
+<li>给近期的收益赋予比过去很久的收益更高的权值就是一种合理的处理方式，固定步长，$Q_{n+1}=Q_n+\alpha[R_n-Q_n]$，步长参数$\alpha \in (0,1]$是一个常数，这使得$Q_{n+1}$成为对过去的收益和初始的估计$Q_1$的加权平均<br>  $$<br>  Q_{n+1}=Q_n+\alpha[R_n-Q_n]\=\alpha R_n+(1-\alpha)Q_n\=\alpha R_n+(1-\alpha)[\alpha R_{n-1}+(1-\alpha)Q_{n-1}]\=\alpha R_n + (1-\alpha)\alpha R_{n-1}+(1-\alpha)^2Q_{n-1}\=\alpha R_n+(1-\alpha)\alpha R_{n-1}+(1-\alpha)^2\alpha R_{n-2}+…+(1-\alpha)^{n-1}\alpha R_1+(1-\alpha)^nQ_1\=(1-\alpha)^nQ_1+\sum_{i=1}^n\alpha(1-\alpha)^{(n-i)}R_i<br>  $$<br>  指数近因加权平均。</li>
 </ul>
 <h2 id="2-6-乐观初始值"><a href="#2-6-乐观初始值" class="headerlink" title="2.6 乐观初始值"></a>2.6 乐观初始值</h2><ul>
 <li>依赖于初始值$Q_1(a)$的选择，这是有偏的。当所有的动作都选择一次之后，偏差就会消失。</li>
@@ -444,6 +307,7 @@ B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delt
 <li>在选择动作$A_t$并获得收益$R_t$之后，偏好函数会更新$H_{t+1}(A_t)=H_t(A_t)+\alpha(R_t-\bar R_t)(1-\pi_t(A_t))$，以及$H_{t+1}(a)=H_t(a)-\alpha(R_t-\bar R_t)\pi_t(a),a \neq A_t$，其中$a$是一个大于0的数字，表示步长。$\bar R_t\in \R$是在时刻$t$所有收益的平均值。$\bar R_t$项作为比较收益的一个基准项，如果收益高于他，未来选择$A_t$的概率就会增加，反之就会降低。未选择的动作被选择的概率上升。</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过随机梯度上升实现梯度赌博机算法</span><br></pre></td></tr></table></figure>
+
 <h2 id="2-9-关联搜索（上下文相关的赌博机）"><a href="#2-9-关联搜索（上下文相关的赌博机）" class="headerlink" title="2.9 关联搜索（上下文相关的赌博机）"></a>2.9 关联搜索（上下文相关的赌博机）</h2><h2 id="2-10-本章小节"><a href="#2-10-本章小节" class="headerlink" title="2.10 本章小节"></a>2.10 本章小节</h2><h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p><strong>在$\epsilon-贪心方法$中在有两个动作及$\epsilon=0.5$的情况下，贪心动作被选择的概率是多少？</strong></p>
 <p><strong>考虑一个k=4的多臂赌博机问题，记作1、2、3、4.讲一个赌博机算法应用于这个问题，算法使用$\epsilon-贪心方法$进行动作选择，基于采样平均的动作价值估计，初始估计$Q_1(a)=0,\forall a$。假设动作及收益的最初顺序是$A_1=1,R_1=-1,A_2=2,R_2=1,A_3=2,R_3=-2,A_4=2,R_4=2,A_5=3,R_5=0$。在其中的某些时刻中，可能发生了$\epsilon$的情形，导致一个动作被随机选择。请回答，在哪些时刻中这种情形肯定发生了？在哪些时刻中这种情形可能发生了？</strong></p>
 <p><strong>根据图2.2，从累计收益和选择最佳动作的可能性的角度考虑，哪种方法会在长期表现最好？好多少？定量地表达答案。</strong></p>
@@ -465,7 +329,7 @@ B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delt
 <li>决策树分类时将该节点的实例强制分配到条件概率打的那一类。</li>
 </ul>
 <h3 id="5-1-4-决策树学习"><a href="#5-1-4-决策树学习" class="headerlink" title="5.1.4 决策树学习"></a>5.1.4 决策树学习</h3><ul>
-<li>假定给出训练数据集$D=\{(x_1,y_1),…,(x_N,y_N)\}$，其中，$x_i=(x_i^{(1)},x_i^{(2)},…,x_i^{(n)})^T$为输入实例，$n$为特征个数，$y_i\in \{1,2,…,K\}$为类标记，$i=1,2,…,N$，$N$为样本容量，决策树学习的目的是根据给定的训练数据集构建一个决策树模型，是其能对实例进行正确的分类。</li>
+<li>假定给出训练数据集$D={(x_1,y_1),…,(x_N,y_N)}$，其中，$x_i=(x_i^{(1)},x_i^{(2)},…,x_i^{(n)})^T$为输入实例，$n$为特征个数，$y_i\in {1,2,…,K}$为类标记，$i=1,2,…,N$，$N$为样本容量，决策树学习的目的是根据给定的训练数据集构建一个决策树模型，是其能对实例进行正确的分类。</li>
 <li>决策树学习本质上是从训练数据集中归纳出一组分类规则。需要一个与训练集数据矛盾较小的决策树同时具有很好的泛化能力。</li>
 <li>决策树学习的损失函数通常是正则化的极大似然函数。决策树学习的策略是以损失函数为目标函数的最小化。</li>
 <li>构建根节点，将所有训练数据集分割成子集，选择一个最优特征，按照这一个特征将训练数据集分割成子集，使得各个子集有一个在当前条件下最好的分类。如果这些子集已经能够被基本正确分类，那么构建叶结点，并将这些子集分配到所对应的叶结点中去；如果还有子集不能被正确分类，那么继续进行分割。</li>
@@ -479,7 +343,7 @@ B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delt
 <li><p><strong>熵</strong>：表示随机变量不确定性的度量。设$X$是一个取有限个值的离散随机变量，其概率分布为$P(X=x_i)=p_i,i=1,2,..,n$，则随机变量的熵为$H(X)=-\sum_{i=1}^np_ilogp_i$，只依赖于$X$的分布而与$X$的取值无关，所以也可叫做$H(p)=-\sum_{i=1}^np_ilogp_i$</p>
 <p>熵越大不确定性就越大，$0&lt;=H(p)&lt;=logn$</p>
 </li>
-<li><p><strong>条件熵$H(Y|X)$</strong>：表示在已知随机变量$X$的条件下，随机变量$Y$的不确定性。定义为$X$给定条件下$Y$的条件概率分布的熵对$X$的数学期望$H(Y|X)=\sum_{i=1}^np_iH(Y|X=x_i)$</p>
+<li><p>**条件熵$H(Y|X)$**：表示在已知随机变量$X$的条件下，随机变量$Y$的不确定性。定义为$X$给定条件下$Y$的条件概率分布的熵对$X$的数学期望$H(Y|X)=\sum_{i=1}^np_iH(Y|X=x_i)$</p>
 </li>
 <li><p>当熵和条件熵的概率由数学估计得到时，对应的熵与条件熵分别称为经验熵和经验条件熵</p>
 </li>
@@ -502,7 +366,7 @@ B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delt
 </li>
 <li><p><strong>ID3算法</strong>（只有树的生成，容易过拟合）</p>
 <p>输入：训练数据集$D$，特征集$A$阈值$\epsilon $；输出：决策树$T$。</p>
-<p>过程：若$D$中所有实例属于同一类$C_k$，则$T$为单结点树，并将类$C_k$作为该结点的类标记，返回$T$；若$A$为空集，则$T$为单结点树，并将$D$中的实例数最大的类$C_k$作为该结点的类标记，返回$T$；否则，按照信息增益算法计算$A$中各个特征对$D$的信息增益，选择信息增益最大的特征$A_g$；如果$A_g$的信息增益小于阈值$\epsilon $，则置$T$为单结点树，并将$D$中实例数最大的类$C_k$作为该结点的类标记，返回$T$；否则，对$A_g$中的每一个可能取值$a_i$，按照$A_g=a_i$将$D$分割成若干非空子集$D_i$，将$D_i$中实例最大的类作为标记，构建子结点，由结点及其子结点构成树$T$，返回$T$；对第$i$个子结点，以$D_i$为训练集，以$A-\{A_g\}$为特征集，递归调用上述步骤，得到子树$T_i$，返回$T_i$</p>
+<p>过程：若$D$中所有实例属于同一类$C_k$，则$T$为单结点树，并将类$C_k$作为该结点的类标记，返回$T$；若$A$为空集，则$T$为单结点树，并将$D$中的实例数最大的类$C_k$作为该结点的类标记，返回$T$；否则，按照信息增益算法计算$A$中各个特征对$D$的信息增益，选择信息增益最大的特征$A_g$；如果$A_g$的信息增益小于阈值$\epsilon $，则置$T$为单结点树，并将$D$中实例数最大的类$C_k$作为该结点的类标记，返回$T$；否则，对$A_g$中的每一个可能取值$a_i$，按照$A_g=a_i$将$D$分割成若干非空子集$D_i$，将$D_i$中实例最大的类作为标记，构建子结点，由结点及其子结点构成树$T$，返回$T$；对第$i$个子结点，以$D_i$为训练集，以$A-{A_g}$为特征集，递归调用上述步骤，得到子树$T_i$，返回$T_i$</p>
 </li>
 </ul>
 <h3 id="5-3-2-C4-5的生成算法"><a href="#5-3-2-C4-5的生成算法" class="headerlink" title="5.3.2 C4.5的生成算法"></a>5.3.2 C4.5的生成算法</h3><ul>
@@ -510,7 +374,7 @@ B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delt
 </li>
 <li><p><strong>C4.5生成算法</strong></p>
 <p>输入：训练数据集$D$，特征集$A$阈值$\epsilon $；输出：决策树$T$。</p>
-<p>过程：若$D$中所有实例属于同一类$C_k$，则$T$为单结点树，并将类$C_k$作为该结点的类标记，返回$T$；若$A$为空集，则$T$为单结点树，并将$D$中的实例数最大的类$C_k$作为该结点的类标记，返回$T$；否则，按照信息增益比算法计算$A$中各个特征对$D$的信息增益比，选择信息增益最大的特征$A_g$；如果$A_g$的信息增益比小于阈值$\epsilon $，则置$T$为单结点树，并将$D$中实例数最大的类$C_k$作为该结点的类标记，返回$T$；否则，对$A_g$中的每一个可能取值$a_i$，按照$A_g=a_i$将$D$分割成若干非空子集$D_i$，将$D_i$中实例最大的类作为标记，构建子结点，由结点及其子结点构成树$T$，返回$T$；对第$i$个子结点，以$D_i$为训练集，以$A-\{A_g\}$为特征集，递归调用上述步骤，得到子树$T_i$，返回$T_i$</p>
+<p>过程：若$D$中所有实例属于同一类$C_k$，则$T$为单结点树，并将类$C_k$作为该结点的类标记，返回$T$；若$A$为空集，则$T$为单结点树，并将$D$中的实例数最大的类$C_k$作为该结点的类标记，返回$T$；否则，按照信息增益比算法计算$A$中各个特征对$D$的信息增益比，选择信息增益最大的特征$A_g$；如果$A_g$的信息增益比小于阈值$\epsilon $，则置$T$为单结点树，并将$D$中实例数最大的类$C_k$作为该结点的类标记，返回$T$；否则，对$A_g$中的每一个可能取值$a_i$，按照$A_g=a_i$将$D$分割成若干非空子集$D_i$，将$D_i$中实例最大的类作为标记，构建子结点，由结点及其子结点构成树$T$，返回$T$；对第$i$个子结点，以$D_i$为训练集，以$A-{A_g}$为特征集，递归调用上述步骤，得到子树$T_i$，返回$T_i$</p>
 </li>
 </ul>
 <h2 id="5-4-决策树的剪枝"><a href="#5-4-决策树的剪枝" class="headerlink" title="5.4 决策树的剪枝"></a>5.4 决策树的剪枝</h2><ul>
@@ -532,7 +396,7 @@ B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delt
 </li>
 <li><p><strong>最小二乘回归树生成算法</strong></p>
 <p>输入：训练数据集$D$，输出：回归树$f(x)$</p>
-<p>步骤：遍历变量$j$，对固定的切分变量$j$扫描切分点$s$，得到满足上面关系的$(j,s)$ <script type="math/tex">\min\limits_{j,s}\left[\min\limits_{c_1}\sum\limits_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min\limits_{c_2}\sum\limits_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]</script>；用选定的$(j,s)$, 划分区域并决定相应的输出值 <script type="math/tex">R_1(j,s)={x|x^{(j)}\leq s}, R_2(j,s)={x|x^{(j)}> s} \ \hat{c}*m= \frac{1}{N}\sum\limits*{x_i\in R_m(j,s)} y_j, x\in R_m, m=1,2</script>；对两个子区域调用步骤， 直至满足停止条件；将输入空间划分为$M$个区域$R_1, R_2,\dots,R_M$，生成决策树： <script type="math/tex">f(x)=\sum_{m=1}^M\hat{c}_mI(x\in R_m)</script></p>
+<p>步骤：遍历变量$j$，对固定的切分变量$j$扫描切分点$s$，得到满足上面关系的$(j,s)$ $$ \min\limits_{j,s}\left[\min\limits_{c_1}\sum\limits_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min\limits_{c_2}\sum\limits_{x_i\in R_2(j,s)}(y_i-c_2)^2\right] $$；用选定的$(j,s)$, 划分区域并决定相应的输出值 $$ R_1(j,s)={x|x^{(j)}\leq s}, R_2(j,s)={x|x^{(j)}&gt; s} \ \hat{c}<em>m= \frac{1}{N}\sum\limits</em>{x_i\in R_m(j,s)} y_j, x\in R_m, m=1,2 $$；对两个子区域调用步骤， 直至满足停止条件；将输入空间划分为$M$个区域$R_1, R_2,\dots,R_M$，生成决策树： $$ f(x)=\sum_{m=1}^M\hat{c}_mI(x\in R_m) $$</p>
 </li>
 <li><p><strong>基尼指数</strong>：分类问题中，假设有$k$个类，样本点属于第$k$类的概率为$p_k$，则概率分布的基尼指数定义为$ Gini(p) = \sum_{k=1}^Kp_k(1-p_k)=1-\sum_{k=1}^Kp_k^2 $。对于二类分类问题，若样本点属于第一个类的概率为$p$，则概率分布的基尼系数为$Gini(p)=2p(1-p)$，对于给定的样本集合$D$，其基尼系数为$Gini(D)=1-\sum_{k=1}^K(\frac{|C_k|}{|D|})^2$，其中$C_k$是$D$中属于第$k$类的样本子集，$K$是类的个数。</p>
 </li>
@@ -578,32 +442,27 @@ B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delt
 <li>朴素贝叶斯利用贝叶斯定理与联合概率模型进行分类模型，后验概率最大等价01损失函数的期望风险最小化</li>
 </ul>
 <h2 id="4-1-朴素贝叶斯法的学习与分类"><a href="#4-1-朴素贝叶斯法的学习与分类" class="headerlink" title="4.1 朴素贝叶斯法的学习与分类"></a>4.1 朴素贝叶斯法的学习与分类</h2><h3 id="4-1-1-基本方法"><a href="#4-1-1-基本方法" class="headerlink" title="4.1.1 基本方法"></a>4.1.1 基本方法</h3><ul>
-<li><p>输入空间$\cal X \subset R^n$为$n$维向量的集合，输出空间为类标记集合$\cal Y=\{c_1,c_2,…,c_k\}$。输入为特征向量$x\in \cal X$输出为类标记$y\in \cal Y$。$X$是定义在输入空间$\cal X$上的随机向量，$Y$是定义在输出空间$\cal Y$上的随机变量。$P(X,Y)$是定义在$X$和$Y$的联合概率分布。训练数据集$T=\{(x_1,y_1),…,(x_N,y_N)\}$由$P(X,Y)$独立同分布产生。</p>
+<li><p>输入空间$\cal X \subset R^n$为$n$维向量的集合，输出空间为类标记集合$\cal Y={c_1,c_2,…,c_k}$。输入为特征向量$x\in \cal X$输出为类标记$y\in \cal Y$。$X$是定义在输入空间$\cal X$上的随机向量，$Y$是定义在输出空间$\cal Y$上的随机变量。$P(X,Y)$是定义在$X$和$Y$的联合概率分布。训练数据集$T={(x_1,y_1),…,(x_N,y_N)}$由$P(X,Y)$独立同分布产生。</p>
 </li>
 <li><p>学习先验概率分布及条件概率分布，先验概率分布$P(Y=c_k),k=1,2,…,K$，条件概率分布$P(X=x|Y=c_k)=P(X^{(1)}=x^{(1)},X^{(2)}=x^{(2)},…,X^{(n)}=x^{(n)}|Y=c_k),k=1,2,…,K$，于是学习到联合概率分布$P(X,Y)$</p>
 </li>
 <li><p>条件独立性假设$P(X=x|Y=c_k)=P(X^{(1)}=x^{(1)},X^{(2)}=x^{(2)},…,X^{(n)}=x^{(n)}|Y=c_k)=\prod_{j=1}^{n}P(X^{(j)}=x^{(j)}|Y=c_k)$</p>
 </li>
-<li><p>对给定的输入$x$，通过学习到的模型计算后验概率$P(Y=c_k|X=x)$，将后验概率最大的类作为$x$的类输出。后验概率计算根据贝叶斯定理</p>
-<script type="math/tex; mode=display">
-  P(Y=c_k|X=x)=\frac{P(X=x|Y=c_k)P(Y=c_k)}{\sum_kP(X=x|Y=c_k)P(Y=c_k)}</script><p>  朴素贝叶斯分类器可以表示为</p>
-<script type="math/tex; mode=display">
-  y=f(x)=argmax_{c_k}\frac{P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}{\sum_kP(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}</script><p>  又观察到所有$c_k$都是相通的，所以可以化简成$y=argmax_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$</p>
+<li><p>对给定的输入$x$，通过学习到的模型计算后验概率$P(Y=c_k|X=x)$，将后验概率最大的类作为$x$的类输出。后验概率计算根据贝叶斯定理<br>  $$<br>  P(Y=c_k|X=x)=\frac{P(X=x|Y=c_k)P(Y=c_k)}{\sum_kP(X=x|Y=c_k)P(Y=c_k)}<br>  $$<br>  朴素贝叶斯分类器可以表示为<br>  $$<br>  y=f(x)=argmax_{c_k}\frac{P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}{\sum_kP(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}<br>  $$<br>  又观察到所有$c_k$都是相通的，所以可以化简成$y=argmax_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$</p>
 </li>
 </ul>
 <h3 id="4-1-2-后验概率最大化的含义"><a href="#4-1-2-后验概率最大化的含义" class="headerlink" title="4.1.2 后验概率最大化的含义"></a>4.1.2 后验概率最大化的含义</h3><ul>
 <li><p>假设选择<strong>01损失函数</strong>，期望风险函数是$R_{exp}(f)=E[L(Y,f(X))]$，期望是对联合分布$P(X,Y)$取的，所以条件期望为$R_{exp}(f)=E_X\sum_{k=1}^K[L(c_k,f(X))]P(c_k|X)$，为了使得期望风险最小化，只需对$X=x$逐个极小化，可以得到</p>
 </li>
-<li><script type="math/tex; mode=display">
-  f(x)=argmin_{y\in \cal Y}\sum_{i=1}^KL(c_k,y)P(c_k|X=x)\\=argmin_{y\in \cal Y}\sum_{k=1}^KP(y\neq c_k|X=x)=argmin_{y \in \cal Y}(1-P(y=c_k|X=x))\\=argmax_{y \in \cal Y}P(y=c_k|X=x)</script></li>
+<li><p>$$<br>  f(x)=argmin_{y\in \cal Y}\sum_{i=1}^KL(c_k,y)P(c_k|X=x)\=argmin_{y\in \cal Y}\sum_{k=1}^KP(y\neq c_k|X=x)=argmin_{y \in \cal Y}(1-P(y=c_k|X=x))\=argmax_{y \in \cal Y}P(y=c_k|X=x)<br>  $$</p>
+</li>
 </ul>
 <p>这样期望风险最小化就得到了后验概率最大化准则。</p>
 <h2 id="4-2-朴素贝叶斯法的参数估计"><a href="#4-2-朴素贝叶斯法的参数估计" class="headerlink" title="4.2 朴素贝叶斯法的参数估计"></a>4.2 朴素贝叶斯法的参数估计</h2><h3 id="4-2-1-极大似然估计"><a href="#4-2-1-极大似然估计" class="headerlink" title="4.2.1 极大似然估计"></a>4.2.1 极大似然估计</h3><ul>
-<li>先验概率$P(Y=c_k)$的极大似然估计是$P(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)}{N},k=1,2,…,K$，设第$j$个特征$x^{(j)}$可能取值的集合为$\{a_{j1},a_{j2},…,a_{jS_j}\}$，条件概率$P(X^{(j)}=a_{jl}|Y=c_k)$的极大似然估计是<script type="math/tex; mode=display">
-  P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i+1}^NI(y_i=c_k)}</script>  其中，$x_i^{(j)}$是第$i$个样本的第$j$个特征，$a_{jl}$是第$j$个特征可能取的第$l$个值，$I$为指使函数</li>
+<li>先验概率$P(Y=c_k)$的极大似然估计是$P(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)}{N},k=1,2,…,K$，设第$j$个特征$x^{(j)}$可能取值的集合为${a_{j1},a_{j2},…,a_{jS_j}}$，条件概率$P(X^{(j)}=a_{jl}|Y=c_k)$的极大似然估计是<br>  $$<br>  P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i+1}^NI(y_i=c_k)}<br>  $$<br>  其中，$x_i^{(j)}$是第$i$个样本的第$j$个特征，$a_{jl}$是第$j$个特征可能取的第$l$个值，$I$为指使函数</li>
 </ul>
 <h3 id="4-2-2-学习与分类算法"><a href="#4-2-2-学习与分类算法" class="headerlink" title="4.2.2 学习与分类算法"></a>4.2.2 学习与分类算法</h3><ul>
-<li><strong>输入</strong>：训练数据$T=\{(x_1,y_1),…,(x_N,y_N)\}$，其中$x_i=(x_i^{(1)},…,x_i^{(n)})^T$，$x_i^{(j)}$是第$i$个样本的第$j$个特征，$x_i^{(j)}\in\{a_{j1},a_{j2},…,a_{jS_j}\}$，$a_{jl}$是第$j$个特征可能取的第$l$个值，$j=1,2,…,n, l=1,2,…,S_j, y_i \in \{c_1,c_2,…,c_k\}$</li>
+<li><strong>输入</strong>：训练数据$T={(x_1,y_1),…,(x_N,y_N)}$，其中$x_i=(x_i^{(1)},…,x_i^{(n)})^T$，$x_i^{(j)}$是第$i$个样本的第$j$个特征，$x_i^{(j)}\in{a_{j1},a_{j2},…,a_{jS_j}}$，$a_{jl}$是第$j$个特征可能取的第$l$个值，$j=1,2,…,n, l=1,2,…,S_j, y_i \in {c_1,c_2,…,c_k}$</li>
 <li><strong>输出</strong>：实例$x$的分类</li>
 <li><strong>步骤</strong>：（1）计算先验概率及条件概率$P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i+1}^NI(y_i=c_k)}$；（2）对于给定的实例输出$P(Y=c_k)\prod_{j=1}^{n}P(X^{(j)}=x^{(j)}|Y=c_k)$；（3）确定实例的分类$y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^{n}P(X^{(j)}=x^{(j)}|Y=c_k)$</li>
 </ul>
@@ -613,14 +472,7 @@ B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delt
 <li>对于任何$l=1,2,…,S_j,k=1,2,…,K$有$P_\lambda(X^{(j)}=a_{jl}|Y=c_k)&gt;0$，$\sum_{l=1}^{S_j}P(X^{(j)}=a_{jl}|Y=c_k)=1$同样，先验概率的贝叶斯估计是$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</li>
 </ul>
 <h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p><strong>4.1 用极大似然估计法推出朴素贝叶斯法中的概率估计公式及公式</strong></p>
-<script type="math/tex; mode=display">
-两个公式为P(Y-c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)}{N},k=1,2,...,K\\
-P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^NI(y_i=c_k)}\\
-证明公式一，设P(Y=c_k)=p,记\sum_{i=1}^NI(y_i=c_k)=M，那么独立同分布随机抽取N个样本，其中Y=c_k恰好发生M次的概率为：\\
-P(p)=p^M(i-p)^{N-m}\\
-极大似然估计就是找一个寻找一个p的值p′让概率P(p′)最大，该问题等价于求p′使得logP(p′)最大\\
-即\frac{d logP(p)}{dp}=\frac Mp - \frac{N-M}{1-p}=\frac{M-Np}{p(1-p)}\\
-令上式等于0，可得p=\frac M N</script><p><strong>4.2 用贝叶斯估计法推出朴素贝叶斯法中的概率估计公式及公式</strong></p>
+<p>$$<br>两个公式为P(Y-c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)}{N},k=1,2,…,K\<br>P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^NI(y_i=c_k)}\<br>证明公式一，设P(Y=c_k)=p,记\sum_{i=1}^NI(y_i=c_k)=M，那么独立同分布随机抽取N个样本，其中Y=c_k恰好发生M次的概率为：\<br>P(p)=p^M(i-p)^{N-m}\<br>极大似然估计就是找一个寻找一个p的值p′让概率P(p′)最大，该问题等价于求p′使得logP(p′)最大\<br>即\frac{d logP(p)}{dp}=\frac Mp - \frac{N-M}{1-p}=\frac{M-Np}{p(1-p)}\<br>令上式等于0，可得p=\frac M N<br>$$<br><strong>4.2 用贝叶斯估计法推出朴素贝叶斯法中的概率估计公式及公式</strong></p>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-15T12:00:00.000Z" title="2021/10/15 下午8:00:00">2021-10-15</time>发表</span><span class="level-item"><time dateTime="2021-11-16T05:04:23.255Z" title="2021/11/16 下午1:04:23">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">11 分钟读完 (大约1714个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/15/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B8%89%E7%AB%A0/">统计学习方法第三章</a></h1><div class="content"><h2 id="概要-k近邻法"><a href="#概要-k近邻法" class="headerlink" title="概要 k近邻法"></a>概要 k近邻法</h2><ul>
 <li>最基本的算法之一，特别经典</li>
 <li>多数表决规则等价于01损失函数下的经验风险最小化，支持多分类；没有显式的学习过程</li>
@@ -629,7 +481,7 @@ P(p)=p^M(i-p)^{N-m}\\
 <li>本章TodoList：代码实现kdtree，手写数字识别</li>
 </ul>
 <h2 id="3-1-k近邻算法"><a href="#3-1-k近邻算法" class="headerlink" title="3.1 k近邻算法"></a>3.1 k近邻算法</h2><ul>
-<li><strong>输入</strong>：训练数据集$T=\{(x_1,y_1),…,(x_N,y_N)\}$，其中，$x_i \in \cal X \subset R^n$为实例的特征向量，$y_i \in \cal Y=\{c_1,c_2,…,c_n\}$为实例的类别，$i=1,2,…,N$，实例特征向量$x_i$。</li>
+<li><strong>输入</strong>：训练数据集$T={(x_1,y_1),…,(x_N,y_N)}$，其中，$x_i \in \cal X \subset R^n$为实例的特征向量，$y_i \in \cal Y={c_1,c_2,…,c_n}$为实例的类别，$i=1,2,…,N$，实例特征向量$x_i$。</li>
 <li><strong>输出</strong>：实例$x$所属的类$y$。</li>
 <li>根据给定的距离度量，在训练集$T$中找出与$x$最邻近的$k$个点，涵盖这$k$个点的$x$的邻域计作$N_k(x)$；在$N_k(x)$中根据分类决策规则决定$x$的类别$y$</li>
 <li>$y=argmax_{c_j}\sum_{x_i \in N_k(x)}I(y_i=c_j),i=1,2,…,N;j=1,2,…,K$，$I$为指示函数，当$y_i=c_j$时$I$为1，否则为0</li>
@@ -642,9 +494,8 @@ P(p)=p^M(i-p)^{N-m}\\
 <h3 id="3-2-2-距离度量"><a href="#3-2-2-距离度量" class="headerlink" title="3.2.2 距离度量"></a>3.2.2 距离度量</h3><ul>
 <li><p>一般使用欧氏距离，也可以使用$L_p$距离或者Minkowski距离</p>
 </li>
-<li><p>设特征空间$\cal X$是n维实数空间向量$R^n,x_i,x_j\in \cal X,x_i=(x_i^{(1)},x_i^{(2)},…,x_i^{(n)})^T,x_j=(x_j^{(1)},x_j^{(2)},…,x_j^{(n)})^T$，那么对于$x_i,x_j$的距离定义为</p>
-<script type="math/tex; mode=display">
-L_p(x_i,x_j)=(\sum_{l=1}^n|x_i^{(l)}-x_j^{l}|^p)^{\frac{1}{p}},p>=1</script></li>
+<li><p>设特征空间$\cal X$是n维实数空间向量$R^n,x_i,x_j\in \cal X,x_i=(x_i^{(1)},x_i^{(2)},…,x_i^{(n)})^T,x_j=(x_j^{(1)},x_j^{(2)},…,x_j^{(n)})^T$，那么对于$x_i,x_j$的距离定义为<br>$$<br>L_p(x_i,x_j)=(\sum_{l=1}^n|x_i^{(l)}-x_j^{l}|^p)^{\frac{1}{p}},p&gt;=1<br>$$</p>
+</li>
 <li><p>当$p=2$时，是欧氏距离；当$p=1$时，是哈密顿距离；当$p=\infty$时，是各个坐标距离的最大值。</p>
 </li>
 </ul>
@@ -654,7 +505,7 @@ L_p(x_i,x_j)=(\sum_{l=1}^n|x_i^{(l)}-x_j^{l}|^p)^{\frac{1}{p}},p>=1</script></li
 <li>交叉验证来选择k</li>
 </ul>
 <h3 id="3-2-4-分类决策规则"><a href="#3-2-4-分类决策规则" class="headerlink" title="3.2.4 分类决策规则"></a>3.2.4 分类决策规则</h3><ul>
-<li>多数表决规则：如果分类的损失函数为01损失函数，分类函数为$f:R^n \rightarrow \{c_1,c_2,…,c_k\}$，误分类概率为$P(Y\neq f(X))=1-P(Y=f(X))$</li>
+<li>多数表决规则：如果分类的损失函数为01损失函数，分类函数为$f:R^n \rightarrow {c_1,c_2,…,c_k}$，误分类概率为$P(Y\neq f(X))=1-P(Y=f(X))$</li>
 <li>对给定的实例$x \in \cal X$，其最近邻的k个训练实例点构成集合$N_k(x)$，如果涵盖$N_k(x)$的区域的类别是$c_j$，那么误分类的概率是$\frac1k\sum_{x_i \in N_k(x)}I(y_i \neq c_j)=1-\frac1k\sum_{x_i \in N_k(x)}I(y_i=c_j)$，<strong>经验风险最小化</strong></li>
 </ul>
 <h2 id="3-3-KDTree"><a href="#3-3-KDTree" class="headerlink" title="3.3 KDTree"></a>3.3 KDTree</h2><h3 id="构造kd树"><a href="#构造kd树" class="headerlink" title="构造kd树"></a>构造kd树</h3><ul>
@@ -672,10 +523,11 @@ L_p(x_i,x_j)=(\sum_{l=1}^n|x_i^{(l)}-x_j^{l}|^p)^{\frac{1}{p}},p>=1</script></li
 <h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p><strong>3.1画出k=1和k=2的k近邻图片</strong></p>
 <p>k=1：连接任意两个结点，画出他们的垂直平分线，求到交点即可，此时看空间离哪个单元近</p>
 <p>k=2：延长k=1的垂直平分线，重新看空间，判断是属于哪两个域的垂直平分线即可</p>
-<p><strong>3.2 </strong>$T=(2,3),(5,4),(9,6),(4,7),(8,1),(7,2)$；构造kd树，并寻找$(3,4.5)$的最近结点</p>
+<p>**3.2 **$T=(2,3),(5,4),(9,6),(4,7),(8,1),(7,2)$；构造kd树，并寻找$(3,4.5)$的最近结点</p>
 <p>显然最近的就是$(2,3)$</p>
 <p><strong>3.3</strong>写出输出x的k近邻的代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line">iris = load_iris()</span><br><span class="line">df = pd.DataFrame(iris.data, columns=iris.feature_names)</span><br><span class="line">df[<span class="string">&#x27;label&#x27;</span>] = iris.target</span><br><span class="line">df.columns = [<span class="string">&#x27;sepal length&#x27;</span>, <span class="string">&#x27;sepal width&#x27;</span>, <span class="string">&#x27;petal length&#x27;</span>, <span class="string">&#x27;petal width&#x27;</span>, <span class="string">&#x27;label&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data = np.array(df.iloc[:<span class="number">100</span>, [<span class="number">0</span>, <span class="number">1</span>, -<span class="number">1</span>]])</span><br><span class="line">train, test = train_test_split(data, test_size=<span class="number">0.4</span>)</span><br><span class="line">x0 = np.array([x0 <span class="keyword">for</span> i, x0 <span class="keyword">in</span> <span class="built_in">enumerate</span>(train) <span class="keyword">if</span> train[i][-<span class="number">1</span>] == <span class="number">0</span>])</span><br><span class="line">x1 = np.array([x1 <span class="keyword">for</span> i, x1 <span class="keyword">in</span> <span class="built_in">enumerate</span>(train) <span class="keyword">if</span> train[i][-<span class="number">1</span>] == <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_train</span>():</span></span><br><span class="line">    plt.scatter(x0[:, <span class="number">0</span>], x0[:, <span class="number">1</span>], c=<span class="string">&#x27;pink&#x27;</span>, label=<span class="string">&#x27;[0]&#x27;</span>)</span><br><span class="line">    plt.scatter(x1[:, <span class="number">0</span>], x1[:, <span class="number">1</span>], c=<span class="string">&#x27;orange&#x27;</span>, label=<span class="string">&#x27;[1]&#x27;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;sepal length&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;sepal width&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, data, depth=<span class="number">0</span>, lchild=<span class="literal">None</span>, rchild=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.data = data</span><br><span class="line">        self.depth = depth</span><br><span class="line">        self.lchild = lchild</span><br><span class="line">        self.rchild = rchild</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KdTree</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.KdTree = <span class="literal">None</span></span><br><span class="line">        self.n = <span class="number">0</span></span><br><span class="line">        self.nearest = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">self, dataSet, depth=<span class="number">0</span></span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(dataSet) &gt; <span class="number">0</span>: <span class="comment">#注意这里不能写 if dataSet之类</span></span><br><span class="line">            m, n = np.shape(dataSet)</span><br><span class="line">            self.n = n - <span class="number">1</span></span><br><span class="line">            axis = depth % self.n</span><br><span class="line">            mid = <span class="built_in">int</span>(m / <span class="number">2</span>)</span><br><span class="line">            dataSetcopy = <span class="built_in">sorted</span>(dataSet, key=<span class="keyword">lambda</span> x: x[axis])</span><br><span class="line">            node = Node(dataSetcopy[mid], depth)</span><br><span class="line">            <span class="keyword">if</span> depth == <span class="number">0</span>:</span><br><span class="line">                self.KdTree = node</span><br><span class="line">            node.lchild = self.create(dataSetcopy[:mid], depth+<span class="number">1</span>)</span><br><span class="line">            node.rchild = self.create(dataSetcopy[mid+<span class="number">1</span>:], depth+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> node</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">preOrder</span>(<span class="params">self, node</span>):</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(node.depth, node.data)</span><br><span class="line">            self.preOrder(node.lchild)</span><br><span class="line">            self.preOrder(node.rchild)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span>(<span class="params">self, x, count=<span class="number">1</span></span>):</span></span><br><span class="line">        nearest = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(count):</span><br><span class="line">            nearest.append([-<span class="number">1</span>, <span class="literal">None</span>])</span><br><span class="line">        self.nearest = np.array(nearest)</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">recurve</span>(<span class="params">node</span>):</span></span><br><span class="line">            <span class="keyword">if</span> node <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                axis = node.depth % self.n</span><br><span class="line">                daxis = x[axis] - node.data[axis]</span><br><span class="line">                <span class="keyword">if</span> daxis &lt; <span class="number">0</span>:</span><br><span class="line">                    recurve(node.lchild)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    recurve(node.rchild)</span><br><span class="line"></span><br><span class="line">                dist = sqrt(<span class="built_in">sum</span>((p1 - p2) ** <span class="number">2</span> <span class="keyword">for</span> p1, p2 <span class="keyword">in</span> <span class="built_in">zip</span>(x, node.data)))</span><br><span class="line">                <span class="keyword">for</span> i, d <span class="keyword">in</span> <span class="built_in">enumerate</span>(self.nearest):</span><br><span class="line">                    <span class="keyword">if</span> d[<span class="number">0</span>] &lt; <span class="number">0</span> <span class="keyword">or</span> dist &lt; d[<span class="number">0</span>]:</span><br><span class="line">                        self.nearest = np.insert(self.nearest, i, [dist, node], axis=<span class="number">0</span>)</span><br><span class="line">                        self.nearest = self.nearest[:-<span class="number">1</span>]</span><br><span class="line">                        <span class="keyword">break</span> <span class="comment">#这里一定要break</span></span><br><span class="line"></span><br><span class="line">                n = <span class="built_in">list</span>(self.nearest[:, <span class="number">0</span>]).count(-<span class="number">1</span>) <span class="comment">#self.nearest为np.array类型</span></span><br><span class="line">                <span class="keyword">if</span> self.nearest[-n-<span class="number">1</span>, <span class="number">0</span>] &gt; <span class="built_in">abs</span>(daxis):</span><br><span class="line">                    <span class="keyword">if</span> daxis &lt; <span class="number">0</span>:</span><br><span class="line">                        recurve(node.rchild)</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        recurve(node.lchild)</span><br><span class="line"></span><br><span class="line">        recurve(self.KdTree)</span><br><span class="line"></span><br><span class="line">        knn = self.nearest[:, <span class="number">1</span>]</span><br><span class="line">        belong = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> knn:</span><br><span class="line">            belong.append(i.data[-<span class="number">1</span>])</span><br><span class="line">        b = <span class="built_in">max</span>(<span class="built_in">set</span>(belong), key=belong.count) <span class="comment">#注意这个用法</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self.nearest, b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">kdt = KdTree()</span><br><span class="line">kdt.create(train)</span><br><span class="line">kdt.preOrder(kdt.KdTree)</span><br><span class="line"></span><br><span class="line">score = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> test:</span><br><span class="line">    <span class="comment"># input(&#x27;press Enter to show next:&#x27;)</span></span><br><span class="line">    show_train()</span><br><span class="line">    plt.scatter(x[<span class="number">0</span>], x[<span class="number">1</span>], c=<span class="string">&#x27;red&#x27;</span>, marker=<span class="string">&#x27;x&#x27;</span>, label=<span class="string">&#x27;test point&#x27;</span>)  <span class="comment"># 测试点</span></span><br><span class="line">    near, belong = kdt.search(x[:-<span class="number">1</span>], <span class="number">5</span>)  <span class="comment"># 设置临近点的个数</span></span><br><span class="line">    <span class="keyword">if</span> belong == x[-<span class="number">1</span>]:</span><br><span class="line">        score += <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;test:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(x, <span class="string">&quot;predict:&quot;</span>, belong)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;nearest:&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> near:</span><br><span class="line">        <span class="built_in">print</span>(n[<span class="number">1</span>].data, <span class="string">&quot;dist:&quot;</span>, n[<span class="number">0</span>])</span><br><span class="line">        plt.scatter(n[<span class="number">1</span>].data[<span class="number">0</span>], n[<span class="number">1</span>].data[<span class="number">1</span>], c=<span class="string">&#x27;green&#x27;</span>, marker=<span class="string">&#x27;+&#x27;</span>)  <span class="comment"># k个最近邻点</span></span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">score /= <span class="built_in">len</span>(test)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;score:&quot;</span>, score)</span><br></pre></td></tr></table></figure>
+
 </div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">上一页</a></div><div class="pagination-next"><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/page/3/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">1</a></li><li><a class="pagination-link is-current" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/page/2/">2</a></li><li><a class="pagination-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/page/3/">3</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="小涵少年"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">小涵少年</p><p class="is-size-6 is-block">风花飞有态 烟絮坠无痕</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>南京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">34</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">11</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Micro-han" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="twitter" href="https://twitter.com/Bless788"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Zhihu" href="https://www.zhihu.com/people/yan-xiao-han-68-1"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Codeforces" href="https://codeforces.com/profile/YanXiaohan"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://vcode28629.github.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">VCode</span></span><span class="level-right"><span class="level-item tag">vcode28629.github.io</span></span></a></li><li><a class="level is-mobile" href="https://dragonbra.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Dragonbra</span></span><span class="level-right"><span class="level-item tag">dragonbra.github.io</span></span></a></li><li><a class="level is-mobile" href="https://blog.sukiu.top/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">SukiEva</span></span><span class="level-right"><span class="level-item tag">blog.sukiu.top</span></span></a></li><li><a class="level is-mobile" href="https://micro-han.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">友链招租</span></span><span class="level-right"><span class="level-item tag">micro-han.github.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/"><span class="level-start"><span class="level-item">杂七杂八</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/"><span class="level-start"><span class="level-item">知识积累</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"><span class="level-start"><span class="level-item">算法竞赛</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">读书笔记</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"><span class="level-start"><span class="level-item">项目实战</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-21T09:30:00.000Z">2021-12-21</time></p><p class="title"><a href="/2021/12/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0/">读书笔记-统计学习方法第十八章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-20T07:23:41.000Z">2021-12-20</time></p><p class="title"><a href="/2021/12/20/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0/">读书笔记-统计学习方法第十七章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-18T11:49:07.000Z">2021-12-18</time></p><p class="title"><a href="/2021/12/18/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0/">读书笔记-统计学习方法第十六章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-14T03:23:00.000Z">2021-12-14</time></p><p class="title"><a href="/2021/12/14/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84CartPole/">强化学习之CartPole</a></p><p class="categories"><a href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-13T04:26:21.000Z">2021-12-13</time></p><p class="title"><a href="/2021/12/13/%E7%AC%AC%E5%8D%81%E5%B1%8A%E6%B2%B3%E6%B5%B7%E5%A4%A7%E5%AD%A6%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%E9%AB%98%E5%B9%B4%E7%BA%A7%E7%BB%84/">第十届河海大学程序设计竞赛高年级组</a></p><p class="categories"><a href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/">杂七杂八</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Codeforces/"><span class="tag">Codeforces</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E3%80%8B/"><span class="tag">《强化学习》</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B%E3%80%8B/"><span class="tag">《深度学习与围棋》</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/"><span class="tag">《统计学习方法》</span><span class="tag">18</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"><span class="tag">强化学习</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="tag">机器学习</span><span class="tag">22</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><span class="tag">算法学习</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%83%A1%E8%AF%B4%E5%85%AB%E9%81%93/"><span class="tag">胡说八道</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/"><span class="tag">解题报告</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"><span class="tag">论文阅读</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/"><span class="tag">项目记录</span><span class="tag">4</span></a></div></div></div></div></div></div><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3"><!--!--></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 Micro han</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {

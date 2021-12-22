@@ -4,13 +4,7 @@
 <li>任意一个$m \times n$矩阵，都可以表示为三个矩阵的乘积（因子分解）分别是$m$阶正交矩阵、由降序排列的非负的对角线元素组成的$m\times n$矩形对角矩阵和$n$阶正交矩阵，称为该矩阵的奇异值分解。矩阵的奇异值分解一定存在，但不唯一。奇异值分解可以看做是矩阵数据压缩的一种方法，用因子分解的方式近似地表示原始矩阵，这种近似是在平方损失意义下的最优近似。</li>
 </ul>
 <h2 id="15-1-奇异值分解的定义与性质"><a href="#15-1-奇异值分解的定义与性质" class="headerlink" title="15.1 奇异值分解的定义与性质"></a>15.1 奇异值分解的定义与性质</h2><h3 id="15-1-1-定义与定理"><a href="#15-1-1-定义与定理" class="headerlink" title="15.1.1 定义与定理"></a>15.1.1 定义与定理</h3><ul>
-<li><p>矩阵的奇异值分解是指，将一个非零的$m\times n$实矩阵$A$，$A\in R ^{m \times n}$，表示为以下三个实矩阵乘积形式的运算，即进行矩阵的因子分解：$A=U\sum V^T$。其中，$U$是$m$阶正交矩阵，$V$是$n$阶正交矩阵，$\sum$是由降序排列的非负的对角线元素组成的$m\times n$矩形对角矩阵吗，满足</p>
-<script type="math/tex; mode=display">
-UU^T=I\\
-VV^T=I\\
-\sum = diag(\sigma_1,\sigma_2,...,\sigma_p)\\
-\sigma_1 \geq\sigma_2\geq...\geq0 \\
-p=min(m,n)</script><p>其中，$U\sum V^T$称为矩阵$A$的奇异值分解，$\sigma_i$称为矩阵$A$的奇异值，$U$的列向量称为左奇异向量，$V$的列向量称为右奇异向量。</p>
+<li><p>矩阵的奇异值分解是指，将一个非零的$m\times n$实矩阵$A$，$A\in R ^{m \times n}$，表示为以下三个实矩阵乘积形式的运算，即进行矩阵的因子分解：$A=U\sum V^T$。其中，$U$是$m$阶正交矩阵，$V$是$n$阶正交矩阵，$\sum$是由降序排列的非负的对角线元素组成的$m\times n$矩形对角矩阵吗，满足<br>$$<br>UU^T=I\<br>VV^T=I\<br>\sum = diag(\sigma_1,\sigma_2,…,\sigma_p)\<br>\sigma_1 \geq\sigma_2\geq…\geq0 \<br>p=min(m,n)<br>$$<br>其中，$U\sum V^T$称为矩阵$A$的奇异值分解，$\sigma_i$称为矩阵$A$的奇异值，$U$的列向量称为左奇异向量，$V$的列向量称为右奇异向量。</p>
 </li>
 <li><p>若$A$为一$m\times n$实矩阵，$A\in R^{m\times n}$，则$A$的奇异值分解存在$A=U\sum V^T$。其中$U$是$m$阶正交矩阵，$V$是$n$阶正交矩阵，$\sum$是$m\times n$矩形对角矩阵，其对角线元素非负，且按降序排序。</p>
 </li>
@@ -20,41 +14,21 @@ p=min(m,n)</script><p>其中，$U\sum V^T$称为矩阵$A$的奇异值分解，$\
 <li>设$A$为$m\times n$实矩阵，其秩为$rank(A)=r$，且$0&lt;k&lt;r$，则称$U_k\sum_k V_k^T$为矩阵$A$的截断奇异值分解$A\approx U_k\sum_kV_k^T$，其中$U_k$是$m\times k$矩阵，$V_k$是$n\times k$矩阵，$\sum_k$是k阶对角矩阵；矩阵$U_k$由完全奇异值分解中$U$的前$k$列，矩阵$V_k$由$V$的前$k$列，矩阵$\sum_k$由$\sum$的前$k$个对角线元素得到，对角矩阵$\sum_k$的秩比原始矩阵$A$的秩低。</li>
 </ul>
 <h3 id="15-1-3-几何解释"><a href="#15-1-3-几何解释" class="headerlink" title="15.1.3 几何解释"></a>15.1.3 几何解释</h3><p>矩阵的奇异值分解可以看做是将其对应的线性变换分解为旋转变换、缩放变换及旋转变换的组合。</p>
-<h3 id="15-1-4-主要性质"><a href="#15-1-4-主要性质" class="headerlink" title="15.1.4 主要性质"></a>15.1.4 主要性质</h3><script type="math/tex; mode=display">
-(1)设矩阵A的奇异值分解为A=U\sum V^T,则以下关系成立\\
-A^TA=(U\sum V^T)^T(U\sum V)^T=V({\sum}^T\sum)V^T \\
-AA^T=(U\sum V^T)(U\sum V^T)^T=U({\sum}^T\sum)U^T \\
-也就是说,矩阵A^TA和AA^T的特征分解存在，且可以由矩阵A的奇异值分解的矩阵表示。 \\
-V的列向量是A^TA的特征向量,U的列向量是AA^T的特征向量，\sum的奇异值是A^TA和AA^T的特征值的平方根。 \\
-(2)在矩阵A的奇异值分解中,奇异值、左奇异向量和右奇异向量之间对应关系。由A=U\sum V^T可得\\
-AV=U\sum \\
-比较这一等式两端的第j列,得到Av_j=\sigma_ju_j,j=1,2,...,n \\
-这是矩阵A的右奇异向量和奇异值、左奇异向量的关系。\\
-类似地,由A^TU=V{\sum}^T \\
-得到A^Tu_j=\sigma_jv_j,j=1,2,...,n\\
-A^Tu_j=0,j=n+1,n+2,...,m\\
-这是矩阵A的左奇异向量和奇异值、右奇异向量的关系。\\
-(3)矩阵A的奇异值分解中,奇异值\sigma_1,\sigma_2,...,\sigma_n是唯一的,而矩阵U和V是不唯一的 \\
-(4)矩阵A和\sum的秩相等,等于正奇异值\sigma_i的个数r(包含重复的奇异值) \\
-(5)矩阵A的r个右奇异向量v_1,v_2,...,v_r构成A^T的值域R(A^T)的一组标准正交基。\\
-因为矩阵A^T是从R^m映射到R^n的线性变换,则A^T的值域R(A^T)和A^T的列空间是相同的,v_1,v_2,...,v_r是A^T的一组标准正交基,\\
-因此也是R(A^T)的一组标准正交基。 \\
-矩阵A的n-r个右奇异向量v_{r+1},v_{r+2},...,v_n构成A的零空间N(A)的一组标准正交基\\
-矩阵A的r个左奇异向量u_1,u_2,...,u_r构成值域R(A)的一组标准正交基\\
-矩阵A的m-r个左奇异向量u_{r+1},u_{r+2},...,r_m构成A^T的零空间N(A^T)的一组标准正交基</script><h2 id="15-2-奇异值分解的计算"><a href="#15-2-奇异值分解的计算" class="headerlink" title="15.2 奇异值分解的计算"></a>15.2 奇异值分解的计算</h2><p>1）求$A^TA$的特征值和特征向量</p>
+<h3 id="15-1-4-主要性质"><a href="#15-1-4-主要性质" class="headerlink" title="15.1.4 主要性质"></a>15.1.4 主要性质</h3><p>$$<br>(1)设矩阵A的奇异值分解为A=U\sum V^T,则以下关系成立\<br>A^TA=(U\sum V^T)^T(U\sum V)^T=V({\sum}^T\sum)V^T \<br>AA^T=(U\sum V^T)(U\sum V^T)^T=U({\sum}^T\sum)U^T \<br>也就是说,矩阵A^TA和AA^T的特征分解存在，且可以由矩阵A的奇异值分解的矩阵表示。 \<br>V的列向量是A^TA的特征向量,U的列向量是AA^T的特征向量，\sum的奇异值是A^TA和AA^T的特征值的平方根。 \<br>(2)在矩阵A的奇异值分解中,奇异值、左奇异向量和右奇异向量之间对应关系。由A=U\sum V^T可得\<br>AV=U\sum \<br>比较这一等式两端的第j列,得到Av_j=\sigma_ju_j,j=1,2,…,n \<br>这是矩阵A的右奇异向量和奇异值、左奇异向量的关系。\<br>类似地,由A^TU=V{\sum}^T \<br>得到A^Tu_j=\sigma_jv_j,j=1,2,…,n\<br>A^Tu_j=0,j=n+1,n+2,…,m\<br>这是矩阵A的左奇异向量和奇异值、右奇异向量的关系。\<br>(3)矩阵A的奇异值分解中,奇异值\sigma_1,\sigma_2,…,\sigma_n是唯一的,而矩阵U和V是不唯一的 \<br>(4)矩阵A和\sum的秩相等,等于正奇异值\sigma_i的个数r(包含重复的奇异值) \<br>(5)矩阵A的r个右奇异向量v_1,v_2,…,v_r构成A^T的值域R(A^T)的一组标准正交基。\<br>因为矩阵A^T是从R^m映射到R^n的线性变换,则A^T的值域R(A^T)和A^T的列空间是相同的,v_1,v_2,…,v_r是A^T的一组标准正交基,\<br>因此也是R(A^T)的一组标准正交基。 \<br>矩阵A的n-r个右奇异向量v_{r+1},v_{r+2},…,v_n构成A的零空间N(A)的一组标准正交基\<br>矩阵A的r个左奇异向量u_1,u_2,…,u_r构成值域R(A)的一组标准正交基\<br>矩阵A的m-r个左奇异向量u_{r+1},u_{r+2},…,r_m构成A^T的零空间N(A^T)的一组标准正交基<br>$$</p>
+<h2 id="15-2-奇异值分解的计算"><a href="#15-2-奇异值分解的计算" class="headerlink" title="15.2 奇异值分解的计算"></a>15.2 奇异值分解的计算</h2><p>1）求$A^TA$的特征值和特征向量</p>
 <p>2）求$n$阶正交矩阵，将特征向量单位化，得到单位特征向量$v_1,v_2,…,v_n$，构成$n$阶正交矩阵$V=[v_1 \space v_2 \space …v_n]$</p>
 <p>3）求$m\times n$对角矩阵$\sum$。计算$A$的奇异值$\sigma_i=\sqrt{\lambda_i},i =1,2,…,n$，构造$m\times n$矩形对角矩阵$\sum$，主对角线元素是奇异值，其余元素是零。</p>
-<p>4）求$m$阶正交矩阵$U$，对$A$的前$r$个正奇异值，令$u_j=\frac{1}{\sigma_j}Au_j,j=1,2,…,r$得到$U_1=[u_1 \space u_2 \space … u_r]$。求$A^T$的令空间的一组标准正交基$\{u_{r+1},u_{r+2},…,u_m\}$，令$U_2=[u_{r+1}\space u_{r+2} \space … u_m]$，并令$U=[U_1\space U_2]$</p>
+<p>4）求$m$阶正交矩阵$U$，对$A$的前$r$个正奇异值，令$u_j=\frac{1}{\sigma_j}Au_j,j=1,2,…,r$得到$U_1=[u_1 \space u_2 \space … u_r]$。求$A^T$的令空间的一组标准正交基${u_{r+1},u_{r+2},…,u_m}$，令$U_2=[u_{r+1}\space u_{r+2} \space … u_m]$，并令$U=[U_1\space U_2]$</p>
 <p>5）得到奇异值分解，$A=U\sum V^T$</p>
 <h2 id="15-3-奇异值分解与矩阵近似"><a href="#15-3-奇异值分解与矩阵近似" class="headerlink" title="15.3 奇异值分解与矩阵近似"></a>15.3 奇异值分解与矩阵近似</h2><h3 id="15-3-1-弗罗贝尼乌斯范数"><a href="#15-3-1-弗罗贝尼乌斯范数" class="headerlink" title="15.3.1 弗罗贝尼乌斯范数"></a>15.3.1 弗罗贝尼乌斯范数</h3><ul>
-<li><p>设矩阵$A\in R^{m\times n},A=[a_{ij}]_{m\times n}$，定义矩阵$A$的弗罗贝乌斯范数为$||A||_F=(\sum_{i=1}^m\sum_{j=1}^n(a_ij)^2)^\frac12$</p>
+<li><p>设矩阵$A\in R^{m\times n},A=[a_{ij}]<em>{m\times n}$，定义矩阵$A$的弗罗贝乌斯范数为$||A||<em>F=(\sum</em>{i=1}^m\sum</em>{j=1}^n(a_ij)^2)^\frac12$</p>
 </li>
 <li><p>设矩阵$A\in R^{m\times n}$，$A$的奇异值分解为$U\sum V^T$，其中$\sum=diag(\sigma_1,\sigma_2,…,\sigma_n)$，则$||A||_F=(\sigma_1^2+\sigma_2^2+…+\sigma_n^2)^\frac12$</p>
 </li>
 </ul>
 <h3 id="15-3-2-矩阵的最优近似"><a href="#15-3-2-矩阵的最优近似" class="headerlink" title="15.3.2 矩阵的最优近似"></a>15.3.2 矩阵的最优近似</h3><ul>
-<li>设矩阵$A\in R^{m\times n}$，矩阵的秩$rank(A)=r$，并设$\cal M$为$R^{m\times n}$中所有秩不超过$k$的矩阵集合，$0&lt;k&lt;r$，则存在一个秩为$k$的矩阵$X\in \cal M$，使得$||A-X||_F=min_{S\in \cal M}||A-S||_F$。称矩阵$X$为矩阵$A$在弗贝尼乌斯范数意义下的最优近似</li>
-<li>设矩阵$A\in R^{m\times n}$，矩阵的秩$rank(A)=r$，有奇异值分解$A=U\sum V^T$，并设$\cal M$为$R^{m\times n}$中所有秩不超过$k$的矩阵的集合，$0&lt;k&lt;r$，若秩为$k$的矩阵$X\in \cal M$，满足$||A-X||_F=min_{S\in \cal M}||A-S||_F$，则$||A-X||_F=(\sigma_{k+1}^2,\sigma_{k+2}^2,…,\sigma_n^2)^\frac12$，特别地，如果$A’=U\sum’V^T$，其中$\sum’=\left[ \begin{array}{1}\sum_k &amp; 0 \\ 0 &amp;0 \end{array}\right]$，则$||A-A’||_F=(\sigma_{k+1}^2+\sigma_{k+2}^2+…+\sigma_n^2)^\frac12=min_{S\in \cal M}||A-S||_F$</li>
+<li>设矩阵$A\in R^{m\times n}$，矩阵的秩$rank(A)=r$，并设$\cal M$为$R^{m\times n}$中所有秩不超过$k$的矩阵集合，$0&lt;k&lt;r$，则存在一个秩为$k$的矩阵$X\in \cal M$，使得$||A-X||<em>F=min</em>{S\in \cal M}||A-S||_F$。称矩阵$X$为矩阵$A$在弗贝尼乌斯范数意义下的最优近似</li>
+<li>设矩阵$A\in R^{m\times n}$，矩阵的秩$rank(A)=r$，有奇异值分解$A=U\sum V^T$，并设$\cal M$为$R^{m\times n}$中所有秩不超过$k$的矩阵的集合，$0&lt;k&lt;r$，若秩为$k$的矩阵$X\in \cal M$，满足$||A-X||<em>F=min</em>{S\in \cal M}||A-S||<em>F$，则$||A-X||<em>F=(\sigma</em>{k+1}^2,\sigma</em>{k+2}^2,…,\sigma_n^2)^\frac12$，特别地，如果$A’=U\sum’V^T$，其中$\sum’=\left[ \begin{array}{1}\sum_k &amp; 0 \ 0 &amp;0 \end{array}\right]$，则$||A-A’||<em>F=(\sigma</em>{k+1}^2+\sigma_{k+2}^2+…+\sigma_n^2)^\frac12=min_{S\in \cal M}||A-S||_F$</li>
 </ul>
 <h3 id="15-3-3-矩阵的外积展开式"><a href="#15-3-3-矩阵的外积展开式" class="headerlink" title="15.3.3 矩阵的外积展开式"></a>15.3.3 矩阵的外积展开式</h3><p>$A=\sum_{k=1}^nA_k=\sum_{k=1}^n\sigma_ku_kv_k^T$，其中$u_kv_k^T$为$m\times n$矩阵，是列向量$u_k$和行向量$v_k^T$的外积，$\sigma_k$为奇异值，$u_k.v_k^T,\sigma_k$通过矩阵$A$的奇异值分解得到。</p>
 </div><div class="article-licensing box"><div class="licensing-title"><p>读书笔记-统计学习方法第十五章</p><p><a href="https://micro-han.github.io/2021/12/04/读书笔记-统计学习方法第十五章/">https://micro-han.github.io/2021/12/04/读书笔记-统计学习方法第十五章/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Micro han</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-12-04</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-12-18</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="link-muted mr-2" rel="tag" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/">《统计学习方法》</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://micro-han.github.io/about/" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechatpay.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/12/05/%E5%85%B3%E4%BA%8EACM%E9%80%80%E5%BD%B9%E9%82%A3%E7%82%B9%E4%BA%8B/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">关于ACM退役那点事</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/12/01/Codeforces%20Round%20#757%20div2/"><span class="level-item">Codeforces Round 757 div2 题解</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
