@@ -7,20 +7,42 @@
 <li>强可学习和弱可学习：一个概念如果存在一个多项式的学习算法能够学习他，并且正确率很高，那么就是强可学习的；一个概念如果存在一个多项式的学习算法能够学习他，并且正确率仅比随机采策略好，那么就是弱可学习的。强可学习和弱可学习是等价的。在PAC框架下，两者是充要条件。</li>
 <li>提升方法是从弱学习算法出发，得到一系列弱分类器，然后组合这些弱分类器构造一个强分类器。</li>
 </ul>
-<h3 id="8-1-2-AdaBoost算法"><a href="#8-1-2-AdaBoost算法" class="headerlink" title="8.1.2 AdaBoost算法"></a>8.1.2 AdaBoost算法</h3><p>$$<br>AdaBoost算法:\<br>输入：训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)};弱学习算法;\<br>其中每个样本点由实例与标记组成。实例x_i\in \cal X \subset R^n,标记y_i \in \cal Y={+1,-1},\cal X是实例空间,\cal Y是标记集合 \<br>输出：最终分类器G(x)\<br>步骤：(1)初始化训练数据的权值分布D_1=(w_{11},…,w_{1i},…,w_{1N}),w_{1i}=\frac1N,i=1,2,…,N\<br>(2)对m=1,2,…,M\<br>(a)使用具有权值分布D_m的训练数据集学习，得到基本分类器G_m(x):\cal X\rightarrow{+1,-1} \<br>(b)计算G_m(x)在训练数据集上的分类误差率e_m=\sum_{i=1}^NP(G_m(x_i)\neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i)\neq y_i)\<br>(c)计算G_m(x)的系数\alpha_m=\frac12log\frac{1-e_m}{e_m},这里的对数是自然对数\<br>(d)更新训练数据集的权值分布\<br>D_{m+1}={w_{m+1,1},…,w_{m+1,i},…,w_{m+1,N}}\<br>w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),i=1,2,…,N\<br>这里,Z_m是规范化因子Z_m=\sum_{i=1}^Nw_{mi}exp(-\alpha_my_iG_m(x_i)),这使得D_{m+1}成为一个概率分布\<br>(3)构建基本分类器的线性组合f(x)=\sum_{m=1}^M\alpha_mG_m(x)\<br>到最终分类器G(x)=sign(f(x))=sign(\sum_{m=1}^M\alpha_mG_m(x))<br>$$</p>
-<p>步骤（1）假设训练数据集具有均匀的权值分布，即每个训练样本在基本分类器的学习中作用相同，这一假设保证第1步能够在原始数据上学习基本分类器$G_1(x)$；</p>
+<h3 id="8-1-2-AdaBoost算法"><a href="#8-1-2-AdaBoost算法" class="headerlink" title="8.1.2 AdaBoost算法"></a>8.1.2 AdaBoost算法</h3><script type="math/tex; mode=display">
+AdaBoost算法:\\
+输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\};弱学习算法;\\
+其中每个样本点由实例与标记组成。实例x_i\in \cal X \subset R^n,标记y_i \in \cal Y=\{+1,-1\},\cal X是实例空间,\cal Y是标记集合 \\
+输出：最终分类器G(x)\\
+步骤：(1)初始化训练数据的权值分布D_1=(w_{11},...,w_{1i},...,w_{1N}),w_{1i}=\frac1N,i=1,2,...,N\\
+(2)对m=1,2,...,M\\
+(a)使用具有权值分布D_m的训练数据集学习，得到基本分类器G_m(x):\cal X\rightarrow\{+1,-1\} \\
+(b)计算G_m(x)在训练数据集上的分类误差率e_m=\sum_{i=1}^NP(G_m(x_i)\neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i)\neq y_i)\\
+(c)计算G_m(x)的系数\alpha_m=\frac12log\frac{1-e_m}{e_m},这里的对数是自然对数\\
+(d)更新训练数据集的权值分布\\
+D_{m+1}=\{w_{m+1,1},...,w_{m+1,i},...,w_{m+1,N}\}\\
+w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),i=1,2,...,N\\
+这里,Z_m是规范化因子Z_m=\sum_{i=1}^Nw_{mi}exp(-\alpha_my_iG_m(x_i)),这使得D_{m+1}成为一个概率分布\\
+(3)构建基本分类器的线性组合f(x)=\sum_{m=1}^M\alpha_mG_m(x)\\
+到最终分类器G(x)=sign(f(x))=sign(\sum_{m=1}^M\alpha_mG_m(x))</script><p>步骤（1）假设训练数据集具有均匀的权值分布，即每个训练样本在基本分类器的学习中作用相同，这一假设保证第1步能够在原始数据上学习基本分类器$G_1(x)$；</p>
 <p>步骤（2）AdaBoost反复学习基本分类器，在每一轮$m=1,2,…,M$顺次地执行以下操作（a）使用当前分布$D_m$加权的训练数据集，学习基本分类器$G_m(x)$；（b）计算基本分类器$G_m(x)$在加权训练数据集上的分类误差率$e_m=\sum_{i=1}^NP(G_m(x_i)\neq y_i)=\sum_{G_m(x_i)\neq y_i}w_{mi}$，这里$w_{mi}$表示第$m$轮第$i$个实例的权值，$\sum_{i=1}^Nw_{mi}=1$。这说明，$G_m(x)$在加权的训练数据集的分类误差率是被$G_m(x)$的误分类样本的权值之和，由此可以看出数据权值分布$D_m$与基本分类器的分类误差率的关系；（c）计算基本分类器$G_m(x)$的系数$\alpha_m$，表示$G_m(x)$在最终分类器的重要性。当$e_m&lt;=\frac12$时，$\alpha_m&gt;=0$并且随着$e_m$的减小而增大，所以分类误差率越小的基本分类器在最终分类器忠的作用越大。（d）更新训练数据的权值分布为下一轮做准备，$w_{m+1,i}=\frac{w_{mi}}{Z_m}e^{-\alpha_m},G_m(x_i)=y_i$，$w_{m+1,i}=\frac{w_{mi}}{Z_m}e^{\alpha_m},G_m(x_i)\neq y_i$。由此可知，基本分类器误分类样本的权值得以扩大，而被正确分类样本的权值却得以缩小。因此，误分类样本的在下一轮会起到更大的作用。</p>
 <p>步骤（3）线性组合$f(x)$实现$M$个基本分类器的加权表决，系数$\alpha_m$表示了基本分类器$G_m(x)$的重要性，这里$\alpha_m$之和并不为1。$f(x)$的符号决定实例$x$的分类，$f(x)$的绝对值表示分类的确信度。</p>
 <h2 id="8-2-AdaBoost算法的训练误差分析"><a href="#8-2-AdaBoost算法的训练误差分析" class="headerlink" title="8.2 AdaBoost算法的训练误差分析"></a>8.2 AdaBoost算法的训练误差分析</h2><ul>
 <li><strong>AdaBoost的训练误差界</strong>AdaBoost算法最终分类器的训练误差界为$\frac1N\sum_{i=1}^NI(G(x_i)\neq y_i)&lt;=\frac1N\sum_iexp(-y_if(x_i))=\prod_mZ_m$，这里$G(x)$，$f(x)$和$Z_m$分别由之前的石子给出。</li>
-<li>二类分类问题AdaBoost的训练误差界$\prod_{m=1}^MZ_m=\prod_{m=1}^M[2\sqrt{e_m(1-e_m)}]=\prod_{m=1}^M\sqrt{(1-4\gamma <em>m^2)}&lt;=exp(-2\sum</em>{m=1}^M\gamma_m^2)$，这里$\gamma_m=\frac12-e_m$</li>
+<li>二类分类问题AdaBoost的训练误差界$\prod_{m=1}^MZ_m=\prod_{m=1}^M[2\sqrt{e_m(1-e_m)}]=\prod_{m=1}^M\sqrt{(1-4\gamma _m^2)}&lt;=exp(-2\sum_{m=1}^M\gamma_m^2)$，这里$\gamma_m=\frac12-e_m$</li>
 <li>推论：如果存在$\gamma&gt;0$，对所有$m$有$\gamma_m&gt;\gamma$则$\frac1N\sum_{i=1}^NI(G(x_i)\neq y_i)&lt;=exp(-2M\gamma^2)$</li>
 </ul>
 <h2 id="8-3-AdaBoost算法的解释"><a href="#8-3-AdaBoost算法的解释" class="headerlink" title="8.3 AdaBoost算法的解释"></a>8.3 AdaBoost算法的解释</h2><h3 id="8-3-1-前向分步算法"><a href="#8-3-1-前向分步算法" class="headerlink" title="8.3.1 前向分步算法"></a>8.3.1 前向分步算法</h3><ul>
 <li><p>考虑加法模型$f(x)=\sum_{m=1}^M\beta_mb(x;\gamma_m)$，其中$b(x;\gamma_m)$为基函数，$\gamma_m$为基函数的系数。在给定训练数据及损失函数$L(y,f(x))$的条件下，学习加法模型成为经验风险极小化即函数最小化问题$min_{\beta_m\gamma_m}\sum_{i=1}^NL(y_i,\sum_{m=1}^M\beta_mb(x_i;\gamma_m))$。前向分步算法求解这一优化问题的想法：学习的是加法模型，如果能够从前向后，每一步只学习一个基函数及其系数，逐步逼近优化目标函数，简化优化的复杂度，即每一步只需要优化损失函数即可。</p>
 </li>
-<li><p>$$<br>前向分步算法\<br>输入：训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)};损失函数L(y,f(x));基函数集{b(x;\gamma}\<br>输出：加法模型f(x)<br>步骤：(1)初始化f_0(x)=0;\<br>(2)对m=1,2,…,M\<br>(a)极小化损失函数(\beta_m,\gamma_m)=argmin_{\beta,\gamma}\sum_{i=1}^NL(y_i,f_{m-1}(x_i)+\beta b(x_i;\gamma))\<br>得到参数\beta_m,\gamma_m\<br>(b)更新f_m(x)=f_{m-1}(x)+\beta_mb(x;\gamma_m)\<br>(3)得到加法模型f(x)=f_M(x)=\sum_[m=1]^M\beta_mb(x;\gamma_m)<br>$$</p>
-</li>
+<li><script type="math/tex; mode=display">
+前向分步算法\\
+输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\};损失函数L(y,f(x));基函数集\{b(x;\gamma\}\\
+输出：加法模型f(x)
+步骤：(1)初始化f_0(x)=0;\\
+(2)对m=1,2,...,M\\
+(a)极小化损失函数(\beta_m,\gamma_m)=argmin_{\beta,\gamma}\sum_{i=1}^NL(y_i,f_{m-1}(x_i)+\beta b(x_i;\gamma))\\
+得到参数\beta_m,\gamma_m\\
+(b)更新f_m(x)=f_{m-1}(x)+\beta_mb(x;\gamma_m)\\
+(3)得到加法模型f(x)=f_M(x)=\sum_[m=1]^M\beta_mb(x;\gamma_m)</script></li>
 </ul>
 <h3 id="8-3-2-前向分步算法与AdaBoost"><a href="#8-3-2-前向分步算法与AdaBoost" class="headerlink" title="8.3.2 前向分步算法与AdaBoost"></a>8.3.2 前向分步算法与AdaBoost</h3><ul>
 <li>AdaBoost算法是前向分部算法的特例，模型是由基本分类器组成的加法模型，损失函数是指数函数。</li>
@@ -28,9 +50,29 @@
 <h2 id="8-4-提升树"><a href="#8-4-提升树" class="headerlink" title="8.4 提升树"></a>8.4 提升树</h2><h3 id="8-4-1-提升树模型"><a href="#8-4-1-提升树模型" class="headerlink" title="8.4.1 提升树模型"></a>8.4.1 提升树模型</h3><ul>
 <li>提升方法实际采用加法模型与前向分步算法。以决策树为基函数的提升方法称为提升树。对分类问题决策树是二叉分类树，对回归问题决策树是二叉决策树。$f_M(x)=\sum_{m=1}^MT(x;\Theta_m)$，其中$\Theta_m$为决策树的参数，$M$为树个数，$T(x;\Theta_m)$表示决策树。</li>
 </ul>
-<h3 id="8-4-2-提升树模型"><a href="#8-4-2-提升树模型" class="headerlink" title="8.4.2 提升树模型"></a>8.4.2 提升树模型</h3><p>$$<br>回归问题的提升树算法\<br>输入：训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)},x_i\in\cal X\sub R^n,y_i\in\cal Y\sub R;\<br>输出：提升树f_M(x)\<br>步骤：(1)初始化f_0(x)=0\<br>(2)对m=1,2,…,M\<br>(a)按照T(x;\Theta)=\sum_{j=1}^Jc_jI(x\in R_j)计算残差r_{mi}=y_i-f_{m-1}(x_i),i=1,2,..,N\<br>(b)拟合残差r_{mi}学习一个回归树,得到T(x;\Theta_m)\<br>(c)更新f_m(x)=f_{m-1}(x)+T(x;\Theta_m)\<br>(3)得到回归问题提升树f_M(x)=\sum_{m=1}^MT(x;\Theta_m)\<br>\<br>树T(x;\Theta)=\sum_{j=1}^Jc_jI(x\in R_j),其中将输入空间\cal X划分为J个互不相交的区域R_1,R_2,…,R_J\并且在每个区域上确定输出的常量c_j\<br>其中\Theta={(R_1,c_1),(R_2,c_2),…,(R_J,c_J)}表示树的区域划分和各区域上的常数\J是回归树的复杂度即叶结点个数<br>$$</p>
-<h3 id="8-4-3-梯度提升算法"><a href="#8-4-3-梯度提升算法" class="headerlink" title="8.4.3 梯度提升算法"></a>8.4.3 梯度提升算法</h3><p>$$<br>梯度提升算法\<br>输入：训练数据集T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)},x_i\in\cal X\sub R^n,y_i\in\cal{ Y}\sub R,损失函数L(y,f(x))\<br>输出：回归树\hat f(x)\<br>步骤：(1)初始化f_0(x)=argmin_c\sum_{i=1}^NL(y_i,c)\<br>(2)对m=1,2,..,M\<br>(a)对i=1,2,..,N,计算r_{mi}=-[\frac{\partial L(y_i,f(x_i))}{\partial f(x_i)}]<em>{f(x)=f</em>{m-1}(x)}\<br>(b)对r_{mi}拟合一个回归树，得到第m棵树的叶结点区域R_{mj},j=1,2,…,J\<br>(c)对j=1,2,…,J,计算c_{mj}=argmin_c\sum_{x_i\in R_{mj}}L(y_i,f_{m-1}x(x_i)+c)\<br>(d)更新f_m(x)=f_{m-1}(x)+\sum_{j=1}^Jc_{mj}I(x\in R_{mj})\<br>(3)得到回归树\hat f(x)=f_M(x)=\sum_{m=1}^M\sum_{j=1}^Jc_{mj}I(x\in R_{mj})<br>$$</p>
-</div><div class="article-licensing box"><div class="licensing-title"><p>统计学习方法第八章</p><p><a href="https://micro-han.github.io/2021/11/12/读书笔记-统计学习方法第八章/">https://micro-han.github.io/2021/11/12/读书笔记-统计学习方法第八章/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Micro han</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-11-12</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-11-16</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="link-muted mr-2" rel="tag" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/">《统计学习方法》</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://micro-han.github.io/about/" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechatpay.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/11/13/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E7%AB%A0/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">强化学习第三章</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/11/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B8%83%E7%AB%A0/"><span class="level-item">统计学习方法第七章</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+<h3 id="8-4-2-提升树模型"><a href="#8-4-2-提升树模型" class="headerlink" title="8.4.2 提升树模型"></a>8.4.2 提升树模型</h3><script type="math/tex; mode=display">
+回归问题的提升树算法\\
+输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\},x_i\in\cal X\sub R^n,y_i\in\cal Y\sub R;\\
+输出：提升树f_M(x)\\
+步骤：(1)初始化f_0(x)=0\\
+(2)对m=1,2,...,M\\
+(a)按照T(x;\Theta)=\sum_{j=1}^Jc_jI(x\in R_j)计算残差r_{mi}=y_i-f_{m-1}(x_i),i=1,2,..,N\\
+(b)拟合残差r_{mi}学习一个回归树,得到T(x;\Theta_m)\\
+(c)更新f_m(x)=f_{m-1}(x)+T(x;\Theta_m)\\
+(3)得到回归问题提升树f_M(x)=\sum_{m=1}^MT(x;\Theta_m)\\
+\\
+树T(x;\Theta)=\sum_{j=1}^Jc_jI(x\in R_j),其中将输入空间\cal X划分为J个互不相交的区域R_1,R_2,...,R_J\\并且在每个区域上确定输出的常量c_j\\
+其中\Theta=\{(R_1,c_1),(R_2,c_2),...,(R_J,c_J)\}表示树的区域划分和各区域上的常数\\J是回归树的复杂度即叶结点个数</script><h3 id="8-4-3-梯度提升算法"><a href="#8-4-3-梯度提升算法" class="headerlink" title="8.4.3 梯度提升算法"></a>8.4.3 梯度提升算法</h3><script type="math/tex; mode=display">
+梯度提升算法\\
+输入：训练数据集T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\},x_i\in\cal X\sub R^n,y_i\in\cal{ Y}\sub R,损失函数L(y,f(x))\\
+输出：回归树\hat f(x)\\
+步骤：(1)初始化f_0(x)=argmin_c\sum_{i=1}^NL(y_i,c)\\
+(2)对m=1,2,..,M\\
+(a)对i=1,2,..,N,计算r_{mi}=-[\frac{\partial L(y_i,f(x_i))}{\partial f(x_i)}]_{f(x)=f_{m-1}(x)}\\
+(b)对r_{mi}拟合一个回归树，得到第m棵树的叶结点区域R_{mj},j=1,2,...,J\\
+(c)对j=1,2,...,J,计算c_{mj}=argmin_c\sum_{x_i\in R_{mj}}L(y_i,f_{m-1}x(x_i)+c)\\
+(d)更新f_m(x)=f_{m-1}(x)+\sum_{j=1}^Jc_{mj}I(x\in R_{mj})\\
+(3)得到回归树\hat f(x)=f_M(x)=\sum_{m=1}^M\sum_{j=1}^Jc_{mj}I(x\in R_{mj})</script></div><div class="article-licensing box"><div class="licensing-title"><p>统计学习方法第八章</p><p><a href="https://micro-han.github.io/2021/11/12/读书笔记-统计学习方法第八章/">https://micro-han.github.io/2021/11/12/读书笔记-统计学习方法第八章/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Micro han</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-11-12</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-11-16</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="link-muted mr-2" rel="tag" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/">《统计学习方法》</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://micro-han.github.io/about/" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechatpay.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/11/13/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E7%AB%A0/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">强化学习第三章</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/11/07/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B8%83%E7%AB%A0/"><span class="level-item">统计学习方法第七章</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
             id: "0dc381baf8c4a37f17f6874a2679318f",
             repo: "Micro-han.github.io",
             owner: "Micro-han",
