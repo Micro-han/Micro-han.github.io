@@ -4,27 +4,32 @@
 <li>朴素贝叶斯利用贝叶斯定理与联合概率模型进行分类模型，后验概率最大等价01损失函数的期望风险最小化</li>
 </ul>
 <h2 id="4-1-朴素贝叶斯法的学习与分类"><a href="#4-1-朴素贝叶斯法的学习与分类" class="headerlink" title="4.1 朴素贝叶斯法的学习与分类"></a>4.1 朴素贝叶斯法的学习与分类</h2><h3 id="4-1-1-基本方法"><a href="#4-1-1-基本方法" class="headerlink" title="4.1.1 基本方法"></a>4.1.1 基本方法</h3><ul>
-<li><p>输入空间$\cal X \subset R^n$为$n$维向量的集合，输出空间为类标记集合$\cal Y={c_1,c_2,…,c_k}$。输入为特征向量$x\in \cal X$输出为类标记$y\in \cal Y$。$X$是定义在输入空间$\cal X$上的随机向量，$Y$是定义在输出空间$\cal Y$上的随机变量。$P(X,Y)$是定义在$X$和$Y$的联合概率分布。训练数据集$T={(x_1,y_1),…,(x_N,y_N)}$由$P(X,Y)$独立同分布产生。</p>
+<li><p>输入空间$\cal X \subset R^n$为$n$维向量的集合，输出空间为类标记集合$\cal Y=\{c_1,c_2,…,c_k\}$。输入为特征向量$x\in \cal X$输出为类标记$y\in \cal Y$。$X$是定义在输入空间$\cal X$上的随机向量，$Y$是定义在输出空间$\cal Y$上的随机变量。$P(X,Y)$是定义在$X$和$Y$的联合概率分布。训练数据集$T=\{(x_1,y_1),…,(x_N,y_N)\}$由$P(X,Y)$独立同分布产生。</p>
 </li>
 <li><p>学习先验概率分布及条件概率分布，先验概率分布$P(Y=c_k),k=1,2,…,K$，条件概率分布$P(X=x|Y=c_k)=P(X^{(1)}=x^{(1)},X^{(2)}=x^{(2)},…,X^{(n)}=x^{(n)}|Y=c_k),k=1,2,…,K$，于是学习到联合概率分布$P(X,Y)$</p>
 </li>
 <li><p>条件独立性假设$P(X=x|Y=c_k)=P(X^{(1)}=x^{(1)},X^{(2)}=x^{(2)},…,X^{(n)}=x^{(n)}|Y=c_k)=\prod_{j=1}^{n}P(X^{(j)}=x^{(j)}|Y=c_k)$</p>
 </li>
-<li><p>对给定的输入$x$，通过学习到的模型计算后验概率$P(Y=c_k|X=x)$，将后验概率最大的类作为$x$的类输出。后验概率计算根据贝叶斯定理<br>  $$<br>  P(Y=c_k|X=x)=\frac{P(X=x|Y=c_k)P(Y=c_k)}{\sum_kP(X=x|Y=c_k)P(Y=c_k)}<br>  $$<br>  朴素贝叶斯分类器可以表示为<br>  $$<br>  y=f(x)=argmax_{c_k}\frac{P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}{\sum_kP(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}<br>  $$<br>  又观察到所有$c_k$都是相通的，所以可以化简成$y=argmax_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$</p>
+<li><p>对给定的输入$x$，通过学习到的模型计算后验概率$P(Y=c_k|X=x)$，将后验概率最大的类作为$x$的类输出。后验概率计算根据贝叶斯定理</p>
+<script type="math/tex; mode=display">
+  P(Y=c_k|X=x)=\frac{P(X=x|Y=c_k)P(Y=c_k)}{\sum_kP(X=x|Y=c_k)P(Y=c_k)}</script><p>  朴素贝叶斯分类器可以表示为</p>
+<script type="math/tex; mode=display">
+  y=f(x)=argmax_{c_k}\frac{P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}{\sum_kP(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}</script><p>  又观察到所有$c_k$都是相通的，所以可以化简成$y=argmax_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$</p>
 </li>
 </ul>
 <h3 id="4-1-2-后验概率最大化的含义"><a href="#4-1-2-后验概率最大化的含义" class="headerlink" title="4.1.2 后验概率最大化的含义"></a>4.1.2 后验概率最大化的含义</h3><ul>
 <li><p>假设选择<strong>01损失函数</strong>，期望风险函数是$R_{exp}(f)=E[L(Y,f(X))]$，期望是对联合分布$P(X,Y)$取的，所以条件期望为$R_{exp}(f)=E_X\sum_{k=1}^K[L(c_k,f(X))]P(c_k|X)$，为了使得期望风险最小化，只需对$X=x$逐个极小化，可以得到</p>
 </li>
-<li><p>$$<br>  f(x)=argmin_{y\in \cal Y}\sum_{i=1}^KL(c_k,y)P(c_k|X=x)\=argmin_{y\in \cal Y}\sum_{k=1}^KP(y\neq c_k|X=x)=argmin_{y \in \cal Y}(1-P(y=c_k|X=x))\=argmax_{y \in \cal Y}P(y=c_k|X=x)<br>  $$</p>
-</li>
+<li><script type="math/tex; mode=display">
+  f(x)=argmin_{y\in \cal Y}\sum_{i=1}^KL(c_k,y)P(c_k|X=x)\\=argmin_{y\in \cal Y}\sum_{k=1}^KP(y\neq c_k|X=x)=argmin_{y \in \cal Y}(1-P(y=c_k|X=x))\\=argmax_{y \in \cal Y}P(y=c_k|X=x)</script></li>
 </ul>
 <p>这样期望风险最小化就得到了后验概率最大化准则。</p>
 <h2 id="4-2-朴素贝叶斯法的参数估计"><a href="#4-2-朴素贝叶斯法的参数估计" class="headerlink" title="4.2 朴素贝叶斯法的参数估计"></a>4.2 朴素贝叶斯法的参数估计</h2><h3 id="4-2-1-极大似然估计"><a href="#4-2-1-极大似然估计" class="headerlink" title="4.2.1 极大似然估计"></a>4.2.1 极大似然估计</h3><ul>
-<li>先验概率$P(Y=c_k)$的极大似然估计是$P(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)}{N},k=1,2,…,K$，设第$j$个特征$x^{(j)}$可能取值的集合为${a_{j1},a_{j2},…,a_{jS_j}}$，条件概率$P(X^{(j)}=a_{jl}|Y=c_k)$的极大似然估计是<br>  $$<br>  P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i+1}^NI(y_i=c_k)}<br>  $$<br>  其中，$x_i^{(j)}$是第$i$个样本的第$j$个特征，$a_{jl}$是第$j$个特征可能取的第$l$个值，$I$为指使函数</li>
+<li>先验概率$P(Y=c_k)$的极大似然估计是$P(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)}{N},k=1,2,…,K$，设第$j$个特征$x^{(j)}$可能取值的集合为$\{a_{j1},a_{j2},…,a_{jS_j}\}$，条件概率$P(X^{(j)}=a_{jl}|Y=c_k)$的极大似然估计是<script type="math/tex; mode=display">
+  P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i+1}^NI(y_i=c_k)}</script>  其中，$x_i^{(j)}$是第$i$个样本的第$j$个特征，$a_{jl}$是第$j$个特征可能取的第$l$个值，$I$为指使函数</li>
 </ul>
 <h3 id="4-2-2-学习与分类算法"><a href="#4-2-2-学习与分类算法" class="headerlink" title="4.2.2 学习与分类算法"></a>4.2.2 学习与分类算法</h3><ul>
-<li><strong>输入</strong>：训练数据$T={(x_1,y_1),…,(x_N,y_N)}$，其中$x_i=(x_i^{(1)},…,x_i^{(n)})^T$，$x_i^{(j)}$是第$i$个样本的第$j$个特征，$x_i^{(j)}\in{a_{j1},a_{j2},…,a_{jS_j}}$，$a_{jl}$是第$j$个特征可能取的第$l$个值，$j=1,2,…,n, l=1,2,…,S_j, y_i \in {c_1,c_2,…,c_k}$</li>
+<li><strong>输入</strong>：训练数据$T=\{(x_1,y_1),…,(x_N,y_N)\}$，其中$x_i=(x_i^{(1)},…,x_i^{(n)})^T$，$x_i^{(j)}$是第$i$个样本的第$j$个特征，$x_i^{(j)}\in\{a_{j1},a_{j2},…,a_{jS_j}\}$，$a_{jl}$是第$j$个特征可能取的第$l$个值，$j=1,2,…,n, l=1,2,…,S_j, y_i \in \{c_1,c_2,…,c_k\}$</li>
 <li><strong>输出</strong>：实例$x$的分类</li>
 <li><strong>步骤</strong>：（1）计算先验概率及条件概率$P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i+1}^NI(y_i=c_k)}$；（2）对于给定的实例输出$P(Y=c_k)\prod_{j=1}^{n}P(X^{(j)}=x^{(j)}|Y=c_k)$；（3）确定实例的分类$y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^{n}P(X^{(j)}=x^{(j)}|Y=c_k)$</li>
 </ul>
@@ -34,7 +39,14 @@
 <li>对于任何$l=1,2,…,S_j,k=1,2,…,K$有$P_\lambda(X^{(j)}=a_{jl}|Y=c_k)&gt;0$，$\sum_{l=1}^{S_j}P(X^{(j)}=a_{jl}|Y=c_k)=1$同样，先验概率的贝叶斯估计是$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)+\lambda}{N+K\lambda}$</li>
 </ul>
 <h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p><strong>4.1 用极大似然估计法推出朴素贝叶斯法中的概率估计公式及公式</strong></p>
-<p>$$<br>两个公式为P(Y-c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)}{N},k=1,2,…,K\<br>P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^NI(y_i=c_k)}\<br>证明公式一，设P(Y=c_k)=p,记\sum_{i=1}^NI(y_i=c_k)=M，那么独立同分布随机抽取N个样本，其中Y=c_k恰好发生M次的概率为：\<br>P(p)=p^M(i-p)^{N-m}\<br>极大似然估计就是找一个寻找一个p的值p′让概率P(p′)最大，该问题等价于求p′使得logP(p′)最大\<br>即\frac{d logP(p)}{dp}=\frac Mp - \frac{N-M}{1-p}=\frac{M-Np}{p(1-p)}\<br>令上式等于0，可得p=\frac M N<br>$$<br><strong>4.2 用贝叶斯估计法推出朴素贝叶斯法中的概率估计公式及公式</strong></p>
+<script type="math/tex; mode=display">
+两个公式为P(Y-c_k)=\frac{\sum_{i=1}^NI(y_i=c_k)}{N},k=1,2,...,K\\
+P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^NI(y_i=c_k)}\\
+证明公式一，设P(Y=c_k)=p,记\sum_{i=1}^NI(y_i=c_k)=M，那么独立同分布随机抽取N个样本，其中Y=c_k恰好发生M次的概率为：\\
+P(p)=p^M(i-p)^{N-m}\\
+极大似然估计就是找一个寻找一个p的值p′让概率P(p′)最大，该问题等价于求p′使得logP(p′)最大\\
+即\frac{d logP(p)}{dp}=\frac Mp - \frac{N-M}{1-p}=\frac{M-Np}{p(1-p)}\\
+令上式等于0，可得p=\frac M N</script><p><strong>4.2 用贝叶斯估计法推出朴素贝叶斯法中的概率估计公式及公式</strong></p>
 </div><div class="article-licensing box"><div class="licensing-title"><p>统计学习方法第四章</p><p><a href="https://micro-han.github.io/2021/10/16/读书笔记-统计学习方法第四章/">https://micro-han.github.io/2021/10/16/读书笔记-统计学习方法第四章/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Micro han</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-10-16</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-11-16</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="link-muted mr-2" rel="tag" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/">《统计学习方法》</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://micro-han.github.io/about/" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechatpay.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/10/17/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E7%AB%A0/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">强化学习第一章</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/10/15/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B8%89%E7%AB%A0/"><span class="level-item">统计学习方法第三章</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
             id: "470c26c46be35753b97023825e2f73f0",
             repo: "Micro-han.github.io",

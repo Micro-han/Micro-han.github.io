@@ -6,8 +6,17 @@
 <h2 id="9-1-EM算法的引入"><a href="#9-1-EM算法的引入" class="headerlink" title="9.1 EM算法的引入"></a>9.1 EM算法的引入</h2><h3 id="9-1-1-EM算法"><a href="#9-1-1-EM算法" class="headerlink" title="9.1.1 EM算法"></a>9.1.1 EM算法</h3><ul>
 <li><p>将观测数据表示为$Y=(Y_1,Y_2,…,Y_n)^T$，未观测数据表示为$Z=(Z_1,Z_2,…,Z_n)^T$，则观测数据的似然函数为$P(Y|\theta)=\sum_ZP(Z|\theta)P(Y|Z,\theta)$，即$P(Y|\theta)=\prod_{j=1}^n[\pi p^{y_j}(1-p)^{1-y_j}+(1-\pi)q^{y_j}(1-q)^{1-y_j}]$。考虑求模型参数$\theta=(\pi,p,q)$的极大似然估计，即$\hat \theta=argmax_\theta logP(Y|\theta)$。</p>
 </li>
-<li><p>$$<br>EM算法\<br>输入：观测变量数据Y,隐变量数据Z,联合分布P(Y,Z|\theta),条件分布P(Z|Y,\theta)\<br>输出：模型参数\theta\<br>步骤：(1)选择参数的初值\theta^{(0)},开始迭代\<br>(2)E步:记\theta^{(i)}为第i次迭代参数\theta的估计值,在第i+1次迭代的E步\<br>计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZlogP(Y,Z|\theta)P(Z|Y,\theta^{(i)})\<br>这里,P(Z|Y,\theta^{(i)})是在给定观测书Y和当前的参数估计\theta^{(i)}下隐变量数据Z的条件概率分布\<br>(3)M步:求是的Q(\theta,\theta^{(i)})极大化的\theta,确定i+1次迭代的参数的估计值\theta^{(i+1)}\<br>\theta^{(i+1)}=argmax_\theta Q(\theta,\theta^{(i)})\<br>(4)重复(2)和(3)直到收敛<br>$$</p>
-</li>
+<li><script type="math/tex; mode=display">
+EM算法\\
+输入：观测变量数据Y,隐变量数据Z,联合分布P(Y,Z|\theta),条件分布P(Z|Y,\theta)\\
+输出：模型参数\theta\\
+步骤：(1)选择参数的初值\theta^{(0)},开始迭代\\
+(2)E步:记\theta^{(i)}为第i次迭代参数\theta的估计值,在第i+1次迭代的E步\\
+计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZlogP(Y,Z|\theta)P(Z|Y,\theta^{(i)})\\
+这里,P(Z|Y,\theta^{(i)})是在给定观测书Y和当前的参数估计\theta^{(i)}下隐变量数据Z的条件概率分布\\
+(3)M步:求是的Q(\theta,\theta^{(i)})极大化的\theta,确定i+1次迭代的参数的估计值\theta^{(i+1)}\\
+\theta^{(i+1)}=argmax_\theta Q(\theta,\theta^{(i)})\\
+(4)重复(2)和(3)直到收敛</script></li>
 <li><p><strong>Q函数</strong>：完全数据的对数似然函数$logP(Y,Z|\theta)$关于在给定观测数据$Y$和当前参数$\theta ^{(i)}$下对未观测数据$Z$的条件概率分布$P(Z|Y,\theta^{(i)})$的期望成为Q函数即$Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]$。</p>
 </li>
 <li><p>步骤(1)参数的初值可以任意选择；步骤(2)E步求Q函数，Q函数中Z是未观测数据，Y是观测数据。Q函数的第1个变元表示要极大化的参数，第2个变元表示参数的当前估计值，每次迭代实际在求Q函数的最大值；步骤(3)M步求Q函数的极大化，得到$\theta^{(i+1)}$，完成一次迭代，每次迭代使似然函数增大或达到局部极值；步骤(4)给出停止迭代的条件，一般是对较小的正数$\varepsilon_1,\varepsilon_2$，若满足$||\theta^{(i+1)}-\theta^{(i)}||&lt;\varepsilon _1$或$||Q(\theta^{(i+1)},\theta^{(i)})-Q(\theta^{(i)},\theta^{(i)})||&lt;\varepsilon_2$</p>
@@ -15,14 +24,14 @@
 </ul>
 <h3 id="9-1-2-EM算法的导出"><a href="#9-1-2-EM算法的导出" class="headerlink" title="9.1.2 EM算法的导出"></a>9.1.2 EM算法的导出</h3><ul>
 <li>极大化$L(\theta)=logP(Y|\theta)=log\sum_ZP(Y,Z|\theta)=log(\sum_ZP(Y|Z,\theta)P(Z|\theta))$，考虑两者的差$L(\theta)-L(\theta^{(i)})=log(\sum_ZP(Y|Z,\theta)P(Z|\theta))-logP(Y|\theta^{(i)})$，利用Jensen不等式，得到下界</li>
-<li>$B(\theta,\theta^{(i)})\hat=\sum_ZP(Z|Y,\theta^{(i)})log\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})}-logP(Y|\theta^{(i)}) \=\sum_ZP(Z|Y,\theta^{(i)})lop\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})}$</li>
+<li>$B(\theta,\theta^{(i)})\hat=\sum_ZP(Z|Y,\theta^{(i)})log\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})}-logP(Y|\theta^{(i)}) \\=\sum_ZP(Z|Y,\theta^{(i)})lop\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})}$</li>
 </ul>
 <h3 id="9-1-3-EM算法在无监督学习中的应用"><a href="#9-1-3-EM算法在无监督学习中的应用" class="headerlink" title="9.1.3 EM算法在无监督学习中的应用"></a>9.1.3 EM算法在无监督学习中的应用</h3><ul>
 <li>EM算法可以用于生成模型的无监督学习。</li>
 </ul>
 <h2 id="9-2-EM算法的收敛性"><a href="#9-2-EM算法的收敛性" class="headerlink" title="9.2 EM算法的收敛性"></a>9.2 EM算法的收敛性</h2><ul>
 <li>设$P(Y|\theta)$为观测数据的似然函数，$\theta^{(i)}(i=1,2,…)$为EM算法得到的参数估计序列，$P(Y|\theta^{(i)})(i=1,2,…)$为对应的似然函数序列，则$P(Y|\theta^{(i)})$是单调递增的，即$P(Y|\theta^{(i+1)})&gt;=P(Y|\theta^{(i)})$</li>
-<li>设$L(\theta)=logP(Y|\theta)$为观测数据的对数似然函数，$\theta^{(i)}(i=1,2,…)$为EM算法得到的参数估计序列，$L(\theta^{(i)})(i=1,2,…)$为对应的对数似然函数序列。（1）如果$P(Y|\theta )$有上界，则$L(\theta^{(i)})=logP(Y|\theta^{(i)})$收敛到某一值$L^*$；（2）在函数$Q(\theta,\theta’)$与$L(\theta)$满足一定条件下，由EM算法得到的参数估计序列$\theta^{(i)}$的收敛值$\theta^*$是$L(\theta )$的稳定点。</li>
+<li>设$L(\theta)=logP(Y|\theta)$为观测数据的对数似然函数，$\theta^{(i)}(i=1,2,…)$为EM算法得到的参数估计序列，$L(\theta^{(i)})(i=1,2,…)$为对应的对数似然函数序列。（1）如果$P(Y|\theta )$有上界，则$L(\theta^{(i)})=logP(Y|\theta^{(i)})$收敛到某一值$L^<em>$；（2）在函数$Q(\theta,\theta’)$与$L(\theta)$满足一定条件下，由EM算法得到的参数估计序列$\theta^{(i)}$的收敛值$\theta^</em>$是$L(\theta )$的稳定点。</li>
 </ul>
 <h2 id="9-3-EM算法在高斯混合模型学习中的应用"><a href="#9-3-EM算法在高斯混合模型学习中的应用" class="headerlink" title="9.3 EM算法在高斯混合模型学习中的应用"></a>9.3 EM算法在高斯混合模型学习中的应用</h2><h3 id="9-3-1-高斯混合模型"><a href="#9-3-1-高斯混合模型" class="headerlink" title="9.3.1 高斯混合模型"></a>9.3.1 高斯混合模型</h3><ul>
 <li>高斯混合模型是指具有$P(y|\theta)=\sum_{k=1}^K\alpha_k\phi(y|\theta_k)$形式的概率分布模型，其中，$\alpha_k$是系数，$\alpha_k&gt;=0 且 \sum_{k=1}^K\alpha_k=1$，$\phi(y|\theta_k)$是高斯分布密度，$\theta_k=(\mu_k,\sigma_k^2)$，$\phi(y|\theta_k)=\frac1{\sqrt{2\pi}\sigma _k}exp(-\frac{(y-\mu_k)^2}{2\sigma _k^2})$称为第$k$个分模型。</li>
@@ -30,8 +39,18 @@
 <h3 id="9-3-2-高斯混合模型参数估计的EM算法"><a href="#9-3-2-高斯混合模型参数估计的EM算法" class="headerlink" title="9.3.2 高斯混合模型参数估计的EM算法"></a>9.3.2 高斯混合模型参数估计的EM算法</h3><ul>
 <li><p>1 明确隐变量，写出完全数据的对数似然函数；2 EM算法的E步：确定Q函数；3 确定EM算法的M步</p>
 </li>
-<li><p>$$<br>高斯混合模型参数估计的EM算法\<br>输入:观测数据y_1,y_2,…,y_N,高斯混合模型\<br>输出:高斯混合模型参数\<br>步骤:(1)取参数的初始值开始迭代\<br>(2)E步:依据当前模型参数,计算分模型k对观测数据y_j的响应度\<br>\gamma_{jk}^2=\frac{\alpha_k\phi(y_j|\theta_k)}{\sum_{k=1}^K\alpha_k\phi(y_j|\theta_k)},j=1,2,..,N;k=1,2,…,K\<br>(3)M步:计算新一轮迭代的模型参数\<br>\hat \mu_k=\frac{\sum_{j=1}^N\hat \gamma_{jk}y_j}{\sum_{j=1}^N\hat \gamma_{jk}},k=,1,2,…,K \<br>\hat \sigma_k^2=\frac{\sum_{j=1}^N\hat \gamma_{jk}(y_j-\mu_k)^2}{\sum_{j=1}^N\hat \gamma_{jk}},k=1,2,…,K\<br>\hat \alpha_k=\frac{\sum_{j=1}^N\hat \gamma_{jk}}{N}, k=1,2,…,K\<br>(4)重复(2)和(3)直到收敛<br>$$</p>
-</li>
+<li><script type="math/tex; mode=display">
+高斯混合模型参数估计的EM算法\\
+输入:观测数据y_1,y_2,...,y_N,高斯混合模型\\
+输出:高斯混合模型参数\\
+步骤:(1)取参数的初始值开始迭代\\
+(2)E步:依据当前模型参数,计算分模型k对观测数据y_j的响应度\\
+\gamma_{jk}^2=\frac{\alpha_k\phi(y_j|\theta_k)}{\sum_{k=1}^K\alpha_k\phi(y_j|\theta_k)},j=1,2,..,N;k=1,2,...,K\\
+(3)M步:计算新一轮迭代的模型参数\\
+\hat \mu_k=\frac{\sum_{j=1}^N\hat \gamma_{jk}y_j}{\sum_{j=1}^N\hat \gamma_{jk}},k=,1,2,...,K \\
+\hat \sigma_k^2=\frac{\sum_{j=1}^N\hat \gamma_{jk}(y_j-\mu_k)^2}{\sum_{j=1}^N\hat \gamma_{jk}},k=1,2,...,K\\
+\hat \alpha_k=\frac{\sum_{j=1}^N\hat \gamma_{jk}}{N}, k=1,2,...,K\\
+(4)重复(2)和(3)直到收敛</script></li>
 </ul>
 <h2 id="9-4-EM算法的推广"><a href="#9-4-EM算法的推广" class="headerlink" title="9.4 EM算法的推广"></a>9.4 EM算法的推广</h2><h3 id="9-4-1-F函数的极大-极大算法"><a href="#9-4-1-F函数的极大-极大算法" class="headerlink" title="9.4.1 F函数的极大-极大算法"></a>9.4.1 F函数的极大-极大算法</h3><ul>
 <li><p>假设隐变量数据$Z$的概率分布为$\widetilde P(Z)$，定义分布$\widetilde P$与参数$\theta$ 的函数$F(\widetilde P,\theta)=E_{\widetilde P}[logP(Y,Z|\theta)]+H(\widetilde P)$。式中$H(\widetilde P)=-E_{\widetilde P}log \widetilde P(Z)$是分布$\widetilde P(Z)$的熵。通常假设$P(Y,Z|\theta)$是$\theta$的连续函数，因而$F(\widetilde P,\theta)$是$\widetilde P$和$\theta$的连续函数。</p>
@@ -47,12 +66,35 @@
 </li>
 </ul>
 <h3 id="9-4-2-GEM算法"><a href="#9-4-2-GEM算法" class="headerlink" title="9.4.2 GEM算法"></a>9.4.2 GEM算法</h3><ul>
-<li><p>$$<br>GEM算法1\<br>输入:观测数据,F函数;\<br>输出:模型参数\<br>步骤:(1)初始化参数\theta^{(0)},开始迭代\<br>(2)第i+1次迭代,第1步:记\theta^{(i)}为参数\theta的估计值,\widetilde P^{(i)}为函数\widetilde P的估计，求\widetilde P^{(i+1)}使\widetilde P极大化F(\widetilde P,\theta^{(i)})\<br>(3)第2步:求\theta^{(i+1)}使得F(\widetilde P^{(i+1)},\theta)极大化\<br>(4)重复(2)(3)直到收敛<br>$$</p>
-</li>
-<li><p>$$<br>GEM算法2\<br>输入:观测数据,Q函数;\<br>输出:模型参数\<br>步骤:(1)初始化参数\theta^{(0)},开始迭代\<br>(2)第i+1次迭代,第1步:记\theta^{(i)}为参数\theta的估计值\<br>计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZP(Z|Y,\theta^{(i)})logP(Y,Z|\theta)\<br>(3)第2步:求\theta^{(i+1)}使得Q(\theta^{(i+1)},\theta^{(i)})&gt;Q(\theta^{(i)},\theta^{(i)})\<br>(4)重复(2)(3)直到收敛<br>$$</p>
-</li>
-<li><p>$$<br>GEM算法3\<br>输入:观测数据,Q函数;\<br>输出:模型参数\<br>步骤:(1)初始化参数\theta^{(0)}=(\theta_1^{(0)},\theta_2^{(0)},…,\theta_d^{(0)}),开始迭代\<br>(2)第i+1次迭代,第1步:记\theta^{(i)}=(\theta_1^{(i)},\theta_2^{(i)},…,\theta_d^{(i)})为参数\theta=(\theta_1,\theta_2,…,\theta_d)的估计值\<br>计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZP(Z|Y,\theta^{(i)})logP(Y,Z|\theta)\<br>(3)第2步:进行d次条件极大化:\<br>首先,在\theta_2^{(i)},…,\theta_d^{(i)}保持不变的条件下求使得Q(\theta,\theta^{(i)})达到极大的\theta_1^{(i+1)}\<br>然后,在\theta_1=\theta_1^{(i+1)},\theta_j=\theta_j^{(i)},j=3,4,…,d的条件下使得Q函数达到极大值的\theta_2^{(i+1)}\<br>如此往复,经过d次条件极大化，得到Q(\theta^{(i+1)},\theta^{(i)})&gt;Q(\theta^{(i)},\theta^{(i)})\<br>(4)重复(2)(3)直到收敛<br>$$</p>
-</li>
+<li><script type="math/tex; mode=display">
+GEM算法1\\
+输入:观测数据,F函数;\\
+输出:模型参数\\
+步骤:(1)初始化参数\theta^{(0)},开始迭代\\
+(2)第i+1次迭代,第1步:记\theta^{(i)}为参数\theta的估计值,\widetilde P^{(i)}为函数\widetilde P的估计，求\widetilde P^{(i+1)}使\widetilde P极大化F(\widetilde P,\theta^{(i)})\\
+(3)第2步:求\theta^{(i+1)}使得F(\widetilde P^{(i+1)},\theta)极大化\\
+(4)重复(2)(3)直到收敛</script></li>
+<li><script type="math/tex; mode=display">
+GEM算法2\\
+输入:观测数据,Q函数;\\
+输出:模型参数\\
+步骤:(1)初始化参数\theta^{(0)},开始迭代\\
+(2)第i+1次迭代,第1步:记\theta^{(i)}为参数\theta的估计值\\
+计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZP(Z|Y,\theta^{(i)})logP(Y,Z|\theta)\\
+(3)第2步:求\theta^{(i+1)}使得Q(\theta^{(i+1)},\theta^{(i)})>Q(\theta^{(i)},\theta^{(i)})\\
+(4)重复(2)(3)直到收敛</script></li>
+<li><script type="math/tex; mode=display">
+GEM算法3\\
+输入:观测数据,Q函数;\\
+输出:模型参数\\
+步骤:(1)初始化参数\theta^{(0)}=(\theta_1^{(0)},\theta_2^{(0)},...,\theta_d^{(0)}),开始迭代\\
+(2)第i+1次迭代,第1步:记\theta^{(i)}=(\theta_1^{(i)},\theta_2^{(i)},...,\theta_d^{(i)})为参数\theta=(\theta_1,\theta_2,...,\theta_d)的估计值\\
+计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZP(Z|Y,\theta^{(i)})logP(Y,Z|\theta)\\
+(3)第2步:进行d次条件极大化:\\
+首先,在\theta_2^{(i)},...,\theta_d^{(i)}保持不变的条件下求使得Q(\theta,\theta^{(i)})达到极大的\theta_1^{(i+1)}\\
+然后,在\theta_1=\theta_1^{(i+1)},\theta_j=\theta_j^{(i)},j=3,4,...,d的条件下使得Q函数达到极大值的\theta_2^{(i+1)}\\
+如此往复,经过d次条件极大化，得到Q(\theta^{(i+1)},\theta^{(i)})>Q(\theta^{(i)},\theta^{(i)})\\
+(4)重复(2)(3)直到收敛</script></li>
 </ul>
 </div><div class="article-licensing box"><div class="licensing-title"><p>统计学习方法第九章</p><p><a href="https://micro-han.github.io/2021/11/16/读书笔记-统计学习方法第九章/">https://micro-han.github.io/2021/11/16/读书笔记-统计学习方法第九章/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Micro han</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-11-16</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-11-16</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="link-muted mr-2" rel="tag" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/">《统计学习方法》</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://micro-han.github.io/about/" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechatpay.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/11/17/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E7%AB%A0/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">统计学习方法第十章</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/11/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%9B%9B%E7%AB%A0/"><span class="level-item">强化学习第四章</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
             id: "7564b60207bdb0e40adf6e49448cc5a9",
