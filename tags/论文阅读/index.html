@@ -68,10 +68,10 @@
 </li>
 <li><p>选择算子和适应度函数</p>
 <p>选择算子根据指定的策略和每个染色体的适应度值从亲本染色体中选择后代染色体。它体现了遗传算法中的最优生存理论。采用轮盘赌方法作为选择策略，适用于求解最大优化问题。</p>
-<p><img src="/2021/12/06/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Ship%20Pipe%20Route%20Design%20Using%20Improved%20A%20Algorithm%20and%20Genetic%20ALgorithm/lunpan.png" alt="轮盘赌选择"></p>
+<p><img src="/.io//lunpan.png" alt="轮盘赌选择"></p>
 <p>将目标函数$Min.f_{Objective}(path)=\alpha \times f_L(path) + \beta \times f_B(path)+\gamma \times f_E(path) - \delta \times f_N(path)$转换为$Max.f_{GA-Objective}(path)=K-f_{Objective}(path)$，其中$K$是一个较大的常数，保证其是一个正数。</p>
 <p>为了提高遗传算法的收敛性，在选择算子中采用精英主义，避免失去全局最优解。</p>
-<p><img src="/2021/12/06/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Ship%20Pipe%20Route%20Design%20Using%20Improved%20A%20Algorithm%20and%20Genetic%20ALgorithm/best.png" alt="精英主义"></p>
+<p><img src="/.io//best.png" alt="精英主义"></p>
 </li>
 <li><p>交叉算子</p>
 <p>交叉算子是遗传算法的主要进化动力。其通过母体染色体的基因产生后代染色体。交叉点是从母体染色体中随机选择的。其次，使用A*算法连接两个交叉点的子路径。最后，子路径和路径段的亲本染色体适当连接，形成后代染色体。</p>
@@ -95,7 +95,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/2021/12/06/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Ship%20Pipe%20Route%20Design%20Using%20Improved%20A%20Algorithm%20and%20Genetic%20ALgorithm/liucheng.png" alt="GA-A_Star-Route流程图"></p>
+<p><img src="/.io//liucheng.png" alt="GA-A_Star-Route流程图"></p>
 <ul>
 <li> 改进遗传算法的流程图</li>
 </ul>

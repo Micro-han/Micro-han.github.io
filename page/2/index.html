@@ -157,14 +157,14 @@
 <h3 id="13-4-4-图分析"><a href="#13-4-4-图分析" class="headerlink" title="13.4.4 图分析"></a>13.4.4 图分析</h3><ul>
 <li>很多应用中的数据都是以图的形式存在，图数据表示实体之间的关系。图分析的目的是发掘隐藏在图中的统计规律或潜在结构。</li>
 </ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-26T09:45:00.000Z" title="2021/11/26 下午5:45:00">2021-11-26</time>发表</span><span class="level-item"><time dateTime="2021-12-02T04:09:18.876Z" title="2021/12/2 下午12:09:18">2021-12-02</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">2 分钟读完 (大约349个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">统计学习方法第十二章</a></h1><div class="content"><h2 id="概要-监督学习方法总结"><a href="#概要-监督学习方法总结" class="headerlink" title="概要 监督学习方法总结"></a>概要 监督学习方法总结</h2><p><img src="/2021/11/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/1.jpg" alt="10种监督学习方法的概括总结"></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-26T09:45:00.000Z" title="2021/11/26 下午5:45:00">2021-11-26</time>发表</span><span class="level-item"><time dateTime="2021-12-02T04:09:18.876Z" title="2021/12/2 下午12:09:18">2021-12-02</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">2 分钟读完 (大约349个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">统计学习方法第十二章</a></h1><div class="content"><h2 id="概要-监督学习方法总结"><a href="#概要-监督学习方法总结" class="headerlink" title="概要 监督学习方法总结"></a>概要 监督学习方法总结</h2><p><img src="/.io//1.jpg" alt="10种监督学习方法的概括总结"></p>
 <h2 id="12-1-适用问题"><a href="#12-1-适用问题" class="headerlink" title="12.1 适用问题"></a>12.1 适用问题</h2><ul>
 <li>监督学习是学习一个模型，使得对于给定的输入预测相应的输出。包括分类、标注、回归。分类问题是从实例的特征向量到类标记的预测问题，标注问题是从观测序列到标记序列的预测问题。</li>
 </ul>
 <h2 id="12-2-模型"><a href="#12-2-模型" class="headerlink" title="12.2 模型"></a>12.2 模型</h2><ul>
 <li>条件概率分布$P(Y|X)$或决策函数$Y=f(X)$的形式。前者表示给定输入条件下输出的概率模型，后者表示输入到输出的非概率模型。</li>
 </ul>
-<p><img src="/2021/11/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/2.jpg" alt="部分模型之间的关系"></p>
+<p><img src="/.io//2.jpg" alt="部分模型之间的关系"></p>
 <h2 id="12-3-学习策略"><a href="#12-3-学习策略" class="headerlink" title="12.3 学习策略"></a>12.3 学习策略</h2><ul>
 <li>二类分类的监督学习中使用合页损失函数，逻辑斯谛损失函数，指数损失函数分别写为$[1-yf(x)]_+$，$log[1+exp(-yf(x))]$，$exp(-yf(x))$。</li>
 <li>学习策略是优化一下结构风险函数$min_{f\in H}\frac1N\sum_{i=1}^NL(y_i,f(x_i))+\lambda J(f)$，第1项为经验风险，第2项为正则化项，$L(y,f(x))$为损失函数，$J(f)$为模型的复杂度，$\lambda &gt;=0$为系数</li>
@@ -361,7 +361,7 @@
 </ul>
 <h2 id="3-1-“智能体-环境”交互接口"><a href="#3-1-“智能体-环境”交互接口" class="headerlink" title="3.1 “智能体-环境”交互接口"></a>3.1 “智能体-环境”交互接口</h2><ul>
 <li><p>MDP是一种通过交互式学习来实现目标的理论框架。进行学习及实施决策的机器被称为<strong>智能体</strong>，智能体之外所有与其相互作用的事物都被称为<strong>环境</strong>。这些事物之间持续进行交互，智能体选择动作，环境对这些动作做出相应的响应，并向智能体呈现出新的状态。</p>
-<p><img src="/2021/11/13/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E7%AB%A0/31.png" alt="马尔可夫决策过程中的智能体-环境交互"></p>
+<p><img src="/.io//31.png" alt="马尔可夫决策过程中的智能体-环境交互"></p>
 </li>
 <li><p>更具体地说，在每一个离散时刻，智能体和环境都发生了交互，每个时刻$t$，智能体观察到所在的环境状态的某种特征表达，并且在此基础上选择一个动作。</p>
 </li>
