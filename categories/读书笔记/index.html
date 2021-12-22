@@ -235,7 +235,7 @@
 <h3 id="11-1-2-概率无向图模型的因子分解"><a href="#11-1-2-概率无向图模型的因子分解" class="headerlink" title="11.1.2 概率无向图模型的因子分解"></a>11.1.2 概率无向图模型的因子分解</h3><ul>
 <li><strong>团与最大团</strong>：无向图$G$中任何两个结点均有边连接的结点子集称为团。若$C$是无向图$G$的一个团，并且不能加进结点使其成为一个更大的团，则称$C$为最大团。</li>
 <li>将概率无向图模型的联合概率分布表示为其最大团上的随机变量的函数的乘积形式的操作，称为概率无向图模型的因子分解。</li>
-<li>给定概率无向图模型，设计无向图为$G$，$C$为$G$上的最大团，$Y_C$表示$C$对应的随机变量，那么概率无向图模型的联合概率分布$P(Y)$可写作所有最大团$C$上的函数$\Psi_C(Y_C)$的乘积形式，$P(Y)=\frac1Z\prod_C\Psi_C(Y_C)$，其中$Z$是规范化因子，由$Z=\sum_Y\prod_Z\Psi_C(Y_C)$组成。规范化因子保证$P(Y)$构成一个概率分布，函数$\Psi_C(Y_C)$称为势函数，要保证其是严格正的，通常用$\Psi_C(Y_C)=exp\{-E(Y_C\}$</li>
+<li>给定概率无向图模型，设计无向图为$G$，$C$为$G$上的最大团，$Y_C$表示$C$对应的随机变量，那么概率无向图模型的联合概率分布$P(Y)$可写作所有最大团$C$上的函数$\Psi_C(Y_C)$的乘积形式，$P(Y)=\frac1Z\prod_C\Psi_C(Y_C)$，其中$Z$是规范化因子，由$Z=\sum_Y\prod_Z\Psi_C(Y_C)$组成。规范化因子保证$P(Y)$构成一个概率分布，函数$\Psi_C(Y_C)$称为势函数，要保证其是严格正的，通常用$\Psi_C(Y_C)=exp{-E(Y_C}$</li>
 <li>Hammersley_CLifford定理：概率无向图模型的联合概率分布$P(Y)$可以表示为如下形式$P(Y)=\frac1Z\prod_C\Psi_C(Y_C),Z=\sum_Y\prod_C\Psi_C(Y_C)$，其中$C$是无向图的最大团，$Y_C$是$C$的结点对应的随机变量，$\Psi_C(Y_C)$是$C$上定义的严格正函数，乘积是在无向图所有的最大团上进行的。</li>
 </ul>
 <h2 id="11-2-条件随机场的定义与形式"><a href="#11-2-条件随机场的定义与形式" class="headerlink" title="11.2 条件随机场的定义与形式"></a>11.2 条件随机场的定义与形式</h2><h3 id="11-2-1-条件随机场的定义"><a href="#11-2-1-条件随机场的定义" class="headerlink" title="11.2.1 条件随机场的定义"></a>11.2.1 条件随机场的定义</h3><ul>
@@ -246,17 +246,7 @@
 <li>线性链条件随机场的参数化形式：设$P(Y|X)$为线性链条件随机场，则在随机变量$X$取值为$x$的条件下，随机变量$Y$取值为$y$的条件概率具有$P(y|x)=\frac1{Z(x)}exp(\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$其中，$Z(x)=\sum_yexp(\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$，$t_k$和$s_l$是特征函数，$\lambda_k$和$\mu_l$是对应的权值。$Z(x)$是规范化因子，求和是在所有可能的输出序列上进行的。</li>
 </ul>
 <h3 id="11-2-3-条件随机场的简化形式"><a href="#11-2-3-条件随机场的简化形式" class="headerlink" title="11.2.3 条件随机场的简化形式"></a>11.2.3 条件随机场的简化形式</h3><ul>
-<li><script type="math/tex; mode=display">
-f_k(y_{i-1},y_i,x,i)=t_k(y_{i-1},y_i,x,i)k=1,2,...,K_1;\\
-f_k(y_{i-1},y_i,x,i)=s_l(y_i,x,i)k=K_1+l,l=1,2,..,K_2\\
-w_k=\lambda_k,k=1,2,...K_1\\
-w_k=\mu_l,k=K_1+l;l=1,2,...,K_2;
-P(y|x)=\frac1{Z(x)}exp\sum_{k=1}^Kw_kf_k(y,x)\\
-Z(x)=\sum_yexp\sum_{k=1}^Kw_kf_k(y,x)\\
-若以w表示权值向量，即w=(w_1,w_2,...,w_K)^T\\
-以F(y,x)表示全局特征向量，即F(y,x)=(f_1(y,x),f_2(y,x),...,f_K(y,x))^T\\
-则条件随机场可以写成向量w与F(y,x)的内积的形式P_w(y|x)=\frac{exp(wF(y,x))}{Z_w(x)}\\
-其中，Z_w(x)=\sum_yexp(wF(y,x))</script></li>
+<li>$$<br>f_k(y_{i-1},y_i,x,i)=t_k(y_{i-1},y_i,x,i)k=1,2,…,K_1;\<br>f_k(y_{i-1},y_i,x,i)=s_l(y_i,x,i)k=K_1+l,l=1,2,..,K_2\<br>w_k=\lambda_k,k=1,2,…K_1\<br>w_k=\mu_l,k=K_1+l;l=1,2,…,K_2;<br>P(y|x)=\frac1{Z(x)}exp\sum_{k=1}^Kw_kf_k(y,x)\<br>Z(x)=\sum_yexp\sum_{k=1}^Kw_kf_k(y,x)\<br>若以w表示权值向量，即w=(w_1,w_2,…,w_K)^T\<br>以F(y,x)表示全局特征向量，即F(y,x)=(f_1(y,x),f_2(y,x),…,f_K(y,x))^T\<br>则条件随机场可以写成向量w与F(y,x)的内积的形式P_w(y|x)=\frac{exp(wF(y,x))}{Z_w(x)}\<br>其中，Z_w(x)=\sum_yexp(wF(y,x))<br>$$</li>
 </ul>
 <h3 id="11-2-4-条件随机场的矩阵形式"><a href="#11-2-4-条件随机场的矩阵形式" class="headerlink" title="11.2.4 条件随机场的矩阵形式"></a>11.2.4 条件随机场的矩阵形式</h3><ul>
 <li>可以定义一个m阶矩阵随机变量 $ M_i(x)=[M_i(y_{i-1},y_i|x)]$，矩阵随机变量的元素为$M_i(y_{i-1},y_i|x)=exp(W_i(y_{i-1},y_i|x)),W_i(y_{i-1},y_i|x)=\sum_{k=1}^Kw_kf_k(y_{i-1},y_i,x,i)$，这里$w_k,f_k$与上个简化形式相同。</li>
@@ -272,57 +262,20 @@ Z(x)=\sum_yexp\sum_{k=1}^Kw_kf_k(y,x)\\
 <li>假设经验分布$\widetilde P(X)$，特征函数$f_k$关于联合分布$P(X,Y)$的数学期望是$E_{P(Y|X)}[f_k]=\sum_{x,y}P(x,y)\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i)=\sum_x\widetilde P(x)\sum_yP(y|x)\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i)=\sum_x\widetilde P(x)\sum_{i=1}^{n+1}\sum_{y_{i-1}y_i}f_k(y_{i-1},y_i,x,i)\frac{\alpha_{i-1}^T(y_{i-1}|x)M_i(y_{i-1},y_i|x)\beta_i(y_i|x)}{Z(x)}$其中，$Z(x)=\alpha_n^T(x)1$</li>
 </ul>
 <h2 id="11-4-条件随机场的学习算法"><a href="#11-4-条件随机场的学习算法" class="headerlink" title="11.4 条件随机场的学习算法"></a>11.4 条件随机场的学习算法</h2><h3 id="11-4-1-改进的迭代尺度法"><a href="#11-4-1-改进的迭代尺度法" class="headerlink" title="11.4.1 改进的迭代尺度法"></a>11.4.1 改进的迭代尺度法</h3><ul>
-<li><script type="math/tex; mode=display">
-条件随机场模型学习的改进的迭代尺度法\\
-输入:特征函数t_1,t_2,...,t_{K_1},s_1,s_2,...,s_{K_2}；经验分布\widetilde P(x,y);\\
-输出:参数估计值\hat w;模型P_{\hat w}\\
-步骤:(1)对所有k\in \{1,2,..,K\},取初值w_k=0;\\
-(2)对每一k\in \{1,2,..,K\}:\\
-(a)当k=1,2,...,K_1时,令\delta_k是方程\sum_{x,y}\widetilde P(x)P(y|x)\sum_{i=1}^{n+1}t_k(y_{i-1},y_i,x,i)exp(\delta_kT(x,y))=E_{\widetilde P}[t_k]\\
-的解:当k=K_1+l,l=1,2,...,K_2时，令\delta_{K_1+l}是方程\sum_{x,y}\widetilde P(x)P(y|x)\sum_{i=1}^{n}s_l(y_{i},x,i)exp(\delta_{K_1+l}T(x,y))=E_{\widetilde P}[s_l]的解\\
-其中,T(x,y)=\sum_kf_k(x,y)=\sum_{k=1}^K\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i)\\
-(b)更新w_k的值,w_k\leftarrow w_k+\delta_k \\
-(3)如果不是所有的w_k都收敛,重复步骤(2)</script><p>《统计学习方法》P228</p>
+<li><p>$$<br>条件随机场模型学习的改进的迭代尺度法\<br>输入:特征函数t_1,t_2,…,t_{K_1},s_1,s_2,…,s_{K_2}；经验分布\widetilde P(x,y);\<br>输出:参数估计值\hat w;模型P_{\hat w}\<br>步骤:(1)对所有k\in {1,2,..,K},取初值w_k=0;\<br>(2)对每一k\in {1,2,..,K}:\<br>(a)当k=1,2,…,K_1时,令\delta_k是方程\sum_{x,y}\widetilde P(x)P(y|x)\sum_{i=1}^{n+1}t_k(y_{i-1},y_i,x,i)exp(\delta_kT(x,y))=E_{\widetilde P}[t_k]\<br>的解:当k=K_1+l,l=1,2,…,K_2时，令\delta_{K_1+l}是方程\sum_{x,y}\widetilde P(x)P(y|x)\sum_{i=1}^{n}s_l(y_{i},x,i)exp(\delta_{K_1+l}T(x,y))=E_{\widetilde P}[s_l]的解\<br>其中,T(x,y)=\sum_kf_k(x,y)=\sum_{k=1}^K\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i)\<br>(b)更新w_k的值,w_k\leftarrow w_k+\delta_k \<br>(3)如果不是所有的w_k都收敛,重复步骤(2)<br>$$</p>
+<p>《统计学习方法》P228</p>
 </li>
 </ul>
-<h3 id="11-4-2-拟牛顿法"><a href="#11-4-2-拟牛顿法" class="headerlink" title="11.4.2 拟牛顿法"></a>11.4.2 拟牛顿法</h3><script type="math/tex; mode=display">
-条件随机场模型学习的BFGS算法\\
-输入:特征函数f_1,f_2,...,f_n;经验分布\widetilde P(X,Y)\\
-输出:最优参数值\hat w;最优模型P_{\hat w}(y|x)\\
-步骤:(1)选定初始点w^{(0)},取B_0为正定对称矩阵,令k=0\\
-(2)计算g_k=g(w^{(k)}),若g_k=0,停止计算否则到(3)\\
-(3)由B_kp_k=-g_k求出p_k\\
-(4)一维搜索:求\lambda_k使得\\
-f(w^{(k)}+\lambda_kp_k)=min_{\lambda >=0} f(w^{(k)}+\lambda_kp_k) \\
-(5)取w^{(k+1)}=w^{(k)}+\lambda_kp_k \\
-(6)计算g_{k+1}=g(w^{(k+1)}),若g_{k+1}=0,则停止计算;否则,按照B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k^TB_k}{\delta_k^TB_k\delta_k} \\
-其中,y_k=g_{k+1}-g_k,\delta_k=w^{(k+1)}-w^{(k)}\\
-(7)令k=k+1,转(3)</script><h2 id="11-5-条件随机场的预测算法"><a href="#11-5-条件随机场的预测算法" class="headerlink" title="11.5 条件随机场的预测算法"></a>11.5 条件随机场的预测算法</h2><script type="math/tex; mode=display">
-条件随机场预测的维特比算法\\
-输入:模型特征向量F(y,x)和权值向量w,观测序列x=(x_1,x_2,...,x_n);\\
-输出:最优路径y^*=(
-y_1^*,
-y_2^*,...,
-y_n^*)\\
-步骤:(1)初始化\delta_1(j)=wF_1(y_0=start,y_1=j,x),j=1,2,...,m \\
-(2)递推,对i=1,2,...,n\\
-\delta_i(l)=max_{1\leq j\leq m}\{\delta_{i-1}(j)=wF_1(y_0=start,y_1=j,x)\},l=1,2,....,m \\
-\Psi_i(l)=arg max_{1\leq j \leq m}\{\delta_{i-1}(j)+wF_i(y_{i-1}=j,y_i=l,x) \},l=1,2,...,m \\
-(3)终止 max_y(wF(y,x))=max_{1\leq j \leq m}\delta_n(j),y_n^*=argmax_{1\leq j \leq m}\delta_n(j) \\
-(4)返回路径
-y_i^*=\Psi_{i+1}(
-y_{i+1}^*),i=n-1,n-2,...,1\\
-求得最优路径y^*=
-(y_1^*,
-y_2^*,
-...,y_n^*)</script></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-17T06:42:00.000Z" title="2021/11/17 下午2:42:00">2021-11-17</time>发表</span><span class="level-item"><time dateTime="2021-11-18T07:57:22.743Z" title="2021/11/18 下午3:57:22">2021-11-18</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">20 分钟读完 (大约3067个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/17/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E7%AB%A0/">统计学习方法第十章</a></h1><div class="content"><h2 id="概要-隐马尔可夫模型"><a href="#概要-隐马尔可夫模型" class="headerlink" title="概要 隐马尔可夫模型"></a>概要 隐马尔可夫模型</h2><ul>
+<h3 id="11-4-2-拟牛顿法"><a href="#11-4-2-拟牛顿法" class="headerlink" title="11.4.2 拟牛顿法"></a>11.4.2 拟牛顿法</h3><p>$$<br>条件随机场模型学习的BFGS算法\<br>输入:特征函数f_1,f_2,…,f_n;经验分布\widetilde P(X,Y)\<br>输出:最优参数值\hat w;最优模型P_{\hat w}(y|x)\<br>步骤:(1)选定初始点w^{(0)},取B_0为正定对称矩阵,令k=0\<br>(2)计算g_k=g(w^{(k)}),若g_k=0,停止计算否则到(3)\<br>(3)由B_kp_k=-g_k求出p_k\<br>(4)一维搜索:求\lambda_k使得\<br>f(w^{(k)}+\lambda_kp_k)=min_{\lambda &gt;=0} f(w^{(k)}+\lambda_kp_k) \<br>(5)取w^{(k+1)}=w^{(k)}+\lambda_kp_k \<br>(6)计算g_{k+1}=g(w^{(k+1)}),若g_{k+1}=0,则停止计算;否则,按照B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k^TB_k}{\delta_k^TB_k\delta_k} \<br>其中,y_k=g_{k+1}-g_k,\delta_k=w^{(k+1)}-w^{(k)}\<br>(7)令k=k+1,转(3)<br>$$</p>
+<h2 id="11-5-条件随机场的预测算法"><a href="#11-5-条件随机场的预测算法" class="headerlink" title="11.5 条件随机场的预测算法"></a>11.5 条件随机场的预测算法</h2><p>$$<br>条件随机场预测的维特比算法\<br>输入:模型特征向量F(y,x)和权值向量w,观测序列x=(x_1,x_2,…,x_n);\<br>输出:最优路径y^*=(<br>y_1^*,<br>y_2^*,…,<br>y_n^*)\<br>步骤:(1)初始化\delta_1(j)=wF_1(y_0=start,y_1=j,x),j=1,2,…,m \<br>(2)递推,对i=1,2,…,n\<br>\delta_i(l)=max_{1\leq j\leq m}{\delta_{i-1}(j)=wF_1(y_0=start,y_1=j,x)},l=1,2,….,m \<br>\Psi_i(l)=arg max_{1\leq j \leq m}{\delta_{i-1}(j)+wF_i(y_{i-1}=j,y_i=l,x) },l=1,2,…,m \<br>(3)终止 max_y(wF(y,x))=max_{1\leq j \leq m}\delta_n(j),y_n^*=argmax_{1\leq j \leq m}\delta_n(j) \<br>(4)返回路径<br>y_i^*=\Psi_{i+1}(<br>y_{i+1}^*),i=n-1,n-2,…,1\<br>求得最优路径y^*=<br>(y_1^*,<br>y_2^*,<br>…,y_n^*)<br>$$</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-17T06:42:00.000Z" title="2021/11/17 下午2:42:00">2021-11-17</time>发表</span><span class="level-item"><time dateTime="2021-11-18T07:57:22.743Z" title="2021/11/18 下午3:57:22">2021-11-18</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">20 分钟读完 (大约3067个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/17/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E7%AB%A0/">统计学习方法第十章</a></h1><div class="content"><h2 id="概要-隐马尔可夫模型"><a href="#概要-隐马尔可夫模型" class="headerlink" title="概要 隐马尔可夫模型"></a>概要 隐马尔可夫模型</h2><ul>
 <li>隐马尔可夫模型HMM是可用于标注问题的统计学习模型，由隐藏的马尔可夫链随机生成观测序列的过程，属于生成模型。</li>
 <li>隐马尔可夫模型可以写成$\lambda=(A,B,\pi)$，隐马尔可夫模型是一个生成模型，表示状态序列和观测序列的联合分布，状态序列是隐藏的，不可观测的。隐马尔可夫模型可以用于标注，这时状态对应着标记。标注问题是给定观测序列预测其对应的标记序列。</li>
 </ul>
 <h2 id="10-1-隐马尔可夫模型的基本概念"><a href="#10-1-隐马尔可夫模型的基本概念" class="headerlink" title="10.1 隐马尔可夫模型的基本概念"></a>10.1 隐马尔可夫模型的基本概念</h2><h3 id="10-1-1-隐马尔可夫模型的定义"><a href="#10-1-1-隐马尔可夫模型的定义" class="headerlink" title="10.1.1 隐马尔可夫模型的定义"></a>10.1.1 隐马尔可夫模型的定义</h3><ul>
 <li><p>隐马尔可夫模型是关于时序的概率模型，描述由一个隐藏的马尔可夫链随机生成不可观测的状态随机序列，再由各个状态生成一个观测从而产生观测随机序列的过程。隐藏的马尔可夫链随机生成的状态的序列，称为状态序列；每个状态生成一个观测，而由此产生的观测的随机序列，称为观测序列。序列的每一个位置又可以看作是一个时刻。</p>
 </li>
-<li><p>设$Q$是所有可能的状态的集合$Q=\{q_1,q_2,…,q_N\}$，$V$是所有可能的观测的集合$V=\{v_1,v_2,…,v_N\}$，其中，$N$是可能的状态数，$M$是可能的观测数。$I$是长度为$T$的状态序列$I=(i_1,i_2,…,i_N)$，$O$是对应的观测序列$O=(o_1,o_2,…,o_N)$。$A$是状态转移概率矩阵$A=[a_{ij}]_{N\times N}$，其中$a_{i,j}=P(i_{t+1}=q_j|i_t=q_i),i=1,2,…,N,j=1,2,…,N$是在时刻$t$处于状态$q_i$的条件下在时刻$t+1$转移到状态$q_j$的概率。$B$是观测概率矩阵$B=[b_j(k)]_{N\times M}$，其中，$b_j(k)=P(o_t=v_k|i_t=q_j),k=1,2,…,M;j=1,2,…,N$是在时刻$t$处于状态$q_j$的条件下生成观测$v_k$的概率。$\pi$是初始状态概率向量$\pi=(\pi_i)$其中，$\pi_i=P(i_1=q_i),i=1,2,…,N$是时刻$t=1$处于状态$q_i$的概率。</p>
+<li><p>设$Q$是所有可能的状态的集合$Q={q_1,q_2,…,q_N}$，$V$是所有可能的观测的集合$V={v_1,v_2,…,v_N}$，其中，$N$是可能的状态数，$M$是可能的观测数。$I$是长度为$T$的状态序列$I=(i_1,i_2,…,i_N)$，$O$是对应的观测序列$O=(o_1,o_2,…,o_N)$。$A$是状态转移概率矩阵$A=[a_{ij}]<em>{N\times N}$，其中$a</em>{i,j}=P(i_{t+1}=q_j|i_t=q_i),i=1,2,…,N,j=1,2,…,N$是在时刻$t$处于状态$q_i$的条件下在时刻$t+1$转移到状态$q_j$的概率。$B$是观测概率矩阵$B=[b_j(k)]_{N\times M}$，其中，$b_j(k)=P(o_t=v_k|i_t=q_j),k=1,2,…,M;j=1,2,…,N$是在时刻$t$处于状态$q_j$的条件下生成观测$v_k$的概率。$\pi$是初始状态概率向量$\pi=(\pi_i)$其中，$\pi_i=P(i_1=q_i),i=1,2,…,N$是时刻$t=1$处于状态$q_i$的概率。</p>
 </li>
 <li><p>隐马尔可夫模型由初始状态概率向量$\pi$、状态转移概率矩阵$A$和观测概率矩阵$B$决定。$\pi$和$A$决定状态序列，$B$决定观测序列。因此，隐马尔可夫模型$\lambda$可以用三元符号表示，即$\lambda=(A,B,\pi)$，$A,B,\pi$称为隐马尔可夫模型的三要素。状态转移概率矩阵$A$与初始状态概率向量$\pi$确定了隐藏的马尔可夫链，生成不可观测的状态序列。观测概率矩阵$B$确定了如何从状态生成观测，与状态序列综合确定了如何产生观测序列。</p>
 </li>
@@ -331,15 +284,8 @@ y_2^*,
 <p>  （2）观测独立性假设，即假设任意时刻的观测只依赖于该时刻的马尔可夫链的状态，与其他观测及状态无关</p>
 </li>
 </ul>
-<h3 id="10-1-2-观测序列的生成过程"><a href="#10-1-2-观测序列的生成过程" class="headerlink" title="10.1.2 观测序列的生成过程"></a>10.1.2 观测序列的生成过程</h3><script type="math/tex; mode=display">
-观测序列的生成\\
-输入:隐马尔可夫模型\lambda=(A,B,\pi)，观测序列长度T\\
-输出:观测序列O=(o_1,o_2,...,o_T)\\
-步骤:(1)按照初始状态分布\pi产生状态i_1\\
-(2)令t=1\\
-(3)按照状态i_t的观测概率分布b_{i_t}(k)生成a_t\\
-(4)按照状态i_t的状态转移概率分布\{a_{i_ti_{t+1}}\}产生状态i_{t+1},i_{t+1}=1,2,...,N\\
-(5)令t=t+1,如果t<T转到(3)否则终止</script><h3 id="10-1-3-隐马尔可夫模型的3个基本问题"><a href="#10-1-3-隐马尔可夫模型的3个基本问题" class="headerlink" title="10.1.3 隐马尔可夫模型的3个基本问题"></a>10.1.3 隐马尔可夫模型的3个基本问题</h3><ul>
+<h3 id="10-1-2-观测序列的生成过程"><a href="#10-1-2-观测序列的生成过程" class="headerlink" title="10.1.2 观测序列的生成过程"></a>10.1.2 观测序列的生成过程</h3><p>$$<br>观测序列的生成\<br>输入:隐马尔可夫模型\lambda=(A,B,\pi)，观测序列长度T\<br>输出:观测序列O=(o_1,o_2,…,o_T)\<br>步骤:(1)按照初始状态分布\pi产生状态i_1\<br>(2)令t=1\<br>(3)按照状态i_t的观测概率分布b_{i_t}(k)生成a_t\<br>(4)按照状态i_t的状态转移概率分布{a_{i_ti_{t+1}}}产生状态i_{t+1},i_{t+1}=1,2,…,N\<br>(5)令t=t+1,如果t&lt;T转到(3)否则终止<br>$$</p>
+<h3 id="10-1-3-隐马尔可夫模型的3个基本问题"><a href="#10-1-3-隐马尔可夫模型的3个基本问题" class="headerlink" title="10.1.3 隐马尔可夫模型的3个基本问题"></a>10.1.3 隐马尔可夫模型的3个基本问题</h3><ul>
 <li>概率计算问题。给定模型$\lambda=(A,B,\pi)$和观测序列$O=(o_1,o_2,…,o_T)$计算在模型$\lambda$下观测序列$O$出现的概率$P(O|\lambda)$</li>
 <li>学习问题。已知观测序列$O=(o_1,o_2,…,o_T)$，估计模型$\lambda=(A,B,\pi)$参数，使得在该模型下观测序列概率$P(O|\lambda)$最大。即用极大似然估计的方法估计参数。</li>
 <li>预测问题。也称为解码问题。已知模型$\lambda=(A,B,\pi)$和观测序列$O=(o_1,o_2,…,o_T)$求对给定观测序列条件概率$P(I|O)$最大的状态序列$I=(i_1,i_2,…,i_T)$。即给定观测序列，求最有可能的对应的状态序列。</li>
@@ -350,26 +296,14 @@ y_2^*,
 <h3 id="10-2-2-前向算法"><a href="#10-2-2-前向算法" class="headerlink" title="10.2.2 前向算法"></a>10.2.2 前向算法</h3><ul>
 <li><p>前向概率：给定隐马尔可夫模型$\lambda$，定义到时刻$t$部分观测序列为$o_1,o_2,…,o_t$且状态为$q_i$的概率为前向概率，记作$\alpha_t(i)=P(o_1,o_2,…,o_t,i_t=q_i|\lambda)$</p>
 </li>
-<li><script type="math/tex; mode=display">
-  观测序列概率的前向算法\\
-  输入:隐马尔可夫模型\lambda,观测序列O\\
-  输出:观测序列概率P(O|\lambda)\\
-  步骤:(1)初值\alpha_1(i)=\pi_ib_i(o_1),i=1,2,...,N\\
-  (2)递推 对t=1,2,...,T-1,\\
-  \alpha_{t+1}(i)=[\sum_{j=1}^N\alpha_t(j)a_{ji}]b_i(o_{t+1}),i=1,2,...,N\\
-  (3)终止 P(o|\lambda)=\sum_{i=1}^N\alpha_T(i)</script></li>
+<li><p>$$<br>  观测序列概率的前向算法\<br>  输入:隐马尔可夫模型\lambda,观测序列O\<br>  输出:观测序列概率P(O|\lambda)\<br>  步骤:(1)初值\alpha_1(i)=\pi_ib_i(o_1),i=1,2,…,N\<br>  (2)递推 对t=1,2,…,T-1,\<br>  \alpha_{t+1}(i)=[\sum_{j=1}^N\alpha_t(j)a_{ji}]b_i(o_{t+1}),i=1,2,…,N\<br>  (3)终止 P(o|\lambda)=\sum_{i=1}^N\alpha_T(i)<br>  $$</p>
+</li>
 </ul>
 <h3 id="10-2-3-后向算法"><a href="#10-2-3-后向算法" class="headerlink" title="10.2.3 后向算法"></a>10.2.3 后向算法</h3><ul>
 <li><p>后向概率：给定隐马尔可夫模型$\lambda$，定义到时刻$t$状态为$q_i$的条件下，从$t+1$到时刻$T$的部分观测序列为$o_{t+1},o_{t+2},…,o_T$的概率为后向概率，记作$\beta_t(i)=P(o_{t+1},o_{t+2},…,o_T|i_t=q_i,\lambda)$</p>
 </li>
-<li><script type="math/tex; mode=display">
-  观测序列概率的后向算法\\
-  输入:隐马尔可夫模型\lambda,观测序列O\\
-  输出:观测序列概率P(O|\lambda)\\
-  步骤:(1)\beta_T(i)=1,i=1,2,...,N\\
-  (2)对t=T-1,T-2,...,i\\
-  \beta_t(i)=\sum_{j=1}^Na_{ij}b_j(o_{t+1})\beta_{t+1}(j),i=1,2,...,N\\
-  (3)P(O|\lambda)=\sum_{i=1}^N\pi_ib_i(o_1)\beta_1(i)\\</script></li>
+<li><p>$$<br>  观测序列概率的后向算法\<br>  输入:隐马尔可夫模型\lambda,观测序列O\<br>  输出:观测序列概率P(O|\lambda)\<br>  步骤:(1)\beta_T(i)=1,i=1,2,…,N\<br>  (2)对t=T-1,T-2,…,i\<br>  \beta_t(i)=\sum_{j=1}^Na_{ij}b_j(o_{t+1})\beta_{t+1}(j),i=1,2,…,N\<br>  (3)P(O|\lambda)=\sum_{i=1}^N\pi_ib_i(o_1)\beta_1(i)\<br>  $$</p>
+</li>
 </ul>
 <h3 id="10-2-4-一些概率与期望值的计算"><a href="#10-2-4-一些概率与期望值的计算" class="headerlink" title="10.2.4 一些概率与期望值的计算"></a>10.2.4 一些概率与期望值的计算</h3><ul>
 <li><p>给定模型$\lambda$和观测$O$，在时刻$t$处于状态$q_i$的概率，记作$\gamma_t(i)=P(i_t=q_i|O,\lambda)$，可以通过前向后向概率计算，$\gamma_t(i)=P(i_t=q_i|O,\lambda)=\frac{P(i_t=q_i,O|\lambda)}{P(O|\lambda)}$，由前向概率$\alpha_t(i)$和后向概率$\beta_t(i)$定义可知$\alpha_t(i)\beta_t(i)$可知$\alpha_t(i)\beta)t(i)=P(i_t=q_i,O|\lambda)$，于是得到$\gamma_t(i)=\frac{\alpha_t(i)\beta_t(i)}{P(O|\lambda)}=\frac{\alpha_t(i)\beta_t(i)}{\sum_{j=1}^N\alpha_t(j)\beta_t(j)}$</p>
@@ -408,52 +342,22 @@ y_2^*,
 <ul>
 <li><strong>EM算法的M步：极大化Q函数$Q(\lambda,\overline \lambda)$求模型参数$A,B,\pi$</strong></li>
 </ul>
-<p>$\gamma=-P(O|\lambda)\\ \pi_i=\frac{P(O,i_1=i|\overline \lambda)}{P(O|\overline \lambda)} \\ a_{ij}=\frac{\sum_{t=1}^{T-1}P(O,i_t=i,i_{t+1}=j|\overline \lambda)}{\sum_{t=1}^{T-1}P(O,i_t=i|\overline \lambda)} \\ b_j(k)=\frac{\sum_{t=1}^TP(O,i_t=j|\overline \lambda)I(o_t=v_k)}{\sum_{t=1}^TP(O,i_t=j|\overline \lambda)}$</p>
-<h3 id="10-3-3-Baum-Welch模型参数估计公式"><a href="#10-3-3-Baum-Welch模型参数估计公式" class="headerlink" title="10.3.3 Baum-Welch模型参数估计公式"></a>10.3.3 Baum-Welch模型参数估计公式</h3><script type="math/tex; mode=display">
-Baum-Welch算法\\
-输入:观测数据O=(o_1,o_2,...,o_T)\\
-输出:隐马尔可夫模型参数\\
-步骤:(1)初始化。对n=0,选取a_{ij}^{(o)},b_j(k)^{(0)},\pi_i^{(0)},得到模型\lambda^{(0)}=(A^{(0)},B^{(0)},\pi^{(0)})\\
-(2)递推。对n=1,2,...。\\
-a_{ij}^{(n+1)}=\frac{\sum_{t=1}^{T-1}\xi_t(i,j)}{\sum_{t=1}^{T-1}\gamma_t(i)},
-b_j(k)^{(n+1)}=\frac{\sum_{t=1,o_t=v_k}^T\gamma_t(j)}{\sum_{t=1}^T\gamma_t(j)},
-\pi_i^{(n+1)}=\gamma_1(i)\\
-(3)终止，得到模型参数\lambda^{(n+1)}=(A^{(n+1)},B^{(n+1)},\pi^{(n+1)})</script><h2 id="10-4-预测算法"><a href="#10-4-预测算法" class="headerlink" title="10.4 预测算法"></a>10.4 预测算法</h2><h3 id="10-4-1-近似算法"><a href="#10-4-1-近似算法" class="headerlink" title="10.4.1 近似算法"></a>10.4.1 近似算法</h3><ul>
+<p>$\gamma=-P(O|\lambda)\ \pi_i=\frac{P(O,i_1=i|\overline \lambda)}{P(O|\overline \lambda)} \ a_{ij}=\frac{\sum_{t=1}^{T-1}P(O,i_t=i,i_{t+1}=j|\overline \lambda)}{\sum_{t=1}^{T-1}P(O,i_t=i|\overline \lambda)} \ b_j(k)=\frac{\sum_{t=1}^TP(O,i_t=j|\overline \lambda)I(o_t=v_k)}{\sum_{t=1}^TP(O,i_t=j|\overline \lambda)}$</p>
+<h3 id="10-3-3-Baum-Welch模型参数估计公式"><a href="#10-3-3-Baum-Welch模型参数估计公式" class="headerlink" title="10.3.3 Baum-Welch模型参数估计公式"></a>10.3.3 Baum-Welch模型参数估计公式</h3><p>$$<br>Baum-Welch算法\<br>输入:观测数据O=(o_1,o_2,…,o_T)\<br>输出:隐马尔可夫模型参数\<br>步骤:(1)初始化。对n=0,选取a_{ij}^{(o)},b_j(k)^{(0)},\pi_i^{(0)},得到模型\lambda^{(0)}=(A^{(0)},B^{(0)},\pi^{(0)})\<br>(2)递推。对n=1,2,…。\<br>a_{ij}^{(n+1)}=\frac{\sum_{t=1}^{T-1}\xi_t(i,j)}{\sum_{t=1}^{T-1}\gamma_t(i)},<br>b_j(k)^{(n+1)}=\frac{\sum_{t=1,o_t=v_k}^T\gamma_t(j)}{\sum_{t=1}^T\gamma_t(j)},<br>\pi_i^{(n+1)}=\gamma_1(i)\<br>(3)终止，得到模型参数\lambda^{(n+1)}=(A^{(n+1)},B^{(n+1)},\pi^{(n+1)})<br>$$</p>
+<h2 id="10-4-预测算法"><a href="#10-4-预测算法" class="headerlink" title="10.4 预测算法"></a>10.4 预测算法</h2><h3 id="10-4-1-近似算法"><a href="#10-4-1-近似算法" class="headerlink" title="10.4.1 近似算法"></a>10.4.1 近似算法</h3><ul>
 <li>给定隐马尔可夫模型$\lambda$和观测序列$O$，在时刻$t$处于状态$q_i$的概率$\gamma_t(i)$是$\gamma_t(i)=\frac{\alpha_t(i)\beta_t(i)}{P(O|\lambda)}=\frac{\alpha_t(i)\beta_t(i)}{\sum_{j=1}^N\alpha_t(j)\beta_t(j)}$，在每一个时刻$t$最有可能的状态$i_t^*=arg max_{1&lt;=i&lt;=N}[\gamma_t(i)],t=1,2,…,N$</li>
 <li>优点计算简单，缺点是不能保证预测的状态序列整体是最有可能的</li>
 </ul>
-<h3 id="10-4-2-维特比算法"><a href="#10-4-2-维特比算法" class="headerlink" title="10.4.2 维特比算法"></a>10.4.2 维特比算法</h3><script type="math/tex; mode=display">
-维特比算法\\
-输入:模型\lambda=(A,B,\pi)和观测O=(o_1,o_2,...,o_T)\\
-输出:最优路径I^*=(i_1^*,i_2^*,...,i_T^*)\\
-步骤:(1)初始化\delta_1(i)=\pi_ib_i(o_1),i=1,2,...,N\\
-\psi_1(i)=0,i=1,2,...,N\\
-(2)递推t=2,3,...,T\\
-\delta_t(i)=max_{1<=j<=N}[\delta_{t-1}(j)a_{ji}]b_i(o_t),i=1,2,...,N\\
-\psi_t(i)=argmax_{1<=j<=N}[\delta_{t-1}(j)a_{ji}]i=1,2,...,N\\
-(3)终止\\
-P^*=max_{1<=i<=N}\delta_T(i)\\
-i_T^*=argmax_{1<=i<=n}[\delta_T(i)]\\
-(4)最优路径回溯。对t=T-1,T-2,...,1\\
-i_t^*=\psi_{t+1}(i_{t+1}^*)\\
-求得最优路径I^*=(i_1^*,i_2^*,...,i_T^*)</script></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-16T05:00:00.000Z" title="2021/11/16 下午1:00:00">2021-11-16</time>发表</span><span class="level-item"><time dateTime="2021-11-16T07:34:15.873Z" title="2021/11/16 下午3:34:15">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">14 分钟读完 (大约2133个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B9%9D%E7%AB%A0/">统计学习方法第九章</a></h1><div class="content"><h2 id="概要-EM算法及其推广"><a href="#概要-EM算法及其推广" class="headerlink" title="概要 EM算法及其推广"></a>概要 EM算法及其推广</h2><ul>
+<h3 id="10-4-2-维特比算法"><a href="#10-4-2-维特比算法" class="headerlink" title="10.4.2 维特比算法"></a>10.4.2 维特比算法</h3><p>$$<br>维特比算法\<br>输入:模型\lambda=(A,B,\pi)和观测O=(o_1,o_2,…,o_T)\<br>输出:最优路径I^*=(i_1^*,i_2^*,…,i_T^*)\<br>步骤:(1)初始化\delta_1(i)=\pi_ib_i(o_1),i=1,2,…,N\<br>\psi_1(i)=0,i=1,2,…,N\<br>(2)递推t=2,3,…,T\<br>\delta_t(i)=max_{1&lt;=j&lt;=N}[\delta_{t-1}(j)a_{ji}]b_i(o_t),i=1,2,…,N\<br>\psi_t(i)=argmax_{1&lt;=j&lt;=N}[\delta_{t-1}(j)a_{ji}]i=1,2,…,N\<br>(3)终止\<br>P^*=max_{1&lt;=i&lt;=N}\delta_T(i)\<br>i_T^*=argmax_{1&lt;=i&lt;=n}[\delta_T(i)]\<br>(4)最优路径回溯。对t=T-1,T-2,…,1\<br>i_t^*=\psi_{t+1}(i_{t+1}^*)\<br>求得最优路径I^*=(i_1^*,i_2^*,…,i_T^*)<br>$$</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-16T05:00:00.000Z" title="2021/11/16 下午1:00:00">2021-11-16</time>发表</span><span class="level-item"><time dateTime="2021-11-16T07:34:15.873Z" title="2021/11/16 下午3:34:15">2021-11-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">14 分钟读完 (大约2133个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/16/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%B9%9D%E7%AB%A0/">统计学习方法第九章</a></h1><div class="content"><h2 id="概要-EM算法及其推广"><a href="#概要-EM算法及其推广" class="headerlink" title="概要 EM算法及其推广"></a>概要 EM算法及其推广</h2><ul>
 <li>EM算法是一种迭代算法，用于含有隐变量的概率模型参数的极大似然估计或极大后验概率估计。</li>
 <li>EM算法的每次迭代由两步组成：E步求期望；M步求极大。这一算法称为期望极大算法。</li>
 </ul>
 <h2 id="9-1-EM算法的引入"><a href="#9-1-EM算法的引入" class="headerlink" title="9.1 EM算法的引入"></a>9.1 EM算法的引入</h2><h3 id="9-1-1-EM算法"><a href="#9-1-1-EM算法" class="headerlink" title="9.1.1 EM算法"></a>9.1.1 EM算法</h3><ul>
 <li><p>将观测数据表示为$Y=(Y_1,Y_2,…,Y_n)^T$，未观测数据表示为$Z=(Z_1,Z_2,…,Z_n)^T$，则观测数据的似然函数为$P(Y|\theta)=\sum_ZP(Z|\theta)P(Y|Z,\theta)$，即$P(Y|\theta)=\prod_{j=1}^n[\pi p^{y_j}(1-p)^{1-y_j}+(1-\pi)q^{y_j}(1-q)^{1-y_j}]$。考虑求模型参数$\theta=(\pi,p,q)$的极大似然估计，即$\hat \theta=argmax_\theta logP(Y|\theta)$。</p>
 </li>
-<li><script type="math/tex; mode=display">
-EM算法\\
-输入：观测变量数据Y,隐变量数据Z,联合分布P(Y,Z|\theta),条件分布P(Z|Y,\theta)\\
-输出：模型参数\theta\\
-步骤：(1)选择参数的初值\theta^{(0)},开始迭代\\
-(2)E步:记\theta^{(i)}为第i次迭代参数\theta的估计值,在第i+1次迭代的E步\\
-计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZlogP(Y,Z|\theta)P(Z|Y,\theta^{(i)})\\
-这里,P(Z|Y,\theta^{(i)})是在给定观测书Y和当前的参数估计\theta^{(i)}下隐变量数据Z的条件概率分布\\
-(3)M步:求是的Q(\theta,\theta^{(i)})极大化的\theta,确定i+1次迭代的参数的估计值\theta^{(i+1)}\\
-\theta^{(i+1)}=argmax_\theta Q(\theta,\theta^{(i)})\\
-(4)重复(2)和(3)直到收敛</script></li>
+<li><p>$$<br>EM算法\<br>输入：观测变量数据Y,隐变量数据Z,联合分布P(Y,Z|\theta),条件分布P(Z|Y,\theta)\<br>输出：模型参数\theta\<br>步骤：(1)选择参数的初值\theta^{(0)},开始迭代\<br>(2)E步:记\theta^{(i)}为第i次迭代参数\theta的估计值,在第i+1次迭代的E步\<br>计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZlogP(Y,Z|\theta)P(Z|Y,\theta^{(i)})\<br>这里,P(Z|Y,\theta^{(i)})是在给定观测书Y和当前的参数估计\theta^{(i)}下隐变量数据Z的条件概率分布\<br>(3)M步:求是的Q(\theta,\theta^{(i)})极大化的\theta,确定i+1次迭代的参数的估计值\theta^{(i+1)}\<br>\theta^{(i+1)}=argmax_\theta Q(\theta,\theta^{(i)})\<br>(4)重复(2)和(3)直到收敛<br>$$</p>
+</li>
 <li><p><strong>Q函数</strong>：完全数据的对数似然函数$logP(Y,Z|\theta)$关于在给定观测数据$Y$和当前参数$\theta ^{(i)}$下对未观测数据$Z$的条件概率分布$P(Z|Y,\theta^{(i)})$的期望成为Q函数即$Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]$。</p>
 </li>
 <li><p>步骤(1)参数的初值可以任意选择；步骤(2)E步求Q函数，Q函数中Z是未观测数据，Y是观测数据。Q函数的第1个变元表示要极大化的参数，第2个变元表示参数的当前估计值，每次迭代实际在求Q函数的最大值；步骤(3)M步求Q函数的极大化，得到$\theta^{(i+1)}$，完成一次迭代，每次迭代使似然函数增大或达到局部极值；步骤(4)给出停止迭代的条件，一般是对较小的正数$\varepsilon_1,\varepsilon_2$，若满足$||\theta^{(i+1)}-\theta^{(i)}||&lt;\varepsilon _1$或$||Q(\theta^{(i+1)},\theta^{(i)})-Q(\theta^{(i)},\theta^{(i)})||&lt;\varepsilon_2$</p>
@@ -461,14 +365,14 @@ EM算法\\
 </ul>
 <h3 id="9-1-2-EM算法的导出"><a href="#9-1-2-EM算法的导出" class="headerlink" title="9.1.2 EM算法的导出"></a>9.1.2 EM算法的导出</h3><ul>
 <li>极大化$L(\theta)=logP(Y|\theta)=log\sum_ZP(Y,Z|\theta)=log(\sum_ZP(Y|Z,\theta)P(Z|\theta))$，考虑两者的差$L(\theta)-L(\theta^{(i)})=log(\sum_ZP(Y|Z,\theta)P(Z|\theta))-logP(Y|\theta^{(i)})$，利用Jensen不等式，得到下界</li>
-<li>$B(\theta,\theta^{(i)})\hat=\sum_ZP(Z|Y,\theta^{(i)})log\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})}-logP(Y|\theta^{(i)}) \\=\sum_ZP(Z|Y,\theta^{(i)})lop\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})}$</li>
+<li>$B(\theta,\theta^{(i)})\hat=\sum_ZP(Z|Y,\theta^{(i)})log\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})}-logP(Y|\theta^{(i)}) \=\sum_ZP(Z|Y,\theta^{(i)})lop\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})}$</li>
 </ul>
 <h3 id="9-1-3-EM算法在无监督学习中的应用"><a href="#9-1-3-EM算法在无监督学习中的应用" class="headerlink" title="9.1.3 EM算法在无监督学习中的应用"></a>9.1.3 EM算法在无监督学习中的应用</h3><ul>
 <li>EM算法可以用于生成模型的无监督学习。</li>
 </ul>
 <h2 id="9-2-EM算法的收敛性"><a href="#9-2-EM算法的收敛性" class="headerlink" title="9.2 EM算法的收敛性"></a>9.2 EM算法的收敛性</h2><ul>
 <li>设$P(Y|\theta)$为观测数据的似然函数，$\theta^{(i)}(i=1,2,…)$为EM算法得到的参数估计序列，$P(Y|\theta^{(i)})(i=1,2,…)$为对应的似然函数序列，则$P(Y|\theta^{(i)})$是单调递增的，即$P(Y|\theta^{(i+1)})&gt;=P(Y|\theta^{(i)})$</li>
-<li>设$L(\theta)=logP(Y|\theta)$为观测数据的对数似然函数，$\theta^{(i)}(i=1,2,…)$为EM算法得到的参数估计序列，$L(\theta^{(i)})(i=1,2,…)$为对应的对数似然函数序列。（1）如果$P(Y|\theta )$有上界，则$L(\theta^{(i)})=logP(Y|\theta^{(i)})$收敛到某一值$L^<em>$；（2）在函数$Q(\theta,\theta’)$与$L(\theta)$满足一定条件下，由EM算法得到的参数估计序列$\theta^{(i)}$的收敛值$\theta^</em>$是$L(\theta )$的稳定点。</li>
+<li>设$L(\theta)=logP(Y|\theta)$为观测数据的对数似然函数，$\theta^{(i)}(i=1,2,…)$为EM算法得到的参数估计序列，$L(\theta^{(i)})(i=1,2,…)$为对应的对数似然函数序列。（1）如果$P(Y|\theta )$有上界，则$L(\theta^{(i)})=logP(Y|\theta^{(i)})$收敛到某一值$L^*$；（2）在函数$Q(\theta,\theta’)$与$L(\theta)$满足一定条件下，由EM算法得到的参数估计序列$\theta^{(i)}$的收敛值$\theta^*$是$L(\theta )$的稳定点。</li>
 </ul>
 <h2 id="9-3-EM算法在高斯混合模型学习中的应用"><a href="#9-3-EM算法在高斯混合模型学习中的应用" class="headerlink" title="9.3 EM算法在高斯混合模型学习中的应用"></a>9.3 EM算法在高斯混合模型学习中的应用</h2><h3 id="9-3-1-高斯混合模型"><a href="#9-3-1-高斯混合模型" class="headerlink" title="9.3.1 高斯混合模型"></a>9.3.1 高斯混合模型</h3><ul>
 <li>高斯混合模型是指具有$P(y|\theta)=\sum_{k=1}^K\alpha_k\phi(y|\theta_k)$形式的概率分布模型，其中，$\alpha_k$是系数，$\alpha_k&gt;=0 且 \sum_{k=1}^K\alpha_k=1$，$\phi(y|\theta_k)$是高斯分布密度，$\theta_k=(\mu_k,\sigma_k^2)$，$\phi(y|\theta_k)=\frac1{\sqrt{2\pi}\sigma _k}exp(-\frac{(y-\mu_k)^2}{2\sigma _k^2})$称为第$k$个分模型。</li>
@@ -476,18 +380,8 @@ EM算法\\
 <h3 id="9-3-2-高斯混合模型参数估计的EM算法"><a href="#9-3-2-高斯混合模型参数估计的EM算法" class="headerlink" title="9.3.2 高斯混合模型参数估计的EM算法"></a>9.3.2 高斯混合模型参数估计的EM算法</h3><ul>
 <li><p>1 明确隐变量，写出完全数据的对数似然函数；2 EM算法的E步：确定Q函数；3 确定EM算法的M步</p>
 </li>
-<li><script type="math/tex; mode=display">
-高斯混合模型参数估计的EM算法\\
-输入:观测数据y_1,y_2,...,y_N,高斯混合模型\\
-输出:高斯混合模型参数\\
-步骤:(1)取参数的初始值开始迭代\\
-(2)E步:依据当前模型参数,计算分模型k对观测数据y_j的响应度\\
-\gamma_{jk}^2=\frac{\alpha_k\phi(y_j|\theta_k)}{\sum_{k=1}^K\alpha_k\phi(y_j|\theta_k)},j=1,2,..,N;k=1,2,...,K\\
-(3)M步:计算新一轮迭代的模型参数\\
-\hat \mu_k=\frac{\sum_{j=1}^N\hat \gamma_{jk}y_j}{\sum_{j=1}^N\hat \gamma_{jk}},k=,1,2,...,K \\
-\hat \sigma_k^2=\frac{\sum_{j=1}^N\hat \gamma_{jk}(y_j-\mu_k)^2}{\sum_{j=1}^N\hat \gamma_{jk}},k=1,2,...,K\\
-\hat \alpha_k=\frac{\sum_{j=1}^N\hat \gamma_{jk}}{N}, k=1,2,...,K\\
-(4)重复(2)和(3)直到收敛</script></li>
+<li><p>$$<br>高斯混合模型参数估计的EM算法\<br>输入:观测数据y_1,y_2,…,y_N,高斯混合模型\<br>输出:高斯混合模型参数\<br>步骤:(1)取参数的初始值开始迭代\<br>(2)E步:依据当前模型参数,计算分模型k对观测数据y_j的响应度\<br>\gamma_{jk}^2=\frac{\alpha_k\phi(y_j|\theta_k)}{\sum_{k=1}^K\alpha_k\phi(y_j|\theta_k)},j=1,2,..,N;k=1,2,…,K\<br>(3)M步:计算新一轮迭代的模型参数\<br>\hat \mu_k=\frac{\sum_{j=1}^N\hat \gamma_{jk}y_j}{\sum_{j=1}^N\hat \gamma_{jk}},k=,1,2,…,K \<br>\hat \sigma_k^2=\frac{\sum_{j=1}^N\hat \gamma_{jk}(y_j-\mu_k)^2}{\sum_{j=1}^N\hat \gamma_{jk}},k=1,2,…,K\<br>\hat \alpha_k=\frac{\sum_{j=1}^N\hat \gamma_{jk}}{N}, k=1,2,…,K\<br>(4)重复(2)和(3)直到收敛<br>$$</p>
+</li>
 </ul>
 <h2 id="9-4-EM算法的推广"><a href="#9-4-EM算法的推广" class="headerlink" title="9.4 EM算法的推广"></a>9.4 EM算法的推广</h2><h3 id="9-4-1-F函数的极大-极大算法"><a href="#9-4-1-F函数的极大-极大算法" class="headerlink" title="9.4.1 F函数的极大-极大算法"></a>9.4.1 F函数的极大-极大算法</h3><ul>
 <li><p>假设隐变量数据$Z$的概率分布为$\widetilde P(Z)$，定义分布$\widetilde P$与参数$\theta$ 的函数$F(\widetilde P,\theta)=E_{\widetilde P}[logP(Y,Z|\theta)]+H(\widetilde P)$。式中$H(\widetilde P)=-E_{\widetilde P}log \widetilde P(Z)$是分布$\widetilde P(Z)$的熵。通常假设$P(Y,Z|\theta)$是$\theta$的连续函数，因而$F(\widetilde P,\theta)$是$\widetilde P$和$\theta$的连续函数。</p>
@@ -503,35 +397,12 @@ EM算法\\
 </li>
 </ul>
 <h3 id="9-4-2-GEM算法"><a href="#9-4-2-GEM算法" class="headerlink" title="9.4.2 GEM算法"></a>9.4.2 GEM算法</h3><ul>
-<li><script type="math/tex; mode=display">
-GEM算法1\\
-输入:观测数据,F函数;\\
-输出:模型参数\\
-步骤:(1)初始化参数\theta^{(0)},开始迭代\\
-(2)第i+1次迭代,第1步:记\theta^{(i)}为参数\theta的估计值,\widetilde P^{(i)}为函数\widetilde P的估计，求\widetilde P^{(i+1)}使\widetilde P极大化F(\widetilde P,\theta^{(i)})\\
-(3)第2步:求\theta^{(i+1)}使得F(\widetilde P^{(i+1)},\theta)极大化\\
-(4)重复(2)(3)直到收敛</script></li>
-<li><script type="math/tex; mode=display">
-GEM算法2\\
-输入:观测数据,Q函数;\\
-输出:模型参数\\
-步骤:(1)初始化参数\theta^{(0)},开始迭代\\
-(2)第i+1次迭代,第1步:记\theta^{(i)}为参数\theta的估计值\\
-计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZP(Z|Y,\theta^{(i)})logP(Y,Z|\theta)\\
-(3)第2步:求\theta^{(i+1)}使得Q(\theta^{(i+1)},\theta^{(i)})>Q(\theta^{(i)},\theta^{(i)})\\
-(4)重复(2)(3)直到收敛</script></li>
-<li><script type="math/tex; mode=display">
-GEM算法3\\
-输入:观测数据,Q函数;\\
-输出:模型参数\\
-步骤:(1)初始化参数\theta^{(0)}=(\theta_1^{(0)},\theta_2^{(0)},...,\theta_d^{(0)}),开始迭代\\
-(2)第i+1次迭代,第1步:记\theta^{(i)}=(\theta_1^{(i)},\theta_2^{(i)},...,\theta_d^{(i)})为参数\theta=(\theta_1,\theta_2,...,\theta_d)的估计值\\
-计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZP(Z|Y,\theta^{(i)})logP(Y,Z|\theta)\\
-(3)第2步:进行d次条件极大化:\\
-首先,在\theta_2^{(i)},...,\theta_d^{(i)}保持不变的条件下求使得Q(\theta,\theta^{(i)})达到极大的\theta_1^{(i+1)}\\
-然后,在\theta_1=\theta_1^{(i+1)},\theta_j=\theta_j^{(i)},j=3,4,...,d的条件下使得Q函数达到极大值的\theta_2^{(i+1)}\\
-如此往复,经过d次条件极大化，得到Q(\theta^{(i+1)},\theta^{(i)})>Q(\theta^{(i)},\theta^{(i)})\\
-(4)重复(2)(3)直到收敛</script></li>
+<li><p>$$<br>GEM算法1\<br>输入:观测数据,F函数;\<br>输出:模型参数\<br>步骤:(1)初始化参数\theta^{(0)},开始迭代\<br>(2)第i+1次迭代,第1步:记\theta^{(i)}为参数\theta的估计值,\widetilde P^{(i)}为函数\widetilde P的估计，求\widetilde P^{(i+1)}使\widetilde P极大化F(\widetilde P,\theta^{(i)})\<br>(3)第2步:求\theta^{(i+1)}使得F(\widetilde P^{(i+1)},\theta)极大化\<br>(4)重复(2)(3)直到收敛<br>$$</p>
+</li>
+<li><p>$$<br>GEM算法2\<br>输入:观测数据,Q函数;\<br>输出:模型参数\<br>步骤:(1)初始化参数\theta^{(0)},开始迭代\<br>(2)第i+1次迭代,第1步:记\theta^{(i)}为参数\theta的估计值\<br>计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZP(Z|Y,\theta^{(i)})logP(Y,Z|\theta)\<br>(3)第2步:求\theta^{(i+1)}使得Q(\theta^{(i+1)},\theta^{(i)})&gt;Q(\theta^{(i)},\theta^{(i)})\<br>(4)重复(2)(3)直到收敛<br>$$</p>
+</li>
+<li><p>$$<br>GEM算法3\<br>输入:观测数据,Q函数;\<br>输出:模型参数\<br>步骤:(1)初始化参数\theta^{(0)}=(\theta_1^{(0)},\theta_2^{(0)},…,\theta_d^{(0)}),开始迭代\<br>(2)第i+1次迭代,第1步:记\theta^{(i)}=(\theta_1^{(i)},\theta_2^{(i)},…,\theta_d^{(i)})为参数\theta=(\theta_1,\theta_2,…,\theta_d)的估计值\<br>计算Q(\theta,\theta^{(i)})=E_Z[logP(Y,Z|\theta)|Y,\theta^{(i)}]=\sum_ZP(Z|Y,\theta^{(i)})logP(Y,Z|\theta)\<br>(3)第2步:进行d次条件极大化:\<br>首先,在\theta_2^{(i)},…,\theta_d^{(i)}保持不变的条件下求使得Q(\theta,\theta^{(i)})达到极大的\theta_1^{(i+1)}\<br>然后,在\theta_1=\theta_1^{(i+1)},\theta_j=\theta_j^{(i)},j=3,4,…,d的条件下使得Q函数达到极大值的\theta_2^{(i+1)}\<br>如此往复,经过d次条件极大化，得到Q(\theta^{(i+1)},\theta^{(i)})&gt;Q(\theta^{(i)},\theta^{(i)})\<br>(4)重复(2)(3)直到收敛<br>$$</p>
+</li>
 </ul>
 </div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/page/0/">上一页</a></div><div class="pagination-next"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/page/2/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">1</a></li><li><a class="pagination-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/page/2/">2</a></li><li><a class="pagination-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/page/3/">3</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="小涵少年"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">小涵少年</p><p class="is-size-6 is-block">风花飞有态 烟絮坠无痕</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>南京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">34</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">11</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Micro-han" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="twitter" href="https://twitter.com/Bless788"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Zhihu" href="https://www.zhihu.com/people/yan-xiao-han-68-1"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Codeforces" href="https://codeforces.com/profile/YanXiaohan"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://vcode28629.github.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">VCode</span></span><span class="level-right"><span class="level-item tag">vcode28629.github.io</span></span></a></li><li><a class="level is-mobile" href="https://dragonbra.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Dragonbra</span></span><span class="level-right"><span class="level-item tag">dragonbra.github.io</span></span></a></li><li><a class="level is-mobile" href="https://micro-han.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">友链招租</span></span><span class="level-right"><span class="level-item tag">micro-han.github.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/"><span class="level-start"><span class="level-item">杂七杂八</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/"><span class="level-start"><span class="level-item">知识积累</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"><span class="level-start"><span class="level-item">算法竞赛</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">读书笔记</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"><span class="level-start"><span class="level-item">项目实战</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-21T09:30:00.000Z">2021-12-21</time></p><p class="title"><a href="/2021/12/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0/">读书笔记-统计学习方法第十八章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-20T07:23:41.000Z">2021-12-20</time></p><p class="title"><a href="/2021/12/20/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0/">读书笔记-统计学习方法第十七章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-18T11:49:07.000Z">2021-12-18</time></p><p class="title"><a href="/2021/12/18/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0/">读书笔记-统计学习方法第十六章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-14T03:23:00.000Z">2021-12-14</time></p><p class="title"><a href="/2021/12/14/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84CartPole/">强化学习之CartPole</a></p><p class="categories"><a href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-13T04:26:21.000Z">2021-12-13</time></p><p class="title"><a href="/2021/12/13/%E7%AC%AC%E5%8D%81%E5%B1%8A%E6%B2%B3%E6%B5%B7%E5%A4%A7%E5%AD%A6%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%E9%AB%98%E5%B9%B4%E7%BA%A7%E7%BB%84/">第十届河海大学程序设计竞赛高年级组</a></p><p class="categories"><a href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/">杂七杂八</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Codeforces/"><span class="tag">Codeforces</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E3%80%8B/"><span class="tag">《强化学习》</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B%E3%80%8B/"><span class="tag">《深度学习与围棋》</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/"><span class="tag">《统计学习方法》</span><span class="tag">18</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"><span class="tag">强化学习</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="tag">机器学习</span><span class="tag">22</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><span class="tag">算法学习</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%83%A1%E8%AF%B4%E5%85%AB%E9%81%93/"><span class="tag">胡说八道</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/"><span class="tag">解题报告</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"><span class="tag">论文阅读</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/"><span class="tag">项目记录</span><span class="tag">4</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 Micro han</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
             article: {
