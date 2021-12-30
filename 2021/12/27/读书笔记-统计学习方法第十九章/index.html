@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>读书笔记-统计学习方法第十九章 - Micro-han&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Micro-han&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Micro-han&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="概要 马尔可夫链蒙特卡罗法 蒙特卡罗法也称为统计模拟方法，是通过从概率模型的随机抽样进行近似数值计算的方法。马尔可夫链蒙特卡罗法则是以马尔可夫链为概率模型的蒙特卡罗法。马尔可夫链蒙特卡罗法构建一个马尔可夫链，使其平稳分布即抽样的分布，首先基于该马尔可夫链进行随即游走，产生样本的序列，之后使用该平稳分布的样本进行近似数值计算。 Metropolis-Hastings算法是最基本的马尔可夫链蒙特卡罗法"><meta property="og:type" content="blog"><meta property="og:title" content="读书笔记-统计学习方法第十九章"><meta property="og:url" content="https://micro-han.github.io/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0/"><meta property="og:site_name" content="Micro-han&#039;s blog"><meta property="og:description" content="概要 马尔可夫链蒙特卡罗法 蒙特卡罗法也称为统计模拟方法，是通过从概率模型的随机抽样进行近似数值计算的方法。马尔可夫链蒙特卡罗法则是以马尔可夫链为概率模型的蒙特卡罗法。马尔可夫链蒙特卡罗法构建一个马尔可夫链，使其平稳分布即抽样的分布，首先基于该马尔可夫链进行随即游走，产生样本的序列，之后使用该平稳分布的样本进行近似数值计算。 Metropolis-Hastings算法是最基本的马尔可夫链蒙特卡罗法"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://micro-han.github.io/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0/1.png"><meta property="og:image" content="https://micro-han.github.io/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0/2.png"><meta property="article:published_time" content="2021-12-27T06:06:29.000Z"><meta property="article:modified_time" content="2021-12-30T03:58:03.655Z"><meta property="article:author" content="Micro han"><meta property="article:tag" content="机器学习"><meta property="article:tag" content="《统计学习方法》"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0/1.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://micro-han.github.io/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0/"},"headline":"读书笔记-统计学习方法第十九章","image":["https://micro-han.github.io/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0/1.png","https://micro-han.github.io/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0/2.png"],"datePublished":"2021-12-27T06:06:29.000Z","dateModified":"2021-12-30T03:58:03.655Z","author":{"@type":"Person","name":"Micro han"},"publisher":{"@type":"Organization","name":"Micro-han's blog","logo":{"@type":"ImageObject","url":"https://micro-han.github.io/img/logo.svg"}},"description":"概要 马尔可夫链蒙特卡罗法 蒙特卡罗法也称为统计模拟方法，是通过从概率模型的随机抽样进行近似数值计算的方法。马尔可夫链蒙特卡罗法则是以马尔可夫链为概率模型的蒙特卡罗法。马尔可夫链蒙特卡罗法构建一个马尔可夫链，使其平稳分布即抽样的分布，首先基于该马尔可夫链进行随即游走，产生样本的序列，之后使用该平稳分布的样本进行近似数值计算。 Metropolis-Hastings算法是最基本的马尔可夫链蒙特卡罗法"}</script><link rel="canonical" href="https://micro-han.github.io/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-27T06:06:29.000Z" title="2021/12/27 下午2:06:29">2021-12-27</time>发表</span><span class="level-item"><time dateTime="2021-12-30T03:58:03.655Z" title="2021/12/30 上午11:58:03">2021-12-30</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">32 分钟读完 (大约4817个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">读书笔记-统计学习方法第十九章</h1><div class="content"><h2 id="概要-马尔可夫链蒙特卡罗法"><a href="#概要-马尔可夫链蒙特卡罗法" class="headerlink" title="概要 马尔可夫链蒙特卡罗法"></a>概要 马尔可夫链蒙特卡罗法</h2><ul>
+<li>蒙特卡罗法也称为统计模拟方法，是通过从概率模型的随机抽样进行近似数值计算的方法。马尔可夫链蒙特卡罗法则是以马尔可夫链为概率模型的蒙特卡罗法。马尔可夫链蒙特卡罗法构建一个马尔可夫链，使其平稳分布即抽样的分布，首先基于该马尔可夫链进行随即游走，产生样本的序列，之后使用该平稳分布的样本进行近似数值计算。</li>
+<li>Metropolis-Hastings算法是最基本的马尔可夫链蒙特卡罗法，吉布斯抽样是更简单使用更广泛的马尔可夫链蒙特卡罗法。</li>
+</ul>
+<h2 id="19-1-蒙特卡罗法"><a href="#19-1-蒙特卡罗法" class="headerlink" title="19.1 蒙特卡罗法"></a>19.1 蒙特卡罗法</h2><h3 id="19-1-1-随机抽样法"><a href="#19-1-1-随机抽样法" class="headerlink" title="19.1.1 随机抽样法"></a>19.1.1 随机抽样法</h3><ul>
+<li><p>统计学和机器学习的目的是基于数据对概率分布的特征进行判断，蒙特卡洛法要解决的问题是，假设概率分布的定义已知，通过抽样获得概率分布的随机样本，并通过得到的随机样本对概率分布的特征进行分析。核心是随机抽样。</p>
+</li>
+<li><script type="math/tex; mode=display">
+接受-拒绝抽样法 \\
+思想：假设p(x)不可以直接抽样，找一个可以直接抽样的分布，称为建议分布。 \\
+假设q(x)是建议分布的概率密度函数，并且有q(x)的c倍一定大于等于p(x)，其中c>0 \\
+按照q(x)进行抽样，假设得到的结果是x’，再按照\frac{p(x')}{cq(x')}的比例随机决定是否接受x'(落到p(x')就接受，否则拒绝) \\
+输入：抽样的目标概率分布的概率密度函数p(x) \\
+输出：概率分布的随机样本x_1,  x_2,...,x_n \\
+参数：样本数量n \\
+步骤：(1) 选择概率密度函数为q(x)的概率分布，作为建议分布，使其对任一x满足cq(x) \geq p(x)其中c>0 \\
+(2) 按照建议分布q(x)随机抽样得到样本x'，再按照均匀分布在(0,1)范围内抽样得到u \\
+(3) 如果 u \leq \frac{p(x')}{cq(x')}，则将x'作为抽样结果，否则回到步骤(2) \\
+(4) 直到得到n个随机样本，结束 \\
+容易实现，效率不高</script></li>
+</ul>
+<h3 id="19-1-2-数学期望估计"><a href="#19-1-2-数学期望估计" class="headerlink" title="19.1.2 数学期望估计"></a>19.1.2 数学期望估计</h3><p>蒙特卡罗法可以用来计算数学期望估计。假设有随机变量$x\in \cal X$，其概率密度函数为$p(x)$，$f(x)$为定义在$\cal X$上的函数，目标是求函数$f(x)$关于密度函数$p(x)$的数学期望$E_{p(x)}[f(x)]$。</p>
+<p>蒙特卡罗法按照概率分布$p(x)$独立地抽取$n$个样本$x_1,x_2,…,x_n$，之后计算函数$f(x)$的样本均值$\hat f_n=\frac1n\sum_{i=1}^nf(x_i)$，作为数学期望$E_{p(x)}[f(x)]$的近似值。</p>
+<p>根据大数定理可知，当样本容量增大时，样本均值以概率1收敛于数学期望。</p>
+<h3 id="19-1-3-积分计算"><a href="#19-1-3-积分计算" class="headerlink" title="19.1.3 积分计算"></a>19.1.3 积分计算</h3><p>蒙特卡罗法也可以用来计算定积分，称为蒙特卡洛积分。假设有一个函数$h(x)$，目标是计算该函数的积分$\int_{\cal X}h(x)dx$。如果能将函数$h(x)$分解成一个函数$f(x)$和一个概率密度函数$p(x)$的乘积的形式，就有$\int_{\cal X}h(x)dx=\int_{\cal X}f(x)p(x)dx=E_{p(x)}[f(x)]\approx \frac1n\sum_{i=1}^nf(x_i)$</p>
+<h2 id="19-2-马尔可夫链"><a href="#19-2-马尔可夫链" class="headerlink" title="19.2 马尔可夫链"></a>19.2 马尔可夫链</h2><h3 id="19-2-1-基本定义"><a href="#19-2-1-基本定义" class="headerlink" title="19.2.1 基本定义"></a>19.2.1 基本定义</h3><p>考虑一个随机变量的序列$X=\{X_0,X_1,…,X_t,… \},$这里$X_t$表示时刻$t$的随机变量。每个随机变量$X_t$的取值集合相同，称为状态空间，表示为$\cal S$。随机变量可以是离散的也可以是连续的，随机变量的序列构成随机过程。</p>
+<p>假设在时刻0的随机变量$X_0$遵循概率分布$P(X_0)=\pi_0$，称为初始状态分布。在某个时刻$t\geq 1$的随机变量$X_t$与前一个时刻的随机变量$X_{t-1}$之间有条件分布$P(X_t|X_{t-1})$，如果$X_t$只依赖于$X_{t-1}$，而不依赖于过去的随机变量$\{X_0,t_1,…,t_{t-2} \}$，这一性质为马尔可夫性，即$P(X_t|X_0,X_1,…,X_{t-1})=P(X_t|X_{t-1})$，具有马尔可夫性的随机序列$X$称为马尔可夫链或者马尔可夫过程，条件概率分布$P(X_t|X_{t-1})$称为马尔可夫链的转移概率分布。转移概率分布决定了马尔可夫链的性质。直观解释为“未来只依赖于现在，而与过去无关”。</p>
+<p>若转移概率分布$P(X_t|X_{t-1})$与$t$无关，即$P(X_{t+s}|X_{t-1+s})=P(X_t|X_{t-1})$，则称马尔可夫链为时间齐次的马尔可夫链。</p>
+<p>以上是一阶马尔可夫链，可以扩展到$n$阶马尔可夫链，满足$n$阶马尔可夫性$P(X_t|X_0X_1…X_{t-2}X_{t-1})=P(X_t|X_{t-n}…X_{t-2}X_{t-1})$</p>
+<h3 id="19-2-2-离散状态马尔可夫链"><a href="#19-2-2-离散状态马尔可夫链" class="headerlink" title="19.2.2 离散状态马尔可夫链"></a>19.2.2 离散状态马尔可夫链</h3><p><strong>1 转移概率矩阵和状态分布</strong></p>
+<p>离散状态马尔可夫链$X=\{X_1, X_2,…,X_t,…\}$，随机变量$X_t$定义在离散空间$\cal S$，转移概率分布可以由矩阵表示。</p>
+<p>若马尔可夫链在时刻$(t-1)$处于状态$j$，在时刻$t$移动到状态$i$，将换以概率记作$p_{ij}=(X_t=i|X_{t-1}=j),i=1,2,…;j=1,2,…$满足$p_{ij}\geq 0,\sum_i p_{ij}=1$。马尔可夫链的转移概率$p_{ij}$可以由矩阵表示，称为马尔可夫链的转移概率矩阵，转移概率矩阵$P$满足条件$p_{ij} \geq 0,\sum_i p_{ij} = 1$。满足这两个条件的矩阵称为随机矩阵。</p>
+<p>考虑马尔可夫链$X$，在时刻$t$的概率分布，称为时刻$t$的状态分布，记作$\pi(t)$，其中$\pi_i(t)$表示时刻$t$状态为$i$的概率$P(X_t=i)$。通常初始分布$\pi(0)$的向量只有一个分量是1，其余分量全是0，表示马尔可夫链从一个具体状态开始。</p>
+<p>有限离散状态的马尔可夫链可以由有向图表示。结点表示状态，边表示状态之间的信息的转移，边上的数值表示转移概率。从一个初始状态出发，根据邮箱边上定义的概率在状态之间随机跳转，就可以产生状态序列。</p>
+<p><strong>2 平稳分布</strong></p>
+<p>平稳分布定义：设有马尔可夫链$X=\{X_1,X_2,…,X_t,… \}$，其状态空间为$\cal S$，转移概率矩阵$P=(p_{ij})$，如果存在状态空间$\cal S$上的一个分布$\pi$，使得$\pi=P\pi$，则称$\pi$为马尔可夫链的平稳分布。如果马尔可夫链的平稳分布存在，那么以该平稳分布作为初始分布面向未来随机选择，之后任何一个时刻的状态分布都是平稳分布。</p>
+<p>给定一个 马尔可夫链$X=\{X_1,X_2,…,X_t,… \}$，状态空间为$\cal S$，转移概率矩阵$P=(p_{ij})$，则分布$\pi=(\pi_1,\pi_2,…)^T$为$X$的平稳分布的充分必要条件是$\pi=(\pi_1,\pi_2,…)^T$为$X$的平稳分布的充分必要条件是$\pi=(\pi_1,\pi_2,…)^T$是下列方程组的解：$x_i=\sum_jp_{ij}x_j,i=1,2,…;x_i\geq 0,i=1,2,…;\sum_ix_i=1$</p>
+<h3 id="19-2-3-连续状态马尔可夫链"><a href="#19-2-3-连续状态马尔可夫链" class="headerlink" title="19.2.3 连续状态马尔可夫链"></a>19.2.3 连续状态马尔可夫链</h3><p>连续状态马尔可夫链$X=\{X_1,X_2,…,X_t,… \}$，随机变量$X_t$定义在连续状态空间$\cal S$，转移概率分布由概率转移或转移核表示。</p>
+<p>设$\cal S$是连续状态空间，对任意的$x\in S,A\subset S$，转移核$P(x,A)=\int_Ap(x,y)dy$，其中$p(x,\cdot)$是概率密度函数，满足$p(x,\cdot)\geq 0$，$p(x,S)=\int_Sp(x,y)dy=1$。转移核$p(x,A)$表示从$x$~$A$的转移概率$P(X_t=A|X_{t-1}=x)=P(x,A)$。</p>
+<p>若马尔可夫链的状态空间$S$上的概率分布$\pi(x)$满足条件$\pi(y)=\int p(x,y)\pi(x)dx,\forall y\in S$，则称分布$\pi(x)$为该马尔科夫链的平稳分布。等价的，$\pi(A)=\int P(x,A)\pi(x)dx,\forall A\subset S$，可以简写为$\pi=P\pi$</p>
+<h3 id="19-2-4-马尔可夫链性质"><a href="#19-2-4-马尔可夫链性质" class="headerlink" title="19.2.4 马尔可夫链性质"></a>19.2.4 马尔可夫链性质</h3><p><strong>不可约</strong></p>
+<p>设有马尔可夫链$X=\{X_1,X_2,…,X_t,… \}$，状态空间为$S$，对于任意状态$i,j\in S$，如果存在一个时刻$t(t&gt;0)$满足$P(X_t=i|X_0=j)&gt;0$，也就是说，时刻0从状态$j$出发，到达状态$i$的概率大于0，则称此马尔可夫链是不可约的。如果等于0那么就是可约的。直观上，一个不可约的马尔可夫链经过充分长的时间可以到达所有状态。</p>
+<p><strong>非周期</strong></p>
+<p>设有马尔可夫链$X=\{X_1,X_2,…,X_t,… \}$，状态空间为$S$，对于任意状态$i\in S$，如果时刻0从状态$i$出发，$t$时刻返回状态的所有时间长$\{t:P(X_t=i|X_0=i)&gt;0\}$的最大公约数是1，则称次马尔可夫链$X$是非周期的，否则称他是周期的。直观上，一个非周期的马尔可夫链，不存在一个状态，从这一个状态出发，再返回到这个状态时所经历的时间长呈一定的周期性。</p>
+<p>不可约且非周期的有限状态马尔可夫链，有唯一平稳分布存在。</p>
+<p><strong>正常返</strong></p>
+<p>设有马尔可夫链$X=\{X_1,X_2,…,X_t,… \}$，状态空间为$S$，对于任意状态$i,j\in S$，定义概率$p_{ij}^t$为时刻0从状态$j$出发，时刻$t$首次转移到状态$i$的概率，即$p_{ij}^t=P(X_t=i,X_s\neq i,s=1,2,…,t-1|X_0=j),t=1,2,…$。若对所有状态$i,j$都满足$lin_{t\rightarrow \infty}p_{ij}^t&gt;0$则称马尔可夫链$X$是正常返的。直观上，一个正常返的马尔可夫链，其中任意一个状态，从其他任意一个状态出发，当时间趋于无穷时，首次转移到这个状态的概率不为0。</p>
+<p>不可约、非周期、正常返的马尔可夫链，有唯一平稳分布存在。</p>
+<p><strong>遍历定理</strong></p>
+<p>设有马尔可夫链$X=\{X_1,X_2,…,X_t,… \}$，状态空间为$S$，如果马尔可夫链是不可约、非周期且正常返的，则称该马尔可夫链有唯一平稳分布$\pi=(\pi_1,\pi_2,…)^T$，并且转移概率的极限分布是马尔可夫链的平稳分布$lim_{p\rightarrow \infty}P(X_t=i|X_0=j)=\pi_i,i=1,2,…;j=1,2,…$，如果$f(X)$是定义在状态空间上的函数，$E_\pi[|f(X|] &lt; \infty$则$P\{\hat f_t \rightarrow E_\pi[f(X)] \} = 1$，这里 $\hat f_t=\frac1t\sum_{s=1}^tf(x_s)$，$E_\pi[f(X)]=\sum_if(i)\pi_i$是$f(X)$关于平稳分布的$\pi=(\pi_1,\pi_2,…)^T$的数学期望，$P\{\hat f_t \rightarrow E_\pi[f(X)] \} = 1$表示$\hat f_t\rightarrow E_\pi[f(X)],t\rightarrow \infty$几乎处处成立或以概率1成立。</p>
+<p><img src="/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0/1.png" alt="遍历定理的直观解释"></p>
+<p><strong>逆马尔可夫链</strong></p>
+<p>设有马尔可夫链$X=\{X_1,X_2,…,X_t,… \}$，状态空间为$S$，转移概率矩阵$P$，如果有状态分布$\pi=(\pi_1,\pi_2,…)^T$，对于任意状态$i,j\in S$，对任意一个时刻$t$满足$P(X_t=i|X_{t-1}=j)\pi_j=P(X_{t-1}=j|X_t=i)\pi_i,i,j=1,2,…$或简写为$p_{ij}\pi_j=p_{ij}\pi_i$，则称此马尔可夫链为可逆马尔可夫链。简写表示称为细致平衡方程。直观上，如果有可逆的马尔可夫链，那么以该马尔科夫链的平稳分布作为初始分布，进行随机状态转移，无论是面向过去还是未来，任何一个时刻的转改分布都是该平稳分布。</p>
+<p>满足细致平稳方程的状态分布$\pi$就是该马尔可夫链的平稳分布，即$P\pi=\pi$</p>
+<h2 id="19-3-马尔可夫链蒙特卡罗法"><a href="#19-3-马尔可夫链蒙特卡罗法" class="headerlink" title="19.3 马尔可夫链蒙特卡罗法"></a>19.3 马尔可夫链蒙特卡罗法</h2><h3 id="19-3-1-基本想法"><a href="#19-3-1-基本想法" class="headerlink" title="19.3.1 基本想法"></a>19.3.1 基本想法</h3><p>马尔可夫链蒙特卡罗法更适合于随机变量多元、密度函数是非标准化形式、随机变量各分量不独立等情况。</p>
+<p>假设多元随机变量$x$，满足$x\in \cal X$，其概率密度函数为$p(x)$，$f(x)$为定义在$x\in \cal X$上的函数，目标是或的概率分布$p(x)$的样本集合，以及求函数$f(x)$的数学期望$E_{p(x)}[f(x)]$。这时，应用马尔可夫链蒙特卡罗法来解决这个问题。</p>
+<p>在随机变量$x$的状态空间$S$上定义一个满足遍历定理的马尔可夫链，使其平稳分布就是抽样的目标分布$p(x)$，然后在这个马尔可夫链上随机游走，每个时刻得到一个样本。根据遍历定义，当时间趋近于无穷时，样本的分布趋近于平稳分布，样本的函数均值趋近于函数的数学期望。所以，当时间足够长时，在之后的时间里随机游走得到的样本集合就是目标概率分布的抽样结果，得到的函数均值就是计算的数学期望值。$\hat Ef=\frac1{n-m}\sum_{i=m+1}^nf(x_i)$，到时刻$m$为止的时间段称为燃烧期。</p>
+<h3 id="19-3-2-基本步骤"><a href="#19-3-2-基本步骤" class="headerlink" title="19.3.2 基本步骤"></a>19.3.2 基本步骤</h3><p>分为三步走</p>
+<p>（1）在随机变量$x$的状态空间$S$上构造一个满足遍历定理的马尔可夫链，使其平稳分布为目标分布$p(x)$。</p>
+<p>（2）从状态空间的某一点$x_0$出发，用构造的马尔可夫链进行随机游走，产生样本序列。</p>
+<p>（3）应用马尔可夫链的遍历定理，确定正整数$m$和$n$，得到样本集合，求得函数$f(x)$的均值。</p>
+<h3 id="19-3-3-马尔可夫链蒙特卡罗法与统计学习"><a href="#19-3-3-马尔可夫链蒙特卡罗法与统计学习" class="headerlink" title="19.3.3 马尔可夫链蒙特卡罗法与统计学习"></a>19.3.3 马尔可夫链蒙特卡罗法与统计学习</h3><p>马尔可夫链为贝叶斯学习提供了计算和推理的工具。</p>
+<h2 id="19-4-Metropolis-Hastings算法"><a href="#19-4-Metropolis-Hastings算法" class="headerlink" title="19.4 Metropolis-Hastings算法"></a>19.4 Metropolis-Hastings算法</h2><h3 id="19-4-1-基本定理"><a href="#19-4-1-基本定理" class="headerlink" title="19.4.1 基本定理"></a>19.4.1 基本定理</h3><p><strong>马尔可夫链</strong></p>
+<p>由转移核构成的马尔可夫链是可逆的，即$p(x)p(x,x’)=p(x’)p(x’,x)$，并且$p(x)$是该马尔可夫链的平稳分布。</p>
+<p><strong>建议分布</strong></p>
+<p>有多种形式，主要介绍两种。</p>
+<p>第一种为对称分布，即$q(x,x’)=q(x’,x)$，接受分布简化为$\alpha(x,x’)=min\{1,\frac{p(x’)}{p(x)} \}$。可以选择两种特例。$q(x,x’)$取条件概率分布$p(x’,x)$，定义为多元正态分布，其均值是$x$，其协方差矩阵是常数矩阵。$q(x,x’)=q(|x-x’|)$，这时算法称为随机游走。选择的特点是当$x’$与$x$接近时，$q(x,x’)$的概率值高，否则$q(x,x’)$的概率值低，其均值是$x$，状态转移在附近点的可能性比较大。</p>
+<p>第二种形式是独立抽样，假设$q(x,x’)$与当前状态$x$无关，即$q(x,x’)=q(x’)$。建议分布的计算按照$q(x’)$独立抽样进。此时接受分布$\alpha(x,x’)=min\{1,\frac{w(x’)}{w(x)}\}$，其中$w(x’)=p(x’)/q(x’),w(x)=p(x)/q(x)$。独立抽样实现简单，但可能收敛速度较慢，通常选择接近目标分布$p(x)$的分布作为建议分布$q(x)$。</p>
+<p><strong>满条件分布</strong></p>
+<p>马尔可夫链蒙特卡洛法的目标分布通常是多元联合概率分布$p(x)=p(x_1,x_2,…,x_k)$，其中$x=(x_1,x_2,…,x_k)^T$为$k$维随机变量。如果条件概率分布$p(x_I|x_{-I})$中所有$k$个变量全部出现，$x_I=\{x_i,i\in I\},x_{-I}=\{x_i,\not\in I \},I\subset K=\{1,2,…,k\}$就把这种条件概率分布称为满条件分布。</p>
+<p>满条件分布有以下性质，对任意的$x,x’\in \cal X$和任意的$I\subset K$，有$p(x_I|x_{-I})=\frac{p(x)}{\int p(x)dx_I}\propto p(x)$，而且还有$\frac{p(x_I’|x_{-I}’)}{p(x_I|x_{-I})}=\frac{p(x’)}{p(x)}$，用该式左边计算比右边容易。</p>
+<h3 id="19-4-2-Metropolis-Hastings算法"><a href="#19-4-2-Metropolis-Hastings算法" class="headerlink" title="19.4.2 Metropolis-Hastings算法"></a>19.4.2 Metropolis-Hastings算法</h3><script type="math/tex; mode=display">
+Metropolis-Hastings算法\\
+输入:抽样的目标分布的密度函数p(x),函数f(x) \\
+输出:p(x)的随机样本x_{m+1},x_{m+2},...,x_n,函数的样本均值f_{mn} \\
+参数:收敛步数m,迭代步数n \\
+步骤:(1)任意选择一个初始值x_0 \\
+(2)对i=1,2,...,n循环执行 \\
+(a)设状态x_{i-1}=x,按照建议分布q(x,x')随机抽取一个候选状态x' \\
+(b)计算接受概率 \\
+\alpha(x,x')=min\{1,\frac{p(x')q(x',x)}{p(x)q(x,x')}\} \\
+(c)从区间(0,1)中按均匀分奴随机抽取一个数u \\
+若 u \leq \alpha(x,x'),则状态x_i=x',否则状态x_i=x \\
+(3)得到样本集合\{x_{m+1},x_{m+2},...,x_n \} \\
+计算f_{mn}=\frac1{n-m} \sum_{i=m+1}^nf(x_i)</script><h3 id="19-4-3-单分量Metropolis-Hastings算法"><a href="#19-4-3-单分量Metropolis-Hastings算法" class="headerlink" title="19.4.3 单分量Metropolis-Hastings算法"></a>19.4.3 单分量Metropolis-Hastings算法</h3><p>可以对多元变量的每一变量的条件分布依次进行抽样，从而实现对整个多元变量的一次抽样，这就是单分量算法。</p>
+<p>假设马尔可夫链的状态由$k$维随机变量表示$x=(x_1,x_2,…,x_k)^T$，其中$x_j$表示随机变量$x$的第$j$个分量，而$x^{(i)}$表示马尔可夫链在时刻$i$的状态，其中$x_j^{(i)}$是其的第$j$个分量。</p>
+<p>用下面$k$步来代替上式子中的一次迭代。</p>
+<p><img src="/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0/2.png" alt="单分量算法"></p>
+<h2 id="19-5-吉布斯抽样"><a href="#19-5-吉布斯抽样" class="headerlink" title="19.5 吉布斯抽样"></a>19.5 吉布斯抽样</h2><script type="math/tex; mode=display">
+吉布斯抽样 \\
+输入:目标概率分布的密度函数p(x),函数f(x) \\
+输出:p(x)的随机样本x_{m+1},x_{m+2},...,x_n,函数样本均值f_{mn} \\
+参数:收敛步数m,迭代步数n \\
+步骤:(1)初始化，给出初始样本x^{(0)}=(x_1^{(0)},x_2^{(0)},...,x_k^{(0)})^T \\
+(2)对i循环执行 \\
+设第(i-1)次迭代结束时的样本为x^{(i-1)}=(x_1^{(i-1)},x_2^{(i-1)},...,x_k^{(i-1)})^T \\
+(a) 由满条件分布抽取P(x_1|x_2^{(i-1)},...,x_k^NaN),抽取x_1^{(i)} \\
+... \\
+(b) 由满条件分布抽取P(x_k|,x_1^{(i)},x_2^{(i)},...,x_{k-1}^),抽取x_k^{(i)} \\
+(3) \\
+(4)计算 f_{mn}=\frac1{n-m}\sum_{i=1+m}^nf(x^{(i)})) \</script></div><div class="article-licensing box"><div class="licensing-title"><p>读书笔记-统计学习方法第十九章</p><p><a href="https://micro-han.github.io/2021/12/27/读书笔记-统计学习方法第十九章/">https://micro-han.github.io/2021/12/27/读书笔记-统计学习方法第十九章/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Micro han</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-12-27</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-12-30</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="link-muted mr-2" rel="tag" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/">《统计学习方法》</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://micro-han.github.io/about/" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechatpay.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%BA%8C%E5%8D%81%E7%AB%A0/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">读书笔记-统计学习方法第二十章</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/12/23/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92/"><span class="level-item">多智能体强化学习路径规划</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "b947cda435a50e3e404804c513a5bce1",
+            repo: "Micro-han.github.io",
+            owner: "Micro-han",
+            clientID: "c815ba4662451a6ebff3",
+            clientSecret: "1df2e18f757675a28cacfb4d2058c4f3dc3d5362",
+            admin: ["Micro-han"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="小涵少年"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">小涵少年</p><p class="is-size-6 is-block">风花飞有态 烟絮坠无痕</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>南京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">39</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">11</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Micro-han" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="twitter" href="https://twitter.com/Bless788"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Zhihu" href="https://www.zhihu.com/people/yan-xiao-han-68-1"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Codeforces" href="https://codeforces.com/profile/YanXiaohan"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://vcode28629.github.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">VCode</span></span><span class="level-right"><span class="level-item tag">vcode28629.github.io</span></span></a></li><li><a class="level is-mobile" href="https://dragonbra.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Dragonbra</span></span><span class="level-right"><span class="level-item tag">dragonbra.github.io</span></span></a></li><li><a class="level is-mobile" href="https://blog.sukiu.top/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">SukiEva</span></span><span class="level-right"><span class="level-item tag">blog.sukiu.top</span></span></a></li><li><a class="level is-mobile" href="https://micro-han.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">友链招租</span></span><span class="level-right"><span class="level-item tag">micro-han.github.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/"><span class="level-start"><span class="level-item">杂七杂八</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/"><span class="level-start"><span class="level-item">知识积累</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"><span class="level-start"><span class="level-item">算法竞赛</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">读书笔记</span></span><span class="level-end"><span class="level-item tag">26</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"><span class="level-start"><span class="level-item">项目实战</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-27T06:28:39.000Z">2021-12-27</time></p><p class="title"><a href="/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E7%AB%A0/">读书笔记-统计学习方法第二十二章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-27T06:27:59.000Z">2021-12-27</time></p><p class="title"><a href="/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E7%AB%A0/">读书笔记-统计学习方法第二十一章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-27T06:26:53.000Z">2021-12-27</time></p><p class="title"><a href="/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E4%BA%8C%E5%8D%81%E7%AB%A0/">读书笔记-统计学习方法第二十章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-27T06:06:29.000Z">2021-12-27</time></p><p class="title"><a href="/2021/12/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0/">读书笔记-统计学习方法第十九章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-23T05:20:10.000Z">2021-12-23</time></p><p class="title"><a href="/2021/12/23/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92/">多智能体强化学习路径规划</a></p><p class="categories"><a href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Codeforces/"><span class="tag">Codeforces</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E3%80%8B/"><span class="tag">《强化学习》</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B%E3%80%8B/"><span class="tag">《深度学习与围棋》</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/"><span class="tag">《统计学习方法》</span><span class="tag">22</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"><span class="tag">强化学习</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="tag">机器学习</span><span class="tag">26</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><span class="tag">算法学习</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%83%A1%E8%AF%B4%E5%85%AB%E9%81%93/"><span class="tag">胡说八道</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/"><span class="tag">解题报告</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"><span class="tag">论文阅读</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/"><span class="tag">项目记录</span><span class="tag">4</span></a></div></div></div></div></div></div><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3"><!--!--></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 Micro han</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
