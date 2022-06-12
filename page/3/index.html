@@ -1,89 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Micro-han&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Micro-han&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Micro-han&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Micro-han&#039;s blog"><meta property="og:url" content="https://micro-han.github.io/"><meta property="og:site_name" content="Micro-han&#039;s blog"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://micro-han.github.io/img/og_image.png"><meta property="article:author" content="Micro han"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://micro-han.github.io"},"headline":"Micro-han's blog","image":["https://micro-han.github.io/img/og_image.png"],"author":{"@type":"Person","name":"Micro han"},"publisher":{"@type":"Organization","name":"Micro-han's blog","logo":{"@type":"ImageObject","url":"https://micro-han.github.io/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-20T07:23:41.000Z" title="2021/12/20 下午3:23:41">2021-12-20</time>发表</span><span class="level-item"><time dateTime="2022-03-24T04:48:56.561Z" title="2022/3/24 下午12:48:56">2022-03-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">21 分钟读完 (大约3164个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/20/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0/">读书笔记-统计学习方法第十七章</a></h1><div class="content"><h2 id="概要-潜在语义分析"><a href="#概要-潜在语义分析" class="headerlink" title="概要 潜在语义分析"></a>概要 潜在语义分析</h2><ul>
-<li>潜在语义分析LSA是一种无监督学习方法，主要用于文本的话题分析，其特点是通过矩阵分解发现文本域单词之间的基于话题的语义关系。</li>
-<li>文本信息处理中，传统的方法以单词向量表示文本的语义内容，以单词向量空间的度量表示文本之间的语义相似度。潜在语义分析旨在解决这种方法不能准确表示的语义的问题，试图从大量的文本数据中发现潜在的话题，以话题向量表示文本的语义内容，以话题向量空间的度量更准确地表示文本之间语义相似度。</li>
-<li>潜在语义分析使用的是非概率的话题分析模型。具体地，将文本集合表示为单词-文本矩阵，对单词-文本矩阵进行奇异值分解，从而得到话题向量空间，以及文本在话题空间的表示。</li>
-<li>非负矩阵分解是另一种矩阵的因子分解方法，其特点是分解的矩阵非负。</li>
-</ul>
-<h2 id="17-1-单词向量空间与话题向量空间"><a href="#17-1-单词向量空间与话题向量空间" class="headerlink" title="17.1 单词向量空间与话题向量空间"></a>17.1 单词向量空间与话题向量空间</h2><h3 id="17-1-1-单词向量空间"><a href="#17-1-1-单词向量空间" class="headerlink" title="17.1.1 单词向量空间"></a>17.1.1 单词向量空间</h3><ul>
-<li>文本信息处理的一个核心问题是对文本的语义内容进行表示，并进行文本之间的语义相似度计算。最简单的方法是利用 向量空间模型VSM，也就是单词向量空间模型。其基本想法是，给定一个文本，用一个向量表示该文本的“语义”，向量的每一维对应一个单词，其数值为该单词在该文本中出现的频数或权值；基本假设是文本中所有单词的出现情况表示了文本的语义内容；文本集合中的每个文本都表示为一个向量，存在于一个向量空间；向量空间的度量表示文本之间的“语义相似度”。</li>
-<li>给定一个含有$n$个文本的集合$D=\{d_1,d_2,…,d_n\}$，以及在所有文本中出现的$m$个单词的集合$W=\{w_1,w_2,…,w_n\}$。将单词在文本中出现的数据用一个单词-文本矩阵表示，记作$X=\left[ \begin{array}{1}x_{11}&amp;x_{12}&amp; … &amp; x_{1n} \\ x_{21}&amp;x_{22}&amp; … &amp;x_{2n} \\ … &amp; … &amp; … &amp; … \\ x_{m1} &amp; x_{m2} &amp; … &amp; x_{mn} \end{array}\right]$。这是一个$m\times n$的矩阵，元素$x_{ij}$表示单词$w_i$在文本$d_j$中出现的频数或权值。这是一个稀疏矩阵。</li>
-<li>权值通常用单词频率-逆文本频率表示，定义为$TFIDF_{ij}=\frac{tf_{ij}}{tf_{\cdot j}}log\frac{df}{df_i},i=1,2,…,m;j=1,2,…,n$式子中，$tf_{ij}$是单词$w_i$出现在文本$d_j$中的频数，$tf_{\cdot j}$是文本$d_j$中出现的所有单词的频数之和，$df_i$是含有单词$w_i$的文本数，$df$是文本集合$D$的全部文本数。直观上，一个单词在一个文本中出现的频数越高，这个单词在这个文本中的重要度就越高；一个单词在整个文本中出现的文本数越少，这个单词就越能代表其所在文本的特点，重要度就越高；一个单词在一个文本的TF-IDF是两种重要度的积，表示综合重要度。</li>
-<li>单词向量空间模型直接使用单词-文本矩阵的信息。单词-文本矩阵的第$j$列向量$x_j$表示文本$d_j$，$x_j=\left[\begin{array}{1} x_{1j} \\ x_{2j} \\ … \\ x_{mj} \end{array} \right],j=1,2,…,m$，其中，$x_{ij}$是单词$w_i$在文本$d_j$的权值，$i=1,2,…,m$权值越大，该单词在该文本中的重要度就越高。矩阵$X=[x_1 \space x_2 \space …\space x_n]$。</li>
-<li>两个单词向量的内积或标准化内积表示对应的文本之间的语义相似度，文本$d_i$与$d_j$之间的相似度为$x_i\cdot x_j,\frac{x_i\cdot x_j}{||x_i||||x_j||}$，式子中，$\cdot$表示向量的内积，带上双竖线表示其范数。</li>
-</ul>
-<h3 id="17-1-2-话题向量空间"><a href="#17-1-2-话题向量空间" class="headerlink" title="17.1.2 话题向量空间"></a>17.1.2 话题向量空间</h3><p><strong>话题向量空间</strong></p>
-<p>给定一个文本集合$D=\{d_1,d_2,…,d_n\}$和一个相应的单词集合$W=\{w_1,w_2,…,w_m\}$可以获得其单词-文本矩阵$X$，$X$构成原始的单词向量空间，每一列都是一个文本在单词向量空间的表示。</p>
-<p>假设所有文本共包含$k$个话题，假设每个话题由一个定义在单词集合$W$上的$m$维向量表示，称为话题向量，即$t_l=\left[\begin{array}{1}t_{1l}  \\ t_{2l} \\ … \\ t_{ml} \end{array}\right],l=1,2,…,k$。其中，$t_{il}$是单词$w_i$在话题$t_l$的权值，权值越大，该单词在该话题下重要度就越高。这$k$个话题向量张成一个话题空间向量，维数为$k$。向量空间$T$也可以表示成一个矩阵，称为单词-话题矩阵。</p>
-<p><strong>文本在话题向量空间的表示</strong></p>
-<p>考虑文本集合$D$的文本$d_j$，在单词向量空间中由一个向量$x_j$表示，将$x_j$投影到话题向量空间$T$中，得到在话题空间的一个向量$y_j$，$y_j$是一个$k$维向量，其表达式为$y_j=\left[\begin{array}{1}y_{1j} \\ y_{2j} \\ … \\ y_{kj}\end{array}\right],j=1,2,…,n$其中$y_{lj}$是文本$d_j$在话题$t_l$的权值，权值越大代表该话题在该文本中的重要度越大。</p>
-<p>矩阵$Y$表示话题在文本中的情况，称为话题-文本矩阵。</p>
-<p><strong>单词向量空间到话题向量空间的线性变换</strong></p>
-<p>在单词向量空间的文本向量$x_j$可以通过它在话题空间中的向量$y_j$近似表示，具体地由$k$个话题向量以$y_j$为系数的线性组合近似表示$x_j\approx y_{1j}t_1+y_{2j}t_2+…+y_{kj}t_k,j=1,2,…,n$，所以，单词-文本矩阵$X$可以近似的表示为单词话题矩阵$T$与话题文本矩阵$Y$的乘积$X\approx TY$。这就是潜在语义分析。</p>
-<p>直观上潜在语义分析是将文本在单词向量空间的表示通过线性变换转换为在话题向量空间中的表示。</p>
-<h2 id="17-2-潜在语义分析算法"><a href="#17-2-潜在语义分析算法" class="headerlink" title="17.2 潜在语义分析算法"></a>17.2 潜在语义分析算法</h2><p><strong>单词—文本矩阵</strong></p>
-<p>给定文本集合$D$和单词集合$W$。潜在语义分析首先将这些数据表示成一个单词—文本矩阵。其为一个$m\times n$矩阵，元素$x_{ij}$表示单词$w_i$在文本$d_j$中的出现频数或权值。</p>
-<p><strong>截断奇异值分解</strong></p>
-<p>潜在语义分析根据确定的话题个数$k$对单词—文本矩阵$X$进行奇异值分解，$X\approx U_k{\sum}_kV_k^T=[u_1 \space \space u_2 \space \space … \space \space u_k]\left[\begin{array}{1}\sigma_1&amp;0&amp;0&amp;0 \\ 0&amp;\sigma_2&amp;0&amp;0 \\ 0&amp;0&amp; … &amp; 0 \\ 0 &amp; 0&amp;0&amp; \sigma_k\end{array} \right]\left[\begin{array}{1}v_1^t \\ v_2^T \\ … \\ v_k^T\end{array} \right]$，式中$k\leq n\leq m$，$U_k$是$m\times k$矩阵，它的列由$X$得到前$k$个互相正交的左奇异向量组成，${\sum}_k$是$k$阶对角方阵，对角元素为前$k$个最大的奇异值，$V_k$是$n\times k$矩阵，它的列由$X$的前$k$个互相正交的右奇异向量组成。</p>
-<p><strong>话题向量空间</strong></p>
-<p>在单词—文本矩阵$X$的截断奇异值分解式中，矩阵$U_k$的每一个列向量$u_i$都表示一个话题，称为话题向量，这$k$个向量张成一个子空间$U_k=[u_1 \space \space u_2 \space \space … \space \space u_k]$称为话题向量空间。</p>
-<p><strong>文本的话题空间表示</strong></p>
-<p><img src="/2021/12/20/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0/1.png" alt></p>
-<p><img src="/2021/12/20/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0/2.png" alt></p>
-<h2 id="17-3-非负矩阵分解算法"><a href="#17-3-非负矩阵分解算法" class="headerlink" title="17.3 非负矩阵分解算法"></a>17.3 非负矩阵分解算法</h2><h3 id="17-3-1-非负矩阵分解"><a href="#17-3-1-非负矩阵分解" class="headerlink" title="17.3.1 非负矩阵分解"></a>17.3.1 非负矩阵分解</h3><p>若一个矩阵的所有元素非负，则称该矩阵为非负矩阵，若$X$是非负矩阵，记作$X\geq 0$。给定一个非负矩阵$X\geq0$，找到两个非负矩阵$W\geq0$和$H\geq0$使得$X\approx WH$。即将非负矩阵$X$分解为两个非负矩阵$W$和$H$的乘积的形式，称为非负矩阵分解。很难完全相等，所以只能近似相等。</p>
-<p>假设非负矩阵$X$是$m\times n$矩阵，非负矩阵$W$和$H$分别为$m\times k$矩阵和$k\times n$矩阵。假设$k&lt;min(m,n)$，即$W$和$H$小于原矩阵$X$，所以非负矩阵分解是对原数据的亚索。矩阵$X$的第$j$列向量$x_j$满足$x_j\approx Wh_j=[w_1\space \space w_2 \space \space … \space \space w_k]\left[\begin{array}{1}h_{1j} \\ h_{2j} \\ … \\ h_{kj} \end{array}\right]=\sum_{l=1}^kh_{lj}w_l,j=1,2,…,n$，其中，$h_j$是矩阵$H$的第$j$列，$w_l$是矩阵$W$的第$l$列，$h_{lj}$是$h_j$的第$l$个元素。矩阵$X$的第$j$列$x_j$可以由矩阵$W$的$k$个列$w_l$的线性组合逼近，线性组合的系数是矩阵$H$的第$j$列$h_j$的元素。矩阵$W$的列向量是一组基，矩阵$H$的列向量为线性组合系数。称$W$为基矩阵，$H$为系数矩阵。非负矩阵分解旨在用较少的基向量、系数向量来表示较大的数据矩阵。</p>
-<h3 id="17-3-2-潜在语义分析"><a href="#17-3-2-潜在语义分析" class="headerlink" title="17.3.2 潜在语义分析"></a>17.3.2 潜在语义分析</h3><p>给定一个$m\times n$非负的单词—文本矩阵$X\geq 0$。假设文本集合共包含$k$个话题，对$X$进行非负矩阵分解。即非负的$m\times k$矩阵$W\geq 0$和$k\times n$矩阵$H\geq 0$，使得$X\approx WH$。令$W$为话题空间向量，表示文本集合的$k$个话题。$H$为文本在话题向量空间的表示。</p>
-<h3 id="17-3-3-非负矩阵分解的形式化"><a href="#17-3-3-非负矩阵分解的形式化" class="headerlink" title="17.3.3 非负矩阵分解的形式化"></a>17.3.3 非负矩阵分解的形式化</h3><p><strong>定义损失函数</strong></p>
-<p>平方损失，设两个非负矩阵$A=[a_{ij}]_{m\times n}$和$B=[b_{ij}]_{m\times n}$，平方损失函数定义为$||A-B||^2=\sum_{i,j}(a_{ij}-b_{ij})^2$，其下界是0，当且仅当$A=B$时达到下界。</p>
-<p>散度，设两个非负矩阵$A=[a_{ij}]_{m\times n}$和$B=[b_{ij}]_{m\times n}$，散度损失函数定义为$D(A||B)=\sum_{i,j}(a_{ij}log\frac{a_{ij}}{b_{ij}}-a_{ij}+b_{ij})$，其下界是0，当且仅当$A=B$时到达下界。$A$和$B$不对称。当$\sum_{i,j}a_{ij}=\sum_{i,j}b_{ij}=1$时散度损失函数退化为Kullback-Leiber散度或相对熵。</p>
-<p>目标函数$||X-WH||^2$关于$W$和$H$的最小化，满足约束条件$W,H\geq0$即$min_{W,H}||X-WH||^2,s.t.W,H\geq0$。或者，目标函数$D(X||WH)$关于$W$和$H$的最小化，满足约束条件$W,H\geq0$即$min_{W,H}D(X||WH),s.t. W,H\geq0$</p>
-<h3 id="17-3-4-算法"><a href="#17-3-4-算法" class="headerlink" title="17.3.4 算法"></a>17.3.4 算法</h3><ul>
-<li><p>平方损失$||X-WH||^2$对下列乘法更新规则$H_{lj}\leftarrow H_{lj}\frac{(W^TX)_{lj}}{(W^TWH)_{lj}},W_{il}\leftarrow W_{il}\frac{(XH^T)_{il}}{(WHH^T)_{il}}$，是非增的。当且仅当$W$和$H$是平方损失函数的稳定点时函数的更新不变。</p>
-</li>
-<li><p>散度损失$D(X-WH)$对下列乘法更新规则$H_{lj}\leftarrow H_{lj}\frac{\sum_i[w_{il}X_{ij}/(WH)_{ij}]}{\sum_{i}W_{il}},W_{il}\leftarrow W_{il}\frac{\sum_j[H_{lj}X_{ij}/(WH)_{ij}]}{\sum_jH_{lj}}$是非增的。当且仅当$W$和$H$是散度损失函数的稳定点时函数的更新不变。</p>
-</li>
-<li><script type="math/tex; mode=display">
-非负矩阵分解的迭代算法 \\
-输入:单词—文本矩阵X\geq 0,文本集合的话题个数k,最大迭代次数t;  \\
-输出:话题矩阵W,文本表示矩阵H。 \\
-步骤:(1)初始化 \\
-W\geq 0,并对W的每一列数据归一化; \\
-H\geq 0 \\
-(2)迭代 \\
-对迭代次数由1到t执行步骤 \\
-(a)更新W的元素,对l从1到k,i从1到m按W_{il}=W_{il}\frac{(XH^T)_{il}}{(WHH^T)_{il}}更新W_{il} \\
-(b)更新H的元素,对l从1到k,j从1到m按H_{lj}=H_{lj}\frac{(W^TX)_{lj}}{(W^TWH)_{lj}}更新H_{lj}</script></li>
-</ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-18T11:49:07.000Z" title="2021/12/18 下午7:49:07">2021-12-18</time>发表</span><span class="level-item"><time dateTime="2022-03-24T04:48:48.004Z" title="2022/3/24 下午12:48:48">2022-03-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">11 分钟读完 (大约1704个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/18/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0/">读书笔记-统计学习方法第十六章</a></h1><div class="content"><h2 id="概要-主成分分析"><a href="#概要-主成分分析" class="headerlink" title="概要 主成分分析"></a>概要 主成分分析</h2><ul>
-<li>主成分分析是一种常用的无监督学习方法，这一方法利用正交变换把由线性相关变量表示的观测数据转换为少数几个由线性无关变量表示的数据，线性无关的变量称为主成分。主成分的个数通常小于原始变量的个数，所以主成分分析属于降维方法。</li>
-<li>主成分分析主要用于发现数据中的基本结构，即数据中变量之间的关系，是数据分析的有力工具，也用于其他机器学习方法的前处理。</li>
-</ul>
-<h2 id="16-1-总体主成分分析"><a href="#16-1-总体主成分分析" class="headerlink" title="16.1 总体主成分分析"></a>16.1 总体主成分分析</h2><h3 id="16-1-1-基本想法"><a href="#16-1-1-基本想法" class="headerlink" title="16.1.1 基本想法"></a>16.1.1 基本想法</h3><p>对给定数据进行规范化，使得数据每一变量的平均值为0，方差为1。对数据进行正交变换，原来由线性相关变量表示的数据，通过正交变换变成由若干个线性无关的新变量表示的数据。新变量是可能的正交变换中变量的方差的和最大的，方差表示在新变量上信息的大小。将新变量一次成为第一主成分，第二主成分等。</p>
-<h3 id="16-1-2-定义和导出"><a href="#16-1-2-定义和导出" class="headerlink" title="16.1.2 定义和导出"></a>16.1.2 定义和导出</h3><p>假设$x = (x_1,x_2,…,x_m)^T$是$m$维随机变量，其均值向量是$\mu=E(x)=(\mu_1,\mu_2,…,\mu_m)^T$。协方差矩阵$\sum=cov(x,x)=E[(x-\mu)(x-\mu)^T]$。考虑由$m$维随机变量$x$到$m$维随机变量$y=(y_1,y_2,…,y_m)^T$的线性变换$y_i=\alpha_i^Tx=\alpha_{1i}x_1+\alpha_{2i}x_2+….+\alpha_{mi}x_m$。其中$\alpha_i^T=(\alpha_{1i},\alpha_{2i},…,\alpha_{mi}),i=1,2,…,m$。由随机变量性质可以知道$E(y_i)=\alpha_i^T\mu,i=1,2,…,m$，$var(y_i)=\alpha_i^T\sum{\alpha_i},i=1,2,…,m$，$cov(y_i,y_j)=\alpha_i^T\sum{\alpha_j},i=1,2,…,m;j=1,2,…,m$</p>
-<p>给出一个$y_i=\alpha_i^Tx=\alpha_{1i}x_1+\alpha_{2i}x_2+….+\alpha_{mi}x_m$线性变换，如果满足条件（1）系数向量$\alpha_i^T$是单位向量，即$\alpha_i^T\alpha_i=1,i=1,2,…,m$（2）变量$y_i$与$y_j$互不相关，即$cov(y_i,y_j)=0(i\neq j)$（3）变量$y_1$是$x$的所有线性变换中方差最大的；$y_2$是与$y_1$不相关的$x$的所有线性变换中方差最大的；一般地，$y_i$是与$y_1,y_2,…,y_{i-1}$都不相关的$x$的所有线性变换中方差最大的；此时，分别称$y_1$是$x$的第一主成分，$y_2$是$x$的第二主成分。。</p>
-<h3 id="16-1-3-主要性质"><a href="#16-1-3-主要性质" class="headerlink" title="16.1.3 主要性质"></a>16.1.3 主要性质</h3><ul>
-<li>设$x$是$m$维随机变量，$\sum$是$x$的协方差矩阵，$\sum$的特征值分别是$\lambda_1\geq \lambda_2\geq…\geq\lambda_m\geq 0$，特征值对应的单位特征向量分别是$\alpha_1,\alpha_2,…,\alpha_m$，则$x$的第$k$主成分是$y_k=\alpha_k^Tx=\alpha_{1k}x_1+\alpha_{2k}x_2+…+\alpha_{mk}x_m,k=1,2,…,m$，$x$的第$k$主成分的方差是$var(y_k)=\alpha_k^T\sum{\alpha_k}=\lambda_k,k=1,2,..,m$，即协方差矩阵$\sum$的第$k$个特征值。</li>
-<li>$m$维随机变量$y=(y_1,y_2,..,y_m)^T$的分量依次是$x$的第一主成分到第$m$主成分的充要条件是（1）$y=A^Tx,A$为正交矩阵$A=\left[\begin{array}{1}\alpha_{11}&amp;\alpha_{12}&amp;…&amp;\alpha_{1m}\\ \alpha_{21}&amp;\alpha_{22}&amp;…&amp;\alpha_{2m}\\ … &amp;…&amp;…&amp;…\\ \alpha_{m1}&amp;\alpha_{m2}&amp;…&amp;\alpha_{mm} \end{array} \right]$（2）$y$的协方差矩阵为对角矩阵$cov(y)=diag(\lambda_1,\lambda_2,…,\lambda_m),\lambda_1\geq\lambda_2\geq…\geq\lambda_m$，其中$\lambda_k$是$\sum$的第$k$个特征值，$\alpha_k$是对应的单位特征向量，$k=1,2,…,m$</li>
-<li>总体主成分的性质：（1）总体主成分$y$的协方差矩阵是对角矩阵$cov(y)=\wedge=diag(\lambda_1,\lambda_2,…,\lambda_m)$（2）总体主成分$y$的方差之和等于随机变量$x$的方差之和，即$\sum_{i=1}^m\lambda_i=\sum_{i=1}^m\sigma_{ii}$其中$\sigma_{ii}$是随机变量$x_i$的方差，即协方差矩阵$\sum$的对角元素。可知$\sum_{i=1}^mvar(x_i)=tr(\sum^T)=tr(A\wedge A^T)=tr(A^T\wedge A)=tr(\wedge)=\sum_{i=1}^m\lambda_i=\sum_{i=1}^mvar(y_i)$（3）第$k$个主成分$y_k$与变量$x_i$的相关系数$\rho(y_k,x_i)$称为因子负荷量，它表示第$k$个主成分$y_k$与变量$x_i$的相关关系，计算公式为$\rho(y_k,x_i)=\frac{\sqrt \lambda_k\alpha_{ik}}{\sqrt \sigma_{ii}},k,i=1,2,…,m$（4）第$k$个主成分$y_k$与$m$个变量的因子负荷量满足$\sum_{i=1}^m\sigma_{ii}\rho^2(y_k,x_i)=\lambda_k$（5）$m$个主成分与第$i$个变量$x_i$的因子负荷量满足$\sum_{k=1}^m\rho^2(y_k,x_i)=1$</li>
-</ul>
-<h3 id="16-1-4-主成分的个数"><a href="#16-1-4-主成分的个数" class="headerlink" title="16.1.4 主成分的个数"></a>16.1.4 主成分的个数</h3><ul>
-<li>对任意正整数$q$，$1\leq q\leq m$，考虑正交线性变换$y=B^Tx$其中$y$是$q$维向量，$B^T$是$q\times m$矩阵，令$y$的协方差矩阵为$\sum_y=B^T\sum B$，则$\sum_y$的迹$tr(\sum_y)$在$B=A_q$的时候取最大值，其中矩阵$A_q$由正交矩阵$A$的前$q$列组成。</li>
-<li>考虑正交变换$y=B^Tx$，这里$B^T$是$p\times m$矩阵，$A$和$\sum_y$的定义与上一个相同，则$tr(\sum_y)$在$B=A_p$时取得最小值，其中矩阵$A_p$由$A$的后$p$列组成。</li>
-<li>第$k$主成分$y_k$的方差贡献率定义为第$k$个方差之和与所有方差之和的比$\eta_k=\frac{\lambda_k}{\sum_{i=1}^m\lambda_i}$，$k$个主成分$y_1,y_2,…,y_k$的累计方差贡献率定义为$k$个方差之和与所有方差之和的比$\sum_{i=1}^k\eta_i=\frac{\sum_{i=1}^k\lambda_i}{\sum_{i=1}^m\lambda_i}$。</li>
-<li>$k$个主成分$y_1,y_2,…,y_k$对原有变量$x_i$的贡献率定义为$x_i$与$(y_1,y_2,…,y_k)$的相关系数的平方，记作$v_i=\rho^2(x_i,(y_1,y_2,…,y_k))=\sum_{j=1}^k\rho^2(x_i,y_j)=\sum_{j=1}^k\frac{\lambda_j\alpha_{ij}^2}{\sigma_{ii}}$</li>
-</ul>
-<h3 id="16-1-5-规范化变量的总体主成分"><a href="#16-1-5-规范化变量的总体主成分" class="headerlink" title="16.1.5 规范化变量的总体主成分"></a>16.1.5 规范化变量的总体主成分</h3><p><img src="/2021/12/18/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0/1.png" alt></p>
-<h2 id="16-2-样本主成分分析"><a href="#16-2-样本主成分分析" class="headerlink" title="16.2 样本主成分分析"></a>16.2 样本主成分分析</h2><h3 id="16-2-1-样本主成分的定义和性质"><a href="#16-2-1-样本主成分的定义和性质" class="headerlink" title="16.2.1 样本主成分的定义和性质"></a>16.2.1 样本主成分的定义和性质</h3><p><img src="/2021/12/18/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0/2.png" alt></p>
-<h3 id="16-2-2-相关矩阵的特征值分解算法"><a href="#16-2-2-相关矩阵的特征值分解算法" class="headerlink" title="16.2.2 相关矩阵的特征值分解算法"></a>16.2.2 相关矩阵的特征值分解算法</h3><script type="math/tex; mode=display">
-主成分分析法\\
-输入:m \times n 样本矩阵 X,其每一行元素的均值为0; \\
-输出:k \times n 样本主成分矩阵 Y \\
-参数:主成分个数k \\
-步骤:(1)构造新的n \times m 矩阵\\
-X'=\frac1{\sqrt {n-1}}X^T, X'每一列的均值为0 \\
-(2)对矩阵X'进行截断奇异值分解，得到X'=U\sum V^T \\
-有k个奇异值、奇异向量。矩阵V^T和X的乘积构成样本主成分矩阵\\
-(3)求k\times n样本主成分矩阵 Y = V^TX</script></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-14T03:23:00.000Z" title="2021/12/14 上午11:23:00">2021-12-14</time>发表</span><span class="level-item"><time dateTime="2022-03-24T04:58:23.328Z" title="2022/3/24 下午12:58:23">2022-03-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></span><span class="level-item">13 分钟读完 (大约1921个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/14/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84CartPole/">强化学习之CartPole</a></h1><div class="content"><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Micro-han&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Micro-han&#039;s blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Micro-han&#039;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Micro-han&#039;s blog"><meta property="og:url" content="https://micro-han.github.io/"><meta property="og:site_name" content="Micro-han&#039;s blog"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://micro-han.github.io/img/og_image.png"><meta property="article:author" content="Micro han"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://micro-han.github.io"},"headline":"Micro-han's blog","image":["https://micro-han.github.io/img/og_image.png"],"author":{"@type":"Person","name":"Micro han"},"publisher":{"@type":"Organization","name":"Micro-han's blog","logo":{"@type":"ImageObject","url":"https://micro-han.github.io/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-14T03:23:00.000Z" title="2021/12/14 上午11:23:00">2021-12-14</time>发表</span><span class="level-item"><time dateTime="2022-03-24T04:58:23.328Z" title="2022/3/24 下午12:58:23">2022-03-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></span><span class="level-item">13 分钟读完 (大约1921个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/14/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84CartPole/">强化学习之CartPole</a></h1><div class="content"><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
 <li>CartPole又叫倒立摆，是小车上放了一根杆，杆会因为重力倒小，要保持小车移动使得杆子树立，不让其倒下。</li>
 </ul>
 <p><img src="/2021/12/14/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84CartPole/cartpole.png" alt="倒立摆模型"></p>
@@ -268,194 +184,6 @@ dp[pos] = min(dp[pos], dp[pos & (1 << j)] + 1) \\
 <p><strong>选择：</strong>从群体中选择优胜的个体，淘汰劣质个体的操作叫选择。选择算子有时又称为再生算子(reproduction operator)。选择的目的是把优化的个体(或解)直接遗传到下一代或通过配对交叉产生新的个体再遗传到下一代。选择操作是建立在群体中个体的适应度评估基础上的，常用的选择算子有以下几种：适应度比例方法、随机遍历抽样法、局部选择法。</p>
 <p><strong>交叉：</strong>在自然界生物进化过程中起核心作用的是生物遗传基因的重组(加上变异)。同样，遗传算法中起核心作用的是遗传操作的交叉算子。所谓交叉是指把两个父代个体的部分结构加以替换重组而生成新个体的操作。通过交叉，遗传算法的搜索能力得以飞跃提高。</p>
 <p><strong>变异：</strong>变异算子的基本内容是对群体中的个体串的某些基因座上的基因值作变动。依据个体编码表示方法的不同，可以有以下的算法：a)实值变异。b)二进制变异。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-06T07:48:00.000Z" title="2021/12/6 下午3:48:00">2021-12-06</time>发表</span><span class="level-item"><time dateTime="2022-03-14T12:28:43.665Z" title="2022/3/14 下午8:28:43">2022-03-14</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></span><span class="level-item">6 分钟读完 (大约896个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/06/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E5%9F%BA%E4%BA%8E%E6%94%B9%E8%BF%9BA_Star%E7%AE%97%E6%B3%95%E7%9A%84%E7%AE%A1%E8%B7%AF%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/">基于改进A*算法的管路自动布局设计与优化方法</a></h1><div class="content"><h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><ul>
-<li>论文为《基于改进A_star算法的管路自动布局设计与优化方法_吴宏超》</li>
-<li>主要分为 内容 和 问题两大模块，内容为论文内容，问题为自我叩问</li>
-<li>这篇论文和我的毕业设计方向高度重合，所以值得一读，但由于场景不同，论文的前半部分算法是值得参考的，后半部分路径优化也具备一定的参考意义，但是不大</li>
-</ul>
-<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p><strong>基于栅格的管路布局空间模型</strong></p>
-<ul>
-<li>将空间划分为三维点阵，对于起点$S(x_s,y_s,z_s)$和终点$T(x_t,y_t,z_t)$，选择他们的中心O，计算O到S或T的距离L</li>
-<li>扩展S和T得到$H’(x_s-\lambda L,y_s-\lambda L, z_s - \lambda L),B’(x_t+\lambda L,y_t +\lambda L, z_t +\lambda L),\lambda &gt;=1$，以$H’,B’$为对角线$O$为体心重新构建正方体</li>
-</ul>
-<p><strong>基于改进A*算法的管路自动布局设计</strong></p>
-<ul>
-<li>长度估计选用曼哈顿距离</li>
-<li>启发式函数$h(n)=l_n+W_1Nc+W_2+\frac{\theta_n}{\pi}c$，其中$l_n$为节点$n$到终点$T$的距离，$N$为起点$S$到节点$n$的折弯数量，$\theta_n$为父节点$n-1$和节点$n$的连线与节点$n$和终点$T$连线的夹角，$c$为单个栅格长度代价与栅格粒度$a$相同，$W_1$为折弯与长度代价的转换比，$W_2$为角度与长度代价的转换比</li>
-<li>折弯代价依赖于当前节点与父节点、祖父节点</li>
-<li>增大栅格粒度绕过危险设施</li>
-</ul>
-<p><strong>路径优化处理</strong></p>
-<ul>
-<li>二分法，设$x_1,x_2,x_3$分别为不在同一直线上的三个点，若$x_1$与$x_2$的连线不与障碍物发生碰撞，$x_1$与$x_3$的连线与障碍物发生碰撞，那么存在$x_0 \in [x_2,x_3]$使得$x_1$与$x_0$的连线恰好不与障碍物发生碰撞</li>
-<li>长度优化</li>
-<li>角度处理</li>
-</ul>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p><strong>针对什么样的场景？</strong></p>
-<p>复杂机电产品中，管路布局效率低且依赖经验的问题</p>
-<p><strong>使用了哪些算法和方法？</strong></p>
-<p>如内容所示。</p>
-<p><strong>为什么使用这些方法？</strong></p>
-<p>A_star就是常用的单源最短（优）路的一个理论极限做法，而这个场景也只涉及到了单源最优路的情况。在优化部分，其二分法优化保证了时间效率更有利于处理数据的部分。</p>
-<p><strong>有哪些可以改进的地方？</strong></p>
-<p>1、方法是传统的方法，仅适用于单管道排布；2、参数过多，我感觉会存在一些过拟合的地方，有些地方的特征没有很简洁的表述到位。</p>
-<p><strong>适合我项目的地方？</strong></p>
-<p>设计约束规则可以参考，其启发式函数的部分值得引入。</p>
-<p>启发式函数$h(n)=l_n+W_1Nc+W_2+\frac{\theta_n}{\pi}c$，其中$l_n$为节点$n$到终点$T$的距离，$N$为起点$S$到节点$n$的折弯数量，$\theta_n$为父节点$n-1$和节点$n$的连线与节点$n$和终点$T$连线的夹角，$c$为单个栅格长度代价与栅格粒度$a$相同，$W_1$为折弯与长度代价的转换比，$W_2$为角度与长度代价的转换比</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-06T07:40:00.000Z" title="2021/12/6 下午3:40:00">2021-12-06</time>发表</span><span class="level-item"><time dateTime="2022-03-16T05:20:42.278Z" title="2022/3/16 下午1:20:42">2022-03-16</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></span><span class="level-item">31 分钟读完 (大约4630个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/06/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Ship%20Pipe%20Route%20Design%20Using%20Improved%20A%20Algorithm%20and%20Genetic%20ALgorithm/">Ship Pipe Route Design Using Improved A* Algorithm and Genetic Algorithm</a></h1><div class="content"><h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><ul>
-<li>论文名称《Ship Pipe Route Design Using Improved A* Algorithm and Genetic Algorithm》</li>
-<li>这篇论文针对船舶管线铺设提出了多种不同的管线路由算法，不同的路由算法针对不同的具体场景，虽然效果还行，但是依赖于输入人员的手动调参</li>
-</ul>
-<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p><strong>需要知道的一些东西</strong></p>
-<ul>
-<li><strong>SPRD</strong>：船舶管道路径设计问题；<strong>确定性路由算法</strong>，时间效率更好；<strong>非确定性路由算法</strong>，优化能力更好；<strong>混合路由算法</strong>，做一个balance；</li>
-</ul>
-<p><strong>路由空间表示</strong></p>
-<ul>
-<li><p>路由空间用长方体表示，根据待布线管道的管径值和管道间的最小间距将空间分解为网格。将已经被覆盖或者不可以放置管道的地方标记一下，其他网格就是自由网络。用$S_{grids}$表示空间分解生成的网格集合，$S_{obs}$表示障碍物空间的长方体集合。</p>
-</li>
-<li><p>判断障碍物网格或自由网格的过程可以简化为：遍历每个网格，对于选择的网格，判断是否有顶点落在$S_{obs}$内，比较坐标。如果存在，就是障碍网格，否则为自由网格。遍历所有网格之后，设置如果靠近墙壁地板等地为低能量，锅炉周围电器设备周围为高能量值，通过能量值动态调整管道通过的可能性。</p>
-</li>
-<li><p>在布置不同管径值的管道时，根据与网格边长相等的最小管径将布局空间分解成网格。当铺设直径较大的管道时，空格内的障碍物应向外延伸一定距离。可以形成如下公式：$N_p=\left\{ \begin{array}{<strong>lr</strong>}  int(\frac{D_p}{2L}),\frac{D_p}{2L}-int(\frac{D_p}{2L})\leq 0.5 \\ int(\frac{D_p}{2L})+1,\frac{D_p}{2L}-int(\frac{D_p}{2L}) &gt; 0.5\end{array}  \right.$，其中，$N_p$表示需要被障碍物扩展的网格数量，$D_p$表示管道最大直径，$L$表示网格边长。直径包括管道之间的最小允许距离。</p>
-<p>障碍物扩展过程：预处理过程中，将所有处于障碍物内部或边界处的网格标记为障碍物网格。基于此，扩展过程中只需要遍历$S_{grids}$如果是障碍物就跳过，否则按照公式检查是否需要扩展，如果需要则标记为临时障碍网格，扩展中不允许通过，否则允许通过。初始喷嘴位置可能会被障碍物延伸覆盖，有必要将每个管道喷嘴的初始位置沿原方向向外延伸，尹成心得连接点，否则，每次选管道前都将其放入障碍物集合中。</p>
-<p><strong>管道表示</strong></p>
-</li>
-<li><p>管道路径可以用每个网格的中心点坐标序列表示，定义为$p_1(x_1,y_1,z_1)\rightarrow p_2(x_2,y_2,z_2)\rightarrow … \rightarrow p_n(x_n,y_n,z_n)$。$p_1$是起始点，$p_n$是目标点，在网格分解空间中，可以将网格坐标序列转换为网格位置序列$p_1(r_1,c_1,l_1)\rightarrow p_2(r_2,c_2,l_2)\rightarrow … \rightarrow p_n(r_n,c_n,l_n),|r_i-r_{i-1}|+|c_i-r_{i-1}|+|l_i-l_{i-1}|=1,(1&lt;i\leq n)$，根据管道的半径向外扩展路径可以得到最终形状。如果为了指明某个管道，在每个字母上加一个$p_1^i$即可。</p>
-</li>
-<li><p>如果俩管道的某个节点在网格里的曼哈顿距离为1，那么就是相邻的，需要重新安排</p>
-<p><strong>约束和目标</strong></p>
-</li>
-<li><p>连接管口，避免任何障碍物干扰；管道与刚性结构正交布置；满足两个相邻弯头之间的最小长度要求；尽可能最小化路径长度；尽可能减少玩去次数；将管道沿墙壁，地板或设备铺设，取得更好地支撑；尽可能平行排列；</p>
-<p><strong>数学建模</strong></p>
-</li>
-<li><p>约束和目标分别用A*算法和遗传算法解决。</p>
-</li>
-<li><p>目标函数为$Min.f_{Objective}(path)=\alpha \times f_L(path) + \beta \times f_B(path)+\gamma \times f_E(path) - \delta \times f_N(path)$，其中$f_L(path)$为路径上网格数；$f_B(path)$为路径上弯曲数量；$f_E(path)$为路径上能量值之和；$f_N(path)$衡量当前管道和路由管道的平行路由效果。该值越大，相邻的网格对越多，其中各希腊字母是用户自行选择的，用来平衡。</p>
-<p><strong>改进A*算法针对单根管道</strong></p>
-</li>
-<li><p>$g(n)=a\times L_{cost}(n) + b\times E_{cost}(n)+ c\times B_{cost}(n)$，其中$a,b,c$是关心权重因子，$L_{cost}(n),E_{cost}(n),B_{cost}(n)$分别是长度成本，能量成本和弯曲数成本。每次在搜索过程中都需要对应的更新</p>
-</li>
-<li><p>$h(n)=abs(x_n-x_t)+abs(y_n-y_t)+abs(z_n-z_t)$，采用曼哈顿距离，$(x_n,y_n,z_n)$是网格位置，$(x_t,y_t,z_t)$是目标网格。可以适当放大h函数。</p>
-</li>
-<li><p>$f(n)=g(n)+w\times h(n)=a\times L_{cost}(n)+b\times E_{cost}(n)+c\times B_{cost}(n)+w\times(abs(x_n-x_t)+abs(y_n-y_t)+abs(z_n-z_t)), w \geq 1$，如果b和c为0，则搜索只受路径长度的引导；当b和c为正值时，考虑弯曲次数和沿支架走线的约束。</p>
-</li>
-<li><p>开三个三维数组，close_map，open_map和dir_map。close_map表示是否被搜过，open_map用来改进效率，dir_map用来保持路径上网格的顺序。管道的网格路径可以使用dir_map和管道喷嘴来跟踪。</p>
-</li>
-<li><pre><code class="lang-python">输入:起始网络s,目标网格e,S_p[M][N][L]表示路由空间,M、N、L分别表示空间的层号、列号和行号\\
-输出:管道路径\\
-步骤:(1)创建一个空的优先队列,openmap[c.layer][c.column][c.row] \leftarrow 0,\\closemap[c.layer][c.column][c.row] \leftarrow 0,\\dirmap[c.layer][c.column][c.row] \leftarrow 1\\
-(2)计算初始结点的f(s),将(f(s),s)放入pq,计算s的实际消耗 openmap[s.layer][s.column][s.row]\leftarrow g(s) \\
-(3)如果pq非空的进入(4)到(17)循环\\
-(4)取pq顶部元素v \\
-(5)如果v是目标网格,停止搜索并通过dirmap建立管道路径,如果v不是继续下面步骤 \\
-(6)设置状态为已经搜索过 openmap[v.layer][v.column][v.row] \leftarrow 0, clsoemap[v.layer][v.column][v.row] \leftarrow1 \\
-(7)令v_0 = v \\
-(8)探索v周围六个正交方向的网格,继续下面9到17步骤 \\
-(9)如果满足以下abc三种情况,继续步骤10到16,否则继续步骤17 \\
-(a)(v.layer + k, v.column + j, v.row +i)是一个可以使用的有效坐标 \\
-(b)S_p[v.layer+k,v.column+j,v.row+i]是一个自由网格,不在任何障碍物或者其他路由管道之中 \\
-(c)closemap[v.layer+k,v.column+j,v.row+i]=0 \\
-(10)假设v是一个新位置,v(layer,column,row)\leftarrow v(layer+k,column+j,row+i) \\
-(11)判断是否形成一个新的弯板,如果形成了计算到上个弯板的距离d,如果未形成弯曲或者距离d\geq L_&#123;min&#125;执行12否则17\\
-(12)尝试计算g(v),并给dist \\
-(13)如果openmap[v.layer][v.column][v.row]是0继续14否则15 \\
-(14)计算g(v),h(v)并更新f(v).并推到pq里 \\
-(15)如果openmap对应的值大于等于dist,那么就是新的路径更好 \\
-(16)在pq里找到v更新对应的f值 \\
-(17)更新转8 \\
-(18)未找到,返回故障信息
-</code></pre>
-</li>
-<li><script type="math/tex; mode=display">
-输入:起始网络s,目标网格e,S_p[M][N][L]表示路由空间,M、N、L分别表示空间的层号、列号和行号\\
-输出:管道路径\\
-步骤:(1)创建一个空的优先队列,openmap[c.layer][c.column][c.row] \leftarrow 0,\\closemap[c.layer][c.column][c.row] \leftarrow 0,\\dirmap[c.layer][c.column][c.row] \leftarrow 1\\
-(2)计算初始结点的f(s),将(f(s),s)放入pq,计算s的实际消耗 openmap[s.layer][s.column][s.row]\leftarrow g(s) \\
-(3)如果pq非空的进入(4)到(17)循环\\
-(4)取pq顶部元素v \\
-(5)如果v是目标网格,停止搜索并通过dirmap建立管道路径,如果v不是继续下面步骤 \\
-(6)设置状态为已经搜索过 openmap[v.layer][v.column][v.row] \leftarrow 0, clsoemap[v.layer][v.column][v.row] \leftarrow1 \\
-(7)令v_0 = v \\
-(8)探索v周围六个正交方向的网格,继续下面9到17步骤 \\
-(9)如果满足以下abc三种情况,继续步骤10到16,否则继续步骤17 \\
-(a)(v.layer + k, v.column + j, v.row +i)是一个可以使用的有效坐标 \\
-(b)S_p[v.layer+k,v.column+j,v.row+i]是一个自由网格,不在任何障碍物或者其他路由管道之中 \\
-(c)closemap[v.layer+k,v.column+j,v.row+i]=0 \\
-(10)假设v是一个新位置,v(layer,column,row)\leftarrow v(layer+k,column+j,row+i) \\
-(11)判断是否形成一个新的弯板,如果形成了计算到上个弯板的距离d,如果未形成弯曲或者距离d\geq L_{min}执行12否则17\\
-(12)尝试计算g(v),并给dist \\
-(13)如果openmap[v.layer][v.column][v.row]是0继续14否则15 \\
-(14)计算g(v),h(v)并更新f(v).并推到pq里 \\
-(15)如果openmap对应的值大于等于dist,那么就是新的路径更好 \\
-(16)在pq里找到v更新对应的f值 \\
-(17)更新转8 \\
-(18)未找到,返回故障信息</script></li>
-</ul>
-<p>  <strong>改进遗传算法针对单根管道</strong></p>
-<ul>
-<li><p>染色体生成</p>
-<p>中间连接点的数量数量，不包括起点和目标点，独立于管道的要求和布线空间的特征。在布置单个管道的时候，中间连接点是为了提高初始路径的多样性和质量。当管道通过复杂的布管空间时，其值可能会略微增加。一般来说，从1到5的范围就足够了。当多个管道并行布线时，中间连接点可以改善管道之间的并行效果。如果平行路径的长度较长，可以适当增加其值，但不应该过大。</p>
-<p>在指定的起始点和目标点之间随机生成中间连接点。注意，连接点不能位于任何障碍物中，以确保管道路径的验证，指定的产生连接点的区域通常为起点和目标点为对角线的长方体。如果长方体空间中障碍物较少或空间过大，连接点的分布就会比较分散。这不利于在短时间内产生高质量的染色体。为了在实践中解决这种情况，需要进一步缩小连接点的产生空间。</p>
-<p>对中间连接点按其坐标的指定方向排序。</p>
-<p>使用A*算法在每个相邻连接点之间创建子路径，从而形成整个路由路径。</p>
-</li>
-<li><p>选择算子和适应度函数</p>
-<p>选择算子根据指定的策略和每个染色体的适应度值从亲本染色体中选择后代染色体。它体现了遗传算法中的最优生存理论。采用轮盘赌方法作为选择策略，适用于求解最大优化问题。</p>
-<p><img src="/2021/12/06/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Ship%20Pipe%20Route%20Design%20Using%20Improved%20A%20Algorithm%20and%20Genetic%20ALgorithm/lunpan.png" alt="轮盘赌选择"></p>
-<p>将目标函数$Min.f_{Objective}(path)=\alpha \times f_L(path) + \beta \times f_B(path)+\gamma \times f_E(path) - \delta \times f_N(path)$转换为$Max.f_{GA-Objective}(path)=K-f_{Objective}(path)$，其中$K$是一个较大的常数，保证其是一个正数。</p>
-<p>为了提高遗传算法的收敛性，在选择算子中采用精英主义，避免失去全局最优解。</p>
-<p><img src="/2021/12/06/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Ship%20Pipe%20Route%20Design%20Using%20Improved%20A%20Algorithm%20and%20Genetic%20ALgorithm/best.png" alt="精英主义"></p>
-</li>
-<li><p>交叉算子</p>
-<p>交叉算子是遗传算法的主要进化动力。其通过母体染色体的基因产生后代染色体。交叉点是从母体染色体中随机选择的。其次，使用A*算法连接两个交叉点的子路径。最后，子路径和路径段的亲本染色体适当连接，形成后代染色体。</p>
-<p>该方法的染色体采用变长编码，无需额外转换即可直接映射到管道路径上。然而，由于交叉算子产生的子路径的不确定性，子代染色体的长度可能比亲本染色体长得多。如果没有对其进行约束处理，遗传算法种群的质量将逐步恶化。因此,本文方法提出了可接受的因素,也就是说,如果新的染色体的长度不大于可接受的产品因素和管道喷嘴的曼哈顿距离,新的染色体将投入后代一代,否则原父染色体将保持。可接受因子由用户设定，推荐值在[1.2,1.8]范围内。该方法能在一定程度上接受较差的解，可以用来平衡算法的优化能力和收敛能力。</p>
-</li>
-<li><p>变异算子</p>
-<p>突变算子以较小的概率对染色体基因进行修饰，在不破坏进化收敛性的前提下保持种群的多样性。</p>
-<p>这有助于提高遗传算法的搜索性能。在染色体(P)中随机选择两个突变点，利用算法重新生成这两个突变点之间的子路径。最后，带有新的子路径的染色体进入后代染色体。同样，突变算子可以增加后代染色体的长度，因此这里也采用了交叉算子中的可接受因子法。</p>
-</li>
-<li><p>修复操作符</p>
-<p>在染色体产生、交叉和突变的过程中，存在着获得重叠路径或循环路径染色体的可能性。有重叠或环路的管道路径虽然保持了起点和目标点之间的连续性，但处于非法状态，需要在演化过程中及时进行修复或丢弃。修复算子由两部分组成：去除重叠路径和去除环路路径。</p>
-<ul>
-<li><p>重叠路径去除</p>
-<p>假设路径网格信息，存储在数组路径中。该算法从起始网格开始依次遍历路径网格。如果发现路径$i-1$和路径$i+1$坐标在遍历过程中相等，就代表他俩重叠。就依次比较$i-2,i+2$，直到出现不等为止。调整调整，删除路径重叠部分。</p>
-</li>
-<li><p>环路去除</p>
-<p>删除重叠部分应该在删除环路之前执行，以确保路径中没有重叠部分。暴力判断即可。</p>
-<p>如果算法被设计去除了所有的循环，它需要处理许多复杂的情况，并且修复的工作量很大。因此，我们的策略是丢弃当前路径，并重新构建一个新的路径，如果该路径包含循环。</p>
-<p>将修复算子嵌入到染色体生成、交叉和变异的过程中，可以有效地提高染色体的质量和算法的收敛性。</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2021/12/06/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Ship%20Pipe%20Route%20Design%20Using%20Improved%20A%20Algorithm%20and%20Genetic%20ALgorithm/liucheng.png" alt="GA-A_Star-Route流程图"></p>
-<ul>
-<li><p>改进遗传算法的流程图</p>
-<p>该遗传算法中使用的参数包括起始网格(s)、目标网格(t)、路由管道标识符(pid)、相邻路由管道标识符(adj_pid)、染色体中间连接点数量(pts_num)、人口大小(pop_size)、生成的数量(max_gen)、选择概率(select_prob)、交叉概率(crosover_prob)、以及突变概率(mutate_prob)。</p>
-</li>
-</ul>
-<p><strong>多管道路由的改进遗传算法</strong></p>
-<ul>
-<li><p>确定布线顺序的最佳实践为：先布线直径较大的管道；先布线长度较长的管道；先布线有特殊要求的管道；尽量分层布线，对下层管道给予高度有限；按照管道系统的原则进行管道不限；对于具有相同优先级的管道，按不同的路由顺序比较其布局，多管道路由是在共享空间中安排具有相同优先级的管道。</p>
-</li>
-<li></li>
-</ul>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p><strong>针对什么样的场景？</strong></p>
-<p>船舶管道布线</p>
-<p><strong>使用了哪些算法和方法？</strong></p>
-<p>针对单根管道，提出了改进A_star和改进遗传算法。针对多根管道，提出了改进遗传算法。针对分支管道，提出了同样的方法。</p>
-<p><strong>有哪些可以改进的地方？</strong></p>
-<p>本篇论文根据不同情境提出了多种不同的管道布线算法，这些算法的具体使用很依赖于具体场景和管道的不同。论文本身无法保证一个通用性，比较依赖具体参数的设计和算法的选择</p>
-<p><strong>适合我项目的地方？</strong></p>
-<p>改进A*算法的启发式函数值得借鉴，其考虑的很完备。</p>
-<ul>
-<li><p>$g(n)=a\times L_{cost}(n) + b\times E_{cost}(n)+ c\times B_{cost}(n)$，其中$a,b,c$是关心权重因子，$L_{cost}(n),E_{cost}(n),B_{cost}(n)$分别是长度成本，能量成本和弯曲数成本。每次在搜索过程中都需要对应的更新</p>
-</li>
-<li><p>$h(n)=abs(x_n-x_t)+abs(y_n-y_t)+abs(z_n-z_t)$，采用曼哈顿距离，$(x_n,y_n,z_n)$是网格位置，$(x_t,y_t,z_t)$是目标网格。可以适当放大h函数。</p>
-</li>
-<li><p>$f(n)=g(n)+w\times h(n)=a\times L_{cost}(n)+b\times E_{cost}(n)+c\times B_{cost}(n)+w\times(abs(x_n-x_t)+abs(y_n-y_t)+abs(z_n-z_t)), w \geq 1$，如果b和c为0，则搜索只受路径长度的引导；当b和c为正值时，考虑弯曲次数和沿支架走线的约束。</p>
-</li>
-</ul>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-04T18:40:05.000Z" title="2021/12/5 上午2:40:05">2021-12-05</time>发表</span><span class="level-item"><time dateTime="2022-03-24T05:04:44.078Z" title="2022/3/24 下午1:04:44">2022-03-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/">杂七杂八</a></span><span class="level-item">几秒读完 (大约29个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/05/%E8%83%A1%E8%AF%B4%E5%85%AB%E9%81%93-%E5%85%B3%E4%BA%8EACM%E9%80%80%E5%BD%B9%E9%82%A3%E7%82%B9%E4%BA%8B/">关于ACM退役那点事</a></h1><div class="content"><p>他妈的，不想写了，写不出来内心的感觉，总之就是退役了，草。</p>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-04T15:03:52.000Z" title="2021/12/4 下午11:03:52">2021-12-04</time>发表</span><span class="level-item"><time dateTime="2022-03-24T04:48:45.040Z" title="2022/3/24 下午12:48:45">2022-03-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">14 分钟读完 (大约2062个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/04/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">读书笔记-统计学习方法第十五章</a></h1><div class="content"><h2 id="概要-奇异值分解"><a href="#概要-奇异值分解" class="headerlink" title="概要 奇异值分解"></a>概要 奇异值分解</h2><ul>
 <li>奇异值分解是一种矩阵因子分解方法，是线性代数的概念，主成分分析、潜在语义分析都用到了</li>
@@ -515,7 +243,211 @@ A^Tu_j=0,j=n+1,n+2,...,m\\
 <li>设矩阵$A\in R^{m\times n}$，矩阵的秩$rank(A)=r$，有奇异值分解$A=U\sum V^T$，并设$\cal M$为$R^{m\times n}$中所有秩不超过$k$的矩阵的集合，$0&lt;k&lt;r$，若秩为$k$的矩阵$X\in \cal M$，满足$||A-X||_F=min_{S\in \cal M}||A-S||_F$，则$||A-X||_F=(\sigma_{k+1}^2,\sigma_{k+2}^2,…,\sigma_n^2)^\frac12$，特别地，如果$A’=U\sum’V^T$，其中$\sum’=\left[ \begin{array}{1}\sum_k &amp; 0 \\ 0 &amp;0 \end{array}\right]$，则$||A-A’||_F=(\sigma_{k+1}^2+\sigma_{k+2}^2+…+\sigma_n^2)^\frac12=min_{S\in \cal M}||A-S||_F$</li>
 </ul>
 <h3 id="15-3-3-矩阵的外积展开式"><a href="#15-3-3-矩阵的外积展开式" class="headerlink" title="15.3.3 矩阵的外积展开式"></a>15.3.3 矩阵的外积展开式</h3><p>$A=\sum_{k=1}^nA_k=\sum_{k=1}^n\sigma_ku_kv_k^T$，其中$u_kv_k^T$为$m\times n$矩阵，是列向量$u_k$和行向量$v_k^T$的外积，$\sigma_k$为奇异值，$u_k.v_k^T,\sigma_k$通过矩阵$A$的奇异值分解得到。</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/2/">上一页</a></div><div class="pagination-next"><a href="/page/4/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link is-current" href="/page/3/">3</a></li><li><a class="pagination-link" href="/page/4/">4</a></li><li><a class="pagination-link" href="/page/5/">5</a></li><li><a class="pagination-link" href="/page/6/">6</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="小涵少年"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">小涵少年</p><p class="is-size-6 is-block">风花飞有态 烟絮坠无痕</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>南京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">53</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">10</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Micro-han" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="twitter" href="https://twitter.com/Bless788"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Zhihu" href="https://www.zhihu.com/people/yan-xiao-han-68-1"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Codeforces" href="https://codeforces.com/profile/YanXiaohan"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://vcode28629.github.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">VCode</span></span><span class="level-right"><span class="level-item tag">vcode28629.github.io</span></span></a></li><li><a class="level is-mobile" href="https://dragonbra.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Dragonbra</span></span><span class="level-right"><span class="level-item tag">dragonbra.github.io</span></span></a></li><li><a class="level is-mobile" href="https://blog.sukiu.top/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">SukiEva</span></span><span class="level-right"><span class="level-item tag">blog.sukiu.top</span></span></a></li><li><a class="level is-mobile" href="https://micro-han.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">友链招租</span></span><span class="level-right"><span class="level-item tag">micro-han.github.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/"><span class="level-start"><span class="level-item">杂七杂八</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/"><span class="level-start"><span class="level-item">知识积累</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/"><span class="level-start"><span class="level-item">算法竞赛</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">读书笔记</span></span><span class="level-end"><span class="level-item tag">38</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"><span class="level-start"><span class="level-item">项目实战</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-03-15T05:22:00.000Z">2022-03-15</time></p><p class="title"><a href="/2022/03/15/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-Automating%20the%20Generation%20of%203D%20Multiple%20Pile%20Layout%20Design%20Using%20BIM%20and%20Heuristic%20Search%20Methods/">Automating the Generation of 3D Multiple Pile Layout Design Using BIM and Heuristic Search Methods</a></p><p class="categories"><a href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/">知识积累</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-03-02T08:48:00.000Z">2022-03-02</time></p><p class="title"><a href="/2022/03/02/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Python%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0/">Python强化学习实战第十三章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-02-28T04:28:00.000Z">2022-02-28</time></p><p class="title"><a href="/2022/02/28/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Python%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/">Python强化学习实战第十一章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-02-27T09:55:00.000Z">2022-02-27</time></p><p class="title"><a href="/2022/02/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Python%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E7%AC%AC%E5%8D%81%E7%AB%A0/">Python强化学习实战第十章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-02-26T11:35:00.000Z">2022-02-26</time></p><p class="title"><a href="/2022/02/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Python%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E7%AC%AC%E4%B9%9D%E7%AB%A0/">Python强化学习实战第九章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Codeforces/"><span class="tag">Codeforces</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8APython%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E3%80%8B/"><span class="tag">《Python强化学习实战》</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E3%80%8B/"><span class="tag">《强化学习》</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B%E3%80%8B/"><span class="tag">《深度学习与围棋》</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/"><span class="tag">《统计学习方法》</span><span class="tag">22</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><span class="tag">算法学习</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%83%A1%E8%AF%B4%E5%85%AB%E9%81%93/"><span class="tag">胡说八道</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/"><span class="tag">解题报告</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"><span class="tag">论文阅读</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/"><span class="tag">项目记录</span><span class="tag">4</span></a></div></div></div></div></div></div><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3"><!--!--></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2022 Micro han</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-01T04:16:20.000Z" title="2021/12/1 下午12:16:20">2021-12-01</time>发表</span><span class="level-item"><time dateTime="2022-03-24T04:49:02.584Z" title="2022/3/24 下午12:49:02">2022-03-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">11 分钟读完 (大约1674个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">读书笔记-统计学习方法第十四章</a></h1><div class="content"><h2 id="概要-聚类方法"><a href="#概要-聚类方法" class="headerlink" title="概要 聚类方法"></a>概要 聚类方法</h2><ul>
+<li>聚类是针对给定的样本，依据他们特征的相似度或距离，将其归类到若干个类或者簇的数据分析问题。一个类是给定样本集合的一个子集，相似的样本距离在相同的类，不相似的样本聚集在不同的类。</li>
+<li>聚类的目的是通过得到的类或簇发现数据的特点或对数据进行处理，在数据挖掘、模式识别等领域有广泛的应用。聚类属于无监督学习。</li>
+</ul>
+<h2 id="14-1-聚类的基本概念"><a href="#14-1-聚类的基本概念" class="headerlink" title="14.1 聚类的基本概念"></a>14.1 聚类的基本概念</h2><h3 id="14-1-1-相似度或距离"><a href="#14-1-1-相似度或距离" class="headerlink" title="14.1.1 相似度或距离"></a>14.1.1 相似度或距离</h3><ul>
+<li>聚类的对象是观测数据，或样本集合。假设有$n$个样本，每个样本由$m$个属性的特征向量组成，可以用矩阵$X$表示。聚类的核心是相似度或距离，有多重相似度或距离的定义，根据实际情况选用。</li>
+<li><strong>闵可夫斯基距离</strong>：给定样本集合$X$，$X$是$m$维实数向量空间$R^m$中点的集合，其中$x_i,x_j\in X$，$x_i=(x_{1i},x_{2i},…,x_{mi})^T$，$x_j=(x_{1j},x_{2j},…,x_{mj})^T$，则这两个样本的闵可夫斯基距离定义为$d_{ij}=(\sum_{k=1}^m\abs{x_{ki}-x_{kj}}^p)^{\frac1p}$，这里$p \geq 1$，当$p=2$时称为欧氏距离，当$p=1$是哈密顿距离，当$p=\infty时是切比雪夫距离，取各个坐标数值差的绝对值的最大值。距离越大相似度越小。</li>
+<li><strong>马哈拉诺比斯距离</strong>：给定一个样本集合$X$，$X=[x_{ij}]_{M\times N}$，其协方差矩阵记作$S$，样本$x_i$与样本$x_j$之间的马哈拉诺比斯距离$d_{ij}=[(x_i-x_j)^TS^{-1}(x_i-x_j)]^{\frac12}$，其中$x_i,x_j$定义如闵可夫斯基距离。距离越大相似度越小。</li>
+<li><strong>相关系数</strong>：样本$x_i$与样本$x_j$之间的相关系数定义为$r_{ij}=\frac{\sum_{k=1}^m(x_{ki}-\overline x_i)(x_{kj}-\overline x_j)}{[\sum_{k=1}^m(x_{ki}-\overline x_i)^2\sum_{k=1}^m(x_{kj}-\overline x_j)^2]^\frac12},其中\overline x_i=\frac1m\sum_{k=1}^mx_{ki},\overline x_j=\frac1m\sum_{k=1}^mx_{kj}$。越接近于1越相似。</li>
+<li><strong>夹角余弦</strong>：样本$x_i$与样本$x_j$之间的夹角余弦定义为$s_{ij}=\frac{\sum_{k=1}^mx_{ki}x_{kj}}{[\sum_{k=1}^mx_{ki}^2\sum_{k=1}^mx_{kj}^2]^\frac12}$。越接近于1越相似。</li>
+</ul>
+<h3 id="14-1-2-类或簇"><a href="#14-1-2-类或簇" class="headerlink" title="14.1.2 类或簇"></a>14.1.2 类或簇</h3><ul>
+<li><p>用$G$表示类或簇，用$x_i,x_j$表示类中的样本，用$n_G$表示$G$中样本的个数，用$d_{ij}$表示样本$x_i$和$x_j$之间的距离，以下是不同的定义。</p>
+</li>
+<li><p>设$T$为给定的正数，若集合$G$中任意两个样本$x_i,x_j$有$d_{ij}\leq T$，则称$G$为一个集合或者一个簇。</p>
+<p>设$T$为给定的正数，若对集合$G$中任意样本$x_i$，一定存在$G$中的另一个样本$x_j$，使得$d_{ij} \leq T$，则称$G$为一个集合或者一个簇。</p>
+<p>设$T$为给定的正数，若对集合$G$中任意样本$x_i$，$G$中的另一个样本$x_j$，使得$\frac{1}{n_G-1}\sum_{x_j\in G}d_{ij} \leq T$，则称$G$为一个集合或者一个簇。</p>
+<p>设$T$和$V$为给定的正数，若对集合$G$中任意两个样本$x_i,x_j$，他们的距离满足，$\frac{1}{n_G(n_G-1)}\sum_{x_i\in G}\sum_{x_j\in G} d_{ij} \leq T, d_{ij} \leq V$，则称$G$为一个集合或者一个簇。</p>
+</li>
+<li><p>类的均值$\overline x_G$，又称为类的中心$\overline x_G=\frac{1}{n_G}\sum_{i=1}^{n_G}x_i$</p>
+<p>类的直径$D_G=max_{x_i,x_j\in G}d_{ij}$</p>
+<p>类的样本散布矩阵$A_G=\sum_{i=1}^{n_G}(x_i-\overline x_G)(x_i-\overline x_G)^T$与样本协方差矩阵$S_G=\frac{1}{m-1}A_G=\frac{1}{m-1}\sum_{i=1}^{n_G}(x_i-\overline x_G)(x_i - \overline x_G)^T$，其中$m$为样本的维数。</p>
+</li>
+</ul>
+<h3 id="14-1-3-类与类之间的距离"><a href="#14-1-3-类与类之间的距离" class="headerlink" title="14.1.3 类与类之间的距离"></a>14.1.3 类与类之间的距离</h3><ul>
+<li>设类$G_p$中包含$n_p$个样本，$G_q$中包含$n_q$个样本，分别用$\overline x_p$和$\overline x_q$表示$G_p$和$G_q$的均值，即类的中心。</li>
+<li>最短距离或单连接，定义类$G_p$的样本和$G_q$的样本之间的最短距离为两类之间的距离$D_{pq}=min\{d_{ij}|x_i \in G_p, x|j \in G_q\}$</li>
+<li>最长距离或完全连接，定义类$G_p$的样本和$G_q$的样本之间的最长距离为两类之间的距离$D_{pq}=max\{d_{ij}|x_i \in G_p, x|j \in G_q\}$</li>
+<li>中心距离，定义类$G_p$和$G_q$的中心$\overline x_p$与$\overline x_q$之间的距离为两类之间的距离$D_{pq}=d_{\overline x_p\overline x_q}$</li>
+<li>平均距离，定义类$G_p$和$G_q$任意两个样本之间的距离的平均值为两类之间的距离$D_{pq}=\frac{1}{n_pn_q}\sum_{x_i\in G_p}\sum_{x_j\in G_q}d_{ij}$</li>
+</ul>
+<h2 id="14-2-层次聚类"><a href="#14-2-层次聚类" class="headerlink" title="14.2 层次聚类"></a>14.2 层次聚类</h2><script type="math/tex; mode=display">
+聚合聚类算法\\
+输入:n个样本组成的样本集合及样本集合及样本之间的距离 \\
+输出:对样本集合的一个层次化聚类 \\
+步骤:(1)计算n个样本两两之间欧式距离\{d_{ij}\},记作矩阵D=[d_{ij}]_{n\times n} \\
+(2)构造n个类,每个类只包含一个样本 \\
+(3)合并类间距离最小的两个类,其中最短距离为类间距离,构造一个新类 \\
+(4)计算新类与当前各类的距离,若类的个数为1,终止计算,否则回(3) \\</script><h2 id="14-3-k均值聚类"><a href="#14-3-k均值聚类" class="headerlink" title="14.3 k均值聚类"></a>14.3 k均值聚类</h2><script type="math/tex; mode=display">
+k均值聚类算法\\
+输入:n个样本的集合X \\
+输出:样本集合的聚类C^\bullet \\
+步骤:(1)初始化,令t=0,随机选择k个样本点作为初始聚类中心m^{(0)}=(m_1^{(0)},m_2^{(0)},...,m_k^{(0)}) \\
+(2)对样本进行聚类,对固定的类中心m^{(t)}=(m_1^{(t)},m_2^{(t)},...,_k^{(k)}),\\其中m_t^{(k)}为类G_l的中心,计算每个样本到类中心的距离,将每个样本指派到与其最近的中心的类中,构成聚类结果C^{(t)} \\
+(3)计算新的类中心,对聚类结果C^{(t)},计算当前各个类中的样本的均值,作为新的类中心m^{(t+1)}=(m_1^{(t+1)},...,m_l^{(t+1)},...,m_k^{(t+1)}) \\
+(4)如果迭代收敛或符合停止条件,输出C^*=C^{(t)},否则t=t+1,返回步(2)</script></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-29T07:43:04.000Z" title="2021/11/29 下午3:43:04">2021-11-29</time>发表</span><span class="level-item"><time dateTime="2022-03-24T04:48:51.192Z" title="2022/3/24 下午12:48:51">2022-03-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">12 分钟读完 (大约1730个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/29/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0/">读书笔记-统计学习方法第十三章</a></h1><div class="content"><h2 id="概要-无监督学习概论"><a href="#概要-无监督学习概论" class="headerlink" title="概要 无监督学习概论"></a>概要 无监督学习概论</h2><ul>
+<li>无监督学习是从无标注的数据中学习数据的统计规律或者说内在结构的机器学习，主要包括聚类、降维、概率估计。无监督学习可以用于数据分析或者监督学习的预处理。</li>
+<li>无监督学习的基本想法是对给定数据进行某种压缩，从而找到数据的潜在结构。假设损失最小的压缩的得到的结果就是最本质的结构。</li>
+<li>聚类、降维和概率模型统计。</li>
+</ul>
+<h2 id="13-1-无监督学习基本原理"><a href="#13-1-无监督学习基本原理" class="headerlink" title="13.1 无监督学习基本原理"></a>13.1 无监督学习基本原理</h2><ul>
+<li><p>无监督学习是从无标注的数据中学习数据的统计规律或者说内在结构的机器学习，主要包括聚类、降维、概率估计。无监督学习可以用于数据分析或者监督学习的预处理。</p>
+</li>
+<li><p>无监督学习使用无标注数据$U=\{x_1,x_2,…,x_N\}$学习或训练，其中$x_i,i=1,2,…,N$是样本，由特征向量组成。无监督学习的模型是函数$z=g_\theta(x)$，条件概率分布$P_\theta(z|x)$或条件概率分布$P_\theta(x|z)$。其中，$x\in X$是输入，表示样本；$z\in Z$是输出，表示对样本的分析结果，可以是类别，转换，概率，$\theta$是参数。</p>
+</li>
+<li><p>假设训练数据集由$N$个样本组成，每个样本是一个$M$维向量，训练数据可以用一个矩阵表示，每一行对应一个特征，每一列对应一个样本。</p>
+<script type="math/tex; mode=display">
+X=\begin{bmatrix}x_{11} ... x_{1N}\\ .........\\x_{M1}...x_{MN}\end{bmatrix} \\
+其中，x_{ij}是第j个向量的第i维:i=1,2,...,M，j=1,2,...,N</script></li>
+<li><p>无监督学习是一个困难的任务，因为数据没有标注，机器需要自己从数据中找出规律，模型的输入$x$在数据中可以观测，而输出$z$隐藏在数据中。无监督学习通常需要大量的数据，因为对数据隐藏的规律的发现需要足够的观测。</p>
+</li>
+<li><p>无监督学习的基本想法是对给定数据进行某种压缩，从而找到数据的潜在结构。假设损失最小的压缩的得到的结果就是最本质的结构。</p>
+</li>
+</ul>
+<h2 id="13-2-基本问题"><a href="#13-2-基本问题" class="headerlink" title="13.2 基本问题"></a>13.2 基本问题</h2><h3 id="13-2-1-聚类"><a href="#13-2-1-聚类" class="headerlink" title="13.2.1 聚类"></a>13.2.1 聚类</h3><ul>
+<li>聚类是将样本集合中相似的样本分配到相同的类，不相似的样本分配到不同的类。聚类时，样本通常是欧式空间中的向量，类别不是事先给定的而是从数据中自动发现的，但类别的个数通常是事先给定的。<strong>硬聚类：</strong>一个样本属于一个类；<strong>软聚类：</strong>一个样本可以属于多个类。</li>
+<li>假设输入空间是欧式空间$x\subseteq R^d$，输出空间是类别集合$Z=\{1,2,…,k\}$。聚类的模型是函数$z=g_\theta(x)$或者条件概率分布$P_\theta(z|x)$，其中$x\in X$是样本的向量，$z\in Z$是样本的类别，$\theta$是参数。前者的函数是硬聚类模型，后者的条件概率分布是软聚类模型。</li>
+<li>聚类的过程就是学习聚类模型的过程，硬聚类时每一个样本属于某一类$z_i=g_\theta(x_i),i=1,2,…,N$；软聚类时，每一个样本依概率属于每一个类$P_\theta(z_i|x_i),i=1,2,…,N$。聚类可以帮助发现数据中隐藏的纵向结构。</li>
+</ul>
+<h3 id="13-2-2-降维"><a href="#13-2-2-降维" class="headerlink" title="13.2.2 降维"></a>13.2.2 降维</h3><ul>
+<li>降维是将训练数据中的样本从高维空间转换到低维空间。假设样本原本存在于低维空间，或者近视地存在于低维空间，通过降维则可以更好地表示样本数据的结构，更好地表示样本之间的关系。高维空间通常是高维的欧式空间，而低维空间是低维的欧式空间或者流形。</li>
+<li>假设输入空间是欧式空间$x\subseteq R^d$，输出空间也是欧式空间$Z\subseteq R^d, d’ &lt;&lt; d$，后者的维度低于前者的维数。降维的模型是函数$z=g_\theta(x)$，其中$x\in X$是样本的高维向量，$z\in Z$是样本的低纬向量，$\theta$是参数。函数可以是线性函数也可以是非线性函数。</li>
+<li>降维的过程是学习降维模型的过程。</li>
+</ul>
+<h3 id="13-2-3-概率模型估计"><a href="#13-2-3-概率模型估计" class="headerlink" title="13.2.3 概率模型估计"></a>13.2.3 概率模型估计</h3><ul>
+<li>简称概率估计，假设训练数据由一个概率模型生成，由训练数据学习概率模型的结构和参数。概率模型是包括混合模型、概率图模型等。概率图模型又包括有向图模型和无向图模型。</li>
+<li>概率模型表示为条件概率分布$P_\theta(x|z)$，其中随机变量$x$表示观测数据，可以是连续变量也可以是离散变量；随机变量$z$表示隐式结构，是离散变量；随机变量$\theta$是表示参数。模型是混合模型时，$z$表示成分的个数；模型是概率图模型时，$z$表示图的结构。</li>
+</ul>
+<h2 id="13-3-机器学习三要素"><a href="#13-3-机器学习三要素" class="headerlink" title="13.3 机器学习三要素"></a>13.3 机器学习三要素</h2><ul>
+<li>模型，策略，算法。</li>
+<li>模型就是函数$z=g_\theta(x)$，条件概率分布$P_\theta(z|x)$或者条件概率分布$P_\theta(x|z)$。策略在不同的问题中有不同的形式，但都可以表示为目标函数的优化。算法通常是迭代算法。</li>
+</ul>
+<h2 id="13-4-无监督学习方法"><a href="#13-4-无监督学习方法" class="headerlink" title="13.4 无监督学习方法"></a>13.4 无监督学习方法</h2><h3 id="13-4-1-聚类"><a href="#13-4-1-聚类" class="headerlink" title="13.4.1 聚类"></a>13.4.1 聚类</h3><ul>
+<li>聚类主要用于数据分析，也可以用于监督学习的前处理。聚类可以帮助发现数据中的统计规律，数据通常是连续变量表示的，也可以用离散变量来表示。</li>
+</ul>
+<h3 id="13-4-2-降维"><a href="#13-4-2-降维" class="headerlink" title="13.4.2 降维"></a>13.4.2 降维</h3><ul>
+<li>降维主要用于数据分析，也可以用于监督学习的前处理。降维可以帮助发现高维数据中的统计规律。数据是连续变量表示的。</li>
+</ul>
+<h3 id="13-4-3-话题分析"><a href="#13-4-3-话题分析" class="headerlink" title="13.4.3 话题分析"></a>13.4.3 话题分析</h3><ul>
+<li>话题分析是文本分析的一种技术，给定一个文本集合，话题分析旨在发现文本集合中每个文本的话题，而话题由单词的集合表示。</li>
+</ul>
+<h3 id="13-4-4-图分析"><a href="#13-4-4-图分析" class="headerlink" title="13.4.4 图分析"></a>13.4.4 图分析</h3><ul>
+<li>很多应用中的数据都是以图的形式存在，图数据表示实体之间的关系。图分析的目的是发掘隐藏在图中的统计规律或潜在结构。</li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-26T09:45:00.000Z" title="2021/11/26 下午5:45:00">2021-11-26</time>发表</span><span class="level-item"><time dateTime="2022-03-24T04:48:41.943Z" title="2022/3/24 下午12:48:41">2022-03-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">2 分钟读完 (大约349个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">统计学习方法第十二章</a></h1><div class="content"><h2 id="概要-监督学习方法总结"><a href="#概要-监督学习方法总结" class="headerlink" title="概要 监督学习方法总结"></a>概要 监督学习方法总结</h2><p><img src="/2021/11/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/1.jpg" alt="10种监督学习方法的概括总结"></p>
+<h2 id="12-1-适用问题"><a href="#12-1-适用问题" class="headerlink" title="12.1 适用问题"></a>12.1 适用问题</h2><ul>
+<li>监督学习是学习一个模型，使得对于给定的输入预测相应的输出。包括分类、标注、回归。分类问题是从实例的特征向量到类标记的预测问题，标注问题是从观测序列到标记序列的预测问题。</li>
+</ul>
+<h2 id="12-2-模型"><a href="#12-2-模型" class="headerlink" title="12.2 模型"></a>12.2 模型</h2><ul>
+<li>条件概率分布$P(Y|X)$或决策函数$Y=f(X)$的形式。前者表示给定输入条件下输出的概率模型，后者表示输入到输出的非概率模型。</li>
+</ul>
+<p><img src="/2021/11/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/2.jpg" alt="部分模型之间的关系"></p>
+<h2 id="12-3-学习策略"><a href="#12-3-学习策略" class="headerlink" title="12.3 学习策略"></a>12.3 学习策略</h2><ul>
+<li>二类分类的监督学习中使用合页损失函数，逻辑斯谛损失函数，指数损失函数分别写为$[1-yf(x)]_+$，$log[1+exp(-yf(x))]$，$exp(-yf(x))$。</li>
+<li>学习策略是优化一下结构风险函数$min_{f\in H}\frac1N\sum_{i=1}^NL(y_i,f(x_i))+\lambda J(f)$，第1项为经验风险，第2项为正则化项，$L(y,f(x))$为损失函数，$J(f)$为模型的复杂度，$\lambda &gt;=0$为系数</li>
+</ul>
+<h2 id="12-4-学习算法"><a href="#12-4-学习算法" class="headerlink" title="12.4 学习算法"></a>12.4 学习算法</h2><p>统计学习的问题有了具体的形式以后，就变成了最优化问题。往往需要用到启发式算法。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-22T10:12:00.000Z" title="2021/11/22 下午6:12:00">2021-11-22</time>发表</span><span class="level-item"><time dateTime="2022-03-24T04:48:32.077Z" title="2022/3/24 下午12:48:32">2022-03-24</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="level-item">21 分钟读完 (大约3165个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/22/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/">统计学习方法第十一章</a></h1><div class="content"><h2 id="概要-条件随机场"><a href="#概要-条件随机场" class="headerlink" title="概要 条件随机场"></a>概要 条件随机场</h2><ul>
+<li>给定一组输入随机变量条件下另一组输出随机变量的条件概率分布模型，其特点是假设输出随机变量构成马尔可夫随机场，条件随机场可以用于不同的预测问题。</li>
+</ul>
+<h2 id="11-1-概率无向图模型"><a href="#11-1-概率无向图模型" class="headerlink" title="11.1 概率无向图模型"></a>11.1 概率无向图模型</h2><h3 id="11-1-1-模型定义"><a href="#11-1-1-模型定义" class="headerlink" title="11.1.1 模型定义"></a>11.1.1 模型定义</h3><ul>
+<li><p>概率图模型是由图表示的概率分布，设有联合概率分布$P(Y)$，$Y \in\cal Y$是一组随机变量，由无向图$G=(V,E)$表示概率分布$P(Y)$，即在图$G$中，结点$v\in V$表示一个随机变量$Y_v$，$Y=(Y_v)_{v\in V}$，边$e\in E$表示随机变量之间的概率依赖关系。</p>
+</li>
+<li><p>给定一个联合概率分布$P(Y)$和表示它的无向图$G$。定义以下四个概念：成对马尔可夫性，局部马尔可夫性和全局马尔可夫性。</p>
+<p>  <strong>成对马尔可夫性</strong>：设$u$和$v$是无向图$G$中任意两个没有边连接的结点，结点$u$和$v$分别对应随机变量$Y_u$和$Y_v$。其他所有结点为$O$，对应的随机变量组是$Y_O$。成对马尔可夫性是指给定随机变量组$Y_O$的条件下随机变量$Y_u$和$Y_v$是条件独立的。即$P(Y_u,Y_v|Y_O)=P(Y_u|Y_O)P(Y_v|Y_O)$</p>
+<p>  <strong>局部马尔可夫性</strong>：设$v\in V$是无向图$G$中任意一个结点，$W$是与$v$有边连接的所有结点，$O$是$v$和$W$以外的其他所有结点。$v$表示的随机变量是$Y_v$，$W$表示的随机变量组是$Y_W$，$O$表示的随机变量组是$Y_O$。局部马尔可夫性是指在给定随机变量组$Y_W$的条件下随机变量$Y_v$与随机变量$Y_O$是独立的。即$P(Y_v,Y_O|Y_W)=P(Y_v|Y_W)P(Y_O|Y_W)$，当$P(Y_O|Y_W)&gt;0$时，$P(Y_v|Y_W)=P(Y_v|Y_W,Y_O)$</p>
+<p>  <strong>全局马尔可夫性</strong>：设结点集合$A$，$B$是在无向图$G$中被结点集合$C$分开的任意结点集合，结点集合$A$，$B$和$C$所对应的随机变量组分别是$Y_A$，$Y_B$和$Y_C$。全局马尔可夫性是指给定随机变量组$Y_C$条件下随机变量组$Y_A$和$Y_B$是条件独立的。即$P(Y_A,Y_B|Y_C)=P(Y_A|Y_C)P(Y_B|Y_C)$</p>
+</li>
+<li><p><strong>概率无向图模型</strong>：设有联合概率分布$P(Y)$，由无向图$G=(V,E)$表示，在图$G$中，结点表示随机变量，边表示随机变量的依赖关系。如果联合概率分布$P(Y)$满足成对、局部或全局马尔可夫性，就称为概率无向图模型或马尔可夫随机场。</p>
+</li>
+</ul>
+<h3 id="11-1-2-概率无向图模型的因子分解"><a href="#11-1-2-概率无向图模型的因子分解" class="headerlink" title="11.1.2 概率无向图模型的因子分解"></a>11.1.2 概率无向图模型的因子分解</h3><ul>
+<li><strong>团与最大团</strong>：无向图$G$中任何两个结点均有边连接的结点子集称为团。若$C$是无向图$G$的一个团，并且不能加进结点使其成为一个更大的团，则称$C$为最大团。</li>
+<li>将概率无向图模型的联合概率分布表示为其最大团上的随机变量的函数的乘积形式的操作，称为概率无向图模型的因子分解。</li>
+<li>给定概率无向图模型，设计无向图为$G$，$C$为$G$上的最大团，$Y_C$表示$C$对应的随机变量，那么概率无向图模型的联合概率分布$P(Y)$可写作所有最大团$C$上的函数$\Psi_C(Y_C)$的乘积形式，$P(Y)=\frac1Z\prod_C\Psi_C(Y_C)$，其中$Z$是规范化因子，由$Z=\sum_Y\prod_Z\Psi_C(Y_C)$组成。规范化因子保证$P(Y)$构成一个概率分布，函数$\Psi_C(Y_C)$称为势函数，要保证其是严格正的，通常用$\Psi_C(Y_C)=exp\{-E(Y_C\}$</li>
+<li>Hammersley_CLifford定理：概率无向图模型的联合概率分布$P(Y)$可以表示为如下形式$P(Y)=\frac1Z\prod_C\Psi_C(Y_C),Z=\sum_Y\prod_C\Psi_C(Y_C)$，其中$C$是无向图的最大团，$Y_C$是$C$的结点对应的随机变量，$\Psi_C(Y_C)$是$C$上定义的严格正函数，乘积是在无向图所有的最大团上进行的。</li>
+</ul>
+<h2 id="11-2-条件随机场的定义与形式"><a href="#11-2-条件随机场的定义与形式" class="headerlink" title="11.2 条件随机场的定义与形式"></a>11.2 条件随机场的定义与形式</h2><h3 id="11-2-1-条件随机场的定义"><a href="#11-2-1-条件随机场的定义" class="headerlink" title="11.2.1 条件随机场的定义"></a>11.2.1 条件随机场的定义</h3><ul>
+<li><strong>条件随机场</strong>：设$X$与$Y$是随机变量，$P(Y|X)$是在给定$X$的条件下$Y$的条件概率分布，若随机变量$Y$构成一个由无向图$G=(V,E)$表示的马尔可夫随机场，即$P(Y_v|X,Y_w,w\neq v)=P(Y_v|X,Y_w,w～v)$对任意结点$v$有边连接的所有结点$w$，$w\neq v$表示结点$v$以外的所有结点，$Y_v$，$Y_u$与$Y_w$为结点$v$，$u$与$w$对应的随机变量。</li>
+<li><strong>线性链条件随机场：</strong>设$X=(X_1,X_2,…,X_n)$，$Y=(Y_1,Y_2,…,Y_n)$均为线性链表表示的随机变量序列，若在给定随机变量序列$X$的条件下，随机变量序列$Y$的条件概率分布$P(Y|X)$构成条件随机场，即满足马尔可夫性$P(Y_i|X,Y_1,…,Y_{i-1},Y_{i+1},…,Y_n)=P(Y_i|X, Y_{i-1},Y_{i+1}),i=1,2,…,n(在i=1和n时只考虑单边)$则称$P(Y|X)$为线性链条件随机场，在标注问题中，$X$表示输入观测序列，$Y$表示对应的输出标记序列或状态序列。</li>
+</ul>
+<h3 id="11-2-2-条件随机场的参数化形式"><a href="#11-2-2-条件随机场的参数化形式" class="headerlink" title="11.2.2 条件随机场的参数化形式"></a>11.2.2 条件随机场的参数化形式</h3><ul>
+<li>线性链条件随机场的参数化形式：设$P(Y|X)$为线性链条件随机场，则在随机变量$X$取值为$x$的条件下，随机变量$Y$取值为$y$的条件概率具有$P(y|x)=\frac1{Z(x)}exp(\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$其中，$Z(x)=\sum_yexp(\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$，$t_k$和$s_l$是特征函数，$\lambda_k$和$\mu_l$是对应的权值。$Z(x)$是规范化因子，求和是在所有可能的输出序列上进行的。</li>
+</ul>
+<h3 id="11-2-3-条件随机场的简化形式"><a href="#11-2-3-条件随机场的简化形式" class="headerlink" title="11.2.3 条件随机场的简化形式"></a>11.2.3 条件随机场的简化形式</h3><ul>
+<li><script type="math/tex; mode=display">
+f_k(y_{i-1},y_i,x,i)=t_k(y_{i-1},y_i,x,i)k=1,2,...,K_1;\\
+f_k(y_{i-1},y_i,x,i)=s_l(y_i,x,i)k=K_1+l,l=1,2,..,K_2\\
+w_k=\lambda_k,k=1,2,...K_1\\
+w_k=\mu_l,k=K_1+l;l=1,2,...,K_2;
+P(y|x)=\frac1{Z(x)}exp\sum_{k=1}^Kw_kf_k(y,x)\\
+Z(x)=\sum_yexp\sum_{k=1}^Kw_kf_k(y,x)\\
+若以w表示权值向量，即w=(w_1,w_2,...,w_K)^T\\
+以F(y,x)表示全局特征向量，即F(y,x)=(f_1(y,x),f_2(y,x),...,f_K(y,x))^T\\
+则条件随机场可以写成向量w与F(y,x)的内积的形式P_w(y|x)=\frac{exp(wF(y,x))}{Z_w(x)}\\
+其中，Z_w(x)=\sum_yexp(wF(y,x))</script></li>
+</ul>
+<h3 id="11-2-4-条件随机场的矩阵形式"><a href="#11-2-4-条件随机场的矩阵形式" class="headerlink" title="11.2.4 条件随机场的矩阵形式"></a>11.2.4 条件随机场的矩阵形式</h3><ul>
+<li>可以定义一个m阶矩阵随机变量 $ M_i(x)=[M_i(y_{i-1},y_i|x)]$，矩阵随机变量的元素为$M_i(y_{i-1},y_i|x)=exp(W_i(y_{i-1},y_i|x)),W_i(y_{i-1},y_i|x)=\sum_{k=1}^Kw_kf_k(y_{i-1},y_i,x,i)$，这里$w_k,f_k$与上个简化形式相同。</li>
+<li>给定观测序列$x$，相应标记序列$y$的非规范化概率可以通过$n+1$个矩阵的适当元素的乘积表示$P_w(y|x)=\frac1{Z_w(x)}\prod_{i=1}^{n+1}M_i(y_{i-1},y_i|x)$</li>
+</ul>
+<h2 id="11-3-条件随机场的概率计算问题"><a href="#11-3-条件随机场的概率计算问题" class="headerlink" title="11.3 条件随机场的概率计算问题"></a>11.3 条件随机场的概率计算问题</h2><h3 id="11-3-1-前向-后向算法"><a href="#11-3-1-前向-后向算法" class="headerlink" title="11.3.1 前向-后向算法"></a>11.3.1 前向-后向算法</h3><ul>
+<li>对每个指标$i=0,1,…,n+1$定义前向向量$\alpha_i(x)$：$\alpha_0(y|x) = 1,y=start;0,else$；递推公式为$\alpha_i^T(y_i|x)=\alpha_{i-1}^T(y_{i-1}|x)[M_i(y_{i-1},y_i|x)],i=1,2,…,n+1$，又可以表示为$\alpha_i^T(x)=\alpha_{i-1}^T(x)M_i(x)$。$\alpha_i(y_i|x)$表示在位置$i$的标记是$y_i$并且从1到$i$的前部分标记序列的非规范化概率，$y_i$可取得值有$m$个，所以$\alpha_i(x)$是一个m维向量。</li>
+<li>后向向量$\beta_i(x)$：$\beta_{n+1}(y_{n+1}|x)=1,y_{n+1}=stop;0,else$；$\beta_i(y_i|x)=[M_{i+1}(y_i,y_{i+1}|x)]\beta_{i+1}(y_{i+1}|x)$，又可以表示为$\beta_i(x)=M_{i+1}(x)\beta_{i+1}(x)$</li>
+</ul>
+<h3 id="11-3-2-概率计算"><a href="#11-3-2-概率计算" class="headerlink" title="11.3.2 概率计算"></a>11.3.2 概率计算</h3><p>序列在位置$i$是标记$y_i$的条件概率和在位置$i-1$与$i$是标记$y_{i-1}$和$y_i$的条件概率$P(Y_i=y_i|x)=\frac{\alpha_i^T(y_i|x)\beta_i(y_i|x)}{Z(x)}$，$P(Y_{i-1}=y_{i-1},Y_i=y_i|x)=\frac{\alpha_{i-1}^T(y_{i—1}|x)M_i(y_{i-1},y_i|x)\beta_i(y_i|x)}{Z(x)}$，其中$Z(x)=\alpha_n^T(x)1=1\beta_1(x)$，其中1是元素均为1的m维列向量</p>
+<h3 id="11-3-3-期望值的计算"><a href="#11-3-3-期望值的计算" class="headerlink" title="11.3.3 期望值的计算"></a>11.3.3 期望值的计算</h3><ul>
+<li>特征函数$f_k$关于条件分布$P(Y|X)$的数学期望是$E_{P(Y|X)}[f_k]=\sum_yP(y|x)f_k(y,x)=\sum_{i=1}^{n+1}\sum_{y_{i-1}y_i}f_k(y_{i-1},y_i,x,i)\frac{\alpha_{i-1}^T(y_{i-1}|x)M_i(y_{i-1},y_i|x)\beta_i(y_i|x)}{Z(x)}$，其中$Z(x)=\alpha_n^T(x)1$</li>
+<li>假设经验分布$\widetilde P(X)$，特征函数$f_k$关于联合分布$P(X,Y)$的数学期望是$E_{P(Y|X)}[f_k]=\sum_{x,y}P(x,y)\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i)=\sum_x\widetilde P(x)\sum_yP(y|x)\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i)=\sum_x\widetilde P(x)\sum_{i=1}^{n+1}\sum_{y_{i-1}y_i}f_k(y_{i-1},y_i,x,i)\frac{\alpha_{i-1}^T(y_{i-1}|x)M_i(y_{i-1},y_i|x)\beta_i(y_i|x)}{Z(x)}$其中，$Z(x)=\alpha_n^T(x)1$</li>
+</ul>
+<h2 id="11-4-条件随机场的学习算法"><a href="#11-4-条件随机场的学习算法" class="headerlink" title="11.4 条件随机场的学习算法"></a>11.4 条件随机场的学习算法</h2><h3 id="11-4-1-改进的迭代尺度法"><a href="#11-4-1-改进的迭代尺度法" class="headerlink" title="11.4.1 改进的迭代尺度法"></a>11.4.1 改进的迭代尺度法</h3><ul>
+<li><script type="math/tex; mode=display">
+条件随机场模型学习的改进的迭代尺度法\\
+输入:特征函数t_1,t_2,...,t_{K_1},s_1,s_2,...,s_{K_2}；经验分布\widetilde P(x,y);\\
+输出:参数估计值\hat w;模型P_{\hat w}\\
+步骤:(1)对所有k\in \{1,2,..,K\},取初值w_k=0;\\
+(2)对每一k\in \{1,2,..,K\}:\\
+(a)当k=1,2,...,K_1时,令\delta_k是方程\sum_{x,y}\widetilde P(x)P(y|x)\sum_{i=1}^{n+1}t_k(y_{i-1},y_i,x,i)exp(\delta_kT(x,y))=E_{\widetilde P}[t_k]\\
+的解:当k=K_1+l,l=1,2,...,K_2时，令\delta_{K_1+l}是方程\sum_{x,y}\widetilde P(x)P(y|x)\sum_{i=1}^{n}s_l(y_{i},x,i)exp(\delta_{K_1+l}T(x,y))=E_{\widetilde P}[s_l]的解\\
+其中,T(x,y)=\sum_kf_k(x,y)=\sum_{k=1}^K\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i)\\
+(b)更新w_k的值,w_k\leftarrow w_k+\delta_k \\
+(3)如果不是所有的w_k都收敛,重复步骤(2)</script><p>《统计学习方法》P228</p>
+</li>
+</ul>
+<h3 id="11-4-2-拟牛顿法"><a href="#11-4-2-拟牛顿法" class="headerlink" title="11.4.2 拟牛顿法"></a>11.4.2 拟牛顿法</h3><script type="math/tex; mode=display">
+条件随机场模型学习的BFGS算法\\
+输入:特征函数f_1,f_2,...,f_n;经验分布\widetilde P(X,Y)\\
+输出:最优参数值\hat w;最优模型P_{\hat w}(y|x)\\
+步骤:(1)选定初始点w^{(0)},取B_0为正定对称矩阵,令k=0\\
+(2)计算g_k=g(w^{(k)}),若g_k=0,停止计算否则到(3)\\
+(3)由B_kp_k=-g_k求出p_k\\
+(4)一维搜索:求\lambda_k使得\\
+f(w^{(k)}+\lambda_kp_k)=min_{\lambda >=0} f(w^{(k)}+\lambda_kp_k) \\
+(5)取w^{(k+1)}=w^{(k)}+\lambda_kp_k \\
+(6)计算g_{k+1}=g(w^{(k+1)}),若g_{k+1}=0,则停止计算;否则,按照B_{k+1}=B_k+\frac{y_ky_k^T}{y_k^T\delta_k}-\frac{B_k\delta_k^TB_k}{\delta_k^TB_k\delta_k} \\
+其中,y_k=g_{k+1}-g_k,\delta_k=w^{(k+1)}-w^{(k)}\\
+(7)令k=k+1,转(3)</script><h2 id="11-5-条件随机场的预测算法"><a href="#11-5-条件随机场的预测算法" class="headerlink" title="11.5 条件随机场的预测算法"></a>11.5 条件随机场的预测算法</h2><script type="math/tex; mode=display">
+条件随机场预测的维特比算法\\
+输入:模型特征向量F(y,x)和权值向量w,观测序列x=(x_1,x_2,...,x_n);\\
+输出:最优路径y^*=(
+y_1^*,
+y_2^*,...,
+y_n^*)\\
+步骤:(1)初始化\delta_1(j)=wF_1(y_0=start,y_1=j,x),j=1,2,...,m \\
+(2)递推,对i=1,2,...,n\\
+\delta_i(l)=max_{1\leq j\leq m}\{\delta_{i-1}(j)=wF_1(y_0=start,y_1=j,x)\},l=1,2,....,m \\
+\Psi_i(l)=arg max_{1\leq j \leq m}\{\delta_{i-1}(j)+wF_i(y_{i-1}=j,y_i=l,x) \},l=1,2,...,m \\
+(3)终止 max_y(wF(y,x))=max_{1\leq j \leq m}\delta_n(j),y_n^*=argmax_{1\leq j \leq m}\delta_n(j) \\
+(4)返回路径
+y_i^*=\Psi_{i+1}(
+y_{i+1}^*),i=n-1,n-2,...,1\\
+求得最优路径y^*=
+(y_1^*,
+y_2^*,
+...,y_n^*)</script></div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/2/">上一页</a></div><div class="pagination-next"><a href="/page/4/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link is-current" href="/page/3/">3</a></li><li><a class="pagination-link" href="/page/4/">4</a></li><li><a class="pagination-link" href="/page/5/">5</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="小涵少年"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">小涵少年</p><p class="is-size-6 is-block">风花飞有态 烟絮坠无痕</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>南京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">47</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">8</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Micro-han" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="twitter" href="https://twitter.com/Bless788"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Zhihu" href="https://www.zhihu.com/people/yan-xiao-han-68-1"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Codeforces" href="https://codeforces.com/profile/YanXiaohan"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://vcode28629.github.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">VCode</span></span><span class="level-right"><span class="level-item tag">vcode28629.github.io</span></span></a></li><li><a class="level is-mobile" href="https://dragonbra.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Dragonbra</span></span><span class="level-right"><span class="level-item tag">dragonbra.github.io</span></span></a></li><li><a class="level is-mobile" href="https://blog.sukiu.top/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">SukiEva</span></span><span class="level-right"><span class="level-item tag">blog.sukiu.top</span></span></a></li><li><a class="level is-mobile" href="https://micro-han.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">友链招租</span></span><span class="level-right"><span class="level-item tag">micro-han.github.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/"><span class="level-start"><span class="level-item">杂七杂八</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/"><span class="level-start"><span class="level-item">知识积累</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">读书笔记</span></span><span class="level-end"><span class="level-item tag">38</span></span></a></li><li><a class="level is-mobile" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"><span class="level-start"><span class="level-item">项目实战</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-03-02T08:48:00.000Z">2022-03-02</time></p><p class="title"><a href="/2022/03/02/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Python%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0/">Python强化学习实战第十三章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-02-28T04:28:00.000Z">2022-02-28</time></p><p class="title"><a href="/2022/02/28/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Python%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/">Python强化学习实战第十一章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-02-27T09:55:00.000Z">2022-02-27</time></p><p class="title"><a href="/2022/02/27/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Python%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E7%AC%AC%E5%8D%81%E7%AB%A0/">Python强化学习实战第十章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-02-26T11:35:00.000Z">2022-02-26</time></p><p class="title"><a href="/2022/02/26/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Python%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E7%AC%AC%E4%B9%9D%E7%AB%A0/">Python强化学习实战第九章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-02-15T14:18:00.000Z">2022-02-15</time></p><p class="title"><a href="/2022/02/15/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Python%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E7%AC%AC%E5%85%AB%E7%AB%A0/">Python强化学习实战第八章</a></p><p class="categories"><a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8APython%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E3%80%8B/"><span class="tag">《Python强化学习实战》</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E3%80%8B/"><span class="tag">《强化学习》</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B%E3%80%8B/"><span class="tag">《深度学习与围棋》</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B/"><span class="tag">《统计学习方法》</span><span class="tag">22</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><span class="tag">算法学习</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%83%A1%E8%AF%B4%E5%85%AB%E9%81%93/"><span class="tag">胡说八道</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/"><span class="tag">解题报告</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/"><span class="tag">项目记录</span><span class="tag">4</span></a></div></div></div></div></div></div><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3"><!--!--></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Micro-han&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2022 Micro han</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/Micro-han"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
