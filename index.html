@@ -139,6 +139,48 @@
     </tbody></table>
 
     <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+      <tr onmouseout="End_to_end_SegmentAnything3D_stop()" onmouseover="End_to_end_SegmentAnything3D_start()" bgcolor="#ffffd0">
+        <td style="padding:20px;width:25%;vertical-align:middle">
+          <div class="one">
+            <div class="two" id='End_to_end_SegmentAnything3D_img'><video width=100% height=100% muted autoplay loop>
+            <source src="data/projects/end2endSAM3D.png" type="video/png">
+            Your browser does not support the video tag.
+            </video></div>
+            <img src="data/projects/end2endSAM3D.png" width="160">
+          </div>
+          <script type="text/javascript">
+            function End_to_end_SegmentAnything3D_start() {
+              document.getElementById('End_to_end_SegmentAnything3D_img').style.opacity = "1";
+            }
+
+            function End_to_end_SegmentAnything3D_stop() {
+              document.getElementById('End_to_end_SegmentAnything3D_img').style.opacity = "0";
+            }
+            kaggleLLAM_stop()
+          </script>
+        </td>
+        <td style="padding:20px;width:75%;vertical-align:middle">
+          <a href=" ">
+            <span class="papertitle">End-to-end-SegmentAnything3D</span>
+          </a >
+          <br>
+          <strong>Xiaohan Yan</strong>,
+          <a href="https://bigcileng.github.io/">Nan Wang</a >,
+          <br>
+          <em>Kaggle</em>, 2023-10, <a href="https://github.com/Micro-han/End-to-end-SegmentAnything3D">Code</a >
+          <br>
+          <p></p >
+          <p>
+
+            This project aims to using <a herf="https://github.com/Pointcept/SegmentAnything3D">Segment Anything 3D</a> to solve a ply pointcloud without 2D labels.<br><br>
+
+            We using a <a herf="https://github.com/BigCiLeng/projectPointcloud2Image">pcd2rgb</a> method to generate 2D RGB & Depth photos. And then, we aligne the inputs and generate the .ply output.
+            
+          </p >
+        </td>
+      </tr>
+
       <tr onmouseout="kaggleLLAM_stop()" onmouseover="kaggleLLAM_start()" bgcolor="#ffffd0">
         <td style="padding:20px;width:25%;vertical-align:middle">
           <div class="one">
@@ -589,7 +631,7 @@
       <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
         <tr>
         <td style="padding:20px;width:100%;vertical-align:middle;text-align: right;">
-          Last updated on 2023/11/7
+          Last updated on 2023/12/20
         </td>
         </tr>
       </tbody></table>
