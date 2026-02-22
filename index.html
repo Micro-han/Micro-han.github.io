@@ -16,138 +16,407 @@
     
     <!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"> -->
     <style type="text/css">
-      @import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic,300italic,300);
-      /* @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons); */
-        /* Color scheme stolen from Sergey Karayev */
-        a {
-        /*color: #b60a1c;*/
-        color: #1772d0;
-        /*color: #bd0a36;*/
-        text-decoration:none;
-        }
-        a:focus, a:hover {
-        color: #f09228;
-        text-decoration:none;
-        }
-        body,td,th,tr,p,a {
-        font-family: 'Roboto', sans-serif;
-        font-size: 15px;
-        font-weight: 300;
-        }
-        strong {
-        font-family: 'Roboto', sans-serif;
-        /*font-family: 'Lato', Verdana, Helvetica, sans-serif;*/
-        /*font-family: 'Avenir Next';*/
-        font-size: 15px;
-        font-weight: 400;
-        }
-        heading {
-        /*font-family: 'Lato', Verdana, Helvetica, sans-serif;*/
-        font-family: 'Roboto', sans-serif;
-        /*font-family: 'Avenir Next';*/
-        /*src: url("./fonts/Roboto_Mono_for_Powerline.ttf");*/
-        font-size: 24px;
-        font-weight: 400;
-        }
-        sub_heading {
-        /*font-family: 'Lato', Verdana, Helvetica, sans-serif;*/
-        font-family: 'Roboto', sans-serif;
-        /*font-family: 'Avenir Next';*/
-        /*src: url("./fonts/Roboto_Mono_for_Powerline.ttf");*/
-        font-size: 20px;
-        font-weight: 400;
-        }
-        topictitle {
-        /*font-family: 'Lato', Verdana, Helvetica, sans-serif;*/
-        font-family: 'Roboto', sans-serif;
-        /*font-family: 'Avenir Next';*/
-        /*src: url("./fonts/Roboto_Mono_for_Powerline.ttf");*/
-        font-size: 18px;
-        font-weight:500;
-        }
-        papertitle {
-        /*font-family: 'Lato', Verdana, Helvetica, sans-serif;*/
-        font-family: 'Roboto', sans-serif;
-        /*font-family: 'Avenir Next';*/
-        /*src: url("./fonts/Roboto_Mono_for_Powerline.ttf");*/
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+      
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --primary-light: #3b82f6;
+        --accent: #f59e0b;
+        --accent-light: #fbbf24;
+        --text-primary: #1f2937;
+        --text-secondary: #4b5563;
+        --text-muted: #6b7280;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-card: #ffffff;
+        --border-light: #e5e7eb;
+        --border-card: rgba(0,0,0,0.06);
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+        --shadow-card: 0 2px 8px rgba(0,0,0,0.06), 0 0 1px rgba(0,0,0,0.1);
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
         font-size: 16px;
-        font-weight:500;
-        }
-        name {
-        /*font-family: 'Lato', Verdana, Helvetica, sans-serif;*/
-        font-family: 'Roboto', sans-serif;
-        /*font-family: 'Avenir Next';*/
-        font-size: 32px;
         font-weight: 400;
-        }
-        .one
-        {
+        line-height: 1.7;
+        color: var(--text-primary);
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--primary);
+        text-decoration: none;
+        transition: color var(--transition);
+      }
+
+      a:focus, a:hover {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      td, th, tr, p {
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        font-size: 15px;
+        line-height: 1.75;
+        color: var(--text-secondary);
+      }
+
+      strong {
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      heading {
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text-primary);
+        display: inline-block;
+        position: relative;
+        padding-bottom: 8px;
+      }
+
+      heading::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        border-radius: 2px;
+      }
+
+      sub_heading {
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      papertitle {
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--text-primary);
+        line-height: 1.5;
+      }
+
+      name {
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        font-size: 42px;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .one {
         width: 160px;
         height: 140px;
         position: relative;
-        }
-        .two
-        {
+      }
+
+      .two {
         width: 160px;
         height: 160px;
         position: absolute;
-        transition: opacity .2s ease-in-out;
-        -moz-transition: opacity .2s ease-in-out;
-        -webkit-transition: opacity .2s ease-in-out;
-        }
-        .fade {
-         transition: opacity .2s ease-in-out;
-         -moz-transition: opacity .2s ease-in-out;
-         -webkit-transition: opacity .2s ease-in-out;
-        }
-        span.highlight {
-            background-color: #ffffd0;
+        transition: opacity var(--transition);
+      }
+
+      .fade {
+        transition: opacity var(--transition);
+      }
+
+      span.highlight {
+        background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      .teaser-box {
+        overflow: hidden;
+        border-radius: var(--radius-md);
+        background: var(--bg-secondary);
+      }
+
+      .teaser-box img.teaser-img {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: var(--radius-md);
+      }
+
+      .teaser-box:hover img.teaser-img {
+        transform: scale(1.08);
+      }
+
+      .results-carousel { overflow: hidden; }
+      .results-carousel .item {
+        margin: 5px;
+        overflow: hidden;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md);
+        padding: 0;
+        font-size: 0;
+      }
+      .results-carousel img, .results-carousel video { 
+        width: 100%; 
+        height: auto; 
+        aspect-ratio: 16 / 9; 
+        object-fit: cover; 
+      }
+      .results-carousel video { margin: 0; }
+      .carousel-bound { 
+        width: 100%; 
+        max-width: 1000px; 
+        margin: 0 auto; 
+        overflow: hidden; 
+      }
+
+      .navbar { 
+        position: sticky; 
+        top: 0; 
+        z-index: 1000; 
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-light);
+        transition: all var(--transition);
+      }
+
+      .navbar-container {
+        width: min(1000px, 100%);
+        margin: 0 auto;
+        padding: 14px 2.5%;
+        box-sizing: border-box;
+        position: relative;
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between;
+      }
+
+      .navbar-brand { 
+        font-weight: 600; 
+        font-size: 18px; 
+        color: var(--primary);
+        transition: color var(--transition);
+      }
+
+      .navbar-brand:hover {
+        color: var(--accent);
+      }
+
+      .navbar-links { 
+        display: flex; 
+        align-items: center; 
+        gap: 8px;
+      }
+
+      .navbar-links a { 
+        padding: 6px 14px;
+        color: var(--text-secondary); 
+        font-weight: 500;
+        font-size: 14px;
+        border-radius: var(--radius-sm);
+        transition: all var(--transition);
+      }
+
+      .navbar-links a:hover { 
+        color: var(--primary);
+        background: rgba(37, 99, 235, 0.08);
+      }
+
+      .paper-row {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-card);
+        margin-bottom: 20px;
+        transition: all var(--transition);
+        border: 1px solid var(--border-card);
+      }
+
+      .paper-row:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+      }
+
+      .section-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-card);
+        padding: 24px;
+        margin-bottom: 24px;
+        border: 1px solid var(--border-card);
+      }
+
+      .news-item {
+        padding: 12px 16px;
+        margin: 8px 0;
+        background: var(--bg-secondary);
+        border-radius: var(--radius-sm);
+        border-left: 3px solid var(--primary);
+        transition: all var(--transition);
+      }
+
+      .news-item:hover {
+        background: rgba(37, 99, 235, 0.05);
+        border-left-color: var(--accent);
+      }
+
+      .icon-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--bg-secondary);
+        transition: all var(--transition);
+        margin: 0 4px;
+      }
+
+      .icon-link:hover {
+        background: var(--primary);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .icon-link:hover img {
+        filter: brightness(0) invert(1);
+      }
+
+      .institution-logo {
+        padding: 16px;
+        background: var(--bg-card);
+        border-radius: var(--radius-md);
+        transition: all var(--transition);
+        border: 1px solid var(--border-card);
+      }
+
+      .institution-logo:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+      }
+
+      .profile-photo {
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        transition: all var(--transition);
+      }
+
+      .profile-photo:hover {
+        transform: scale(1.02);
+      }
+
+      .link-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 12px;
+        background: var(--bg-secondary);
+        border-radius: var(--radius-sm);
+        margin: 4px;
+        transition: all var(--transition);
+        border: 1px solid transparent;
+      }
+
+      .link-badge:hover {
+        background: rgba(37, 99, 235, 0.1);
+        border-color: var(--primary);
+      }
+
+      .misc-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-md);
+        padding: 20px;
+        border: 1px solid var(--border-card);
+        transition: all var(--transition);
+      }
+
+      .misc-card:hover {
+        box-shadow: var(--shadow-md);
+      }
+
+      ul {
+        padding-left: 0;
+        list-style: none;
+      }
+
+      ul li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 8px;
+      }
+
+      ul li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 6px;
+        height: 6px;
+        background: var(--primary);
+        border-radius: 50%;
+      }
+
+      .main-container {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        margin: 20px auto;
+        padding: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .navbar { display: none; }
+        
+        name {
+          font-size: 28px;
         }
 
-        .teaser-box img.teaser-img {
-          transition: transform 0.3s ease;
+        heading {
+          font-size: 22px;
         }
 
-        .teaser-box:hover img.teaser-img {
-          transform: scale(1.5);
+        .main-container {
+          margin: 10px;
+          border-radius: var(--radius-md);
         }
 
-        /* Results carousel styles (align with render_arts) */
-        .results-carousel { overflow: hidden; }
-        .results-carousel .item {
-          margin: 5px;
-          overflow: hidden;
-          border: 1px solid #bbb;
-          border-radius: 10px;
-          padding: 0;
-          font-size: 0;
+        .paper-row {
+          margin-bottom: 16px;
         }
-        .results-carousel img, .results-carousel video { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
-        .results-carousel video { margin: 0; }
-        /* Limit carousel width like other sections */
-        .carousel-bound { width: 100%; max-width: 1000px; margin: 0 auto; overflow: hidden; }
+      }
 
-        /* Simple top navbar */
-        .navbar { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #eee; }
-        .navbar-container {
-          /* Fluid width without relying on breakpoints */
-          width: min(1000px, 100%);
-          margin: 0 auto;
-          padding: 10px 2.5%;
-          box-sizing: border-box;
-          position: relative;
-          display: flex; align-items: center; justify-content: space-between;
-        }
-        .navbar-brand { font-weight: 500; font-size: 18px; color: #1772d0; }
-        .navbar-links { display: flex; align-items: center; }
-        .navbar-links a { margin-left: 16px; color: #444; font-weight: 400; }
-        .navbar a:hover { color: #f09228; }
+      .footer {
+        text-align: center;
+        padding: 30px 20px;
+        color: var(--text-muted);
+        font-size: 14px;
+        border-top: 1px solid var(--border-light);
+        margin-top: 40px;
+      }
 
-        /* Mobile: simplest approach — hide navbar */
-        @media (max-width: 768px) {
-          .navbar { display: none; }
-        }
-        body { scroll-behavior: smooth; }
+      ::selection {
+        background: rgba(37, 99, 235, 0.2);
+      }
       </style>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐱</text></svg>">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -177,11 +446,13 @@
   <a id="top"></a>
   <nav class="navbar">
     <div class="navbar-container">
-      <a class="navbar-brand" href="#top">🐱 Neos Yan</a>
+      <a class="navbar-brand" href="#top">Neos Yan</a>
       <div id="site-nav" class="navbar-links" role="navigation">
+        <a href="#news">News</a>
         <a href="#Publications">Publications</a>
         <a href="#Projects">Projects</a>
         <a href="#Awards">Awards</a>
+        <a href="#Misc">Misc</a>
       </div>
     </div>
   </nav>
@@ -227,429 +498,399 @@
       });
     })();
   </script>
-  <table style="width:100%;max-width:1000px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:100%;vertical-align:middle;text-align:center;">
-              <p style="text-align:center">
-                <name>Xiaohan Yan&nbsp;&nbsp;&nbsp;<ruby>颜</ruby>小涵</name>
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
+  <div class="main-container" style="width:100%;max-width:1000px;border:0px;margin-right:auto;margin-left:auto;">
+    
+    <!-- Header Section -->
+    <div style="text-align:center;padding:40px 20px 30px;">
+      <name>Xiaohan Yan&nbsp;&nbsp;<ruby style="font-size:0.8em;">颜小涵</ruby></name>
+      <p style="color:var(--text-muted);font-size:16px;margin-top:12px;">Large Model Algorithm Engineer</p>
+    </div>
         
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:65%;vertical-align:middle">
-              <p>I am currently a Large Model Algorithm Engineer.</p>
-
-              <p>
-                I was a master's student majoring in Computer Science and Technology at <a href="https://www.tongji.edu.cn/">Tongji University</a>, 
-                with my supervisor <a href="https://see.tongji.edu.cn/info/1388/10509.htm">Gang Wei</a>. 
-              </p>
-
-              <p>
-                I was an undergraduate student majoring in Computer Science and Technology at <a href="https://www.hhu.edu.cn/">Hohai University</a>,
-                where I once served as the captain of the Hohai University ACM Team. 
-                My coaches were <a href="https://cies.hhu.edu.cn/2024/0521/c21517a280183/page.htm">Xuejie Zhang</a> and <a href="">Yun Zhu</a>.
-              </p>
-
-              <p>
-                My research interests focus on fields such as Multimodal Large Models, 3D Computer Vision, and Reinforcement Learning.
-              </p>
-                
-              <p> If you find any research interests that we might share, feel free to drop me an email.</p>
-
-            </td>
-            <td style="padding:2%;width:55%;max-width:60%;vertical-align:middle;">
-              <img style="width:100%;max-width:150%" alt="profile photo" src="assets/images/microhan.png" class="hoverZoomLink">
-              <p style="text-align:center">
-                <a href="mailto:yxhop666@gmail.com"><img src="assets/misc/email-logo.svg" height="20" style="vertical-align:middle;"></a> &nbsp/&nbsp
-                <a href="assets/doc/YXH_CN_CV_v25.2.9.pdf"><img src="assets/misc/cv-logo.svg" height="20" style="vertical-align:middle;"></a> &nbsp/&nbsp
-                <a href="https://scholar.google.com/citations?hl=en&user=uKG381EAAAAJ"><img src="assets/misc/googles-cholar-logo.svg" height="20" style="vertical-align:middle;"></a> &nbsp/&nbsp
-                <a href="https://github.com/Micro-han/"><img src="assets/misc/github-logo.png" height="20" style="vertical-align:middle;"></a>&nbsp/&nbsp
-                <a href="https://www.linkedin.com/in/%E5%B0%8F%E6%B6%B5-%E9%A2%9C-522b00284/"><img src="assets/misc/linkedin-logo.png" height="20" style="vertical-align:middle;"></a>&nbsp/&nbsp
-                <a href="https://orcid.org/0009-0005-6470-0465"><img src="assets/misc/orcid-logo.svg" height="20" style="vertical-align:middle;"></a>
-                <!-- <a href="render_arts/index.html"><img src="assets/misc/blender-logo.svg" height="20" style="vertical-align:middle;"></a> -->
-              </p>
-              <p style="text-align:center">
-              中文&nbsp/&nbspEnglish
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
-
-
-
-          <table width="100%" align="center" border="0" cellspacing="0" cellpadding="15"><tbody>
-            <!-- write logos here -->
-            <tr>
-              <td width="10%" valign="middle" align="center">
-                <a href="https://www.nio.cn/"><img height="55" src="assets/institution_logo/nio.jpeg"></a>
-              </td>
-              <td width="10%" valign="middle" align="center">
-                <a href="https://see.tongji.edu.cn/index.htm"><img height="55" src="assets/institution_logo/tju.png"></a>
-              </td>
-              <td width="10%" valign="middle" align="center">
-                <a href="https://www.hhu.edu.cn/"><img height="55" src="assets/institution_logo/hohai.png"></a>
-              </td>
-            </tr>
-          </tbody></table>
-
-        <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
-          <a id="news"></a>
-          <tr>
-            <td>
-              <heading>News</heading>
-            <ul>
-              <li><strong>[09/2025]</strong> Our paper HOLO is accepted by WACV 2026. </li>
-              <br>
-              <li><strong>[03/2025]</strong> I graduated from Tongji University with a Master’s degree in Computer Science! 🎓 </li>
-              <br>
-              <li><strong>[01/2025]</strong> Our paper <a href="https://ieeexplore.ieee.org/abstract/document/10887567/">SGGS</a> is accepted by ICASSP 2025. </li>
-              <br>
-              <li><strong>[01/2025]</strong> Our paper <a href="https://ieeexplore.ieee.org/document/11127468/">RE0</a> is accepted by ICRA 2025. </li>
-              <br>
-              <a href="javascript:toggleblock(&#39;old_news&#39;)">---- show more ----</a>
-              <div id="old_news" style="display: none;">
-                <li><strong>[07/2024]</strong> Our paper <a href="https://link.springer.com/chapter/10.1007/978-981-97-8508-7_11/">AttenPoint</a> is accepted by PRCV 2024. </li>
-                <br>
-                <li><strong>[04/2024]</strong> I will join <a href="https://www.nio.cn/">NIO</a> for a internship! </li>
-                <br>
-                <li><strong>[03/2024]</strong> Our paper <a href="https://arxiv.org/pdf/2403.09294/">ASGMVLP</a> is accepted by MICCAI 2024. </li>
-                <br>  
-                <li><strong>[12/2023]</strong> I will join <a href="https://www.cit.tum.de/en/cit/home/">Institute for Al Industry Research (AIR), Tsinghua University</a> for a research internship.🍻! </li>
-              </div>
-            </ul>
-            </td>
-          </tr>
-        </tbody></table>
-
-
+    <!-- Bio Section -->
     <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr>
-        <td style="padding:20px;width:100%;vertical-align:middle">
-          <a id="Publications"></a>
-          <heading>Publications</heading>
-          <p>
-            (* indicates equal contribution)
-            <!-- Representative papers are <span class="highlight">highlighted</span>. -->
+      <tr style="padding:0px">
+        <td style="padding:20px 2.5%;width:60%;vertical-align:middle">
+          <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">
+            I was a master's student majoring in Computer Science and Technology at <a href="https://www.tongji.edu.cn/">Tongji University</a>, 
+            with my supervisor <a href="https://see.tongji.edu.cn/info/1388/10509.htm">Gang Wei</a>. 
           </p>
+
+          <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">
+            I was an undergraduate student majoring in Computer Science and Technology at <a href="https://www.hhu.edu.cn/">Hohai University</a>,
+            where I once served as the captain of the Hohai University ACM Team. 
+            My coaches were <a href="https://cies.hhu.edu.cn/2024/0521/c21517a280183/page.htm">Xuejie Zhang</a> and <a href="">Yun Zhu</a>.
+          </p>
+
+          <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">
+            My research interests focus on <strong>Multimodal Large Models</strong>, <strong>3D Computer Vision</strong>, and <strong>Reinforcement Learning</strong>.
+          </p>
+            
+          <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">If you find any research interests that we might share, feel free to drop me an email.</p>
+
+        </td>
+        <td style="padding:20px 2.5%;width:40%;vertical-align:middle;text-align:center;">
+          <img style="width:100%;max-width:220px;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.12);" alt="profile photo" src="assets/images/microhan.png" class="profile-photo">
+          <div style="margin-top:20px;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;">
+            <a href="mailto:yxhop666@gmail.com" class="icon-link" title="Email"><img src="assets/misc/email-logo.svg" height="18"></a>
+            <a href="assets/doc/YXH_CN_CV_v25.2.9.pdf" class="icon-link" title="CV"><img src="assets/misc/cv-logo.svg" height="18"></a>
+            <a href="https://scholar.google.com/citations?hl=en&user=uKG381EAAAAJ" class="icon-link" title="Google Scholar"><img src="assets/misc/googles-cholar-logo.svg" height="18"></a>
+            <a href="https://github.com/Micro-han/" class="icon-link" title="GitHub"><img src="assets/misc/github-logo.png" height="18"></a>
+            <a href="https://www.linkedin.com/in/%E5%B0%8F%E6%B6%B5-%E9%A2%9C-522b00284/" class="icon-link" title="LinkedIn"><img src="assets/misc/linkedin-logo.png" height="18"></a>
+            <a href="https://orcid.org/0009-0005-6470-0465" class="icon-link" title="ORCID"><img src="assets/misc/orcid-logo.svg" height="18"></a>
+          </div>
         </td>
       </tr>
     </tbody></table>
 
-     <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-      <tr onmouseout="urf_stop()" onmouseover="urf_start()">
-        <td style="padding:20px;width:30%;vertical-align:middle">
-          <div class="teaser-box" style="display:flex;justify-content:center">
-            <img src='papers/HOLO_WACV2026/holo.jpeg' class="teaser-img" width="200">
+
+    <!-- Institution Logos -->
+    <div style="display:flex;justify-content:center;gap:24px;padding:30px 20px;flex-wrap:wrap;">
+      <a href="https://www.nio.cn/" class="institution-logo" style="width:180px;display:flex;align-items:center;justify-content:center;">
+        <img src="assets/institution_logo/nio.jpeg" alt="NIO" style="max-width:100%;max-height:50px;object-fit:contain;">
+      </a>
+      <a href="https://see.tongji.edu.cn/index.htm" class="institution-logo" style="width:180px;display:flex;align-items:center;justify-content:center;">
+        <img src="assets/institution_logo/tju.png" alt="Tongji University" style="max-width:100%;max-height:50px;object-fit:contain;">
+      </a>
+      <a href="https://www.hhu.edu.cn/" class="institution-logo" style="width:180px;display:flex;align-items:center;justify-content:center;">
+        <img src="assets/institution_logo/hohai.png" alt="Hohai University" style="max-width:100%;max-height:50px;object-fit:contain;">
+      </a>
+    </div>
+
+    <!-- News Section -->
+    <div class="section-card" style="margin:20px 2.5%;">
+      <a id="news"></a>
+      <heading>News</heading>
+      <div style="margin-top:20px;">
+        <div class="news-item">
+          <strong style="color:var(--primary);">[09/2025]</strong> Our paper HOLO is accepted by <strong>WACV 2026</strong>.
+        </div>
+        <div class="news-item">
+          <strong style="color:var(--primary);">[03/2025]</strong> I graduated from Tongji University with a Master's degree in Computer Science!
+        </div>
+        <div class="news-item">
+          <strong style="color:var(--primary);">[01/2025]</strong> Our paper <a href="https://ieeexplore.ieee.org/abstract/document/10887567/">SGGS</a> is accepted by <strong>ICASSP 2025</strong>.
+        </div>
+        <div class="news-item">
+          <strong style="color:var(--primary);">[01/2025]</strong> Our paper <a href="https://ieeexplore.ieee.org/document/11127468/">RE0</a> is accepted by <strong>ICRA 2025</strong>.
+        </div>
+        <div style="text-align:center;margin-top:16px;">
+          <a href="javascript:toggleblock('old_news')" style="color:var(--text-muted);font-size:14px;padding:8px 16px;background:var(--bg-secondary);border-radius:20px;display:inline-block;transition:all 0.25s;">Show more</a>
+        </div>
+        <div id="old_news" style="display: none;">
+          <div class="news-item" style="margin-top:16px;">
+            <strong style="color:var(--primary);">[07/2024]</strong> Our paper <a href="https://link.springer.com/chapter/10.1007/978-981-97-8508-7_11/">AttenPoint</a> is accepted by <strong>PRCV 2024</strong>.
           </div>
-        </td>
-
-        <td style="padding:20px;width:70%;vertical-align:middle">
-          <papertitle>HOLO: Holistic Lightweight Optimization for Scene Understanding with Auto-Annotation and Multimodal Learning</papertitle>
-          <br><br>
-          Xiaoyun Hu*, <strong><u>Xiaohan Yan*</u></strong>, Nan Wang, Xiaowei Song, Gang Wei, Zhicheng Wang
-          <p></p>
-          <strong><em>WACV</em>, 2026</strong>
-          <!-- <a href="https://ieeexplore.ieee.org/document/11127468/" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/ieee-logo.svg" height="40" style="vertical-align:middle;">
-          </a>
-          <a href="https://github.com/RecognizeEverything/Re0" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/github-logo.png" height="20" style="vertical-align:middle;">
-          </a>
-          <a href="https://recognizeeverything.github.io/" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/website_logo.png" height="20" style="vertical-align:middle;">
-          </a> -->
-          <p>
-            We propose HOLO, which includes a large-scale scene description dataset and a lightweight 3D-LLM.
-          </p>
-        </td>
-      </tr> 
-
-      <tr onmouseout="urf_stop()" onmouseover="urf_start()">
-        <td style="padding:20px;width:30%;vertical-align:middle">
-          <div class="teaser-box" style="display:flex;justify-content:center">
-            <img src='papers/Re0_ICRA2025/segmentation_result.svg' class="teaser-img" width="200">
+          <div class="news-item">
+            <strong style="color:var(--primary);">[04/2024]</strong> I joined <a href="https://www.nio.cn/">NIO</a> for an internship!
           </div>
-        </td>
-
-        <td style="padding:20px;width:70%;vertical-align:middle">
-          <papertitle>RE0: Recognize Everything with 3D Zero-shot Instance Segmentation</papertitle>
-          <br><br>
-          <strong><u>Xiaohan Yan*</u></strong>, Zijian Jiang*, Yinghao Shuai*, Nan Wang, Xiaowei Song, <br>
-          Wenbo Ji, Ge Wu, Jinyu He, Gang Wei, Zhicheng Wang
-          <p></p>
-          <strong><em>ICRA</em>, 2025</strong>
-          <a href="https://ieeexplore.ieee.org/document/11127468/" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/ieee-logo.svg" height="40" style="vertical-align:middle;">
-          </a>
-          <a href="https://github.com/RecognizeEverything/Re0" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/github-logo.png" height="20" style="vertical-align:middle;">
-          </a>
-          <a href="https://recognizeeverything.github.io/" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/website_logo.png" height="20" style="vertical-align:middle;">
-          </a>
-          <p>
-          Given 3D point clouds and multi-view RGB-D images with poses, RE0 leverages the 3D geometric information, projection relationships and CLIP semantic features for 3D zero-shot instance segmentation.</p>
-        </td>
-      </tr> 
-
-      <tr onmouseout="urf_stop()" onmouseover="urf_start()">
-        <td style="padding:20px;width:30%;vertical-align:middle">
-          <div class="teaser-box" style="display:flex;justify-content:center">
-            <img src='papers/SGGS_ICASSP2025/sggs1.png' class="teaser-img" width="200">
+          <div class="news-item">
+            <strong style="color:var(--primary);">[03/2024]</strong> Our paper <a href="https://arxiv.org/pdf/2403.09294/">ASGMVLP</a> is accepted by <strong>MICCAI 2024</strong>.
           </div>
-        </td>
-
-        <td style="padding:20px;width:70%;vertical-align:middle">
-          <papertitle>Semantic-Guided Gaussian Splatting
-            with Deferred Rendering</papertitle>
-          <br><br>
-            Nan Wang,
-            <strong><u>Xiaohan Yan</u></strong>,
-            Xiaowei Song,
-            Zhicheng Wang
-          <br>
-
-          <strong><em>ICASSP</em>, 2025</strong>
-          <a href="https://ieeexplore.ieee.org/document/10887567/" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/ieee-logo.svg" height="40" style="vertical-align:middle;">
-          </a>
-          <a href="https://github.com/BigCiLeng/SGGS" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/github-logo.png" height="20" style="vertical-align:middle;">
-          </a>
-          <a href="https://bigcileng.github.io/research/SGGS-Poster.pdf" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/website_logo.png" height="20" style="vertical-align:middle;">
-          </a>
-          <p> 
-            We use semantic features derived from 2D foundation model to revolutionize the material property optimization for 3DGS.
-          </p>
-        </td>
-      </tr>
-
-      <tr onmouseout="urf_stop()" onmouseover="urf_start()">
-        <td style="padding:20px;width:30%;vertical-align:middle">
-          <div class="teaser-box" style="display:flex;justify-content:center">
-            <img src='papers/AttenPoint_PRCV2024/PRCV.png' class="teaser-img" width="200">
+          <div class="news-item">
+            <strong style="color:var(--primary);">[12/2023]</strong> I joined <a href="https://www.cit.tum.de/en/cit/home/">Institute for AI Industry Research (AIR), Tsinghua University</a> for a research internship!
           </div>
-        </td>
+        </div>
+      </div>
+    </div>
 
-        <td style="padding:20px;width:70%;vertical-align:middle">
-          <papertitle>AttenPoint: Exploring Point Cloud Segmentation through Attention-Based Modules</papertitle>
-          <br><br>
-          <strong><u>Xiaohan Yan</u></strong>, Nan Wang, Xiaowei Song, Gang Wei, Zhicheng Wang
-          <p></p>
-          <strong><em>PRCV</em>, 2024</strong>
-            <a href="https://dl.acm.org/doi/10.1007/978-981-97-8508-7_11?__cf_chl_tk=PDfopDxrlHjDAYsaGrbHC6SeDKzWcShnHUrjQZaxNEU-1757871640-1.0.1.1-_I5D63F6Ll37mYIB.zVX.xe1v5eoqzfXgpqvMXin1zU" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/acm.svg" height="25" style="vertical-align:middle;">
-          </a>
-          <p>
-            We combine local and global features of the structures and performance to perform few-shot point cloud semantic segmentation.
-          </p>
-        </td>
-      </tr> 
+    <!-- Publications Section -->
+    <div style="margin:20px 2.5%;">
+      <a id="Publications"></a>
+      <heading>Publications</heading>
+      <p style="color:var(--text-muted);font-size:14px;margin-top:8px;">
+        (* indicates equal contribution)
+      </p>
+    </div>
 
-      <tr onmouseout="urf_stop()" onmouseover="urf_start()">
-        <td style="padding:20px;width:30%;vertical-align:middle">
-          <div class="teaser-box" style="display:flex;justify-content:center">
-            <img src='papers/GreedyAgent_ICIC2024/ICIC.jpg' class="teaser-img" width="200">
-          </div>
-        </td>
+    <div style="margin:0 2.5%;">
+      <!-- HOLO Paper -->
+      <div class="paper-row">
+        <table style="width:100%;border:0;"><tbody>
+          <tr>
+            <td style="padding:20px;width:30%;vertical-align:middle">
+              <div class="teaser-box" style="display:flex;justify-content:center">
+                <img src='papers/HOLO_WACV2026/holo.jpeg' class="teaser-img" width="200">
+              </div>
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <papertitle>HOLO: Holistic Lightweight Optimization for Scene Understanding with Auto-Annotation and Multimodal Learning</papertitle>
+              <p style="margin:12px 0 8px;color:var(--text-secondary);">
+                Xiaoyun Hu*, <strong><u>Xiaohan Yan*</u></strong>, Nan Wang, Xiaowei Song, Gang Wei, Zhicheng Wang
+              </p>
+              <p style="margin:8px 0;">
+                <span style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;">WACV 2026</span>
+              </p>
+              <p style="color:var(--text-secondary);font-size:14px;line-height:1.6;margin-top:12px;">
+                We propose HOLO, which includes a large-scale scene description dataset and a lightweight 3D-LLM.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+      </div>
 
-        <td style="padding:20px;width:70%;vertical-align:middle">
-          <papertitle>GreedyAgent: A Simple yet Efficient Approach for Meta learning from Learning Curves</papertitle>
-          <br><br>
-          Jinyu He, Xiaowei Song, <strong><u>Xiaohan Yan</u></strong>, Nan Wang, Yuqi Miao, Zijian Jiang, <br>Fei Chao, Yan Zhang, Shengchuan Zhang, Rongrong Ji
-          <p></p>
-          <strong><em>ICIC</em>, 2024</strong>
-          <a href="https://dl.acm.org/doi/10.1007/978-981-97-5663-6_41U" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/acm.svg" height="25" style="vertical-align:middle;">
-          </a>
-          <a href="https://github.com/dragonbra/MetaLC-2nd-Round" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/github-logo.png" height="20" style="vertical-align:middle;">
-          </a>
-          <p>
-            A key sub-problem: meta-learning from learning curves is an mature but gradually attention area within the field of meta-learning.
-          </p>
-        </td>
-      </tr> 
+      <!-- RE0 Paper -->
+      <div class="paper-row">
+        <table style="width:100%;border:0;"><tbody>
+          <tr>
+            <td style="padding:20px;width:30%;vertical-align:middle">
+              <div class="teaser-box" style="display:flex;justify-content:center">
+                <img src='papers/Re0_ICRA2025/segmentation_result.svg' class="teaser-img" width="200">
+              </div>
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <papertitle>RE0: Recognize Everything with 3D Zero-shot Instance Segmentation</papertitle>
+              <p style="margin:12px 0 8px;color:var(--text-secondary);">
+                <strong><u>Xiaohan Yan*</u></strong>, Zijian Jiang*, Yinghao Shuai*, Nan Wang, Xiaowei Song,
+                Wenbo Ji, Ge Wu, Jinyu He, Gang Wei, Zhicheng Wang
+              </p>
+              <p style="margin:8px 0;">
+                <span style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;">ICRA 2025</span>
+                <a href="https://ieeexplore.ieee.org/document/11127468/" class="link-badge"><img src="assets/misc/ieee-logo.svg" height="18"></a>
+                <a href="https://github.com/RecognizeEverything/Re0" class="link-badge"><img src="assets/misc/github-logo.png" height="16"></a>
+                <a href="https://recognizeeverything.github.io/" class="link-badge"><img src="assets/misc/website_logo.png" height="16"></a>
+              </p>
+              <p style="color:var(--text-secondary);font-size:14px;line-height:1.6;margin-top:12px;">
+                Given 3D point clouds and multi-view RGB-D images with poses, RE0 leverages the 3D geometric information, projection relationships and CLIP semantic features for 3D zero-shot instance segmentation.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+      </div> 
 
-      <tr onmouseout="urf_stop()" onmouseover="urf_start()">
-        <td style="padding:20px;width:30%;vertical-align:middle">
-          <div class="teaser-box" style="display:flex;justify-content:center">
-            <img src='papers/ASG_MICCAI2024/ASGMVLP.jpg' class="teaser-img" width="200">
-          </div>
-        </td>
+      <!-- SGGS Paper -->
+      <div class="paper-row">
+        <table style="width:100%;border:0;"><tbody>
+          <tr>
+            <td style="padding:20px;width:30%;vertical-align:middle">
+              <div class="teaser-box" style="display:flex;justify-content:center">
+                <img src='papers/SGGS_ICASSP2025/sggs1.png' class="teaser-img" width="200">
+              </div>
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <papertitle>Semantic-Guided Gaussian Splatting with Deferred Rendering</papertitle>
+              <p style="margin:12px 0 8px;color:var(--text-secondary);">
+                Nan Wang, <strong><u>Xiaohan Yan</u></strong>, Xiaowei Song, Zhicheng Wang
+              </p>
+              <p style="margin:8px 0;">
+                <span style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;">ICASSP 2025</span>
+                <a href="https://ieeexplore.ieee.org/document/10887567/" class="link-badge"><img src="assets/misc/ieee-logo.svg" height="18"></a>
+                <a href="https://github.com/BigCiLeng/SGGS" class="link-badge"><img src="assets/misc/github-logo.png" height="16"></a>
+                <a href="https://bigcileng.github.io/research/SGGS-Poster.pdf" class="link-badge"><img src="assets/misc/website_logo.png" height="16"></a>
+              </p>
+              <p style="color:var(--text-secondary);font-size:14px;line-height:1.6;margin-top:12px;">
+                We use semantic features derived from 2D foundation model to revolutionize the material property optimization for 3DGS.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+      </div>
 
-        <td style="padding:20px;width:70%;vertical-align:middle">
-          <papertitle>Anatomical Structure-Guided Medical Vision-Language Pre-training</papertitle>
-          <br><br>
-          Qingqiu Li, <strong><u>Xiaohan Yan</u></strong>, Jilan Xu, Runtian Yuan, Yuejie Zhang, <br>
-          Rui Feng, Quanli Shen, Xiaobo Zhang, Shujun Wang
-          <p></p>
-          <strong><em>MICCAI</em>, 2024</strong>
-          <a href="https://arxiv.org/abs/2403.09294" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/arxiv_logo.svg" height="25" style="vertical-align:middle;">
-          </a>
-          <a href="https://github.com/ASGMVLP/ASGMVLP_CODE" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/github-logo.png" height="20" style="vertical-align:middle;">
-          </a>
-          <a href="https://asgmvlp.github.io/" style="margin-left:20px; vertical-align:middle;">
-            <img src="assets/misc/website_logo.png" height="25" style="vertical-align:middle;">
-          </a>
-          <p>
-            A key sub-problem: meta-learning from learning curves is an mature but gradually attention area within the field of meta-learning.
-          </p>
-        </td>
-      </tr> 
+      <!-- AttenPoint Paper -->
+      <div class="paper-row">
+        <table style="width:100%;border:0;"><tbody>
+          <tr>
+            <td style="padding:20px;width:30%;vertical-align:middle">
+              <div class="teaser-box" style="display:flex;justify-content:center">
+                <img src='papers/AttenPoint_PRCV2024/PRCV.png' class="teaser-img" width="200">
+              </div>
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <papertitle>AttenPoint: Exploring Point Cloud Segmentation through Attention-Based Modules</papertitle>
+              <p style="margin:12px 0 8px;color:var(--text-secondary);">
+                <strong><u>Xiaohan Yan</u></strong>, Nan Wang, Xiaowei Song, Gang Wei, Zhicheng Wang
+              </p>
+              <p style="margin:8px 0;">
+                <span style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;">PRCV 2024</span>
+                <a href="https://dl.acm.org/doi/10.1007/978-981-97-8508-7_11" class="link-badge"><img src="assets/misc/acm.svg" height="16"></a>
+              </p>
+              <p style="color:var(--text-secondary);font-size:14px;line-height:1.6;margin-top:12px;">
+                We combine local and global features of the structures and performance to perform few-shot point cloud semantic segmentation.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+      </div>
 
-      </tbody></table>
+      <!-- GreedyAgent Paper -->
+      <div class="paper-row">
+        <table style="width:100%;border:0;"><tbody>
+          <tr>
+            <td style="padding:20px;width:30%;vertical-align:middle">
+              <div class="teaser-box" style="display:flex;justify-content:center">
+                <img src='papers/GreedyAgent_ICIC2024/ICIC.jpg' class="teaser-img" width="200">
+              </div>
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <papertitle>GreedyAgent: A Simple yet Efficient Approach for Meta learning from Learning Curves</papertitle>
+              <p style="margin:12px 0 8px;color:var(--text-secondary);">
+                Jinyu He, Xiaowei Song, <strong><u>Xiaohan Yan</u></strong>, Nan Wang, Yuqi Miao, Zijian Jiang, Fei Chao, Yan Zhang, Shengchuan Zhang, Rongrong Ji
+              </p>
+              <p style="margin:8px 0;">
+                <span style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;">ICIC 2024</span>
+                <a href="https://dl.acm.org/doi/10.1007/978-981-97-5663-6_41" class="link-badge"><img src="assets/misc/acm.svg" height="16"></a>
+                <a href="https://github.com/dragonbra/MetaLC-2nd-Round" class="link-badge"><img src="assets/misc/github-logo.png" height="16"></a>
+              </p>
+              <p style="color:var(--text-secondary);font-size:14px;line-height:1.6;margin-top:12px;">
+                A key sub-problem: meta-learning from learning curves is a mature but gradually gaining attention area within the field of meta-learning.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+      </div>
 
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-        <td style="padding:20px;width:100%;vertical-align:middle">
-          <a id="Projects"></a>
-          <heading>Projects</heading>
-        </td>
-        </tr>
-      </tbody></table>
+      <!-- ASGMVLP Paper -->
+      <div class="paper-row">
+        <table style="width:100%;border:0;"><tbody>
+          <tr>
+            <td style="padding:20px;width:30%;vertical-align:middle">
+              <div class="teaser-box" style="display:flex;justify-content:center">
+                <img src='papers/ASG_MICCAI2024/ASGMVLP.jpg' class="teaser-img" width="200">
+              </div>
+            </td>
+            <td style="padding:20px;width:70%;vertical-align:middle">
+              <papertitle>Anatomical Structure-Guided Medical Vision-Language Pre-training</papertitle>
+              <p style="margin:12px 0 8px;color:var(--text-secondary);">
+                Qingqiu Li, <strong><u>Xiaohan Yan</u></strong>, Jilan Xu, Runtian Yuan, Yuejie Zhang, Rui Feng, Quanli Shen, Xiaobo Zhang, Shujun Wang
+              </p>
+              <p style="margin:8px 0;">
+                <span style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;">MICCAI 2024</span>
+                <a href="https://arxiv.org/abs/2403.09294" class="link-badge"><img src="assets/misc/arxiv_logo.svg" height="16"></a>
+                <a href="https://github.com/ASGMVLP/ASGMVLP_CODE" class="link-badge"><img src="assets/misc/github-logo.png" height="16"></a>
+                <a href="https://asgmvlp.github.io/" class="link-badge"><img src="assets/misc/website_logo.png" height="16"></a>
+              </p>
+              <p style="color:var(--text-secondary);font-size:14px;line-height:1.6;margin-top:12px;">
+                We propose an anatomical structure-guided framework for medical vision-language pre-training that improves cross-modal alignment.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
 
-       <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <!-- write Projects here -->
-          <tr onmouseout="urf_stop()" onmouseover="urf_start()">
+    <!-- Projects Section -->
+    <div style="margin:30px 2.5% 20px;">
+      <a id="Projects"></a>
+      <heading>Projects</heading>
+    </div>
+
+    <div style="margin:0 2.5%;">
+      <!-- Kaggle Project -->
+      <div class="paper-row">
+        <table style="width:100%;border:0;"><tbody>
+          <tr>
             <td style="padding:20px;width:30%;vertical-align:middle">
               <div class="teaser-box" style="display:flex;justify-content:center">
                 <img src='projects/LLM_Kaggle2023/kaggleLLAM.jpg' class="teaser-img" width="200">
               </div>
             </td>
-    
             <td style="padding:20px;width:70%;vertical-align:middle">
               <papertitle>LLM Science Exam - Use LLMs to answer difficult science questions</papertitle>
-              <br><br>
-              <strong><u>Xiaohan Yan</u></strong>, Nan Wang, Xiaowei Song, Jinyu He
-              <p></p>
-              <strong><em>Kaggle</em>, 2023</strong>
-              <a href="https://github.com/490CAD/LLM4Science" style="margin-left:20px; vertical-align:middle;">
-                <img src="assets/misc/github-logo.png" height="20" style="vertical-align:middle;">
-              </a>
-              <p>
-                This competition is about fine-tuning large language models on private datasets. <br>
-                Our score is 0.905, ranking in the top 3% worldwide and won <strong>Silver🏆︎</strong> in the leaderboard.
+              <p style="margin:12px 0 8px;color:var(--text-secondary);">
+                <strong><u>Xiaohan Yan</u></strong>, Nan Wang, Xiaowei Song, Jinyu He
+              </p>
+              <p style="margin:8px 0;">
+                <span style="background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;">Kaggle 2023</span>
+                <a href="https://github.com/490CAD/LLM4Science" class="link-badge"><img src="assets/misc/github-logo.png" height="16"></a>
+              </p>
+              <p style="color:var(--text-secondary);font-size:14px;line-height:1.6;margin-top:12px;">
+                This competition is about fine-tuning large language models on private datasets. 
+                Our score is 0.905, ranking in the <strong>top 3% worldwide</strong> and won <strong style="color:var(--accent);">Silver Medal</strong> in the leaderboard.
               </p>
             </td>
-          </tr> 
+          </tr>
+        </tbody></table>
+      </div>
 
-          <tr onmouseout="urf_stop()" onmouseover="urf_start()">
+      <!-- GameJam Project -->
+      <div class="paper-row">
+        <table style="width:100%;border:0;"><tbody>
+          <tr>
             <td style="padding:20px;width:30%;vertical-align:middle">
               <div class="teaser-box" style="display:flex;justify-content:center">
                 <img src='projects/eScape_GameJam2023/eScape.png' class="teaser-img" width="200">
               </div>
             </td>
-    
             <td style="padding:20px;width:70%;vertical-align:middle">
-              <papertitle>RE0: Recognize Everything with 3D Zero-shot Instance Segmentation</papertitle>
-              <br><br>
-              Origami-hui, <strong><u>Xiaohan Yan</u></strong>
-              <p></p>
-              <strong><em>GameJam</em>, 2023</strong>
-              <a href="https://origamihui.itch.io/esacpe/" style="margin-left:20px; vertical-align:middle;">
-                <img src="assets/misc/website_logo.png" height="20" style="vertical-align:middle;">
-              </a>
-              <p>
-                Scale your device and escape from this geometry storm.<br>
-                This game reached the <strong>"Innovation RK1🥇"</strong> and <strong>"Theme interpretation RK2🥈"</strong> at this game off.
-            </p>
+              <papertitle>eScape - A Geometry Storm Game</papertitle>
+              <p style="margin:12px 0 8px;color:var(--text-secondary);">
+                Origami-hui, <strong><u>Xiaohan Yan</u></strong>
+              </p>
+              <p style="margin:8px 0;">
+                <span style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;">GameJam 2023</span>
+                <a href="https://origamihui.itch.io/esacpe/" class="link-badge"><img src="assets/misc/website_logo.png" height="16"></a>
+              </p>
+              <p style="color:var(--text-secondary);font-size:14px;line-height:1.6;margin-top:12px;">
+                Scale your device and escape from this geometry storm. 
+                This game reached <strong style="color:var(--accent);">Innovation RK1</strong> and <strong style="color:var(--accent);">Theme interpretation RK2</strong> at this game off.
+              </p>
             </td>
-          </tr> 
-    
+          </tr>
         </tbody></table>
+      </div>
+    </div>
 
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-        <td style="padding:20px;width:100%;vertical-align:middle">
-          <a id="Awards"></a>
-          <heading>Awards</heading>
-        </td>
-        </tr>
-      </tbody></table>
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:20px;padding-left:50px;width:80%;vertical-align:top">
-            <papertitle>🇨🇳 - <a href="assets/rewards/rewards_bsc_all.pdf">Most of the awards</a> I won during my student years.</papertitle>
-          </td>
-          <td style="padding:20px;width:20%;vertical-align:top;text-align:right;">
-            <papertitle>2018 - 2024</papertitle>
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:20px;padding-left:50px;width:80%;vertical-align:top">
-            <papertitle>🇨🇳 - The 2019 ICPC Asia-East Continetnt Final - <a href="assets/rewards/2019EC.png">Bronze Medal</a> </papertitle>
-          </td>
-          <td style="padding:20px;width:20%;vertical-align:top;text-align:right;">
-            <papertitle>2019 - 2020</papertitle>
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:20px;padding-left:50px;width:80%;vertical-align:top">
-            <papertitle>🇨🇳 - Jiangsu Collegiate Programming Contest - <a href="assets/rewards/JSCPC.png">Silver Modal 2nd place</a></papertitle>
-          </td>
-          <td style="padding:20px;width:20%;vertical-align:top;text-align:right;">
-            <papertitle>2019 - 2020</papertitle>
-          </td>
-        </tr>
-      </tbody></table>
+    <!-- Awards Section -->
+    <div class="section-card" style="margin:30px 2.5%;">
+      <a id="Awards"></a>
+      <heading>Awards</heading>
+      <div style="margin-top:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px;background:var(--bg-secondary);border-radius:var(--radius-sm);margin-bottom:12px;border-left:3px solid var(--accent);">
+          <span><a href="assets/rewards/rewards_bsc_all.pdf" style="font-weight:500;">Most of the awards</a> I won during my student years.</span>
+          <span style="color:var(--text-muted);font-size:14px;">2018 - 2024</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px;background:var(--bg-secondary);border-radius:var(--radius-sm);margin-bottom:12px;border-left:3px solid #cd7f32;">
+          <span>The 2019 ICPC Asia-East Continent Final - <a href="assets/rewards/2019EC.png" style="font-weight:500;">Bronze Medal</a></span>
+          <span style="color:var(--text-muted);font-size:14px;">2019 - 2020</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px;background:var(--bg-secondary);border-radius:var(--radius-sm);border-left:3px solid #c0c0c0;">
+          <span>Jiangsu Collegiate Programming Contest - <a href="assets/rewards/JSCPC.png" style="font-weight:500;">Silver Medal 2nd place</a></span>
+          <span style="color:var(--text-muted);font-size:14px;">2019 - 2020</span>
+        </div>
+      </div>
+    </div>
 
-      <!-- Mics -->
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            <heading>Misc</heading><br>
-          </td>
-        </tr>
-      </tbody></table>
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr>
-        <td style="padding:20px;width:40%;vertical-align:top">
-          <sub_heading>3D modeling 🧱 & rendering 💡</sub_heading>
-          <br><br>
-          <!-- <li><a href="render_arts/index.html">My gallery</a></li>
-          <br> -->
-          <li>Some stuff I have modeled and rendered.</li>
-        </td>
-        <td style="padding:20px;width:20%;vertical-align:top">
-          <sub_heading>Sports 🏃‍♂️</sub_heading>
-          <br><br>
-          <li>Swimming 🏊‍</li>
-          <br>
-          <li>Flying Disc🥏</li>
-        </td>
-        <td style="padding:20px;width:20%;vertical-align:top">
-          <sub_heading>Games🎮</sub_heading>
-          <br><br>
-          <li>Pokemon</li>
-          <br>
-          <li>Digimon</li>
-        </td>
-        <td style="padding:20px;width:20%;vertical-align:top">
-          <sub_heading>Language 💬</sub_heading>
-          <br><br>
-          <li>日本語 🇯🇵</li>
-        </td>
-      </tr>
-    </tbody></table>
+    <!-- Misc Section -->
+    <div class="section-card" style="margin:30px 2.5%;">
+      <a id="Misc"></a>
+      <heading>Misc</heading>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:24px;">
+        <div class="misc-card">
+          <sub_heading>3D Modeling & Rendering</sub_heading>
+          <ul style="margin-top:12px;">
+            <li>Some stuff I have modeled and rendered.</li>
+          </ul>
+        </div>
+        <div class="misc-card">
+          <sub_heading>Sports</sub_heading>
+          <ul style="margin-top:12px;">
+            <li>Swimming</li>
+            <li>Flying Disc</li>
+          </ul>
+        </div>
+        <div class="misc-card">
+          <sub_heading>Games</sub_heading>
+          <ul style="margin-top:12px;">
+            <li>Pokemon</li>
+            <li>Digimon</li>
+          </ul>
+        </div>
+        <div class="misc-card">
+          <sub_heading>Language</sub_heading>
+          <ul style="margin-top:12px;">
+            <li>Japanese</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate"><tbody>
-      <tr>
-        <td style="padding:20px;width:100%;vertical-align:middle;" align="center">
-          <strong>Last Updated on 2025/09/16</strong>
-        </td>
-      </tr>
-    </tbody></table>
+    <!-- Footer -->
+    <div class="footer">
+      <p style="margin:0;color:var(--text-muted);">Last Updated: September 2025</p>
+      <p style="margin:8px 0 0;font-size:13px;color:var(--text-muted);">Designed with care by Xiaohan Yan</p>
+    </div>
+
+  </div><!-- End main-container -->
     
 </body>
 </html>
