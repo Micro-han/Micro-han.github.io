@@ -15,6 +15,7 @@ Add-Type -AssemblyName System.Drawing
 $root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 
 $jobs = @(
+  @{ Src = 'papers/VINE_arXiv2026/vine_overview.png';    Dst = 'papers/VINE_arXiv2026/vine.jpg' }
   @{ Src = 'papers/ALOE_arXiv2026/aloe.png';            Dst = 'papers/ALOE_arXiv2026/aloe.jpg' }
   @{ Src = 'papers/HOLO_WACV2026/holo.jpeg';            Dst = 'papers/HOLO_WACV2026/holo.jpeg' }
   @{ Src = 'papers/SGGS_ICASSP2025/sggs1.png';          Dst = 'papers/SGGS_ICASSP2025/sggs1.jpg' }
@@ -83,6 +84,13 @@ foreach ($job in $jobs) {
 
   $src = Join-Path $root $job.Src
   $dst = Join-Path $root $job.Dst
+
+  # Sources that were converted to JPEG are not kept in the repo; they live in
+  # git history. Skip rather than fail so the script stays runnable.
+  if (-not (Test-Path $src)) {
+    "{0,-46} source missing, skipped" -f $job.Dst
+    continue
+  }
   $maxW = if ($job.ContainsKey('MaxWidth')) { $job.MaxWidth } else { $MaxWidth }
   $q = if ($job.ContainsKey('Quality')) { $job.Quality } else { $Quality }
   $square = $job.ContainsKey('Square') -and $job.Square

@@ -117,8 +117,9 @@ Footer
 ### Publications
 
 - 按年份分组，年份用小号 muted 标签（`2026` / `2025` / `2024`）。
-- 默认展示前 3 篇：ALOE、HOLO、RE0。
-- 其余 4 篇（SGGS、AttenPoint、GreedyAgent、ASGMVLP）包在折叠容器里，按钮文案 `Show 4 more` / `Show less`，与 News 的折叠交互一致。
+- 默认展示前 3 篇，即 2026 年的全部：VINE、ALOE、HOLO。
+- 其余 5 篇（RE0、SGGS、AttenPoint、GreedyAgent、ASGMVLP）包在折叠容器里，按钮文案 `Show 5 more` / `Show less`，与 News 的折叠交互一致。折叠边界落在年份上。
+- 新增 VINE（arXiv `2607.10369`，2026）：`VINE: Taming Generative Control Policies for Reinforcement Learning`，链接 arXiv 与项目页 `https://agibottech.github.io/vine/`，配图取项目页的 `vine_overview.png`，按同一规格压缩为 `papers/VINE_arXiv2026/vine.jpg`。
 - venue 徽章由实心药丸改成 1px 边框的方角标签，颜色用 `--text-sec`。
 - `* indicates equal contribution` 脚注保留。
 
@@ -127,7 +128,8 @@ Footer
 - 删除 `[04/2024] I joined NIO for an internship!` 这一条（涉及职业时间线，与保密约定不符）。
 - 新增 `[02/2026] Our paper ALOE is released on arXiv.`，链接指向 `https://arxiv.org/abs/2602.12691`。该月份由 arXiv 编号 `2602.12691` 推得。
 - 不新增任何 AgiBot 入职条目。
-- 其余条目原样保留。变更后共 8 条：默认展示最近 4 条（ALOE、HOLO 录用、硕士毕业、SGGS），其余 4 条（RE0、AttenPoint、ASGMVLP、AIR 实习）折叠，按钮文案 `Show 4 more` / `Show less`。
+- 新增 `[07/2026] Our paper VINE is released on arXiv.`，链接指向 `https://arxiv.org/abs/2607.10369`。该月份由 arXiv 编号 `2607.10369` 推得。
+- 其余条目原样保留。变更后共 9 条：默认展示最近 4 条（VINE、ALOE、HOLO 录用、硕士毕业），其余 5 条（SGGS、RE0、AttenPoint、ASGMVLP、AIR 实习）折叠，按钮文案 `Show 5 more` / `Show less`。
 
 ### Awards / Misc / Footer
 
