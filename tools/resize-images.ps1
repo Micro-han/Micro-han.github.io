@@ -1,11 +1,23 @@
-# Downsamples the site's figures to web-friendly JPEGs using only .NET's built-in
-# imaging, so the repo needs no Node/Python toolchain. Originals stay recoverable
-# through git history.
+# Builds the two JPEG sizes each figure needs, using only .NET's built-in
+# imaging so the repo needs no Node/Python toolchain.
+#
+#   <name>-full.jpg   up to 1280px wide, quality 82 — what the lightbox opens
+#   <name>.jpg        up to  640px wide, quality 80 — the list thumbnail
+#
+# The -full.jpg is the archived source: thumbnails are always derived from it,
+# so a rerun never recompresses a thumbnail against itself. Publisher-resolution
+# originals are not kept in the repo; drop one next to the `Orig` path below to
+# regenerate a -full.jpg from scratch.
+#
+# Usage:
+#   .\tools\resize-images.ps1              # rebuild every thumbnail
+#   .\tools\resize-images.ps1 -Only vine   # just the figures matching "vine"
 param(
-  [int]$MaxWidth = 640,
-  [int]$Quality = 80,
-  # Substring filter on the output path, so a single figure can be redone
-  # without recompressing the ones already processed in place.
+  [int]$FullWidth = 1280,
+  [int]$FullQuality = 82,
+  [int]$ThumbWidth = 640,
+  [int]$ThumbQuality = 80,
+  # Substring filter on the output paths.
   [string]$Only = ''
 )
 
@@ -14,17 +26,19 @@ Add-Type -AssemblyName System.Drawing
 
 $root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 
-$jobs = @(
-  @{ Src = 'papers/VINE_arXiv2026/vine_overview.png';    Dst = 'papers/VINE_arXiv2026/vine.jpg' }
-  @{ Src = 'papers/ALOE_arXiv2026/aloe.png';            Dst = 'papers/ALOE_arXiv2026/aloe.jpg' }
-  @{ Src = 'papers/HOLO_WACV2026/holo.jpeg';            Dst = 'papers/HOLO_WACV2026/holo.jpeg' }
-  @{ Src = 'papers/SGGS_ICASSP2025/sggs1.png';          Dst = 'papers/SGGS_ICASSP2025/sggs1.jpg' }
-  @{ Src = 'papers/AttenPoint_PRCV2024/PRCV.png';       Dst = 'papers/AttenPoint_PRCV2024/PRCV.jpg' }
-  @{ Src = 'papers/GreedyAgent_ICIC2024/ICIC.jpg';      Dst = 'papers/GreedyAgent_ICIC2024/ICIC.jpg' }
-  @{ Src = 'papers/ASG_MICCAI2024/ASGMVLP.jpg';         Dst = 'papers/ASG_MICCAI2024/ASGMVLP.jpg' }
-  @{ Src = 'projects/LLM_Kaggle2023/kaggleLLAM.jpg';    Dst = 'projects/LLM_Kaggle2023/kaggleLLAM.jpg' }
-  @{ Src = 'projects/eScape_GameJam2023/eScape.png';    Dst = 'projects/eScape_GameJam2023/eScape.jpg' }
-  @{ Src = 'assets/images/microhan.png';                Dst = 'assets/images/avatar-320.jpg'; MaxWidth = 320; Quality = 85; Square = $true }
+# `Orig` is optional and normally absent; `Full` doubles as the archived source.
+$figures = @(
+  @{ Orig = '.brainstorm/orig/vine_overview.png'; Full = 'papers/VINE_arXiv2026/vine-full.jpg';        Thumb = 'papers/VINE_arXiv2026/vine.jpg' }
+  @{ Orig = '.brainstorm/orig/aloe.png';          Full = 'papers/ALOE_arXiv2026/aloe-full.jpg';        Thumb = 'papers/ALOE_arXiv2026/aloe.jpg' }
+  @{ Orig = '.brainstorm/orig/holo.jpeg';         Full = 'papers/HOLO_WACV2026/holo-full.jpg';         Thumb = 'papers/HOLO_WACV2026/holo.jpg' }
+  @{ Orig = '.brainstorm/orig/sggs1.png';         Full = 'papers/SGGS_ICASSP2025/sggs1-full.jpg';      Thumb = 'papers/SGGS_ICASSP2025/sggs1.jpg' }
+  @{ Orig = '.brainstorm/orig/PRCV.png';          Full = 'papers/AttenPoint_PRCV2024/PRCV-full.jpg';   Thumb = 'papers/AttenPoint_PRCV2024/PRCV.jpg' }
+  @{ Orig = '.brainstorm/orig/ICIC.jpg';          Full = 'papers/GreedyAgent_ICIC2024/ICIC-full.jpg';  Thumb = 'papers/GreedyAgent_ICIC2024/ICIC.jpg' }
+  @{ Orig = '.brainstorm/orig/ASGMVLP.jpg';       Full = 'papers/ASG_MICCAI2024/ASGMVLP-full.jpg';     Thumb = 'papers/ASG_MICCAI2024/ASGMVLP.jpg' }
+  @{ Orig = '.brainstorm/orig/kaggleLLAM.jpg';    Full = 'projects/LLM_Kaggle2023/kaggleLLAM-full.jpg'; Thumb = 'projects/LLM_Kaggle2023/kaggleLLAM.jpg' }
+  @{ Orig = '.brainstorm/orig/eScape.png';        Full = 'projects/eScape_GameJam2023/eScape-full.jpg'; Thumb = 'projects/eScape_GameJam2023/eScape.jpg' }
+  # The avatar is square-cropped and needs no lightbox size.
+  @{ Orig = 'assets/images/microhan.png'; Full = ''; Thumb = 'assets/images/avatar-320.jpg'; ThumbWidth = 320; ThumbQuality = 85; Square = $true }
 )
 
 $codec = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() |
@@ -79,25 +93,41 @@ function Convert-One($srcPath, $dstPath, $maxW, $q, $square) {
   } finally { $img.Dispose(); $stream.Dispose() }
 }
 
-foreach ($job in $jobs) {
-  if ($Only -and $job.Dst -notlike "*$Only*") { continue }
+function Report($label, $srcPath, $dstPath, $dim) {
+  $before = [math]::Round((Get-Item $srcPath).Length / 1KB)
+  $after = [math]::Round((Get-Item $dstPath).Length / 1KB)
+  "{0,-52} {1,5} KB -> {2,4} KB   {3}x{4}" -f $label, $before, $after, $dim.Width, $dim.Height
+}
 
-  $src = Join-Path $root $job.Src
-  $dst = Join-Path $root $job.Dst
+foreach ($fig in $figures) {
+  if ($Only -and "$($fig.Full) $($fig.Thumb)" -notlike "*$Only*") { continue }
 
-  # Sources that were converted to JPEG are not kept in the repo; they live in
-  # git history. Skip rather than fail so the script stays runnable.
-  if (-not (Test-Path $src)) {
-    "{0,-46} source missing, skipped" -f $job.Dst
-    continue
+  $square = $fig.ContainsKey('Square') -and $fig.Square
+
+  # Rebuild the archived -full.jpg only when a higher-resolution original is present.
+  if ($fig.Full) {
+    $orig = Join-Path $root $fig.Orig
+    $full = Join-Path $root $fig.Full
+    if (Test-Path $orig) {
+      $dim = Convert-One $orig $full $FullWidth $FullQuality $false
+      Report $fig.Full $orig $full $dim
+    } elseif (-not (Test-Path $full)) {
+      "{0,-52} no original and no -full.jpg, skipped" -f $fig.Full
+      continue
+    }
+    $thumbSrc = $full
+  } else {
+    $thumbSrc = Join-Path $root $fig.Orig
+    if (-not (Test-Path $thumbSrc)) {
+      "{0,-52} source missing, skipped" -f $fig.Thumb
+      continue
+    }
   }
-  $maxW = if ($job.ContainsKey('MaxWidth')) { $job.MaxWidth } else { $MaxWidth }
-  $q = if ($job.ContainsKey('Quality')) { $job.Quality } else { $Quality }
-  $square = $job.ContainsKey('Square') -and $job.Square
 
-  $before = [math]::Round((Get-Item $src).Length / 1KB)
-  $dim = Convert-One $src $dst $maxW $q $square
-  $after = [math]::Round((Get-Item $dst).Length / 1KB)
+  $tw = if ($fig.ContainsKey('ThumbWidth')) { $fig.ThumbWidth } else { $ThumbWidth }
+  $tq = if ($fig.ContainsKey('ThumbQuality')) { $fig.ThumbQuality } else { $ThumbQuality }
 
-  "{0,-46} {1,5} KB -> {2,4} KB   {3}x{4}" -f $job.Dst, $before, $after, $dim.Width, $dim.Height
+  $thumb = Join-Path $root $fig.Thumb
+  $dim = Convert-One $thumbSrc $thumb $tw $tq $square
+  Report $fig.Thumb $thumbSrc $thumb $dim
 }

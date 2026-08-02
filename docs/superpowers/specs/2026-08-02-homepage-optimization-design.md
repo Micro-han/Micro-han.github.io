@@ -141,23 +141,26 @@ Footer
 
 ### 图片处理
 
-用 `tools/resize-images.ps1`（新增并提交，方便以后加论文时复用）批量重采样，参数：最大宽度 640px、JPEG 质量 80、双三次插值。原地覆盖，原始文件通过 git 历史可恢复。
+用 `tools/resize-images.ps1`（新增并提交，方便以后加论文时复用）批量重采样，双三次插值，每张配图产出两个尺寸：
+
+- `<name>-full.jpg`：最大宽度 1280px、质量 82。既是点击查看的大图，也是仓库里的**存档源**。
+- `<name>.jpg`：最大宽度 640px、质量 80，列表缩略图，始终从 `-full.jpg` 派生，因此重复运行不会把缩略图对自己反复压缩。
+
+出版级原图不入库；把原图放到脚本 `Orig` 指向的位置即可重建 `-full.jpg`。脚本不放大图片，所以原图本身不足 1280px 的（ALOE 1000px、PRCV 980px、ICIC 760px、Kaggle 715px）大图就是其原始尺寸。
 
 PNG 照片类配图转成 JPEG 并相应改扩展名与 HTML 引用：
 
-| 文件 | 现在 | 处理后 |
-|------|------|--------|
-| `papers/HOLO_WACV2026/holo.jpeg` | 1171 KB | 覆盖，≈ 70 KB |
-| `papers/AttenPoint_PRCV2024/PRCV.png` | 643 KB | → `PRCV.jpg`，≈ 60 KB |
-| `papers/SGGS_ICASSP2025/sggs1.png` | 594 KB | → `sggs1.jpg`，≈ 60 KB |
-| `papers/ASG_MICCAI2024/ASGMVLP.jpg` | 359 KB | 覆盖，≈ 50 KB |
-| `papers/ALOE_arXiv2026/aloe.png` | 189 KB | → `aloe.jpg`，≈ 45 KB |
-| `papers/GreedyAgent_ICIC2024/ICIC.jpg` | 54 KB | 覆盖，≈ 40 KB |
-| `projects/LLM_Kaggle2023/kaggleLLAM.jpg` | 137 KB | 覆盖，≈ 45 KB |
-| `projects/eScape_GameJam2023/eScape.png` | 114 KB | → `eScape.jpg`，≈ 40 KB |
-| `assets/images/microhan.png` | 439 KB | 保留原图供 `og:image`；另生成 `assets/images/avatar-320.jpg`（320×320，q85，≈ 25 KB）供页面使用 |
+配图文件统一为 `.jpg`（原 PNG 一并改扩展名与 HTML 引用），`papers/HOLO_WACV2026/holo.jpeg` 改名为 `holo.jpg`。`papers/Re0_ICRA2025/segmentation_result.svg`（185 KB）是矢量图，保留不动，点击查看时直接打开该 SVG。
 
-`papers/Re0_ICRA2025/segmentation_result.svg`（185 KB）是矢量图，保留不动。
+`assets/images/microhan.png` 保留原图供 `og:image`；另生成 `assets/images/avatar-320.jpg`（居中裁方，320×320，q85，≈ 26 KB）供页面使用。
+
+处理后缩略图加头像共 569 KB，大图共 866 KB。大图只在点击时下载，不计入首屏。
+
+### 配图呈现
+
+这些插图是流程图和对比图，居中裁切会让它们无法辨认，所以缩略图**完整显示不裁切**：196px 宽的固定 4:3 框配 `object-fit: contain`，衬一块 `--panel` 浅底加 1px 内框，把不同长宽比的图统一成同样大小的方块，列表仍然对齐。新增 token `--panel`：浅色 `#f5f5f6`，深色 `#1b1b20`。移动端取消固定比例、让图保持自身比例（`max-height: 220px`），避免宽幅图周围出现大片空白面板。
+
+缩略图外层包一个指向 `-full.jpg` 的 `<a class="paper-fig">`：悬停时右下角浮出放大标记，点击由 JS 拦截并在 lightbox 中打开大图。lightbox 用 `role="dialog"` + `aria-modal`，Esc 或点击背景关闭，打开时焦点移到关闭按钮、关闭后回到原缩略图。JS 不可用时该链接退化为直接打开大图。
 
 ### 加载策略
 
