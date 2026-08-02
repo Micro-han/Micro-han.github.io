@@ -96,9 +96,11 @@ Footer
 
 ### 职位与时间线
 
-- Hero 副标题：`Algorithm Engineer @ AgiBot` → `Large Model Algorithm Engineer @ AgiBot`。
-- Experience：AgiBot 一条职位改为 `Large Model Algorithm Engineer`，时间改为 `2026 – Present`。
-- Experience：NIO 一条职位改为 `Large Model Algorithm Engineer`，时间由 `Apr 2024 – Mar 2025` 改为 `2024 – 2025`。
+- Hero 副标题：`Algorithm Engineer @ AgiBot` → `Algorithm Engineer / Large Model @ AgiBot`。
+- Experience：AgiBot 一条职位改为 `Algorithm Engineer / Large Model`，时间改为 `2026 – Present`。
+- Experience：NIO 一条职位改为 `Algorithm Engineer / Large Model`，时间由 `Apr 2024 – Mar 2025` 改为 `2024 – 2025`。
+
+职位中文对应「算法工程师/大模型」，两处岗位相同。
 - Experience：AIR, Tsinghua University 的 `Research Intern / Dec 2023 – Apr 2024` 保持不变。
 - Education 两条保持不变。
 
@@ -108,7 +110,9 @@ Footer
 
 新增一段三句话的介绍，替代现在只有一行的 "Research interests"：
 
-> I am a large model algorithm engineer at **AgiBot**, working on vision-language-action models for real-world robotic manipulation. Before that I received my M.S. from Tongji University, where I worked on 3D scene understanding and zero-shot instance segmentation. My interests are **multimodal large models**, **3D computer vision** and **reinforcement learning** — feel free to [drop me an email](mailto:yxhop666@gmail.com) if we share any.
+> I am an algorithm engineer working on large models at **AgiBot**, focusing on vision-language-action models for real-world robotic manipulation. Before that I received my M.S. from Tongji University, where I worked on 3D scene understanding and zero-shot instance segmentation. My interests are **embodied AI**, **VLA / VLM** and **reinforcement learning** — feel free to [drop me an email](mailto:yxhop666@gmail.com) if we share any.
+
+研究兴趣确定为三项：具身智能（Embodied AI）、VLA / VLM、强化学习（Reinforcement Learning）。原先的 3D Computer Vision 不再作为研究兴趣列出；硕士期间的 3D 场景理解仍作为经历在第二句保留。
 
 ### Publications
 
@@ -164,7 +168,7 @@ PNG 照片类配图转成 JPEG 并相应改扩展名与 HTML 引用：
 
 ### head 补充
 
-- `<meta name="description" content="Xiaohan Yan (颜小涵) — large model algorithm engineer at AgiBot, working on vision-language-action models, multimodal large models and 3D computer vision.">`
+- `<meta name="description" content="Xiaohan Yan (颜小涵) — algorithm engineer working on large models at AgiBot. Interests: embodied AI, vision-language-action models and reinforcement learning.">`
 - `<link rel="canonical" href="https://micro-han.github.io/">`
 - Open Graph：`og:type=profile`、`og:title`、`og:description`、`og:url`、`og:image`（指向 `https://micro-han.github.io/assets/images/microhan.png`）、`og:image:alt`。
 - Twitter Card：`twitter:card=summary`（用 `summary` 而非 `summary_large_image`，因为头像不是 1.91:1）。
@@ -172,7 +176,7 @@ PNG 照片类配图转成 JPEG 并相应改扩展名与 HTML 引用：
 
 ### 结构化数据
 
-`<script type="application/ld+json">` 内嵌一个 `Person`：`name`、`alternateName`（颜小涵）、`jobTitle`、`worksFor`（AgiBot）、`alumniOf`（Tongji University、Hohai University）、`url`、`image`、`knowsAbout`、`sameAs`（Google Scholar、GitHub、LinkedIn、ORCID）。不为 7 篇论文单独生成 `ScholarlyArticle`，收益低且维护成本高。
+`<script type="application/ld+json">` 内嵌一个 `Person`：`name`、`alternateName`（颜小涵）、`jobTitle`（`Algorithm Engineer / Large Model`）、`worksFor`（AgiBot）、`alumniOf`（Tongji University、Hohai University）、`url`、`image`、`knowsAbout`（`Embodied AI`、`Vision-Language-Action Models`、`Vision-Language Models`、`Reinforcement Learning`）、`sameAs`（Google Scholar、GitHub、LinkedIn、ORCID）。不为 7 篇论文单独生成 `ScholarlyArticle`，收益低且维护成本高。
 
 ### 新增文件
 
