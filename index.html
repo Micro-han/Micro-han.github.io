@@ -304,6 +304,12 @@
       text-decoration: underline;
       text-underline-offset: 2px;
     }
+    .paper-authors .corr {
+      font-size: 0.85em;
+      line-height: 0;
+      margin-left: 1px;
+      color: var(--text);
+    }
     .paper-meta {
       display: flex;
       align-items: center;
@@ -759,7 +765,7 @@
     <!-- Publications -->
     <section id="publications">
       <h2>Publications</h2>
-      <p class="pub-note">* indicates equal contribution</p>
+      <p class="pub-note">* indicates equal contribution. † indicates corresponding author.</p>
       <svg class="icon-sprite" aria-hidden="true" focusable="false">
         <symbol id="icon-arxiv" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2.5h8.2L19.5 7.8V20a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 20V4A1.5 1.5 0 0 1 6 2.5zm7.5 1.8V8h3.7L13.5 4.3zM8 12.2h8v1.4H8v-1.4zm0 3h8v1.4H8v-1.4zm0 3h5.2v1.4H8v-1.4z"/></symbol>
         <symbol id="icon-web" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3.8 12h16.4M12 3.8c2.3 2.5 3.5 5.3 3.5 8.2s-1.2 5.7-3.5 8.2c-2.3-2.5-3.5-5.3-3.5-8.2s1.2-5.7 3.5-8.2z"/></symbol>
@@ -786,7 +792,7 @@
           </div>
           <div class="paper-block">
             <div class="paper-label">Authors</div>
-            <div class="paper-authors">Weihui Zhao, <span class="me">Xiaohan Yan</span>, Zunian Wan, Xuan Du, Zhaozhan Chi, Jianbo Mao, Ruipu Wu, Rushuai Yang, Houlin Li, Shukai Yang, Jing Wu, Yuxiang Yan, Yongcheng Liu, Chuankang Li, Guanghui Ren, Wei Shan, Maoqing Yao</div>
+            <div class="paper-authors">Weihui Zhao, <span class="me">Xiaohan Yan</span><sup class="corr">†</sup>, Zunian Wan, Xuan Du, Zhaozhan Chi, Jianbo Mao, Ruipu Wu, Rushuai Yang, Houlin Li, Shukai Yang, Jing Wu, Yuxiang Yan, Yongcheng Liu, Chuankang Li, Guanghui Ren, Wei Shan, Maoqing Yao</div>
           </div>
           <div class="paper-block">
             <div class="paper-label">Overview</div>
