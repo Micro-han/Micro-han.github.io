@@ -106,7 +106,7 @@
       border: none;
     }
     .navbar-inner {
-      max-width: 820px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 10px 18px 10px 22px;
       display: flex;
@@ -121,10 +121,10 @@
     .navbar-brand {
       font-size: 18px;
       font-weight: 700;
-      color: var(--link);
+      color: var(--heading);
       text-decoration: none;
     }
-    .navbar-brand:hover { color: var(--link-hover); text-decoration: none; }
+    .navbar-brand:hover { color: var(--heading); text-decoration: none; }
     .navbar-links { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 6px; }
     .navbar-links a {
       font-size: 15px;
@@ -152,7 +152,7 @@
     html.dark .icon-sun { display: none; }
     html.dark .icon-moon { display: block; }
 
-    .container { max-width: 820px; margin: 0 auto; padding: 8px 24px 0; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 8px 24px 0; }
 
     section { padding: 26px 0; }
     section + section { border-top: none; }
@@ -168,18 +168,20 @@
     .intro { display: flex; gap: 18px; align-items: flex-start; }
     .hero-photo { width: 112px; height: 112px; object-fit: cover; flex: none; border-radius: 18px; }
     .hero-name {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 700;
-      line-height: 1.2;
+      line-height: 1.45;
       color: var(--heading);
     }
-    .hero-name .name-cn {
-      font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text-sec);
-      margin-left: 8px;
+    .hero-name .name-ruby { ruby-align: center; ruby-position: over; }
+    .hero-name rt {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+      color: #4a6074;
     }
+    html.dark .hero-name rt { color: var(--text-muted); }
     .hero-title { font-size: 15px; color: var(--text-sec); margin-top: 4px; }
     .hero-links {
       margin-top: 8px;
@@ -189,6 +191,7 @@
       font-size: 15px;
     }
     .bio { margin-top: 18px; color: var(--text); }
+    .bio + .bio { margin-top: 10px; }
 
     /* ---------- Timeline ---------- */
     .timeline { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
@@ -322,6 +325,167 @@
       line-height: 1.6;
     }
 
+    /* Publications use a split entry: figure, then title, links, authors, overview. */
+    .icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+    :is(#publications, #projects) .paper {
+      display: grid;
+      grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+      gap: 0;
+      padding: 0;
+      border-bottom: none;
+      align-items: start;
+    }
+    :is(#publications, #projects) .paper-media {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2px 22px 0 0;
+      min-width: 0;
+    }
+    :is(#publications, #projects) .paper-fig {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-width: 0;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-soft);
+      overflow: hidden;
+    }
+    :is(#publications, #projects) .paper-img {
+      position: absolute;
+      inset: 8px;
+      width: calc(100% - 16px);
+      height: calc(100% - 16px);
+      object-fit: contain;
+    }
+    :is(#publications, #projects) .paper-tag {
+      display: inline-flex;
+      align-items: stretch;
+      max-width: 100%;
+      margin-top: 12px;
+      padding: 0;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      overflow: hidden;
+      background: transparent;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      line-height: 1;
+      text-transform: uppercase;
+      box-shadow: 0 8px 18px rgba(26, 42, 66, 0.1);
+    }
+    :is(#publications, #projects) .tag-field,
+    :is(#publications, #projects) .tag-tech {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 11px;
+    }
+    :is(#publications, #projects) .tag-field { color: #fff; }
+    :is(#publications, #projects) .tag-tech { background: #fff; }
+    .tag-rl { border-color: #d8cabb; }
+    .tag-rl .tag-field { background: #746451; }
+    .tag-rl .tag-tech { color: #625544; }
+    .tag-scene { border-color: #d3e1ee; }
+    .tag-scene .tag-field { background: #3d6288; }
+    .tag-scene .tag-tech { color: #385d82; }
+    .tag-med { border-color: #d0e4dd; }
+    .tag-med .tag-field { background: #3f776e; }
+    .tag-med .tag-tech { color: #355f59; }
+    .tag-seg { border-color: #ddd6ea; }
+    .tag-seg .tag-field { background: #5b5079; }
+    .tag-seg .tag-tech { color: #5b5079; }
+    .tag-gs { border-color: #d5e0ea; }
+    .tag-gs .tag-field { background: #2f5578; }
+    .tag-gs .tag-tech { color: #2f5578; }
+    .tag-meta { border-color: #e3d7c4; }
+    .tag-meta .tag-field { background: #8a6232; }
+    .tag-meta .tag-tech { color: #8a6232; }
+    .tag-game { border-color: #f0d3a8; }
+    .tag-game .tag-field { background: #c45c26; }
+    .tag-game .tag-tech { color: #9a4316; }
+    .tag-llm { border-color: #d3e1ee; }
+    .tag-llm .tag-field { background: #426d98; }
+    .tag-llm .tag-tech { color: #385d82; }
+    .tag-web { border-color: #d5dbe3; }
+    .tag-web .tag-field { background: #4d6278; }
+    .tag-web .tag-tech { color: #3d5164; }
+    html.dark :is(#publications, #projects) .paper-tag { box-shadow: none; }
+    html.dark :is(#publications, #projects) .tag-tech { background: #18212b; }
+    html.dark .tag-rl .tag-tech { color: #e6d7c8; }
+    html.dark .tag-scene .tag-tech,
+    html.dark .tag-gs .tag-tech,
+    html.dark .tag-llm .tag-tech { color: #d5e4f2; }
+    html.dark .tag-med .tag-tech { color: #d5ebe4; }
+    html.dark .tag-seg .tag-tech { color: #e4dcf2; }
+    html.dark .tag-meta .tag-tech { color: #f0ddc4; }
+    html.dark .tag-game .tag-tech { color: #f6d2bc; }
+    html.dark .tag-web .tag-tech { color: #d5dee8; }
+    :is(#publications, #projects) .paper-info {
+      padding: 0 0 26px 28px;
+      border-left: 1px solid var(--border);
+    }
+    :is(#publications, #projects) .paper-title {
+      font-size: 20px;
+      max-width: none;
+    }
+    :is(#publications, #projects) .paper-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 8px;
+    }
+    :is(#publications, #projects) .venue {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--text-muted);
+    }
+    :is(#publications, #projects) .paper-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+    :is(#publications, #projects) .paper-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      color: var(--text-muted);
+    }
+    :is(#publications, #projects) .paper-icon svg,
+    :is(#publications, #projects) .paper-icon img { width: 24px; height: 24px; display: block; object-fit: contain; }
+    :is(#publications, #projects) .paper-icon:hover { color: var(--link); }
+    :is(#publications, #projects) .paper-block { margin-top: 16px; }
+    :is(#publications, #projects) .paper-label {
+      margin: 0 0 6px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    :is(#publications, #projects) .paper-authors {
+      margin-top: 0;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    :is(#publications, #projects) .paper-desc {
+      margin: 0;
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
     /* ---------- Row lists (awards, news) ---------- */
     .row-item {
       display: flex;
@@ -404,12 +568,30 @@
       .hero { padding: 24px 0 4px; }
       .intro { gap: 14px; }
       .hero-photo { width: 84px; height: 84px; }
-      .hero-name { font-size: 24px; }
+      .hero-name { font-size: 28px; }
 
       .timeline { grid-template-columns: 1fr; gap: 20px 0; }
 
       .paper { flex-direction: column; gap: 10px; }
       .paper-fig { width: 100%; min-width: 0; max-width: 420px; }
+
+      :is(#publications, #projects) .paper { display: block; }
+      :is(#publications, #projects) .paper-media { align-items: flex-start; padding: 0; }
+      :is(#publications, #projects) .paper-fig {
+        width: 100%;
+        max-width: none;
+        margin: 0 0 4px;
+      }
+      :is(#publications, #projects) .paper-info {
+        padding: 4px 0 18px;
+        border-left: none;
+      }
+      :is(#publications, #projects) .paper-links { margin-left: 0; }
+      #publications article.paper,
+      #projects article.paper { padding-top: 8px; border-top: 1px solid var(--border); }
+      :is(#publications, #projects) .year + article.paper,
+      #publications > article.paper:first-of-type,
+      #projects > article.paper:first-of-type { border-top: none; padding-top: 0; }
 
       .row-item { flex-direction: column; gap: 2px; }
       .news-item { flex-direction: row; gap: 12px; }
@@ -429,10 +611,10 @@
       <a class="navbar-brand" href="#top">Xiaohan Yan</a>
       <div class="navbar-links">
         <a href="#bio" data-nav="bio">About</a>
+        <a href="#news" data-nav="news">News</a>
         <a href="#publications" data-nav="publications">Publications</a>
         <a href="#projects" data-nav="projects">Projects</a>
         <a href="#awards" data-nav="awards">Awards</a>
-        <a href="#news" data-nav="news">News</a>
         <a href="#misc" data-nav="misc">Misc</a>
         <button class="theme-toggle" type="button" onclick="toggleTheme(this)" aria-label="Toggle dark mode" aria-pressed="false">
           <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -448,7 +630,7 @@
         <img src="assets/images/avatar-320.jpg" alt="Portrait of Xiaohan Yan" class="hero-photo"
              width="320" height="320" fetchpriority="high" decoding="async">
         <div>
-          <h1 class="hero-name">Xiaohan Yan<span class="name-cn">颜小涵</span></h1>
+          <h1 class="hero-name">Xiaohan Yan&nbsp;&nbsp;&nbsp;<ruby class="name-ruby">颜<rt>yán</rt></ruby><ruby class="name-ruby">小<rt>xiǎo</rt></ruby><ruby class="name-ruby">涵<rt>hán</rt></ruby></h1>
           <p class="hero-title">Algorithm engineer at AgiBot</p>
           <div class="hero-links">
             <a href="mailto:yxhop666@gmail.com">Email</a>
@@ -461,9 +643,13 @@
         </div>
       </div>
       <p class="bio">
-        I work on vision-language-action models for robot manipulation.
-        Before AgiBot I was at NIO, and I did my master's at Tongji on 3D scene understanding
-        and zero-shot instance segmentation.
+        I build vision-language-action models for robot manipulation at <a href="https://www.agibot.com/">AgiBot</a>.
+        The part I work on is post-training with reinforcement learning: residual policies that take human corrections, one policy that keeps earlier tasks while it learns new ones, and action-level evaluation on real robots.
+      </p>
+      <p class="bio">
+        Before AgiBot I was at <a href="https://www.nio.com/">NIO</a>, and a research intern at <a href="https://air.tsinghua.edu.cn/">AIR, Tsinghua University</a>.
+        My master's at <a href="https://www.tongji.edu.cn/">Tongji</a>, with <a href="https://see.tongji.edu.cn/info/1388/10509.htm">Gang Wei</a>, was 3D scene understanding: zero-shot instance segmentation, semantic Gaussian splatting, and a lightweight 3D-LLM.
+        The thread through all of that is still multimodal models, 3D vision, and reinforcement learning.
       </p>
     </section>
 
@@ -480,7 +666,7 @@
           </div>
           <div class="timeline-item">
             <div class="timeline-role">Algorithm Engineer / Large Model</div>
-            <div class="timeline-org"><a href="https://www.nio.cn/">NIO</a></div>
+            <div class="timeline-org"><a href="https://www.nio.com/">NIO</a></div>
             <div class="timeline-date">2024 – 2025</div>
           </div>
           <div class="timeline-item">
@@ -507,298 +693,6 @@
             <div class="timeline-date">2018 – 2022</div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Publications -->
-    <section id="publications">
-      <h2>Publications</h2>
-      <p class="pub-note">* indicates equal contribution</p>
-
-      <div class="year">2026</div>
-
-      <article class="paper">
-        <a class="paper-fig" href="papers/BEE_arXiv2026/bee-full.jpg" aria-label="Open the Bee figure at full size">
-          <img src="papers/BEE_arXiv2026/bee.jpg" alt="Bee method overview" class="paper-img"
-               width="640" height="240" loading="lazy" decoding="async">
-        </a>
-        <div class="paper-info">
-          <div class="paper-title">Bee: Intervention-Adaptive Real-World Reinforcement Learning with Vision-Language-Action Models</div>
-          <div class="paper-authors">
-            Weihui Zhao, <span class="me">Xiaohan Yan</span>, Zunian Wan, Xuan Du, Zhaozhan Chi,
-            Jianbo Mao, Ruipu Wu, Rushuai Yang, Houlin Li, Shukai Yang, Jing Wu, Yuxiang Yan,
-            Yongcheng Liu, Chuankang Li, Guanghui Ren, Wei Shan, Maoqing Yao
-          </div>
-          <div class="paper-meta">
-            <span class="venue">arXiv 2026</span>
-            <a href="https://arxiv.org/abs/2609.27450" class="paper-link">arXiv</a>
-          </div>
-          <div class="paper-desc">A residual policy on a frozen VLA. Human corrections set a per-dimension constraint, with tighter bounds where people agree and looser ones where they don't.</div>
-        </div>
-      </article>
-
-      <article class="paper">
-        <a class="paper-fig" href="papers/CIDER_arXiv2026/cider-full.jpg" aria-label="Open the CIDER figure at full size">
-          <img src="papers/CIDER_arXiv2026/cider.jpg" alt="CIDER continual learning overview" class="paper-img"
-               width="640" height="306" loading="lazy" decoding="async">
-        </a>
-        <div class="paper-info">
-          <div class="paper-title">CIDER: Continual Interactive Distillation for Embodied Reinforcement Learning</div>
-          <div class="paper-authors">
-            Houlin Li, Minghui Xu, Guo Xu, Xuan Du, <span class="me">Xiaohan Yan</span>, Chun Wang,
-            Yuxiang Yan, Shukai Yang, Yongcheng Liu, Wei Shan, Maoqing Yao
-          </div>
-          <div class="paper-meta">
-            <span class="venue">arXiv 2026</span>
-            <a href="https://arxiv.org/abs/2608.21899" class="paper-link">arXiv</a>
-          </div>
-          <div class="paper-desc">One policy learns six real-robot tasks in sequence. Each new task takes 10–20 minutes, and the earlier ones stay.</div>
-        </div>
-      </article>
-
-      <article class="paper">
-        <a class="paper-fig" href="papers/VINE_arXiv2026/vine-full.jpg" aria-label="Open the VINE figure at full size">
-          <img src="papers/VINE_arXiv2026/vine.jpg" alt="VINE sampling overview" class="paper-img"
-               width="640" height="201" loading="lazy" decoding="async">
-        </a>
-        <div class="paper-info">
-          <div class="paper-title">VINE: Taming Generative Control Policies for Reinforcement Learning</div>
-          <div class="paper-authors">
-            Rushuai Yang, Zhuo Han, Houlin Li, Hecheng Wang, Zhichao Wu, Rui Zhang, Zhaowei Zhang,
-            Zihong Chen, <span class="me">Xiaohan Yan</span>, Chiming Liu, Yi Chen, Wei Shan, Maoqing Yao
-          </div>
-          <div class="paper-meta">
-            <span class="venue">arXiv 2026</span>
-            <a href="https://arxiv.org/abs/2607.10369" class="paper-link">arXiv</a>
-            <a href="https://agibottech.github.io/vine/" class="paper-link">Project</a>
-          </div>
-          <div class="paper-desc">Rebuilds the interpolation state at each denoising step, so a flow-matching policy can take value gradients without the training blowing up.</div>
-        </div>
-      </article>
-
-      <article class="paper">
-        <a class="paper-fig" href="papers/ALOE_arXiv2026/aloe-full.jpg" aria-label="Open the ALOE figure at full size">
-          <img src="papers/ALOE_arXiv2026/aloe.jpg" alt="ALOE framework overview" class="paper-img"
-               width="640" height="210" loading="lazy" decoding="async">
-        </a>
-        <div class="paper-info">
-          <div class="paper-title">ALOE: Action-Level Off-Policy Evaluation for Vision-Language-Action Model Post-Training</div>
-          <div class="paper-authors">
-            Rushuai Yang*, Hecheng Wang*, Zhichao Wu*, Chiming Liu*, <span class="me">Xiaohan Yan</span>,
-            Xuan Du, Shuoyu Yue, Chuheng Zhang, Yunlong Wang, Yongcheng Liu, Lizhe Qi, Yi Chen,
-            Wei Shan, Maoqing Yao
-          </div>
-          <div class="paper-meta">
-            <span class="venue">arXiv 2026</span>
-            <a href="https://arxiv.org/abs/2602.12691" class="paper-link">arXiv</a>
-            <a href="https://rooshy-yang.github.io/aloe/" class="paper-link">Project</a>
-          </div>
-          <div class="paper-desc">Scores the current policy on action chunks, then uses that to post-train a VLA on real robots.</div>
-        </div>
-      </article>
-
-      <article class="paper">
-        <a class="paper-fig" href="papers/HOLO_WACV2026/holo-full.jpg" aria-label="Open the HOLO figure at full size">
-          <img src="papers/HOLO_WACV2026/holo.jpg" alt="HOLO pipeline overview" class="paper-img"
-               width="640" height="439" loading="lazy" decoding="async">
-        </a>
-        <div class="paper-info">
-          <div class="paper-title">HOLO: Holistic Lightweight Optimization for Scene Understanding with Auto-Annotation and Multimodal Learning</div>
-          <div class="paper-authors">
-            Xiaoyun Hu*, <span class="me">Xiaohan Yan*</span>, Nan Wang, Xiaowei Song, Gang Wei, Zhicheng Wang
-          </div>
-          <div class="paper-meta">
-            <span class="venue">WACV 2026</span>
-          </div>
-          <div class="paper-desc">A large-scale scene description dataset together with a lightweight 3D-LLM.</div>
-        </div>
-      </article>
-
-      <div id="more-pubs" hidden>
-        <div class="year">2025</div>
-
-        <article class="paper">
-          <a class="paper-fig" href="papers/CorBenchX_arXiv2025/corbenchx-full.jpg" aria-label="Open the CorBenchX figure at full size">
-            <img src="papers/CorBenchX_arXiv2025/corbenchx.jpg" alt="CorBenchX dataset and benchmark overview" class="paper-img"
-                 width="640" height="298" loading="lazy" decoding="async">
-          </a>
-          <div class="paper-info">
-            <div class="paper-title">CorBenchX: Large-Scale Chest X-Ray Error Dataset and Vision-Language Model Benchmark for Report Error Correction</div>
-            <div class="paper-authors">
-              Jing Zou*, Qingqiu Li*, Chenyu Lian, Lihao Liu, <span class="me">Xiaohan Yan</span>,
-              Shujun Wang, Jing Qin
-            </div>
-            <div class="paper-meta">
-              <span class="venue">arXiv 2025</span>
-              <a href="https://arxiv.org/abs/2505.12057" class="paper-link">arXiv</a>
-            </div>
-            <div class="paper-desc">26,326 chest X-ray reports with injected errors, for testing whether a model can find the error and write the correction.</div>
-          </div>
-        </article>
-
-        <article class="paper">
-          <a class="paper-fig" href="papers/Re0_ICRA2025/segmentation_result.svg" aria-label="Open the RE0 figure at full size">
-            <img src="papers/Re0_ICRA2025/segmentation_result.svg" alt="RE0 segmentation results" class="paper-img"
-                 width="640" height="427" loading="lazy" decoding="async">
-          </a>
-          <div class="paper-info">
-            <div class="paper-title">RE0: Recognize Everything with 3D Zero-shot Instance Segmentation</div>
-            <div class="paper-authors">
-              <span class="me">Xiaohan Yan*</span>, Zijian Jiang*, Yinghao Shuai*, Nan Wang, Xiaowei Song,
-              Wenbo Ji, Ge Wu, Jinyu He, Gang Wei, Zhicheng Wang
-            </div>
-            <div class="paper-meta">
-              <span class="venue">ICRA 2025</span>
-              <a href="https://ieeexplore.ieee.org/document/11127468/" class="paper-link">IEEE</a>
-              <a href="https://github.com/RecognizeEverything/Re0" class="paper-link">Code</a>
-              <a href="https://recognizeeverything.github.io/" class="paper-link">Project</a>
-            </div>
-            <div class="paper-desc">Given 3D point clouds and posed multi-view RGB-D images, RE0 combines 3D geometry, projection relationships and CLIP semantic features for 3D zero-shot instance segmentation.</div>
-          </div>
-        </article>
-
-        <article class="paper">
-          <a class="paper-fig" href="papers/SGGS_ICASSP2025/sggs1-full.jpg" aria-label="Open the SGGS figure at full size">
-            <img src="papers/SGGS_ICASSP2025/sggs1.jpg" alt="SGGS rendering comparison" class="paper-img"
-                 width="640" height="640" loading="lazy" decoding="async">
-          </a>
-          <div class="paper-info">
-            <div class="paper-title">Semantic-Guided Gaussian Splatting with Deferred Rendering</div>
-            <div class="paper-authors">
-              Nan Wang, <span class="me">Xiaohan Yan</span>, Xiaowei Song, Zhicheng Wang
-            </div>
-            <div class="paper-meta">
-              <span class="venue">ICASSP 2025</span>
-              <a href="https://ieeexplore.ieee.org/document/10887567/" class="paper-link">IEEE</a>
-              <a href="https://github.com/BigCiLeng/SGGS" class="paper-link">Code</a>
-              <a href="https://bigcileng.github.io/research/SGGS-Poster.pdf" class="paper-link">Poster</a>
-            </div>
-            <div class="paper-desc">Semantic features from a 2D foundation model reshape material property optimization for 3D Gaussian splatting.</div>
-          </div>
-        </article>
-
-        <div class="year">2024</div>
-
-        <article class="paper">
-          <a class="paper-fig" href="papers/AttenPoint_PRCV2024/PRCV-full.jpg" aria-label="Open the AttenPoint figure at full size">
-            <img src="papers/AttenPoint_PRCV2024/PRCV.jpg" alt="AttenPoint architecture" class="paper-img"
-                 width="640" height="640" loading="lazy" decoding="async">
-          </a>
-          <div class="paper-info">
-            <div class="paper-title">AttenPoint: Exploring Point Cloud Segmentation through Attention-Based Modules</div>
-            <div class="paper-authors">
-              <span class="me">Xiaohan Yan</span>, Nan Wang, Xiaowei Song, Gang Wei, Zhicheng Wang
-            </div>
-            <div class="paper-meta">
-              <span class="venue">PRCV 2024</span>
-              <a href="https://dl.acm.org/doi/10.1007/978-981-97-8508-7_11" class="paper-link">ACM</a>
-            </div>
-            <div class="paper-desc">Combining local and global structural features for few-shot point cloud semantic segmentation.</div>
-          </div>
-        </article>
-
-        <article class="paper">
-          <a class="paper-fig" href="papers/GreedyAgent_ICIC2024/ICIC-full.jpg" aria-label="Open the GreedyAgent figure at full size">
-            <img src="papers/GreedyAgent_ICIC2024/ICIC.jpg" alt="GreedyAgent learning curves" class="paper-img"
-                 width="640" height="640" loading="lazy" decoding="async">
-          </a>
-          <div class="paper-info">
-            <div class="paper-title">GreedyAgent: A Simple yet Efficient Approach for Meta Learning from Learning Curves</div>
-            <div class="paper-authors">
-              Jinyu He, Xiaowei Song, <span class="me">Xiaohan Yan</span>, Nan Wang, Yuqi Miao, Zijian Jiang,
-              Fei Chao, Yan Zhang, Shengchuan Zhang, Rongrong Ji
-            </div>
-            <div class="paper-meta">
-              <span class="venue">ICIC 2024</span>
-              <a href="https://dl.acm.org/doi/10.1007/978-981-97-5663-6_41" class="paper-link">ACM</a>
-              <a href="https://github.com/dragonbra/MetaLC-2nd-Round" class="paper-link">Code</a>
-            </div>
-            <div class="paper-desc">A greedy agent for meta-learning from learning curves, ranked 2nd in the MetaLC challenge.</div>
-          </div>
-        </article>
-
-        <article class="paper">
-          <a class="paper-fig" href="papers/ASG_MICCAI2024/ASGMVLP-full.jpg" aria-label="Open the ASGMVLP figure at full size">
-            <img src="papers/ASG_MICCAI2024/ASGMVLP.jpg" alt="ASGMVLP framework" class="paper-img"
-                 width="640" height="280" loading="lazy" decoding="async">
-          </a>
-          <div class="paper-info">
-            <div class="paper-title">Anatomical Structure-Guided Medical Vision-Language Pre-training</div>
-            <div class="paper-authors">
-              Qingqiu Li, <span class="me">Xiaohan Yan</span>, Jilan Xu, Runtian Yuan, Yuejie Zhang, Rui Feng,
-              Quanli Shen, Xiaobo Zhang, Shujun Wang
-            </div>
-            <div class="paper-meta">
-              <span class="venue">MICCAI 2024</span>
-              <a href="https://arxiv.org/abs/2403.09294" class="paper-link">arXiv</a>
-              <a href="https://github.com/ASGMVLP/ASGMVLP_CODE" class="paper-link">Code</a>
-              <a href="https://asgmvlp.github.io/" class="paper-link">Project</a>
-            </div>
-            <div class="paper-desc">An anatomical structure-guided framework that improves cross-modal alignment in medical vision-language pre-training.</div>
-          </div>
-        </article>
-      </div>
-
-      <button class="toggle-btn" type="button" onclick="toggleFold(this)"
-              aria-controls="more-pubs" aria-expanded="false"
-              data-more="Show 6 more" data-less="Show less">Show 6 more</button>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects">
-      <h2>Projects</h2>
-
-      <article class="paper">
-        <a class="paper-fig" href="projects/LLM_Kaggle2023/kaggleLLAM-full.jpg" aria-label="Open the Kaggle project figure at full size">
-          <img src="projects/LLM_Kaggle2023/kaggleLLAM.jpg" alt="LLM Science Exam competition" class="paper-img"
-               width="640" height="639" loading="lazy" decoding="async">
-        </a>
-        <div class="paper-info">
-          <div class="paper-title">LLM Science Exam — Use LLMs to Answer Difficult Science Questions</div>
-          <div class="paper-authors">
-            <span class="me">Xiaohan Yan</span>, Nan Wang, Xiaowei Song, Jinyu He
-          </div>
-          <div class="paper-meta">
-            <span class="venue">Kaggle 2023</span>
-            <a href="https://github.com/490CAD/LLM4Science" class="paper-link">Code</a>
-          </div>
-          <div class="paper-desc">Fine-tuning large language models on private datasets. Score 0.905, top 3% worldwide, Silver Medal.</div>
-        </div>
-      </article>
-
-      <article class="paper">
-        <a class="paper-fig" href="projects/eScape_GameJam2023/eScape-full.jpg" aria-label="Open the eScape screenshot at full size">
-          <img src="projects/eScape_GameJam2023/eScape.jpg" alt="eScape game screenshot" class="paper-img"
-               width="640" height="383" loading="lazy" decoding="async">
-        </a>
-        <div class="paper-info">
-          <div class="paper-title">eScape — A Geometry Storm Game</div>
-          <div class="paper-authors">
-            Origami-hui, <span class="me">Xiaohan Yan</span>
-          </div>
-          <div class="paper-meta">
-            <span class="venue">GameJam 2023</span>
-            <a href="https://origamihui.itch.io/esacpe/" class="paper-link">Play</a>
-          </div>
-          <div class="paper-desc">Scale your device and escape from this geometry storm. 1st in innovation and 2nd in theme interpretation.</div>
-        </div>
-      </article>
-    </section>
-
-    <!-- Awards -->
-    <section id="awards">
-      <h2>Awards</h2>
-      <div class="row-item">
-        <span><a href="assets/rewards/rewards_bsc_all.pdf">Most of the awards</a> I won during my student years</span>
-        <span class="row-date">2018 – 2024</span>
-      </div>
-      <div class="row-item">
-        <span>The 2019 ICPC Asia-East Continent Final — <a href="assets/rewards/2019EC.png">Bronze Medal</a></span>
-        <span class="row-date">2019 – 2020</span>
-      </div>
-      <div class="row-item">
-        <span>Jiangsu Collegiate Programming Contest — <a href="assets/rewards/JSCPC.png">Silver Medal, 2nd place</a></span>
-        <span class="row-date">2019 – 2020</span>
       </div>
     </section>
 
@@ -859,6 +753,404 @@
       <button class="toggle-btn" type="button" onclick="toggleFold(this)"
               aria-controls="more-news" aria-expanded="false"
               data-more="Show 8 more" data-less="Show less">Show 8 more</button>
+    </section>
+
+
+    <!-- Publications -->
+    <section id="publications">
+      <h2>Publications</h2>
+      <p class="pub-note">* indicates equal contribution</p>
+      <svg class="icon-sprite" aria-hidden="true" focusable="false">
+        <symbol id="icon-arxiv" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2.5h8.2L19.5 7.8V20a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 20V4A1.5 1.5 0 0 1 6 2.5zm7.5 1.8V8h3.7L13.5 4.3zM8 12.2h8v1.4H8v-1.4zm0 3h8v1.4H8v-1.4zm0 3h5.2v1.4H8v-1.4z"/></symbol>
+        <symbol id="icon-web" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3.8 12h16.4M12 3.8c2.3 2.5 3.5 5.3 3.5 8.2s-1.2 5.7-3.5 8.2c-2.3-2.5-3.5-5.3-3.5-8.2s1.2-5.7 3.5-8.2z"/></symbol>
+        <symbol id="icon-code" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M8.2 8.2 4.4 12l3.8 3.8M15.8 8.2 19.6 12l-3.8 3.8M13.2 6.2l-2.4 11.6"/></symbol>
+        <symbol id="icon-poster" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="13" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M8 20.2h8M12 17v3.2"/></symbol>
+      </svg>
+
+
+      <div class="year">2026</div>
+
+      <article class="paper">
+        <div class="paper-media">
+        <a class="paper-fig" href="papers/BEE_arXiv2026/bee-full.jpg" aria-label="Open the Bee figure at full size">
+          <img src="papers/BEE_arXiv2026/bee.jpg" alt="Bee method overview" class="paper-img"
+               width="640" height="240" loading="lazy" decoding="async">
+        </a>
+        <span class="paper-tag tag-rl"><span class="tag-field">Robotics</span><span class="tag-tech">RL</span></span>
+      </div>
+                <div class="paper-info">
+          <div class="paper-title">Bee: Intervention-Adaptive Real-World Reinforcement Learning with Vision-Language-Action Models</div>
+          <div class="paper-meta">
+            <span class="venue">arXiv 2026</span>
+            <span class="paper-links"><a class="paper-icon" href="https://arxiv.org/abs/2609.27450" aria-label="Read on arXiv" target="_blank" rel="noopener noreferrer"><img src="assets/misc/arxiv-logo.svg" alt="" width="24" height="24"></a><a class="paper-icon" href="https://genie-universal-algorithm.github.io/BEE/" aria-label="Open the project page" target="_blank" rel="noopener noreferrer"><img src="assets/misc/website-logo.png" alt="" width="24" height="24"></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors">Weihui Zhao, <span class="me">Xiaohan Yan</span>, Zunian Wan, Xuan Du, Zhaozhan Chi, Jianbo Mao, Ruipu Wu, Rushuai Yang, Houlin Li, Shukai Yang, Jing Wu, Yuxiang Yan, Yongcheng Liu, Chuankang Li, Guanghui Ren, Wei Shan, Maoqing Yao</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">A residual policy on a frozen VLA. Human corrections set a per-dimension constraint, with tighter bounds where people agree and looser ones where they don't.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="paper">
+        <div class="paper-media">
+        <a class="paper-fig" href="papers/CIDER_arXiv2026/cider-full.jpg" aria-label="Open the CIDER figure at full size">
+          <img src="papers/CIDER_arXiv2026/cider.jpg" alt="CIDER continual learning overview" class="paper-img"
+               width="640" height="306" loading="lazy" decoding="async">
+        </a>
+        <span class="paper-tag tag-rl"><span class="tag-field">Robotics</span><span class="tag-tech">RL</span></span>
+      </div>
+                <div class="paper-info">
+          <div class="paper-title">CIDER: Continual Interactive Distillation for Embodied Reinforcement Learning</div>
+          <div class="paper-meta">
+            <span class="venue">arXiv 2026</span>
+            <span class="paper-links"><a class="paper-icon" href="https://arxiv.org/abs/2608.21899" aria-label="Read on arXiv" target="_blank" rel="noopener noreferrer"><img src="assets/misc/arxiv-logo.svg" alt="" width="24" height="24"></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors">Houlin Li, Minghui Xu, Guo Xu, Xuan Du, <span class="me">Xiaohan Yan</span>, Chun Wang, Yuxiang Yan, Shukai Yang, Yongcheng Liu, Wei Shan, Maoqing Yao</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">One policy learns six real-robot tasks in sequence. Each new task takes 10–20 minutes, and the earlier ones stay.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="paper">
+        <div class="paper-media">
+        <a class="paper-fig" href="papers/VINE_arXiv2026/vine-full.jpg" aria-label="Open the VINE figure at full size">
+          <img src="papers/VINE_arXiv2026/vine.jpg" alt="VINE sampling overview" class="paper-img"
+               width="640" height="201" loading="lazy" decoding="async">
+        </a>
+        <span class="paper-tag tag-rl"><span class="tag-field">Robotics</span><span class="tag-tech">RL</span></span>
+      </div>
+                <div class="paper-info">
+          <div class="paper-title">VINE: Taming Generative Control Policies for Reinforcement Learning</div>
+          <div class="paper-meta">
+            <span class="venue">arXiv 2026</span>
+            <span class="paper-links"><a class="paper-icon" href="https://arxiv.org/abs/2607.10369" aria-label="Read on arXiv" target="_blank" rel="noopener noreferrer"><img src="assets/misc/arxiv-logo.svg" alt="" width="24" height="24"></a><a class="paper-icon" href="https://agibottech.github.io/vine/" aria-label="Open the project page" target="_blank" rel="noopener noreferrer"><img src="assets/misc/website-logo.png" alt="" width="24" height="24"></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors">Rushuai Yang, Zhuo Han, Houlin Li, Hecheng Wang, Zhichao Wu, Rui Zhang, Zhaowei Zhang, Zihong Chen, <span class="me">Xiaohan Yan</span>, Chiming Liu, Yi Chen, Wei Shan, Maoqing Yao</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">Rebuilds the interpolation state at each denoising step, so a flow-matching policy can take value gradients without the training blowing up.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="paper">
+        <div class="paper-media">
+        <a class="paper-fig" href="papers/ALOE_arXiv2026/aloe-full.jpg" aria-label="Open the ALOE figure at full size">
+          <img src="papers/ALOE_arXiv2026/aloe.jpg" alt="ALOE framework overview" class="paper-img"
+               width="640" height="210" loading="lazy" decoding="async">
+        </a>
+        <span class="paper-tag tag-rl"><span class="tag-field">Robotics</span><span class="tag-tech">RL</span></span>
+      </div>
+                <div class="paper-info">
+          <div class="paper-title">ALOE: Action-Level Off-Policy Evaluation for Vision-Language-Action Model Post-Training</div>
+          <div class="paper-meta">
+            <span class="venue">arXiv 2026</span>
+            <span class="paper-links"><a class="paper-icon" href="https://arxiv.org/abs/2602.12691" aria-label="Read on arXiv" target="_blank" rel="noopener noreferrer"><img src="assets/misc/arxiv-logo.svg" alt="" width="24" height="24"></a><a class="paper-icon" href="https://rooshy-yang.github.io/aloe/" aria-label="Open the project page" target="_blank" rel="noopener noreferrer"><img src="assets/misc/website-logo.png" alt="" width="24" height="24"></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors">Rushuai Yang*, Hecheng Wang*, Zhichao Wu*, Chiming Liu*, <span class="me">Xiaohan Yan</span>, Xuan Du, Shuoyu Yue, Chuheng Zhang, Yunlong Wang, Yongcheng Liu, Lizhe Qi, Yi Chen, Wei Shan, Maoqing Yao</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">Scores the current policy on action chunks, then uses that to post-train a VLA on real robots.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="paper">
+        <div class="paper-media">
+        <a class="paper-fig" href="papers/HOLO_WACV2026/holo-full.jpg" aria-label="Open the HOLO figure at full size">
+          <img src="papers/HOLO_WACV2026/holo.jpg" alt="HOLO pipeline overview" class="paper-img"
+               width="640" height="439" loading="lazy" decoding="async">
+        </a>
+        <span class="paper-tag tag-scene"><span class="tag-field">3D Scene Understanding</span><span class="tag-tech">VLM</span></span>
+      </div>
+                <div class="paper-info">
+          <div class="paper-title">HOLO: Holistic Lightweight Optimization for Scene Understanding with Auto-Annotation and Multimodal Learning</div>
+          <div class="paper-meta">
+            <span class="venue">WACV 2026</span>
+            
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors">Xiaoyun Hu*, <span class="me">Xiaohan Yan*</span>, Nan Wang, Xiaowei Song, Gang Wei, Zhicheng Wang</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">A large-scale scene description dataset together with a lightweight 3D-LLM.</p>
+          </div>
+        </div>
+      </article>
+
+      <div id="more-pubs" hidden>
+        <div class="year">2025</div>
+
+        <article class="paper">
+          <div class="paper-media">
+        <a class="paper-fig" href="papers/CorBenchX_arXiv2025/corbenchx-full.jpg" aria-label="Open the CorBenchX figure at full size">
+            <img src="papers/CorBenchX_arXiv2025/corbenchx.jpg" alt="CorBenchX dataset and benchmark overview" class="paper-img"
+                 width="640" height="298" loading="lazy" decoding="async">
+          </a>
+        <span class="paper-tag tag-med"><span class="tag-field">Medical Vision-Language</span><span class="tag-tech">VLM</span></span>
+      </div>
+                  <div class="paper-info">
+          <div class="paper-title">CorBenchX: Large-Scale Chest X-Ray Error Dataset and Vision-Language Model Benchmark for Report Error Correction</div>
+          <div class="paper-meta">
+            <span class="venue">arXiv 2025</span>
+            <span class="paper-links"><a class="paper-icon" href="https://arxiv.org/abs/2505.12057" aria-label="Read on arXiv" target="_blank" rel="noopener noreferrer"><img src="assets/misc/arxiv-logo.svg" alt="" width="24" height="24"></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors">Jing Zou*, Qingqiu Li*, Chenyu Lian, Lihao Liu, <span class="me">Xiaohan Yan</span>, Shujun Wang, Jing Qin</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">26,326 chest X-ray reports with injected errors, for testing whether a model can find the error and write the correction.</p>
+          </div>
+        </div>
+      </article>
+
+        <article class="paper">
+          <div class="paper-media">
+        <a class="paper-fig" href="papers/Re0_ICRA2025/segmentation_result.svg" aria-label="Open the RE0 figure at full size">
+            <img src="papers/Re0_ICRA2025/segmentation_result.svg" alt="RE0 segmentation results" class="paper-img"
+                 width="640" height="427" loading="lazy" decoding="async">
+          </a>
+        <span class="paper-tag tag-seg"><span class="tag-field">3D Scene Understanding</span><span class="tag-tech">Segmentation</span></span>
+      </div>
+                  <div class="paper-info">
+          <div class="paper-title">RE0: Recognize Everything with 3D Zero-shot Instance Segmentation</div>
+          <div class="paper-meta">
+            <span class="venue">ICRA 2025</span>
+            <span class="paper-links"><a class="paper-icon" href="https://ieeexplore.ieee.org/document/11127468/" aria-label="Read the paper" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#icon-arxiv"></use></svg></a><a class="paper-icon" href="https://github.com/RecognizeEverything/Re0" aria-label="Open the source code" target="_blank" rel="noopener noreferrer"><img src="assets/misc/github-logo.png" alt="" width="24" height="24"></a><a class="paper-icon" href="https://recognizeeverything.github.io/" aria-label="Open the project page" target="_blank" rel="noopener noreferrer"><img src="assets/misc/website-logo.png" alt="" width="24" height="24"></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors"><span class="me">Xiaohan Yan*</span>, Zijian Jiang*, Yinghao Shuai*, Nan Wang, Xiaowei Song, Wenbo Ji, Ge Wu, Jinyu He, Gang Wei, Zhicheng Wang</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">Given 3D point clouds and posed multi-view RGB-D images, RE0 combines 3D geometry, projection relationships and CLIP semantic features for 3D zero-shot instance segmentation.</p>
+          </div>
+        </div>
+      </article>
+
+        <article class="paper">
+          <div class="paper-media">
+        <a class="paper-fig" href="papers/SGGS_ICASSP2025/sggs1-full.jpg" aria-label="Open the SGGS figure at full size">
+            <img src="papers/SGGS_ICASSP2025/sggs1.jpg" alt="SGGS rendering comparison" class="paper-img"
+                 width="640" height="640" loading="lazy" decoding="async">
+          </a>
+        <span class="paper-tag tag-gs"><span class="tag-field">3D Reconstruction</span><span class="tag-tech">GS</span></span>
+      </div>
+                  <div class="paper-info">
+          <div class="paper-title">Semantic-Guided Gaussian Splatting with Deferred Rendering</div>
+          <div class="paper-meta">
+            <span class="venue">ICASSP 2025</span>
+            <span class="paper-links"><a class="paper-icon" href="https://ieeexplore.ieee.org/document/10887567/" aria-label="Read the paper" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#icon-arxiv"></use></svg></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors">Nan Wang, <span class="me">Xiaohan Yan</span>, Xiaowei Song, Zhicheng Wang</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">Semantic features from a 2D foundation model reshape material property optimization for 3D Gaussian splatting.</p>
+          </div>
+        </div>
+      </article>
+
+        <div class="year">2024</div>
+
+        <article class="paper">
+          <div class="paper-media">
+        <a class="paper-fig" href="papers/AttenPoint_PRCV2024/PRCV-full.jpg" aria-label="Open the AttenPoint figure at full size">
+            <img src="papers/AttenPoint_PRCV2024/PRCV.jpg" alt="AttenPoint architecture" class="paper-img"
+                 width="640" height="640" loading="lazy" decoding="async">
+          </a>
+        <span class="paper-tag tag-seg"><span class="tag-field">Point Cloud</span><span class="tag-tech">Segmentation</span></span>
+      </div>
+                  <div class="paper-info">
+          <div class="paper-title">AttenPoint: Exploring Point Cloud Segmentation through Attention-Based Modules</div>
+          <div class="paper-meta">
+            <span class="venue">PRCV 2024</span>
+            <span class="paper-links"><a class="paper-icon" href="https://dl.acm.org/doi/10.1007/978-981-97-8508-7_11" aria-label="Read the paper" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#icon-arxiv"></use></svg></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors"><span class="me">Xiaohan Yan</span>, Nan Wang, Xiaowei Song, Gang Wei, Zhicheng Wang</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">Combining local and global structural features for few-shot point cloud semantic segmentation.</p>
+          </div>
+        </div>
+      </article>
+
+        <article class="paper">
+          <div class="paper-media">
+        <a class="paper-fig" href="papers/GreedyAgent_ICIC2024/ICIC-full.jpg" aria-label="Open the GreedyAgent figure at full size">
+            <img src="papers/GreedyAgent_ICIC2024/ICIC.jpg" alt="GreedyAgent learning curves" class="paper-img"
+                 width="640" height="640" loading="lazy" decoding="async">
+          </a>
+        <span class="paper-tag tag-meta"><span class="tag-field">Meta-Learning</span><span class="tag-tech">AutoML</span></span>
+      </div>
+                  <div class="paper-info">
+          <div class="paper-title">GreedyAgent: A Simple yet Efficient Approach for Meta Learning from Learning Curves</div>
+          <div class="paper-meta">
+            <span class="venue">ICIC 2024</span>
+            <span class="paper-links"><a class="paper-icon" href="https://dl.acm.org/doi/10.1007/978-981-97-5663-6_41" aria-label="Read the paper" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#icon-arxiv"></use></svg></a><a class="paper-icon" href="https://github.com/dragonbra/MetaLC-2nd-Round" aria-label="Open the source code" target="_blank" rel="noopener noreferrer"><img src="assets/misc/github-logo.png" alt="" width="24" height="24"></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors">Jinyu He, Xiaowei Song, <span class="me">Xiaohan Yan</span>, Nan Wang, Yuqi Miao, Zijian Jiang, Fei Chao, Yan Zhang, Shengchuan Zhang, Rongrong Ji</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">A greedy agent for meta-learning from learning curves, ranked 2nd in the MetaLC challenge.</p>
+          </div>
+        </div>
+      </article>
+
+        <article class="paper">
+          <div class="paper-media">
+        <a class="paper-fig" href="papers/ASG_MICCAI2024/ASGMVLP-full.jpg" aria-label="Open the ASGMVLP figure at full size">
+            <img src="papers/ASG_MICCAI2024/ASGMVLP.jpg" alt="ASGMVLP framework" class="paper-img"
+                 width="640" height="280" loading="lazy" decoding="async">
+          </a>
+        <span class="paper-tag tag-med"><span class="tag-field">Medical Vision-Language</span><span class="tag-tech">VLM</span></span>
+      </div>
+                  <div class="paper-info">
+          <div class="paper-title">Anatomical Structure-Guided Medical Vision-Language Pre-training</div>
+          <div class="paper-meta">
+            <span class="venue">MICCAI 2024</span>
+            <span class="paper-links"><a class="paper-icon" href="https://arxiv.org/abs/2403.09294" aria-label="Read on arXiv" target="_blank" rel="noopener noreferrer"><img src="assets/misc/arxiv-logo.svg" alt="" width="24" height="24"></a><a class="paper-icon" href="https://github.com/ASGMVLP/ASGMVLP_CODE" aria-label="Open the source code" target="_blank" rel="noopener noreferrer"><img src="assets/misc/github-logo.png" alt="" width="24" height="24"></a><a class="paper-icon" href="https://asgmvlp.github.io/" aria-label="Open the project page" target="_blank" rel="noopener noreferrer"><img src="assets/misc/website-logo.png" alt="" width="24" height="24"></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors">Qingqiu Li, <span class="me">Xiaohan Yan</span>, Jilan Xu, Runtian Yuan, Yuejie Zhang, Rui Feng, Quanli Shen, Xiaobo Zhang, Shujun Wang</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">An anatomical structure-guided framework that improves cross-modal alignment in medical vision-language pre-training.</p>
+          </div>
+        </div>
+      </article>
+      </div>
+
+      <button class="toggle-btn" type="button" onclick="toggleFold(this)"
+              aria-controls="more-pubs" aria-expanded="false"
+              data-more="Show 6 more" data-less="Show less">Show 6 more</button>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <article class="paper">
+        <div class="paper-media">
+          <a class="paper-fig" href="projects/PTCG_Kaggle2026/ptcg-full.jpg" aria-label="Open the Pokémon TCG figure at full size">
+            <img src="projects/PTCG_Kaggle2026/ptcg.jpg" alt="Pokémon Trading Card Game cards" class="paper-img"
+                 width="560" height="280" loading="lazy" decoding="async">
+          </a>
+          <span class="paper-tag tag-game"><span class="tag-field">Pokémon TCG</span><span class="tag-tech">AI</span></span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-title">Pokémon TCG AI Battle</div>
+          <div class="paper-meta">
+            <span class="venue">Kaggle 2026</span>
+            <span class="paper-links"><a class="paper-icon" href="https://www.kaggle.com/competitions/pokemon-tcg-ai-battle" aria-label="Open the project page" target="_blank" rel="noopener noreferrer"><img src="assets/misc/website-logo.png" alt="" width="24" height="24"></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Team</div>
+            <div class="paper-authors"><span class="me">Xiaohan Yan</span> · 宝糕手 (Poké Messters)</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">A 60-card deck and a decision agent for the Pokémon Trading Card Game AI Battle. Team 宝糕手 (Poké Messters): 108th of 6,807, score 1011.9, Silver Medal.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="paper">
+        <div class="paper-media">
+          <a class="paper-fig" href="projects/LLM_Kaggle2023/kaggleLLAM-full.jpg" aria-label="Open the Kaggle project figure at full size">
+            <img src="projects/LLM_Kaggle2023/kaggleLLAM.jpg" alt="LLM Science Exam competition" class="paper-img"
+                 width="640" height="639" loading="lazy" decoding="async">
+          </a>
+          <span class="paper-tag tag-llm"><span class="tag-field">Science QA</span><span class="tag-tech">LLM</span></span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-title">LLM Science Exam — Use LLMs to Answer Difficult Science Questions</div>
+          <div class="paper-meta">
+            <span class="venue">Kaggle 2023</span>
+            <span class="paper-links"><a class="paper-icon" href="https://github.com/490CAD/LLM4Science" aria-label="Open the source code" target="_blank" rel="noopener noreferrer"><img src="assets/misc/github-logo.png" alt="" width="24" height="24"></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors"><span class="me">Xiaohan Yan</span>, Nan Wang, Xiaowei Song, Jinyu He</div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">Fine-tuning large language models on private datasets. Score 0.905, top 3% worldwide, Silver Medal.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="paper">
+        <div class="paper-media">
+          <a class="paper-fig" href="projects/eScape_GameJam2023/eScape-full.jpg" aria-label="Open the eScape screenshot at full size">
+            <img src="projects/eScape_GameJam2023/eScape.jpg" alt="eScape game screenshot" class="paper-img"
+                 width="640" height="383" loading="lazy" decoding="async">
+          </a>
+          <span class="paper-tag tag-game"><span class="tag-field">Geometry</span><span class="tag-tech">Game</span></span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-title">eScape — A Geometry Storm Game</div>
+          <div class="paper-meta">
+            <span class="venue">GameJam 2023</span>
+            <span class="paper-links"><a class="paper-icon" href="https://origamihui.itch.io/esacpe/" aria-label="Play" target="_blank" rel="noopener noreferrer"><img src="assets/misc/website-logo.png" alt="" width="24" height="24"></a></span>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Authors</div>
+            <div class="paper-authors">Origami-hui, <span class="me">Xiaohan Yan</span></div>
+          </div>
+          <div class="paper-block">
+            <div class="paper-label">Overview</div>
+            <p class="paper-desc">Scale your device and escape from this geometry storm. 1st in innovation and 2nd in theme interpretation.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Awards -->
+    <section id="awards">
+      <h2>Awards</h2>
+      <div class="row-item">
+        <span><a href="assets/rewards/rewards_bsc_all.pdf">Most of the awards</a> I won during my student years</span>
+        <span class="row-date">2018 – 2024</span>
+      </div>
+      <div class="row-item">
+        <span>The 2019 ICPC Asia-East Continent Final — <a href="assets/rewards/2019EC.png">Bronze Medal</a></span>
+        <span class="row-date">2019 – 2020</span>
+      </div>
+      <div class="row-item">
+        <span>Jiangsu Collegiate Programming Contest — <a href="assets/rewards/JSCPC.png">Silver Medal, 2nd place</a></span>
+        <span class="row-date">2019 – 2020</span>
+      </div>
     </section>
 
     <!-- Misc -->

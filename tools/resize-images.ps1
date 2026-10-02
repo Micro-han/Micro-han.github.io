@@ -40,6 +40,7 @@ $figures = @(
   @{ Orig = '.brainstorm/orig/ASGMVLP.jpg';       Full = 'papers/ASG_MICCAI2024/ASGMVLP-full.jpg';     Thumb = 'papers/ASG_MICCAI2024/ASGMVLP.jpg' }
   @{ Orig = '.brainstorm/orig/kaggleLLAM.jpg';    Full = 'projects/LLM_Kaggle2023/kaggleLLAM-full.jpg'; Thumb = 'projects/LLM_Kaggle2023/kaggleLLAM.jpg' }
   @{ Orig = '.brainstorm/orig/eScape.png';        Full = 'projects/eScape_GameJam2023/eScape-full.jpg'; Thumb = 'projects/eScape_GameJam2023/eScape.jpg' }
+  @{ Orig = '.brainstorm/orig/ptcg.jpg'; Full = 'projects/PTCG_Kaggle2026/ptcg-full.jpg'; Thumb = 'projects/PTCG_Kaggle2026/ptcg.jpg' }
   # The avatar is square-cropped and needs no lightbox size.
   @{ Orig = 'assets/images/microhan.png'; Full = ''; Thumb = 'assets/images/avatar-320.jpg'; ThumbWidth = 320; ThumbQuality = 85; Square = $true }
 )
