@@ -28,6 +28,9 @@ $root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 
 # `Orig` is optional and normally absent; `Full` doubles as the archived source.
 $figures = @(
+  @{ Orig = '.brainstorm/orig/bee.png';       Full = 'papers/BEE_arXiv2026/bee-full.jpg';              Thumb = 'papers/BEE_arXiv2026/bee.jpg' }
+  @{ Orig = '.brainstorm/orig/cider.png';     Full = 'papers/CIDER_arXiv2026/cider-full.jpg';          Thumb = 'papers/CIDER_arXiv2026/cider.jpg' }
+  @{ Orig = '.brainstorm/orig/corbenchx.png'; Full = 'papers/CorBenchX_arXiv2025/corbenchx-full.jpg';  Thumb = 'papers/CorBenchX_arXiv2025/corbenchx.jpg' }
   @{ Orig = '.brainstorm/orig/vine_overview.png'; Full = 'papers/VINE_arXiv2026/vine-full.jpg';        Thumb = 'papers/VINE_arXiv2026/vine.jpg' }
   @{ Orig = '.brainstorm/orig/aloe.png';          Full = 'papers/ALOE_arXiv2026/aloe-full.jpg';        Thumb = 'papers/ALOE_arXiv2026/aloe.jpg' }
   @{ Orig = '.brainstorm/orig/holo.jpeg';         Full = 'papers/HOLO_WACV2026/holo-full.jpg';         Thumb = 'papers/HOLO_WACV2026/holo.jpg' }
